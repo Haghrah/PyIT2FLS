@@ -3,7 +3,16 @@ PyIT2FLS
 NumPy based toolkit for Interval Type 2 Fuzzy Logic Systems (IT2FLS).
 
 ## Examples
-In the code below, the chaotic Mackey-Glass time series is predicted using PyIT2FLS toolkit. The designed IT2FLS has three inputs and an output. Inputs are three consecutive samples of the time series. For each input and for the ouput three Interval Type 2 Fuzzy Sets (IT2FS) are defined. The parameters of these sets are achieved using the Particle Swarm Optimization (PSO) algorithm to have minimum Mean Square Error (MSE). The full code of the example and the PSO solver are presented in examples folder.
+There are five examples provided along with the toolkit which are as below:
+* Ex1: Defining an Interval Type 2 Fuzzy Set (IT2FS)
+* Ex2: Application of join and meet operators and plotting the outputs
+* Ex3: Defining a simple IT2FLS
+* Ex4: Prediction of the Mackey-Glass chaotic time series with PSO-based parameter tuning
+* Ex5: Designing Interval Type 2 Fuzzy PID (IT2FPID) controller for a time-delay linear system
+
+In the code below, the chaotic Mackey-Glass time series is predicted using PyIT2FLS toolkit. The designed IT2FLS has three inputs and an output. Inputs are three consecutive samples of the time series. For each input and for the ouput three IT2FSs are defined. The parameters of these sets are achieved using the Particle Swarm Optimization (PSO) algorithm to have minimum Mean Square Error (MSE). The full code of the example and the PSO solver are presented in examples folder. The output of the prediction would be as shown below:
+
+<img src="/examples/mackey_glass.jpg" width="400">
 
 ```python
 import numpy as np
