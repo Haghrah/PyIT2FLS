@@ -18,6 +18,8 @@ The input sets defined and used in 5th example are shown below:
 
 <img src="/examples/delay_pid_input_sets.jpg" width="400">
 
+See the article <PyIT2FLS: A New Python Toolkit for Interval Type 2 Fuzzy Logic Systems> for more information.
+
 ## Licence
 PyIT2FLS is published under GNU General Public License v3.0. If you are using the developed toolkit, please cite the paper <PyIT2FLS: A New Python Toolkit for Interval Type 2 Fuzzy Logic Systems>.
 
