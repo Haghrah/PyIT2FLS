@@ -3,7 +3,7 @@
 """
 This module implements ddeint, a simple Differential Delay Equation
 solver built on top of Scipy's odeint
-Based on https://github.com/Zulko/ddeint
+Created by @Zulko, https://github.com/Zulko/ddeint
 Improved by @Haghrah, https://github.com/Haghrah/ddeint
 """
 # REQUIRES Numpy and Scipy.
