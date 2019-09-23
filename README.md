@@ -16,7 +16,7 @@ In the 4th example, the chaotic Mackey-Glass time series is predicted using PyIT
 
 The block diagram of the system in 5th example is shown below:
 
-<img src="/examples/delay_pid_input_sets.jpg" width="400">
+<img src="/examples/figure6.jpg" width="400">
 
 See the article <PyIT2FLS: A New Python Toolkit for Interval Type 2 Fuzzy Logic Systems> for more information.
 
