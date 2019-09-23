@@ -14,7 +14,7 @@ In the 4th example, the chaotic Mackey-Glass time series is predicted using PyIT
 
 <img src="/examples/mackey_glass.jpg" width="400">
 
-The input sets defined and used in 5th example are shown below:
+The block diagram of the system in 5th example is shown below:
 
 <img src="/examples/delay_pid_input_sets.jpg" width="400">
 
