@@ -1,6 +1,6 @@
 PyIT2FLS
 ========
-NumPy based toolkit for Interval Type 2 Fuzzy Logic Systems (IT2FLS).
+NumPy based toolkit for Interval Type 2 Fuzzy Logic Systems (IT2FLS) simulation.
 
 ## Examples
 There are five examples provided along with the toolkit which are as below:
