@@ -34,9 +34,9 @@ def u(t):
     return 1. if t > 1. else 0.
 
 def u_dot(t):
-    return 0
-#    a = 100
-#    return (a if 0 < t < 1./a else 0)
+#    return 0
+    a = 10
+    return (a if 1. < t < (1. + 1./a) else 0)
 
 # %% Interval Type 2 Fuzzy PID Codes ...
 domain = linspace(-1., 1., 201)
