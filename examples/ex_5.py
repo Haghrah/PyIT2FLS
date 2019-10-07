@@ -35,7 +35,7 @@ def u(t):
 
 def u_dot(t):
 #    return 0
-    a = 10
+    a = 100
     return (a if 1. < t < (1. + 1./a) else 0)
 
 # %% Interval Type 2 Fuzzy PID Codes ...
