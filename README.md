@@ -37,3 +37,10 @@ The block diagram of the system in 5th example is shown below:
 
 See the article [PyIT2FLS: A New Python Toolkit for Interval Type 2 Fuzzy Logic Systems](https://arxiv.org/abs/1909.10051) for more information.
 
+## Some notes on running the examples
+If you are using Anaconda, due to the inclusion of main ddeint package in its libraries pool, an error is raised while running the 5th example. This error is raised because the 5th example uses an updated version of ddeint which is included in the examples folder. For solving this issue, please change the ddeint.py's name to ddeint1.py (in examples folder) and change the 16th line of the ex_5.py as below:
+
+```python
+from ddeint1 import ddeint
+```
+
