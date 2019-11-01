@@ -103,7 +103,7 @@ def cost_func(x):
     it2fls.add_rule([("A", A2), ("B", B2), ("C", C2)], [("O", O2)])
     #it2fls.add_rule([("A", A3), ("B", B3), ("C", C3)], [("O", O3)])
     #it2fls.add_rule([("A", A1), ("B", B1), ("C", C1)], [("O", O1)])
-    #it2fls.add_rule([("A"membership_value = gauss_uncert_std_lmf(x, [0.5, 0.2, 0.5, 1]), A2), ("B", B2), ("C", C2)], [("O", O2)])
+    #it2fls.add_rule([("A", A2), ("B", B2), ("C", C2)], [("O", O2)])
     it2fls.add_rule([("A", A3), ("B", B3), ("C", C3)], [("O", O3)])
     
     err = 0
