@@ -35,7 +35,7 @@ def u(t):
 
 def u_dot(t):
 #    return 0
-    a = 100
+    a = 10
     return (a if 1. < t < (1. + 1./a) else 0)
 
 # %% Interval Type 2 Fuzzy PID Codes ...
@@ -48,10 +48,10 @@ IT2FS_plot(N, Z, P, legends=["Negative", "Zero", "Positive"], filename="delay_pi
 
 NB = IT2FS_Gaussian_UncertStd(domain, [-1., 0.1, 0.05])
 NM = IT2FS_Gaussian_UncertStd(domain, [-0.5, 0.1, 0.05])
-Z = IT2FS_Gaussian_UncertStd(domain, [0., 0.1, 0.05])
+ZZ = IT2FS_Gaussian_UncertStd(domain, [0., 0.1, 0.05])
 PM = IT2FS_Gaussian_UncertStd(domain, [0.5, 0.1, 0.05])
 PB = IT2FS_Gaussian_UncertStd(domain, [1., 0.1, 0.05])
-IT2FS_plot(NB, NM, Z, PM, PB, legends=["Negative Big", "Negative Medium", 
+IT2FS_plot(NB, NM, ZZ, PM, PB, legends=["Negative Big", "Negative Medium", 
                                        "Zero", "Positive Medium", 
                                        "Positive Big"], filename="delay_pid_output_sets")
 
@@ -62,11 +62,11 @@ it2fls.add_output_variable("O")
 
 it2fls.add_rule([("I1", N), ("I2", N)], [("O", NB)])
 it2fls.add_rule([("I1", N), ("I2", Z)], [("O", NM)])
-it2fls.add_rule([("I1", N), ("I2", P)], [("O", Z)])
+it2fls.add_rule([("I1", N), ("I2", P)], [("O", ZZ)])
 it2fls.add_rule([("I1", Z), ("I2", N)], [("O", NM)])
-it2fls.add_rule([("I1", Z), ("I2", Z)], [("O", Z)])
+it2fls.add_rule([("I1", Z), ("I2", Z)], [("O", ZZ)])
 it2fls.add_rule([("I1", Z), ("I2", P)], [("O", NM)])
-it2fls.add_rule([("I1", P), ("I2", N)], [("O", Z)])
+it2fls.add_rule([("I1", P), ("I2", N)], [("O", ZZ)])
 it2fls.add_rule([("I1", P), ("I2", Z)], [("O", PM)])
 it2fls.add_rule([("I1", P), ("I2", P)], [("O", PB)])
 
@@ -180,14 +180,14 @@ g2 = lambda t : 0
 
 # %%
 # Nominal
-K = 1.
-T = 1.
-L = 0.2
+#K = 1.
+#T = 1.
+#L = 0.2
 
 # Perturbed 1.
-#K = 1.3
-#T = 1.9
-#L = 0.4
+K = 1.3
+T = 1.9
+L = 0.4
 
 #Perturbed 2.
 #K = 1.1
@@ -195,8 +195,10 @@ L = 0.2
 #L = 0.45
 
 tt = linspace(0., 20. ,2000)
-#y_raw = ddeint(raw_sys, [g1], tt, fargs=(K, T, L, ))
-#y_cl = ddeint(cl_sys, [g1], tt, fargs=(K, T, L, ))
+
+y_raw = ddeint(raw_sys, [g1], tt, fargs=(K, T, L, ))
+y_cl = ddeint(cl_sys, [g1], tt, fargs=(K, T, L, ))
+
 print("KM evaluation start!")
 y_it2fpid_KM = ddeint(model_KM, [g1, g2], tt, fargs=(K, T, L, 0.25, 4.25, 0.8, 0.5, ))
 
@@ -214,7 +216,9 @@ y_it2fpid_NT = ddeint(model_NT, [g1, g2], tt, fargs=(K, T, L, 0.25, 4.25, 0.8, 0
 
 figure()
 
+
 ref = array([u(t) for t in tt])
+
 plot(tt, ref, label="Reference")
 plot(tt, y_it2fpid_KM[:,0], label="KM", linewidth=1.)
 plot(tt, y_it2fpid_EIASC[:,0], label="EIASC", linewidth=1.)
@@ -228,7 +232,7 @@ xlabel("Time (s)")
 ylabel("System response")
 grid(True)
 
-savefig("delay_pid_case1_comp.pdf", format="pdf", dpi=300, bbox_inches="tight")
+#savefig("delay_pid_case1_comp.pdf", format="pdf", dpi=300, bbox_inches="tight")
 show()
 
 
@@ -257,8 +261,3 @@ print("NT:")
 print("ITAE:", ITAE(ref, y_it2fpid_NT[:,0], tt))
 print("Overshoot:", 100 * os(y_it2fpid_NT[:,0]))
 print("Settling time:", ts(y_it2fpid_NT[:,0], tt))
-
-
-
-
-
