@@ -23,7 +23,7 @@ PyIT2FLS can be installed by unzipping the source code in one directory and usin
 There are five examples provided along with the toolkit which are as below:
 * Ex1: Defining an Interval Type 2 Fuzzy Set (IT2FS)
 * Ex2: Application of join and meet operators and plotting the outputs
-* Ex3: Defining a simple IT2FLS
+* Ex3: Defining a simple (MIMO) IT2FLS
 * Ex4: Prediction of the Mackey-Glass chaotic time series with PSO-based parameter tuning
 * Ex5: Designing Interval Type 2 Fuzzy PID (IT2FPID) controller for a time-delay linear system
 
