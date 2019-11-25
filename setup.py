@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='pyit2fls',
-      version='0.1',
+      version='0.2',
       description='Interval Type 2 Fuzzy Logic Systems in Python',
       url='https://github.com/Haghrah/PyIT2FLS',
       author='Amir Arslan Haghrah',
@@ -9,4 +9,5 @@ setup(name='pyit2fls',
       license='GPL-3.0',
       packages=['pyit2fls'],
       install_requires=['numpy', 'matplotlib', ],
+      python_requires='>=3.6',
       zip_safe=False)
