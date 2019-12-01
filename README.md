@@ -15,9 +15,13 @@ PyIT2FLS is published under GNU General Public License v3.0. If you are using th
     }
 
 ## Installation
-PyIT2FLS can be installed by unzipping the source code in one directory and using this command:
+PyIT2FLS can be installed by unzipping the source code in a directory and using this command:
 
     (sudo) python3 setup.py install
+
+Or you can use pip3:
+
+    (sudo) pip3 install --upgrade pyit2fls
 
 ## Examples
 There are five examples provided along with the toolkit which are as below:
