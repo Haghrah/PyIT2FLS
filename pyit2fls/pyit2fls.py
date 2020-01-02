@@ -137,6 +137,73 @@ def tri_mf(x, params):
                ((params[3] * ((params[2] - x) / (params[2] - params[1]))) * (x > params[1]))) ))
 
 
+def ltri_mf(x, params):
+    """
+    Left triangular membership function.
+
+    Parameters
+    ----------
+    x : 
+        numpy (n,) shaped array
+        
+        The array like input x indicates the points from universe of 
+        discourse in which the membership function would be evaluated.
+    params : 
+        List 
+        
+        Additional parameters for the membership function.  
+        The right end, the center, and the height of the triangular 
+        membership function is indicated by params[0], params[1], and params[2], 
+        respectively.
+    
+    Returns
+    -------
+    ndarray
+        Returns membership values corresponding with the input.
+    
+    Examples
+    --------
+    
+    >>> x = linspace(0, 1, 201)
+    >>> membership_value = ltri_mf(x, [0.1, 0.3, 1])
+    """
+    return minimum(1, maximum(0, (params[2] * (x <= params[1]) + \
+               ((params[2] * ((params[0] - x) / (params[0] - params[1]))) * (x > params[1]))) ))
+
+def rtri_mf(x, params):
+    """
+    Right triangular membership function.
+
+    Parameters
+    ----------
+    x : 
+        numpy (n,) shaped array
+        
+        The array like input x indicates the points from universe of 
+        discourse in which the membership function would be evaluated.
+    params : 
+        List 
+        
+        Additional parameters for the membership function. The left end, 
+        the center, and the height of the triangular 
+        membership function is indicated by params[0], params[1] and params[2], 
+        respectively.
+    
+    Returns
+    -------
+    ndarray
+        Returns membership values corresponding with the input.
+    
+    Examples
+    --------
+    
+    >>> x = linspace(0, 1, 201)
+    >>> membership_value = rtri_mf(x, [0.3, 0.5, 1])
+    """
+    return minimum(1, maximum(0, ((params[2] * (x - params[0]) / (params[1] - params[0])) * (x <= params[1]) + \
+               (params[2] * (x > params[1])) )))
+    
+
 def trapezoid_mf(x, params):
     """
     Trapezoidal membership function
@@ -364,12 +431,19 @@ class IT2FS(object):
         lmf_params:
             List of parameters of lower membership function
         
+        check_set:
+            If it is True, then a function named check_set in IT2FS will 
+            verify the LMF(x) < UMF(x) for any x in the domain. If the 
+            user is sure that has selected the parameters of membership 
+            functions correct, then calling this time-consuming function 
+            is not needed. By default the parameter check_set is False.
+            
         Functions
         ----------
         Functions defined in IT2FS class:
         
             copy:
-                Returns a copy of the IT2FS .
+                Returns a copy of the IT2FS.
             plot:
                 Plots the IT2FS.
             negation operator -:
@@ -385,7 +459,7 @@ class IT2FS(object):
         
         """
 
-    def __init__(self, domain, umf=zero_mf, umf_params=[], lmf=zero_mf, lmf_params=[]):
+    def __init__(self, domain, umf=zero_mf, umf_params=[], lmf=zero_mf, lmf_params=[], check_set=False):
         self.umf = umf
         self.lmf = lmf
         self.umf_params = umf_params
@@ -394,6 +468,16 @@ class IT2FS(object):
         self.domain = domain
         self.upper = maximum(minimum(umf(domain, umf_params), 1), 0)
         self.lower = maximum(minimum(lmf(domain, lmf_params), 1), 0)
+        if check_set:
+            self.check_set()
+
+    def check_set(self):
+        """
+        Verifies the LMF(x) < UMF(x) for any x in the domain.
+        """
+        for l, u in zip(self.lower, self.upper):
+            if l > u:
+                raise ValueError("LMF in some points in domain is larger than UMF.")
 
     def copy(self):
         """
@@ -685,6 +769,12 @@ def crisp(tr):
     >>> print(crisp(tr1))
     """
     return (tr[0] + tr[1]) / 2
+
+def crisp_list(trs, o):
+    output = []
+    for tr in trs:
+        output.append(crisp(tr[o]))
+    return output
 
 def min_t_norm(a, b):
     """
@@ -1771,8 +1861,146 @@ class IT2FLS(object):
         o.outputs = self.outputs.copy()
         o.rules = self.rules.copy()
         return o
-
-    def evaluate(self, inputs, t_norm, s_norm, domain, method="Centroid", method_params=None, algorithm="EIASC", algorithm_params=None):
+    
+    def evaluate_list(self, inputs, t_norm, s_norm, domain, 
+                      method="Centroid", method_params=None, 
+                      algorithm="EIASC", algorithm_params=None):
+        """
+        
+        """
+        inputs_list = []
+        
+        l = len(inputs[self.inputs[0]])
+        for i in inputs.values():
+            if len(i) != l:
+                raise ValueError("All input lists must contain same number of values.")
+        
+        for i in range(l):
+            inputs_list.append({})
+            for j in self.inputs:
+                inputs_list[-1][j] = inputs[j][i]
+        
+        if algorithm == "KM":
+            alg_func = KM_algorithm
+        elif algorithm == "EKM":
+            alg_func = EKM_algorithm
+        elif algorithm == "WEKM":
+            alg_func = WEKM_algorithm
+        elif algorithm == "TWEKM":
+            alg_func = TWEKM_algorithm
+        elif algorithm == "WM":
+            alg_func = WM_algorithm
+        elif algorithm == "LBMM":
+            alg_func = LBMM_algorithm
+        elif algorithm == "BMM":
+            alg_func = BMM_algorithm        
+        elif algorithm == "NT":
+            alg_func = NT_algorithm       
+        elif algorithm == "EIASC":
+            alg_func = EIASC_algorithm
+        else:
+            raise ValueError("The " + algorithm + " algorithm is not implemented, yet!")
+        
+        outputs = []
+        
+        if method == "Centroid":
+            Cs = []
+            TRs = []
+            for inputs in inputs_list:
+                B = {out: [] for out in self.outputs}
+                for rule in self.rules:
+                    u = 1
+                    l = 1
+                    for input_statement in rule[0]:
+                        u = t_norm(u, input_statement[1].umf(inputs[input_statement[0]], input_statement[1].umf_params))
+                        l = t_norm(l, input_statement[1].lmf(inputs[input_statement[0]], input_statement[1].lmf_params))
+                    for consequent in rule[1]:
+                        B_l = meet(domain, IT2FS(domain, const_mf, [u], const_mf, [l]), consequent[1], t_norm)
+                        B[consequent[0]].append(B_l)
+                C = {out: IT2FS(domain) for out in self.outputs}
+                TR = {}
+                for out in self.outputs:
+                    for B_l in B[out]:
+                        C[out] = join(domain, C[out], B_l, s_norm)
+                    TR[out] = Centroid(C[out], alg_func, domain, alg_params=algorithm_params)
+                Cs.append(C)
+                TRs.append(TR)
+            return Cs, TRs
+        elif method == "CoSet":
+            for inputs in inputs_list:
+                F = []
+                G = {out: [] for out in self.outputs}
+                for rule in self.rules:
+                    u = 1
+                    l = 1
+                    for input_statement in rule[0]:
+                        u = t_norm(u, input_statement[1].umf(inputs[input_statement[0]], input_statement[1].umf_params))
+                        l = t_norm(l, input_statement[1].lmf(inputs[input_statement[0]], input_statement[1].lmf_params))
+                    F.append([l, u])
+                    for consequent in rule[1]:
+                        G[consequent[0]].append(consequent[1])
+                TR = {}
+                for out in self.outputs:
+                    TR[out] = CoSet(array(F), G[out], alg_func, domain, alg_params=algorithm_params)
+                outputs.append(TR)
+            return outputs
+        elif method == "CoSum":
+            for inputs in inputs_list:
+                B = {out: [] for out in self.outputs}
+                for rule in self.rules:
+                    u = 1
+                    l = 1
+                    for input_statement in rule[0]:
+                        u = t_norm(u, input_statement[1].umf(inputs[input_statement[0]], input_statement[1].umf_params))
+                        l = t_norm(l, input_statement[1].lmf(inputs[input_statement[0]], input_statement[1].lmf_params))
+                    for consequent in rule[1]:
+                        B_l = meet(domain, IT2FS(domain, const_mf, [u], const_mf, [l]), consequent[1], t_norm)
+                        B[consequent[0]].append(B_l)
+                TR = {}
+                for out in self.outputs:
+                    TR[out] = CoSum(B[out], alg_func, domain, alg_params=algorithm_params)
+                outputs.append(TR)
+            return outputs
+        elif method == "Height":
+            for inputs in inputs_list:
+                B = {out: [] for out in self.outputs}
+                for rule in self.rules:
+                    u = 1
+                    l = 1
+                    for input_statement in rule[0]:
+                        u = t_norm(u, input_statement[1].umf(inputs[input_statement[0]], input_statement[1].umf_params))
+                        l = t_norm(l, input_statement[1].lmf(inputs[input_statement[0]], input_statement[1].lmf_params))
+                    for consequent in rule[1]:
+                        B_l = meet(domain, IT2FS(domain, const_mf, [u], const_mf, [l]), consequent[1], t_norm)
+                        B[consequent[0]].append(B_l)
+                TR = {}
+                for out in self.outputs:
+                    TR[out] = Height(B[out], alg_func, domain, alg_params=algorithm_params)
+                outputs.append(TR)
+            return outputs
+        elif method == "ModiHe":
+            for inputs in inputs_list:
+                B = {out: [] for out in self.outputs}
+                for rule in self.rules:
+                    u = 1
+                    l = 1
+                    for input_statement in rule[0]:
+                        u = t_norm(u, input_statement[1].umf(inputs[input_statement[0]], input_statement[1].umf_params))
+                        l = t_norm(l, input_statement[1].lmf(inputs[input_statement[0]], input_statement[1].lmf_params))
+                    for consequent in rule[1]:
+                        B_l = meet(domain, IT2FS(domain, const_mf, [u], const_mf, [l]), consequent[1], t_norm)
+                        B[consequent[0]].append(B_l)
+                TR = {}
+                for out in self.outputs:
+                    TR[out] = ModiHe(B[out], method_params, alg_func, domain, alg_params=algorithm_params)
+                outputs.append(TR)
+            return outputs
+        else:
+            raise ValueError("The method " + method + " is not implemented yet!")
+    
+    
+    def evaluate(self, inputs, t_norm, s_norm, domain, method="Centroid", 
+                 method_params=None, algorithm="EIASC", algorithm_params=None):
         """
         Evaluates the IT2FLS based on crisp inputs given by user.
         
