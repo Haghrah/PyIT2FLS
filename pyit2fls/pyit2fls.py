@@ -770,11 +770,43 @@ def crisp(tr):
     """
     return (tr[0] + tr[1]) / 2
 
-def crisp_list(trs, o):
-    output = []
-    for tr in trs:
-        output.append(crisp(tr[o]))
-    return output
+def crisp_list(trs, o=None):
+    """
+    Calculates the crisp outputs achieved by calling the evaluate_list 
+    function from IT2FLS class.
+    
+    Parameters
+    ----------
+    
+    trs:
+        List of Tuple (l, r)
+        
+        Type reduced IT2FSs
+    
+    o:
+        str
+        
+        The name of the output variable to be processed. If it is not given, 
+        then the crisp outputs are calculated for all output variables.
+    
+    Returns
+    -------
+    List of float (or Dictionary of Lists of float)
+    """
+    if o is None:
+        output = {}
+        for key in trs[0].keys():
+            output[key] = []
+        for tr in trs:
+            for key in trs[0].keys():
+                output[key].append(crisp(tr[key]))
+        return output
+            
+    else:
+        output = []
+        for tr in trs:
+            output.append(crisp(tr[o]))
+        return output
 
 def min_t_norm(a, b):
     """
@@ -1866,7 +1898,78 @@ class IT2FLS(object):
                       method="Centroid", method_params=None, 
                       algorithm="EIASC", algorithm_params=None):
         """
+        Evaluates the IT2FLS based on list of crisp inputs given by user.
         
+        Parameters
+        ----------
+        
+        inputs:
+            dictionary
+            
+            Inputs is a dictionary in which the keys are input variable 
+            names as str and the values are the list of crisp values 
+            corresponded with the inputs to be evaluated.
+            
+        t_norm:
+            function
+            
+            Indicates the t-norm operator to be used, and should be chosen 
+            between min_t_norm, product_t_norm, or other user defined 
+            t-norms.
+        
+        s_norm:
+            function
+            
+            Indicates the s-norm operator to be used, and should be chosen 
+            between max_s_norm or other user defined s-norms.
+        
+        domain:
+            numpy (n,) shaped array
+            
+            Indicates the universe of discourse dedicated to the IT2FS.
+        
+        method="Centroid":
+            str
+            
+            Indicates the type reduction method name and should be one 
+            of the methods listed below:
+                Centroid, CoSet, CoSum, Height, and ModiHe.
+        
+        method_params=None:
+            List
+            
+            Parameters of the type reduction method, if needed.
+        
+        algorithm="EIASC":
+            Indicates the type reduction algorithm name and should be 
+            one of the algorithms listed below:
+                KM, EKM, WEKM, TWEKM, EIASC, WM, BMM, LBMM, and NT.
+        
+        algorithm_params=None:
+            List
+            
+            Parameters of the type reduction algorithm, if needed.
+        
+        Returns
+        -------
+        It depends on which method and algorithm for type reduction is 
+        chosen. If Centroid type reduction method is chosen the output 
+        is a tuple with two elements. First element is the overall IT2FS 
+        outputs of the system as a list of dictionaries with output names as keys 
+        and sets as values. The second output is outputs of the 
+        selected type reduction algorithm as a list of dictionaries with 
+        output names as keys and type reduction algorithm function output 
+        as value. For other type reduction methods the only output is a list of  
+        dictionaries of the type reduction algorithm function outputs for 
+        each output variable name as a key.
+        
+        Notes
+        -----
+        
+        While using the evaluate function some cares must be taken by the user 
+        himself which are listed as below:
+            * The inputs must be lay in the defined universe of discourse.
+            * The type reduction method and the type reduction algorithm must be selected from the lists provided in docstrings.
         """
         inputs_list = []
         
