@@ -5,6 +5,7 @@ PyIT2FLS is providing a set of tools for fast and easy modeling of Interval Type
 In this section we are going to see how IT2FSs can be defined using the **_IT2FS_** class. An IT2FS is defined by its Lower Membership Function (LMF) and Upper Membership Function (UMF). So first we need to know functions which can be used as LMFs and UMFs.
 
 ### List of membership function that can be used as LMF and UMF functions
+
 |  Membership function  | Description | Parameters |
 |:---------------------:|:-----------:|:----------:|
 | zero_mf               |             |            |
