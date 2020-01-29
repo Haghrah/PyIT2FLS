@@ -43,7 +43,6 @@ from numpy import linspace
 mySet = IT2FS(linspace(0., 1., 100), 
               trapezoid_mf, [0, 0.4, 0.6, 1., 1.], 
               tri_mf, [0.25, 0.5, 0.75, 0.6])
-}
 ```
 
 In the first line the **_IT2FS_** class and trapezoid and triangular membership functions are imported from the toolkit. Also in the second line, from the numpy the linspace is imported for creating the domain of the set. Then, using the **_IT2FS_** the interval type 2 fuzzy set named **_mySet_** is created.
