@@ -1,3 +1,2 @@
 # PyIT2FLS
-
-<center><img src="/PyIT2FLS_icon.png" width="128"></center>
+PyIT2FLS is providing a set of tools for fast and easy modeling of Interval Type 2 Fuzzy Sets (IT2FS) and Systems (IT2FLS). There are two main classes in this toolkit, named **_IT2FS_** and **_IT2FLS_**. The first one for defining IT2FSs and the latter for defining IT2FLSs. There are many functions defined in PyIT2FLS for utilizing these two classes, which would be introduced in the following.
