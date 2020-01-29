@@ -1,3 +1,5 @@
 theme: jekyll-theme-leap-day
-title: Welcome!
-description: PyIT2FLS
+title: PyIT2FLS
+description: Interval Type 2 Fuzzy Logic Systems in Python
+show_downloads: true
+google_analytics:
