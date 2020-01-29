@@ -23,6 +23,16 @@ In this section we are going to see how IT2FSs can be defined using the **_IT2FS
 
 It must be noticed that the parameters of the introduced functions are passed as a list with items mentioned, respectively.
 
+### Creating an IT2FS
+The constructor function of the **_IT2FS_** class has six parameters, listed as below:
+
+1.  domain: The universe of discourse of the fuzzy set
+1.  umf: The UMF of the interval type 2 fuzzy set
+1.  umf_params: The parameters of the UMF function
+1.  lmf: The LMF of the interval type 2 fuzzy set
+1.  lmf_params: The parameters of the LMF function
+1.  check_set: Boolean with default **_False_** value. If it is set as **_True_** then while the set is creating the condition of LMF(x)<=UMF(x) is checked for each x in domain.
+
 
 ## IT2FLS
 
