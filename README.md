@@ -1,5 +1,8 @@
 PyIT2FLS
 ========
+
+<img src="/PyIT2FLS_icon.png" width="256">
+
 NumPy based toolkit for Interval Type 2 Fuzzy Logic Systems (IT2FLS) simulation.
 
 ## Licence
