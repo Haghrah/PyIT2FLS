@@ -26,29 +26,32 @@ It must be noticed that the parameters of the introduced functions are passed as
 ### Creating an IT2FS
 The constructor function of the **_IT2FS_** class has six parameters, listed as below:
 
-1.  domain: The universe of discourse of the fuzzy set
+1.  domain: The universe of discourse of the interval type 2 fuzzy set
 1.  umf: The UMF of the interval type 2 fuzzy set
 1.  umf_params: The parameters of the UMF function
 1.  lmf: The LMF of the interval type 2 fuzzy set
 1.  lmf_params: The parameters of the LMF function
 1.  check_set: Boolean with default **_False_** value. If it is set as **_True_** then while the set is creating the condition of LMF(x)<=UMF(x) is checked for each x in domain.
 
+### Example 1
+The first example demonstrates how to create a IT2FS with trapezoid LMF and triangular UMF functions:
+
+```python
+from pyit2fls import IT2FS, trapezoid_mf, tri_mf
+from numpy import linspace
+
+mySet = IT2FS(linspace(0., 1., 100), 
+              trapezoid_mf, [0, 0.4, 0.6, 1., 1.], 
+              tri_mf, [0.25, 0.5, 0.75, 0.6])
+}
+```
+
+In the first line the **_IT2FS_** class and trapezoid and triangular membership functions are imported from the toolkit. Also in the second line, from the numpy the linspace is imported for creating the domain of the set. Then, using the **_IT2FS_** the interval type 2 fuzzy set named **_mySet_** is created.
+
+### Plotting the IT2FSs
+In order to plot an **_IT2FS_**, the function **_plot_** from the **_IT2FS_** class can be used. This function has three input parameters with **_None_** default value, named **_title_**, **_legend_text_**, and **_filename_**. If the **_title_** and **_legend_text_** parameters are set, the plot would be done using them. And if the **_filename_** is set, the output figure would be saved as a pdf file with the specified name.
 
 ## IT2FLS
-
-## Example 1
-
-## Example 2
-
-## Example 3
-
-## Example 4
-
-## Example 5
-
-## Example 6
-
-## Example 7
 
 
 
