@@ -66,7 +66,7 @@ mySet.plot(filename="mySet")
 ```
 
 ### Plotting multiple IT2FSs together
-If there are many sets which we would like to plot them together, we can use the **_IT2FS_plot_** function from PyIT2FLS. The inputs of this function after an arbitrary number of **_IT2FSs_** are as **_plot's_**. It means that three **_title_**, **_legend_text_**, and **_filename_** parameters with **_None_** default value. Using this function for plotting three **_IT2FSs_** is presented below, in second example.
+If there are many sets which we would like to plot them together, we can use the **_IT2FS_plot_** function from PyIT2FLS. The inputs of this function after an arbitrary number of **_IT2FSs_** are as **_plot's_**. It means that three **_title_**, **_legend_text_**, and **_filename_** parameters with **_None_** default value. In the second example below, it is shown how to use the **_IT2FS_plot_** function for plotting three **_IT2FSs_**.
 
 ### Example 2
 
