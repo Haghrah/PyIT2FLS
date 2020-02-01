@@ -49,8 +49,26 @@ mySet = IT2FS(linspace(0., 1., 100),
 
 In the first line the **_IT2FS_** class and trapezoid and triangular membership functions are imported from the toolkit. Also in the second line, from the numpy the linspace is imported for creating the domain of the set. Then, using the **_IT2FS_** the interval type 2 fuzzy set named **_mySet_** is created.
 
+### Creating common gaussian interval type 2 fuzzy sets
+Most of times the gaussian interval type 2 fuzzy sets are prefered in applications. There are two type of this set, 
+
 ### Plotting the IT2FSs
-In order to plot an **_IT2FS_**, the function **_plot_** from the **_IT2FS_** class can be used. This function has three input parameters with **_None_** default value, named **_title_**, **_legend_text_**, and **_filename_**. If the **_title_** and **_legend_text_** parameters are set, the plot would be done using them. And if the **_filename_** is set, the output figure would be saved as a pdf file with the specified name.
+In order to plot an **_IT2FS_**, the **_plot_** function from the **_IT2FS_** class can be used. This function has three input parameters with **_None_** default value, named **_title_**, **_legend_text_**, and **_filename_**. If the **_title_** and **_legend_text_** parameters are set, the plot would be done using them. And if the **_filename_** is set, the output figure would be saved as a pdf file with the specified name. The Example 1 can be completed by plotting the output set using the **_plot_** function as below:
+
+```python
+from pyit2fls import IT2FS, trapezoid_mf, tri_mf
+from numpy import linspace
+
+mySet = IT2FS(linspace(0., 1., 100), 
+              trapezoid_mf, [0, 0.4, 0.6, 1., 1.], 
+              tri_mf, [0.25, 0.5, 0.75, 0.6])
+mySet.plot(filename="mySet")
+```
+
+### Plotting multiple IT2FSs together
+If there are many sets which we would like to plot them together, we can use the **_IT2FS_plot_** function from PyIT2FLS. The inputs of this function after an arbitrary number of **_IT2FSs_** are as **_plot's_**. It means that three **_title_**, **_legend_text_**, and **_filename_** parameters with **_None_** default value. Using this function for plotting three **_IT2FSs_** is presented below, in second example.
+
+### Example 2
 
 ## IT2FLS
 
