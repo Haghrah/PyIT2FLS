@@ -70,6 +70,18 @@ If there are many sets which we would like to plot them together, we can use the
 
 ### Example 2
 
+```python
+from pyit2fls import IT2FS_Gaussian_UncertMean, IT2FS_plot, meet, \
+                     join, min_t_norm, max_s_norm
+from numpy import linspace
+
+domain = linspace(0., 1., 100)
+A = IT2FS_Gaussian_UncertMean(domain, [0., 0.1, 0.1])
+B = IT2FS_Gaussian_UncertMean(domain, [0.33, 0.1, 0.1])
+C = IT2FS_Gaussian_UncertMean(domain, [0.66, 0.1, 0.1])
+IT2FS_plot(A, B, C, title="", legends=["Small","Medium","Large"], filename="multiSet")
+```
+
 ## IT2FLS
 
 
