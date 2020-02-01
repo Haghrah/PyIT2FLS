@@ -71,8 +71,7 @@ If there are many sets which we would like to plot them together, we can use the
 ### Example 2
 
 ```python
-from pyit2fls import IT2FS_Gaussian_UncertMean, IT2FS_plot, meet, \
-                     join, min_t_norm, max_s_norm
+from pyit2fls import IT2FS_Gaussian_UncertMean, IT2FS_plot, meet, join, min_t_norm, max_s_norm
 from numpy import linspace
 
 domain = linspace(0., 1., 100)
