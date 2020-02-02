@@ -69,6 +69,7 @@ mySet.plot(filename="mySet")
 If there are many sets which we would like to plot them together, we can use the **_IT2FS_plot_** function from PyIT2FLS. The inputs of this function after an arbitrary number of **_IT2FSs_** are as **_plot's_**. It means that three **_title_**, **_legend_text_**, and **_filename_** parameters with **_None_** default value. In the second example below, it is shown how to use the **_IT2FS_plot_** function for plotting three **_IT2FSs_**.
 
 ### Example 2
+The second example demonstrates how to define gaussian IT2FSs and plot them together.
 
 ```python
 from pyit2fls import IT2FS_Gaussian_UncertMean, IT2FS_plot, meet, join, min_t_norm, max_s_norm
@@ -80,6 +81,17 @@ B = IT2FS_Gaussian_UncertMean(domain, [0.33, 0.1, 0.1])
 C = IT2FS_Gaussian_UncertMean(domain, [0.66, 0.1, 0.1])
 IT2FS_plot(A, B, C, title="", legends=["Small","Medium","Large"], filename="multiSet")
 ```
+
+### T-norms and S-norms
+In the PyIT2FLS there are two T-norms and a S-norm by default, but new ones can be defined by the user himself. Any function that theoritically meets the being T-norm (or S-norm) requirements and is defined as following, can be used as a T-norm (or S-norm). The function that is going to be used as a T-norm (or S-norm) must have two input. These inputs would be numpy (n,) shaped arrays (or single float number). The output must be also of the type numpy (n,) shaped array (or single float number). The function must be compatible with these two input/output types. The functions from the PyIT2FLS, dedicated to T-norms and S-norms are as below:
+
+- min_t_norm
+- product_t_norm
+- max_s_norm
+
+
+### Meet and join operators
+
 
 ## IT2FLS
 
