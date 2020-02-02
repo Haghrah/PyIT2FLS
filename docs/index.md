@@ -85,9 +85,9 @@ IT2FS_plot(A, B, C, title="", legends=["Small","Medium","Large"], filename="mult
 ### T-norms and S-norms
 In the PyIT2FLS there are two T-norms and a S-norm by default, but new ones can be defined by the user himself. Any function that theoritically meets the being T-norm (or S-norm) requirements and is defined as following, can be used as a T-norm (or S-norm). The function that is going to be used as a T-norm (or S-norm) must have two input. These inputs would be numpy (n,) shaped arrays (or single float number). The output must be also of the type numpy (n,) shaped array (or single float number). The function must be compatible with these two input/output types. The functions from the PyIT2FLS, dedicated to T-norms and S-norms are as below:
 
-- min_t_norm
-- product_t_norm
-- max_s_norm
+- min_t_norm: Minimum T-norm
+- product_t_norm: Product T-norm 
+- max_s_norm: Maximum S-norm
 
 
 ### Meet and join operators
