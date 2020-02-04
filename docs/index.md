@@ -91,7 +91,27 @@ In the PyIT2FLS there are two T-norms and a S-norm by default, but new ones can 
 
 
 ### Meet and join operators
+Two essential operators in Interval Type 2 Fuzzy Logic, are the meet and join operators. These operators are defined in PyIY2FLS as two functions **_meet_** and **_join_**. Both functions have four inputs. For these functions, the first three inputs are common, the universe of discourse, the first **_IT2FS_**, and the second **_IT2FS_**. The 4th input of the **_meet_** function is the desired T-norm function, and for the **_join_** function it is the desired S-norm function. 
 
+### Example 3
+Compeleting the second example, the **_meet_** of the sets **_A_** and **_B_**, and **_join_** of the sets **_B_** and **_C_** are calculated:
+
+```python
+from pyit2fls import IT2FS_Gaussian_UncertMean, IT2FS_plot, meet, join, min_t_norm, max_s_norm
+from numpy import linspace
+
+domain = linspace(0., 1., 100)
+A = IT2FS_Gaussian_UncertMean(domain, [0., 0.1, 0.1])
+B = IT2FS_Gaussian_UncertMean(domain, [0.33, 0.1, 0.1])
+C = IT2FS_Gaussian_UncertMean(domain, [0.66, 0.1, 0.1])
+IT2FS_plot(A, B, C, title="", legends=["Small","Medium","Large"], filename="multiSet")
+
+AB = meet(domain, A, B, min_t_norm)
+AB.plot(filename="meet")
+
+BC = join(domain, B, C, max_s_norm)
+BC.plot(filename="join")
+```
 
 ## IT2FLS
 
