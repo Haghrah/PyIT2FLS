@@ -94,7 +94,7 @@ In the PyIT2FLS there are two T-norms and a S-norm by default, but new ones can 
 Two essential operators in Interval Type 2 Fuzzy Logic, are the meet and join operators. These operators are defined in PyIY2FLS as two functions **_meet_** and **_join_**. Both functions have four inputs. For these functions, the first three inputs are common, the universe of discourse, the first **_IT2FS_**, and the second **_IT2FS_**. The 4th input of the **_meet_** function is the desired T-norm function, and for the **_join_** function it is the desired S-norm function. 
 
 ### Example 3
-Compeleting the second example, the **_meet_** of the sets **_A_** and **_B_**, and **_join_** of the sets **_B_** and **_C_** are calculated:
+Completing the second example, the **_meet_** of the sets **_A_** and **_B_**, and **_join_** of the sets **_B_** and **_C_** are calculated:
 
 ```python
 from pyit2fls import IT2FS_Gaussian_UncertMean, IT2FS_plot, meet, join, min_t_norm, max_s_norm
@@ -112,6 +112,21 @@ AB.plot(filename="meet")
 BC = join(domain, B, C, max_s_norm)
 BC.plot(filename="join")
 ```
+
+### Type reduction algorithms
+The type reduction play a key role in achieving crisp values from Type 2 Fuzzy Sets. The type reduction algorithms, which are implemented in the PyIT2FLS are listed as the table below:
+
+|  Type reduction algorithm function  | Description | List of parameters |
+|:-----------------------------------:|:-----------:|:------------------:|
+| KM_algorithm | | |
+| EKM_algorithm | | |
+| WEKM_algorithm | | |
+| TWEKM_algorithm | | |
+| EIASC_algorithm | | |
+| WM_algorithm | | |
+| BMM_algorithm | | |
+| LBMM_algorithm | | |
+| NT_algorithm | | |
 
 ## IT2FLS
 
