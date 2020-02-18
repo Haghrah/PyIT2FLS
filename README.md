@@ -6,7 +6,7 @@ PyIT2FLS
 NumPy based toolkit for Interval Type 2 Fuzzy Logic Systems (IT2FLS) simulation.
 
 ## Licence
-PyIT2FLS is published under MIT License. If you are using the developed toolkit, please cite preprint of our paper [PyIT2FLS: A New Python Toolkit for Interval Type 2 Fuzzy Logic Systems](https://arxiv.org/abs/1909.10051).
+PyIT2FLS is published under MIT license. If you are using the developed toolkit, please cite preprint of our paper [PyIT2FLS: A New Python Toolkit for Interval Type 2 Fuzzy Logic Systems](https://arxiv.org/abs/1909.10051).
 
     @misc{haghrah2019pyit2fls,
         title={PyIT2FLS: A New Python Toolkit for Interval Type 2 Fuzzy Logic Systems},
