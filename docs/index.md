@@ -114,22 +114,23 @@ BC.plot(filename="join")
 ```
 
 ### Type reduction algorithms
-The type reduction play a key role in achieving crisp values from Type 2 Fuzzy Sets. The type reduction algorithms, which are implemented in the PyIT2FLS are listed as the table below:
+The type reduction play a key role in achieving crisp values from Type 2 Fuzzy Sets. The type reduction algorithms, which are implemented in the PyIT2FLS are listed as the table below.
 
-|  Type reduction algorithm function  | Description | List of parameters |
-|:-----------------------------------:|:-----------:|:------------------:|
-| KM_algorithm | | |
-| EKM_algorithm | | |
-| WEKM_algorithm | | |
-| TWEKM_algorithm | | |
-| EIASC_algorithm | | |
-| WM_algorithm | | |
-| BMM_algorithm | | |
-| LBMM_algorithm | | |
-| NT_algorithm | | |
+|  Type reduction algorithm function  | Description |
+|:-----------------------------------:|:-----------:|
+| KM_algorithm | Karnik-Mendel algorithm |
+| EKM_algorithm | Enhanced Karnik-Mendel algorithm |
+| WEKM_algorithm | Weighted enhanced Karnik-Mendel algorithm |
+| TWEKM_algorithm | Trapezoid weighted enhanced Karnik-Mendel algorithm |
+| EIASC_algorithm | Enhanced Iterative Algorithm with Stopping Condition |
+| WM_algorithm | Wu-Mendel algorithm |
+| BMM_algorithm | Begian-Melek-Mendel algorithm |
+| LBMM_algorithm | Li-Begian-Melek-Mendel algorithm |
+| NT_algorithm | Nie-Tan algorithm |
 
 ## IT2FLS
 
+### Calculating the system output
 
 
 
