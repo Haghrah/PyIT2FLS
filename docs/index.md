@@ -203,7 +203,128 @@ it2fls.add_rule([("x1", N), ("x2", P)], [("O", Z)])
 
 In the second rule, the input x1 is checked with the set N and the input x2 is checked with the set P. The first input of the function **_add_rule_**, which defines the antecedent part of the rule must consist of two tuples. One for input x1 and the other for input x2. As it is said, the first element of the tuples must be input name and the second element the corresponding set. So the first tuple is ("x1", N) and the second one is ("x2", P). Further more, the second input of the function **_add_rule_**, which defines the consequent part of the rule must consist of a tuple. This is because we have only one output in our IT2FLS. So the first element of the tuple, which indicates the output name, must be "O". And the second element of tuple, which is the corresponded fuzzy set, must be Z. Finally the tuple would be as ("O", Z).
 
-The IT2FLC is now ready for evaluating the inputs. The function **_evaluate_** defined in the **_IT2FLS_** class should be used for this purpose. This function has eight inputs which four of them has default values but the other four must be given by the user. The inputs of this function are inputs, T-norm, S-norm, universe of discourse, method, method parameters, algorithm, and algorithm parameters.
+The IT2FLC is now ready for evaluating the inputs. The function **_evaluate_** defined in the **_IT2FLS_** class should be used for this purpose. This function has eight inputs, which four of them has default values but the other four must be given by the user always. The inputs of this function are inputs, T-norm, S-norm, universe of discourse, method, method parameters (method_params), algorithm, and algorithm parameters(algorithm_params). The first input is of type dictionary, which its keys are the input names and its values are corresponded values of inputs. T-norm, S-norm, type reduction algorithm and its parameters are discussed before. Type reduction algorithm by default is set to "EIASC" and its parameters is set to None. There are many methods to evaluate an IT2FLS which are listed in the table below:
+
+|  IT2FLS evaluation methods  | Description |
+|:---------------------------:|:-----------:|
+| Centroid | Centroid method |
+| CoSet | Center of sets method |
+| CoSum | Center of sum method |
+| Height | Height method |
+| ModiHe | Modified height method |
+
+The **_method_** input of the **_evaluate_** function must be one of the methods introduced above. Some of these methods may need some parameters which can be passed using the **_method_params_** input of the **_evaluate_** function. Detailed information of these methods and their parameters are accessible from docstrings. It must noticed that the **Centroid** method is more common in control applications. 
+
+Comming back to our inverted pendulum control system, the function for evaluating the control signal can be written as below:
+
+```python
+from pyit2fls import product_t_norm, max_s_norm
+
+def u_fuzzy(X, t):
+    x1 = max(-1., min(1., X[0]))
+    x2 = max(-1., min(1., X[1]))
+    c, TR = it2fls.evaluate({"x1":x1, "x2":x2},
+                    product_t_norm, max_s_norm, domain, method="Centroid", 
+                    algorithm="EKM")
+    o = (TR["O"][0] + TR["O"][1]) / 2
+    return 20 * o
+```
+
+In the code above the variables **_X[0]_** and **_X[1]_** are our system's state variables. Since the universe of discourse is defined in the interval [-1,1], so the state variables as inputs of the IT2FLC must be clipped into this interval. The variables **_x1_** and **_x2_** are clipped version of state space variables. After that the system is evaluated for the inputs **_x1_** and **_x2_**. As it is mentioned in docstrings when we are using the Centroid method, the outputs of the **_evaluate_** function are the resultant **_IT2FS_** and type reduced version of it. The type reduced output is store in the **_TR_**, which is defuzzified and stored in the variable **_o_**. The final control signal is scaled version of the output of the **_IT2FLS_**. The codes for inverted pendulum control example can be summed up as below with some plots:
+
+```python
+import matplotlib.pyplot as plt
+from pyit2fls import IT2FS_Gaussian_UncertStd, IT2FLS, \
+                     min_t_norm, product_t_norm, max_s_norm, IT2FS_plot
+from numpy import  array, linspace
+from numpy import cos as c, sin as s
+from scipy.integrate import odeint
+
+
+g = 9.8
+mc = 1.
+m = 0.1
+l = 0.5
+
+def dynamic(X, t, u):
+    x1 = X[0]
+    x2 = X[1]
+    x1_dot = x2
+    x2_dot = (g * s(x1) - 
+              m * l * x2 ** 2 * c(x1) * s(x1) / (mc + m)) / \
+        (l * (4./3. - m * c(x1) ** 2 / (mc + m))) + \
+        u(X, t) * (c(x1) / (m + mc)) / (l * (4./3. - m * c(x1) ** 2 / (mc + m)))
+    return array([x1_dot, 
+                  x2_dot])
+
+
+if __name__ == "__main__":
+    
+    domain = linspace(-1., 1., 101)
+    N = IT2FS_Gaussian_UncertStd(domain, [-1., 0.4, 0.1])
+    Z = IT2FS_Gaussian_UncertStd(domain, [0., 0.1, 0.05])
+    P = IT2FS_Gaussian_UncertStd(domain, [1., 0.4, 0.1])
+    IT2FS_plot(N, Z, P, 
+               legends=["Negative", "Zero", "Positive"], 
+               filename="delay_pid_input_sets")
+    
+    it2fls = IT2FLS()
+    it2fls.add_input_variable("x1")
+    it2fls.add_input_variable("x2")
+    it2fls.add_output_variable("O")
+    
+    it2fls.add_rule([("x1", N), ("x2", N)], [("O", P)])
+    it2fls.add_rule([("x1", N), ("x2", P)], [("O", Z)])
+    it2fls.add_rule([("x1", P), ("x2", N)], [("O", Z)])
+    it2fls.add_rule([("x1", P), ("x2", P)], [("O", N)])
+
+    def u_fuzzy(X, t):
+        x1 = max(-1., min(1., X[0]))
+        x2 = max(-1., min(1., X[1]))
+        c, TR = it2fls.evaluate({"x1":x1, "x2":x2},
+                        product_t_norm, max_s_norm, domain, method="Centroid", 
+                        algorithm="EKM")
+        o = (TR["O"][0] + TR["O"][1]) / 2
+        return 40 * o
+    
+    def u_zero(X, t):
+        return 0
+        
+    
+    X0 = [-2., 0.]
+    t = linspace(0.0, 10.0, 1000)
+    X = odeint(dynamic, X0, t, args=(u_zero, ))
+    plt.figure()
+    plt.plot(t, X[:, 0], label=r"$x_{1}$")
+    plt.plot(t, X[:, 1], label=r"$x_{2}$")
+    plt.xlabel("t (s)")
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+    
+    X = odeint(dynamic, X0, t, args=(u_fuzzy, ))
+    plt.figure()
+    plt.plot(t, X[:, 0], label=r"$x_{1}$")
+    plt.plot(t, X[:, 1], label=r"$x_{2}$")
+    plt.xlabel("t (s)")
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+    
+    u = []
+    for x, tt in zip(X, t):
+        u.append(u_fuzzy(x, tt))
+    u = array(u)
+    plt.figure()
+    plt.plot(t, u, label=r"Fuzzy Controller")
+    plt.xlabel("t (s)")
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+```
+
+
+
 
 
 
