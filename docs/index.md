@@ -188,3 +188,22 @@ it2fls.add_rule([("x1", P), ("x2", N)], [("O", Z)])
 it2fls.add_rule([("x1", P), ("x2", P)], [("O", N)])
 ```
 
+Let's compare a rule and the corresponding code for clarifying the process of adding rules to the rule base of the system. The second rule is considered as:
+
+
+```
+IF x1 is N AND x2 is P THEN O is Z
+```
+
+And the code dedicated to define the rule is:
+
+```python
+it2fls.add_rule([("x1", N), ("x2", P)], [("O", Z)])
+```
+
+In the second rule, the input x1 is checked with the set N and the input x2 is checked with the set P. The first input of the function **_add_rule_**, which defines the antecedent part of the rule must consist of two tuples. One for input x1 and the other for input x2. As it is said, the first element of the tuples must be input name and the second element the corresponding set. So the first tuple is ("x1", N) and the second one is ("x2", P). Further more, the second input of the function **_add_rule_**, which defines the consequent part of the rule must consist of a tuple. This is because we have only one output in our IT2FLS. So the first element of the tuple, which indicates the output name, must be "O". And the second element of tuple, which is the corresponded fuzzy set, must be Z. Finally the tuple would be as ("O", Z).
+
+The IT2FLC is now ready for evaluating the inputs. The function **_evaluate_** defined in the **_IT2FLS_** class should be used for this purpose. This function has eight inputs which four of them has default values but the other four must be given by the user. The inputs of this function are inputs, T-norm, S-norm, universe of discourse, method, method parameters, algorithm, and algorithm parameters.
+
+
+
