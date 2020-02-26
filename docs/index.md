@@ -138,6 +138,17 @@ In this section along with introducing the **_IT2FLS_** class, a simple Interval
 For creating an IT2FLS using the PyIT2FLS library, the **_IT2FLS_** class should be used. The constructor function of this class doesn't need any parameter. The code below creates a IT2FLS:
 
 
+```python
+from pyit2fls import IT2FLS
+it2fls = IT2FLS()
+```
 
+The next step for defining and using an IT2FLS is to define its inputs and outputs. The function **_add_input_variable_** adds input variables to the system. The only input for this function is the name of the input. The input names are added to a list in the **_IT2FLS_** class, named inputs. Also the function **_add_output_variable_** add output variables to the system. This function, like the previous one, has just a single input, the name of the output. In our controller design example, the only control signal is designed based on the state feedback. So the fuzzy controller must have two inputs. Let's define the input and outputs for the IT2FLS:
+
+```python
+it2fls.add_input_variable("x1")
+it2fls.add_input_variable("x2")
+it2fls.add_output_variable("O")
+```
 
 
