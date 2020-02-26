@@ -129,7 +129,7 @@ The type reduction play a key role in achieving crisp values from Type 2 Fuzzy S
 | NT_algorithm | Nie-Tan algorithm |
 
 ## IT2FLS
-In this section along with introducing the **_IT2FLS_** class, a simple Interval Type 2 Fuzzy Logic Controller is designed for stabilizing the inverted pendulum system. The equations of the inverted pendulum system is adapted from the book **A Course in Fuzzy Systems and Control** by **Li-Xin Wang**, and are represented below. 
+In this section along with introducing the **_IT2FLS_** class, a simple Interval Type 2 Fuzzy Logic Controller (IT2FLC) is designed for stabilizing the inverted pendulum system. The equations of the inverted pendulum system is adapted from the book **A Course in Fuzzy Systems and Control** by **Li-Xin Wang**, and are represented below: 
 
 <img src="https://render.githubusercontent.com/render/math?math=\dot{x}_{1} = x_{2}"> 
 
@@ -151,4 +151,40 @@ it2fls.add_input_variable("x2")
 it2fls.add_output_variable("O")
 ```
 
+Now it is time to define If-Then rules. The function **_add_rule_** is used for adding new rules to the system. These rules are added to a list in **_IT2FLS_** class, named rules. This function has two inputs which are of list type. The first input is a list of tuples, which first element of each tuple is an input name and the second element is an **_IT2FS_**. Also the second output is a list of tuples, which first element is an output name and the second element is an **_IT2FS_**. Let's consider the rule base of our IT2FLC as below:
+
+```
+IF x1 is N AND x2 is N THEN O is P
+IF x1 is N AND x2 is P THEN O is Z
+IF x1 is P AND x2 is N THEN O is Z
+IF x1 is P AND x2 is P THEN O is N
+```
+
+In these rules, N, Z, and P are fuzzy sets defined in the interval [-1, 1]. N stands for Negative, Z for Zero, and P for Positive. Before adding rules to our IT2FLC, let's define these sets as Gaussian IT2FSs with uncertain standard deviation value and plot them:
+
+```python
+from numpy import  linspace
+from pyit2fls import IT2FS_Gaussian_UncertStd, IT2FS_plot
+
+domain = linspace(-1., 1., 101)
+N = IT2FS_Gaussian_UncertStd(domain, [-1., 0.4, 0.1])
+Z = IT2FS_Gaussian_UncertStd(domain, [0., 0.1, 0.05])
+P = IT2FS_Gaussian_UncertStd(domain, [1., 0.4, 0.1])
+IT2FS_plot(N, Z, P, 
+           legends=["Negative", "Zero", "Positive"], 
+           filename="delay_pid_input_sets")
+```
+
+The sets would be as below:
+
+<center><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/InvPenSets.png" width="400"/></center>
+
+The IT2FSs are ready now, so we can define our rule base as below, using the function **_add_rule_**:
+
+```python
+it2fls.add_rule([("x1", N), ("x2", N)], [("O", P)])
+it2fls.add_rule([("x1", N), ("x2", P)], [("O", Z)])
+it2fls.add_rule([("x1", P), ("x2", N)], [("O", Z)])
+it2fls.add_rule([("x1", P), ("x2", P)], [("O", N)])
+```
 
