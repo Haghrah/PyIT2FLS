@@ -323,7 +323,11 @@ if __name__ == "__main__":
     plt.show()
 ```
 
+The output of the simulation is demonstrated in the figures below. The first figure is state space variables of the system and the second figure is the generated fuzzy control signal over time.
 
+<center><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/InvPenSt.png" width="400"/></center>
+
+<center><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/InvPenCon.png" width="400"/></center>
 
 
 
