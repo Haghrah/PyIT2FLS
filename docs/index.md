@@ -129,8 +129,14 @@ The type reduction play a key role in achieving crisp values from Type 2 Fuzzy S
 | NT_algorithm | Nie-Tan algorithm |
 
 ## IT2FLS
+In this section along with introducing the **_IT2FLS_** class, a simple Interval Type 2 Fuzzy Logic Controller is designed for stabilizing the inverted pendulum system. The equations of the inverted pendulum system is adapted from the book **A Course in Fuzzy Systems and Control** by **Li-Xin Wang**, and are represented below. 
 
-### Calculating the system output
+<img src="https://render.githubusercontent.com/render/math?math=\dot{x}_{1} = x_{2}"> 
+
+<img src="https://render.githubusercontent.com/render/math?math=\dot{x}_{2} = \frac{gsinx_{1}-\frac{mlx_{2}^{2}cosx_{1}sinx_{1}}{m_{c}%2Bm}}{l\left(\frac{4}{3}-\frac{mcos^{2}x_{1}}{m_{c}%2Bm}\right)}%2B\frac{\frac{cosx_{1}}{m_{c}%2Bm}}{l\left(\frac{4}{3}-\frac{mcos^{2}x_{1}}{m_{c}%2Bm}\right)}u"> 
+
+For creating an IT2FLS using the PyIT2FLS library, the **_IT2FLS_** class should be used. The constructor function of this class doesn't need any parameter. The code below creates a IT2FLS:
+
 
 
 
