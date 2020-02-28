@@ -171,8 +171,7 @@ N = IT2FS_Gaussian_UncertStd(domain, [-1., 0.4, 0.1])
 Z = IT2FS_Gaussian_UncertStd(domain, [0., 0.1, 0.05])
 P = IT2FS_Gaussian_UncertStd(domain, [1., 0.4, 0.1])
 IT2FS_plot(N, Z, P, 
-           legends=["Negative", "Zero", "Positive"], 
-           filename="delay_pid_input_sets")
+           legends=["Negative", "Zero", "Positive"])
 ```
 
 The sets would be as below:
@@ -265,8 +264,7 @@ if __name__ == "__main__":
     Z = IT2FS_Gaussian_UncertStd(domain, [0., 0.1, 0.05])
     P = IT2FS_Gaussian_UncertStd(domain, [1., 0.4, 0.1])
     IT2FS_plot(N, Z, P, 
-               legends=["Negative", "Zero", "Positive"], 
-               filename="delay_pid_input_sets")
+               legends=["Negative", "Zero", "Positive"])
     
     it2fls = IT2FLS()
     it2fls.add_input_variable("x1")
