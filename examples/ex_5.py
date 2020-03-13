@@ -41,16 +41,16 @@ def u_dot(t):
 # %% Interval Type 2 Fuzzy PID Codes ...
 domain = linspace(-1., 1., 201)
 
-N = IT2FS_Gaussian_UncertStd(domain, [-1., 0.5, 0.1])
-Z = IT2FS_Gaussian_UncertStd(domain, [0., 0.2, 0.025])
-P = IT2FS_Gaussian_UncertStd(domain, [1., 0.5, 0.1])
+N = IT2FS_Gaussian_UncertStd(domain, [-1., 0.5, 0.1, 1.])
+Z = IT2FS_Gaussian_UncertStd(domain, [0., 0.2, 0.025, 1.])
+P = IT2FS_Gaussian_UncertStd(domain, [1., 0.5, 0.1, 1.])
 IT2FS_plot(N, Z, P, legends=["Negative", "Zero", "Positive"], filename="delay_pid_input_sets")
 
-NB = IT2FS_Gaussian_UncertStd(domain, [-1., 0.1, 0.05])
-NM = IT2FS_Gaussian_UncertStd(domain, [-0.5, 0.1, 0.05])
-ZZ = IT2FS_Gaussian_UncertStd(domain, [0., 0.1, 0.05])
-PM = IT2FS_Gaussian_UncertStd(domain, [0.5, 0.1, 0.05])
-PB = IT2FS_Gaussian_UncertStd(domain, [1., 0.1, 0.05])
+NB = IT2FS_Gaussian_UncertStd(domain, [-1., 0.1, 0.05, 1.])
+NM = IT2FS_Gaussian_UncertStd(domain, [-0.5, 0.1, 0.05, 1.])
+ZZ = IT2FS_Gaussian_UncertStd(domain, [0., 0.1, 0.05, 1.])
+PM = IT2FS_Gaussian_UncertStd(domain, [0.5, 0.1, 0.05, 1.])
+PB = IT2FS_Gaussian_UncertStd(domain, [1., 0.1, 0.05, 1.])
 IT2FS_plot(NB, NM, ZZ, PM, PB, legends=["Negative Big", "Negative Medium", 
                                        "Zero", "Positive Medium", 
                                        "Positive Big"], filename="delay_pid_output_sets")
