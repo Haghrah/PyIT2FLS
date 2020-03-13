@@ -35,21 +35,21 @@ for i in range(200, 200 + L):
     LearningSet.append([[mg[i], mg[i - 1], mg[i - 2]], mg[i + 1]])
 
 def calculate(x, i):
-    A1 = IT2FS_Gaussian_UncertStd(domain, x[:3])
-    A2 = IT2FS_Gaussian_UncertStd(domain, x[3:6])
-    A3 = IT2FS_Gaussian_UncertStd(domain, x[6:9])
+    A1 = IT2FS_Gaussian_UncertStd(domain, np.append(x[:3], 1))
+    A2 = IT2FS_Gaussian_UncertStd(domain, np.append(x[3:6], 1))
+    A3 = IT2FS_Gaussian_UncertStd(domain, np.append(x[6:9], 1))
     
-    B1 = IT2FS_Gaussian_UncertStd(domain, x[9:12])
-    B2 = IT2FS_Gaussian_UncertStd(domain, x[12:15])
-    B3 = IT2FS_Gaussian_UncertStd(domain, x[15:18])
+    B1 = IT2FS_Gaussian_UncertStd(domain, np.append(x[9:12], 1))
+    B2 = IT2FS_Gaussian_UncertStd(domain, np.append(x[12:15], 1))
+    B3 = IT2FS_Gaussian_UncertStd(domain, np.append(x[15:18], 1))
     
-    C1 = IT2FS_Gaussian_UncertStd(domain, x[18:21])
-    C2 = IT2FS_Gaussian_UncertStd(domain, x[21:24])
-    C3 = IT2FS_Gaussian_UncertStd(domain, x[24:27])
+    C1 = IT2FS_Gaussian_UncertStd(domain, np.append(x[18:21], 1))
+    C2 = IT2FS_Gaussian_UncertStd(domain, np.append(x[21:24], 1))
+    C3 = IT2FS_Gaussian_UncertStd(domain, np.append(x[24:27], 1))
     
-    O1 = IT2FS_Gaussian_UncertStd(domain, x[27:30])
-    O2 = IT2FS_Gaussian_UncertStd(domain, x[30:33])
-    O3 = IT2FS_Gaussian_UncertStd(domain, x[33:36])
+    O1 = IT2FS_Gaussian_UncertStd(domain, np.append(x[27:30], 1))
+    O2 = IT2FS_Gaussian_UncertStd(domain, np.append(x[30:33], 1))
+    O3 = IT2FS_Gaussian_UncertStd(domain, np.append(x[33:36], 1))
     
     it2fls = IT2FLS()
     it2fls.add_input_variable("A")
@@ -74,21 +74,21 @@ def calculate(x, i):
     return (o[0] + o[1]) / 2
 
 def cost_func(x):
-    A1 = IT2FS_Gaussian_UncertStd(domain, x[:3])
-    A2 = IT2FS_Gaussian_UncertStd(domain, x[3:6])
-    A3 = IT2FS_Gaussian_UncertStd(domain, x[6:9])
+    A1 = IT2FS_Gaussian_UncertStd(domain, np.append(x[:3], 1))
+    A2 = IT2FS_Gaussian_UncertStd(domain, np.append(x[3:6], 1))
+    A3 = IT2FS_Gaussian_UncertStd(domain, np.append(x[6:9], 1))
     
-    B1 = IT2FS_Gaussian_UncertStd(domain, x[9:12])
-    B2 = IT2FS_Gaussian_UncertStd(domain, x[12:15])
-    B3 = IT2FS_Gaussian_UncertStd(domain, x[15:18])
+    B1 = IT2FS_Gaussian_UncertStd(domain, np.append(x[9:12], 1))
+    B2 = IT2FS_Gaussian_UncertStd(domain, np.append(x[12:15], 1))
+    B3 = IT2FS_Gaussian_UncertStd(domain, np.append(x[15:18], 1))
     
-    C1 = IT2FS_Gaussian_UncertStd(domain, x[18:21])
-    C2 = IT2FS_Gaussian_UncertStd(domain, x[21:24])
-    C3 = IT2FS_Gaussian_UncertStd(domain, x[24:27])
+    C1 = IT2FS_Gaussian_UncertStd(domain, np.append(x[18:21], 1))
+    C2 = IT2FS_Gaussian_UncertStd(domain, np.append(x[21:24], 1))
+    C3 = IT2FS_Gaussian_UncertStd(domain, np.append(x[24:27], 1))
     
-    O1 = IT2FS_Gaussian_UncertStd(domain, x[27:30])
-    O2 = IT2FS_Gaussian_UncertStd(domain, x[30:33])
-    O3 = IT2FS_Gaussian_UncertStd(domain, x[33:36])
+    O1 = IT2FS_Gaussian_UncertStd(domain, np.append(x[27:30], 1))
+    O2 = IT2FS_Gaussian_UncertStd(domain, np.append(x[30:33], 1))
+    O3 = IT2FS_Gaussian_UncertStd(domain, np.append(x[33:36], 1))
     
     it2fls = IT2FLS()
     it2fls.add_input_variable("A")
