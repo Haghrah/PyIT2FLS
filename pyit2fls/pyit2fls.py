@@ -137,9 +137,9 @@ def tri_mf(x, params):
                ((params[3] * ((params[2] - x) / (params[2] - params[1]))) * (x > params[1]))) ))
 
 
-def ltri_mf(x, params):
+def rtri_mf(x, params):
     """
-    Left triangular membership function.
+    Right triangular membership function.
 
     Parameters
     ----------
@@ -165,14 +165,14 @@ def ltri_mf(x, params):
     --------
     
     >>> x = linspace(0, 1, 201)
-    >>> membership_value = ltri_mf(x, [0.1, 0.3, 1])
+    >>> membership_value = ltri_mf(x, [0.5, 0.2, 1])
     """
     return minimum(1, maximum(0, (params[2] * (x <= params[1]) + \
                ((params[2] * ((params[0] - x) / (params[0] - params[1]))) * (x > params[1]))) ))
 
-def rtri_mf(x, params):
+def ltri_mf(x, params):
     """
-    Right triangular membership function.
+    Left triangular membership function.
 
     Parameters
     ----------
@@ -407,6 +407,135 @@ def gauss_uncert_std_lmf(x, params):
     return gaussian_mf(x, [params[0], params[1], params[3]])
 
 
+def rgauss_uncert_std_umf(x, params):
+    """
+    Right Gaussian with uncertain standard deviation UMF
+    
+    Parameters
+    ----------
+    x : 
+        numpy (n,) shaped array
+        
+        The array like input x indicates the points from universe of 
+        discourse in which the membership function would be evaluated.
+    params : 
+        List 
+        
+        Additional parameters for the membership function. The center, 
+        the lower limit of std., the upper limit of std., and the 
+        height of the gaussian membership function is indicated by params[0], 
+        params[1], params[2], and params[3], respectively.
+    
+    Returns
+    -------
+    ndarray
+        Returns membership values corresponding with the input.
+    
+    Examples
+    --------
+    
+    >>> x = linspace(0, 1, 201)
+    >>> membership_value = rgauss_uncert_std_umf(x, [0.5, 0.2, 0.5, 1])
+    """
+    return (x < params[0]) * params[3] + gauss_uncert_std_umf(x, params) * (x >= params[0])
+
+def rgauss_uncert_std_lmf(x, params):
+    """
+    Right Gaussian with uncertain standard deviation LMF
+    
+    Parameters
+    ----------
+    x : 
+        numpy (n,) shaped array
+        
+        The array like input x indicates the points from universe of 
+        discourse in which the membership function would be evaluated.
+    params : 
+        List 
+        
+        Additional parameters for the membership function. The center, 
+        the lower limit of std., the upper limit of std., and the 
+        height of the gaussian membership function is indicated by params[0], 
+        params[1], params[2], and params[3], respectively.
+    
+    Returns
+    -------
+    ndarray
+        Returns membership values corresponding with the input.
+    
+    Examples
+    --------
+    
+    >>> x = linspace(0, 1, 201)
+    >>> membership_value = rgauss_uncert_std_lmf(x, [0.5, 0.2, 0.5, 1])
+    """
+    return (x < params[0]) * params[3] + gauss_uncert_std_lmf(x, params) * (x >= params[0])
+
+def lgauss_uncert_std_umf(x, params):
+    """
+    Left Gaussian with uncertain standard deviation UMF
+    
+    Parameters
+    ----------
+    x : 
+        numpy (n,) shaped array
+        
+        The array like input x indicates the points from universe of 
+        discourse in which the membership function would be evaluated.
+    params : 
+        List 
+        
+        Additional parameters for the membership function. The center, 
+        the lower limit of std., the upper limit of std., and the 
+        height of the gaussian membership function is indicated by params[0], 
+        params[1], params[2], and params[3], respectively.
+    
+    Returns
+    -------
+    ndarray
+        Returns membership values corresponding with the input.
+    
+    Examples
+    --------
+    
+    >>> x = linspace(0, 1, 201)
+    >>> membership_value = lgauss_uncert_std_umf(x, [0.5, 0.2, 0.5, 1])
+    """
+    return (x > params[0]) * params[3] + gauss_uncert_std_umf(x, params) * (x <= params[0])
+
+def lgauss_uncert_std_lmf(x, params):
+    """
+    Left Gaussian with uncertain standard deviation LMF
+    
+    Parameters
+    ----------
+    x : 
+        numpy (n,) shaped array
+        
+        The array like input x indicates the points from universe of 
+        discourse in which the membership function would be evaluated.
+    params : 
+        List 
+        
+        Additional parameters for the membership function. The center, 
+        the lower limit of std., the upper limit of std., and the 
+        height of the gaussian membership function is indicated by params[0], 
+        params[1], params[2], and params[3], respectively.
+    
+    Returns
+    -------
+    ndarray
+        Returns membership values corresponding with the input.
+    
+    Examples
+    --------
+    
+    >>> x = linspace(0, 1, 201)
+    >>> membership_value = lgauss_uncert_std_lmf(x, [0.5, 0.2, 0.5, 1])
+    """
+    return (x > params[0]) * params[3] + gauss_uncert_std_lmf(x, params) * (x <= params[0])
+
+
 class IT2FS(object):
     """Interval Type 2 Fuzzy Set (IT2FS).
        
@@ -572,8 +701,8 @@ def IT2FS_Gaussian_UncertMean(domain, params):
         List
         
         The parameters of the Gaussian IT2FS with uncertain mean value, 
-        the mean center, the mean spread, and the standard deviation are 
-        indicated by params[0], params[1], and params[2], respectively.
+        the mean center, the mean spread, the standard deviation, and the height are 
+        indicated by params[0], params[1], params[2], and params[3], respectively.
     
     Returns
     -------
@@ -591,12 +720,14 @@ def IT2FS_Gaussian_UncertMean(domain, params):
     """
     ml = params[0] - params[1] / 2.
     mr = params[0] + params[1] / 2.
-    return IT2FS(domain, gauss_uncert_mean_umf, [ml, mr, params[2], 1], gauss_uncert_mean_lmf, [ml, mr, params[2], 1])
+    return IT2FS(domain, 
+                 gauss_uncert_mean_umf, [ml, mr, params[2], params[3]], 
+                 gauss_uncert_mean_lmf, [ml, mr, params[2], params[3]])
 
 
 def IT2FS_Gaussian_UncertStd(domain, params):
     """
-    Creates an Gaussian IT2FS with uncertain standard deviation value.
+    Creates a Gaussian IT2FS with uncertain standard deviation value.
     
     Parameters
     ----------
@@ -611,8 +742,8 @@ def IT2FS_Gaussian_UncertStd(domain, params):
         
         The parameters of the Gaussian IT2FS with uncertain standard 
         deviation value, the mean, the standard deviation center, 
-        and the standard deviation spread are indicated by params[0], 
-        params[1], and params[2], respectively.
+        the standard deviation spread, and the height are indicated by params[0], 
+        params[1], params[2], and params[3], respectively.
     
     Returns
     -------
@@ -624,13 +755,100 @@ def IT2FS_Gaussian_UncertStd(domain, params):
     --------
     
     >>> domain = linspace(0., 1., 100)
-    >>> mySet = IT2FS_Gaussian_UncertStd(domain, [0.5, 0.2, 0.05])
+    >>> mySet = IT2FS_Gaussian_UncertStd(domain, [0.5, 0.2, 0.05, 1.])
     >>> mySet.plot()
     
     """
     stdl = params[1] - params[2] / 2
     stdr = params[1] + params[2] / 2
-    return IT2FS(domain, gauss_uncert_std_umf, [params[0], stdl, stdr, 1], gauss_uncert_std_lmf, [params[0], stdl, stdr, 1])
+    return IT2FS(domain, 
+                 gauss_uncert_std_umf, [params[0], stdl, stdr, params[3]], 
+                 gauss_uncert_std_lmf, [params[0], stdl, stdr, params[3]])
+
+
+def R_IT2FS_Gaussian_UncertStd(domain, params):
+    """
+    Creates a Right Gaussian IT2FS with uncertain standard deviation value.
+    
+    Parameters
+    ----------
+    
+    domain:
+        numpy (n,) shaped array
+        
+        Indicates the universe of discourse dedicated to the IT2FS.
+    
+    params:
+        List
+        
+        The parameters of the Gaussian IT2FS with uncertain standard 
+        deviation value, the mean, the standard deviation center, 
+        the standard deviation spread, and the height are indicated by params[0], 
+        params[1], params[2], and params[3], respectively.
+    
+    Returns
+    -------
+    IT2FS
+        Returns a Gaussian IT2FS with uncertain standard deviation value 
+        with specified parameters.
+    
+    Examples
+    --------
+    
+    >>> domain = linspace(0., 1., 100)
+    >>> mySet = R_IT2FS_Gaussian_UncertStd(domain, [0.5, 0.2, 0.05, 1.])
+    >>> mySet.plot()
+    
+    """
+    stdl = params[1] - params[2] / 2
+    stdr = params[1] + params[2] / 2
+    return IT2FS(domain, 
+                  rgauss_uncert_std_umf, 
+                  [params[0], stdl, stdr, params[3]],
+                  rgauss_uncert_std_lmf, 
+                  [params[0], stdl, stdr, params[3]])
+
+def L_IT2FS_Gaussian_UncertStd(domain, params):
+    """
+    Creates a Left Gaussian IT2FS with uncertain standard deviation value.
+    
+    Parameters
+    ----------
+    
+    domain:
+        numpy (n,) shaped array
+        
+        Indicates the universe of discourse dedicated to the IT2FS.
+    
+    params:
+        List
+        
+        The parameters of the Gaussian IT2FS with uncertain standard 
+        deviation value, the mean, the standard deviation center, 
+        the standard deviation spread, and the height are indicated by params[0], 
+        params[1], params[2], and params[3], respectively.
+    
+    Returns
+    -------
+    IT2FS
+        Returns a Gaussian IT2FS with uncertain standard deviation value 
+        with specified parameters.
+    
+    Examples
+    --------
+    
+    >>> domain = linspace(0., 1., 100)
+    >>> mySet = L_IT2FS_Gaussian_UncertStd(domain, [0.5, 0.2, 0.05, 1.])
+    >>> mySet.plot()
+    
+    """
+    stdl = params[1] - params[2] / 2
+    stdr = params[1] + params[2] / 2
+    return IT2FS(domain, 
+                  lgauss_uncert_std_umf, 
+                  [params[0], stdl, stdr, params[3]],
+                  lgauss_uncert_std_lmf, 
+                  [params[0], stdl, stdr, params[3]])
 
 
 def IT2FS_plot(*sets, title=None, legends=None, filename=None):
@@ -2280,6 +2498,26 @@ class IT2FLS(object):
             return TR
         else:
             raise ValueError("The method " + method + " is not implemented yet!")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
