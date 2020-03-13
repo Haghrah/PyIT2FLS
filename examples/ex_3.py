@@ -12,9 +12,9 @@ from numpy import linspace
 
 domain = linspace(0., 1., 100)
 
-Small = IT2FS_Gaussian_UncertStd(domain, [0, 0.15, 0.1])
-Medium = IT2FS_Gaussian_UncertStd(domain, [0.5, 0.15, 0.1])
-Large = IT2FS_Gaussian_UncertStd(domain, [1., 0.15, 0.1])
+Small = IT2FS_Gaussian_UncertStd(domain, [0, 0.15, 0.1, 1.])
+Medium = IT2FS_Gaussian_UncertStd(domain, [0.5, 0.15, 0.1, 1.])
+Large = IT2FS_Gaussian_UncertStd(domain, [1., 0.15, 0.1, 1.])
 IT2FS_plot(Small, Medium, Large, legends=["Small", "Medium", "large"], filename="simp_ex_sets")
 
 myIT2FLS = IT2FLS()
