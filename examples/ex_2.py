@@ -12,9 +12,9 @@ from numpy import linspace
 
 domain = linspace(0., 1., 100)
 
-A = IT2FS_Gaussian_UncertMean(domain, [0., 0.1, 0.1])
-B = IT2FS_Gaussian_UncertMean(domain, [0.33, 0.1, 0.1])
-C = IT2FS_Gaussian_UncertMean(domain, [0.66, 0.1, 0.1])
+A = IT2FS_Gaussian_UncertMean(domain, [0., 0.1, 0.1, 1.])
+B = IT2FS_Gaussian_UncertMean(domain, [0.33, 0.1, 0.1, 1.])
+C = IT2FS_Gaussian_UncertMean(domain, [0.66, 0.1, 0.1, 1.])
 
 IT2FS_plot(A, B, C, title="", legends=["Small","Medium","Large"], filename="multiSet")
 
