@@ -76,9 +76,9 @@ from pyit2fls import IT2FS_Gaussian_UncertMean, IT2FS_plot, meet, join, min_t_no
 from numpy import linspace
 
 domain = linspace(0., 1., 100)
-A = IT2FS_Gaussian_UncertMean(domain, [0., 0.1, 0.1])
-B = IT2FS_Gaussian_UncertMean(domain, [0.33, 0.1, 0.1])
-C = IT2FS_Gaussian_UncertMean(domain, [0.66, 0.1, 0.1])
+A = IT2FS_Gaussian_UncertMean(domain, [0., 0.1, 0.1, 1.])
+B = IT2FS_Gaussian_UncertMean(domain, [0.33, 0.1, 0.1, 1.])
+C = IT2FS_Gaussian_UncertMean(domain, [0.66, 0.1, 0.1, 1.])
 IT2FS_plot(A, B, C, title="", legends=["Small","Medium","Large"], filename="multiSet")
 ```
 
@@ -101,9 +101,9 @@ from pyit2fls import IT2FS_Gaussian_UncertMean, IT2FS_plot, meet, join, min_t_no
 from numpy import linspace
 
 domain = linspace(0., 1., 100)
-A = IT2FS_Gaussian_UncertMean(domain, [0., 0.1, 0.1])
-B = IT2FS_Gaussian_UncertMean(domain, [0.33, 0.1, 0.1])
-C = IT2FS_Gaussian_UncertMean(domain, [0.66, 0.1, 0.1])
+A = IT2FS_Gaussian_UncertMean(domain, [0., 0.1, 0.1, 1.])
+B = IT2FS_Gaussian_UncertMean(domain, [0.33, 0.1, 0.1, 1.])
+C = IT2FS_Gaussian_UncertMean(domain, [0.66, 0.1, 0.1, 1.])
 IT2FS_plot(A, B, C, title="", legends=["Small","Medium","Large"], filename="multiSet")
 
 AB = meet(domain, A, B, min_t_norm)
@@ -167,9 +167,9 @@ from numpy import  linspace
 from pyit2fls import IT2FS_Gaussian_UncertStd, IT2FS_plot
 
 domain = linspace(-1., 1., 101)
-N = IT2FS_Gaussian_UncertStd(domain, [-1., 0.4, 0.1])
-Z = IT2FS_Gaussian_UncertStd(domain, [0., 0.1, 0.05])
-P = IT2FS_Gaussian_UncertStd(domain, [1., 0.4, 0.1])
+N = IT2FS_Gaussian_UncertStd(domain, [-1., 0.4, 0.1, 1.])
+Z = IT2FS_Gaussian_UncertStd(domain, [0., 0.1, 0.05, 1.])
+P = IT2FS_Gaussian_UncertStd(domain, [1., 0.4, 0.1, 1.])
 IT2FS_plot(N, Z, P, 
            legends=["Negative", "Zero", "Positive"])
 ```
@@ -260,9 +260,9 @@ def dynamic(X, t, u):
 if __name__ == "__main__":
     
     domain = linspace(-1., 1., 101)
-    N = IT2FS_Gaussian_UncertStd(domain, [-1., 0.4, 0.1])
-    Z = IT2FS_Gaussian_UncertStd(domain, [0., 0.1, 0.05])
-    P = IT2FS_Gaussian_UncertStd(domain, [1., 0.4, 0.1])
+    N = IT2FS_Gaussian_UncertStd(domain, [-1., 0.4, 0.1, 1.])
+    Z = IT2FS_Gaussian_UncertStd(domain, [0., 0.1, 0.05, 1.])
+    P = IT2FS_Gaussian_UncertStd(domain, [1., 0.4, 0.1, 1.])
     IT2FS_plot(N, Z, P, 
                legends=["Negative", "Zero", "Positive"])
     
