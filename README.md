@@ -27,7 +27,7 @@ Or you can use pip3:
     (sudo) pip3 install --upgrade pyit2fls
 
 ## Examples
-There are five examples provided along with the toolkit which are as below:
+There are some examples provided along with the toolkit which are as below:
 * Ex1: Defining an Interval Type 2 Fuzzy Set (IT2FS)
 * Ex2: Application of join and meet operators and plotting the outputs
 * Ex3: Defining a simple (MIMO) IT2FLS
