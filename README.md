@@ -35,6 +35,14 @@ There are some examples provided along with the toolkit which are as below:
 * Ex5: Designing Interval Type 2 Fuzzy PID (IT2FPID) controller for a time-delay linear system
 * Ex6: Create and plot ten types of interval type two fuzzy sets
 
+## Docstrings
+Further information about functions and classes in the PyIT2FLS are accessible by docstrings. After importing a function or class, they can be seen by calling the help function. For example:
+
+```python
+>>> from pyit2fls import IT2FS_Gaussian_UncertStd
+>>> help(IT2FS_Gaussian_UncertStd)
+```
+
 ## Some notes on running the examples
 If you are using Anaconda, due to the inclusion of main ddeint package in its libraries pool, an error is raised while running the 5th example. This error is raised because the 5th example uses an updated version of ddeint which is included in the examples folder. For solving this issue, please change the ddeint.py's name to ddeint1.py (in examples folder) and change the 16th line of the ex_5.py as below:
 
