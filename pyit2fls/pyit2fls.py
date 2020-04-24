@@ -1,9 +1,10 @@
 from numpy import exp, ones_like, zeros_like, arange, multiply, \
      subtract, add, minimum, maximum, sign, c_, argmax, \
-     array
+     array, where
 from numpy import sum as npsum
 import matplotlib.pyplot as plt
 from math import isclose
+
 
 def zero_mf(x, params=None):
     """
@@ -1202,6 +1203,24 @@ def join(domain, it2fs1, it2fs2, s_norm):
     it2fs.lower = s_norm(it2fs1.lower, it2fs2.lower)
     return it2fs
 
+def trim(intervals):
+    v = intervals[:, 3]
+    i, = where(v > 0)
+    if i.size == 0:
+        return False
+    else:
+        min1 = i[0]
+        max1 = i[-1] + 1
+    
+        v = intervals[:, 2]
+        i, = where(v > 0)
+        if i.size == 0:
+            min2 = min1
+            max2 = max1
+        else:
+            min2 = i[0]
+            max2 = i[-1] + 1
+        return intervals[min(min1, min2):max(max1, max2), :]
 
 def KM_algorithm(intervals, params=None):  # intervals = [[a1, b1, c1, d1], [a2, b2, c2, d2], ...]
     """
@@ -1228,12 +1247,18 @@ def KM_algorithm(intervals, params=None):  # intervals = [[a1, b1, c1, d1], [a2,
     """
     # left calculations
     intervals = intervals[intervals[:,0].argsort()]
+    intervals = trim(intervals)
+    
+    if intervals is False:
+        return 0, 0
+    
     w_l = (intervals[:, 2] + intervals[:, 3]) / 2.
 
     N = len(intervals)
     y_l_prime_num = npsum(intervals[:, 0] * w_l)
-    y_l_prime_den = npsum(w_l)
-    y_l_prime = y_l_prime_num / y_l_prime_den
+    y_prime_den = npsum(w_l)
+    
+    y_l_prime = y_l_prime_num / y_prime_den
     while True:
         k_l = 0
         for i in range(1, N):
@@ -1258,10 +1283,8 @@ def KM_algorithm(intervals, params=None):  # intervals = [[a1, b1, c1, d1], [a2,
     intervals = intervals[intervals[:, 1].argsort()]
     w_r = (intervals[:, 2] + intervals[:, 3]) / 2.
     
-    N = len(intervals)
     y_r_prime_num = npsum(intervals[:, 1] * w_r)
-    y_r_prime_den = npsum(w_r)
-    y_r_prime = y_r_prime_num / y_r_prime_den
+    y_r_prime = y_r_prime_num / y_prime_den
     while True:
         k_r = 0
         for i in range(1, N):
@@ -1309,9 +1332,15 @@ def EKM_algorithm(intervals, params=None):
     Tuple (l, r)
     """
     
-    N = len(intervals)
     # Left calculations
     intervals = intervals[intervals[:,0].argsort()]
+    intervals = trim(intervals)
+    
+    if intervals is False:
+        return 0, 0
+    
+    N = len(intervals)
+    
     k_l = round(N / 2.4)
 
     a_l = npsum(intervals[:k_l+1, 0] * intervals[:k_l+1, 3]) + \
@@ -1405,9 +1434,16 @@ def WEKM_algorithm(intervals, params=None):
     -------
     Tuple (l, r)
     """
-    N = len(intervals)
+    
     # Left calculations
     intervals = intervals[intervals[:,0].argsort()]
+    intervals = trim(intervals)
+    
+    if intervals is False:
+        return 0, 0
+    
+    N = len(intervals)
+    
     k_l = round(N / 2.4)
     a_l = 0
     b_l = 0
@@ -1537,11 +1573,20 @@ def EIASC_algorithm(intervals, params=None):
     -------
     Tuple (l, r)
     """
-    N = len(intervals)
+    
     # Left calculations
     intervals = intervals[intervals[:,0].argsort()]
+    intervals = trim(intervals)
+    
+    if intervals is False:
+        return 0, 0
+    
+    N = len(intervals)
+    b = npsum(intervals[:, 2])
+    
+    
     a_l = npsum(intervals[:, 0] * intervals[:, 2])
-    b_l = npsum(intervals[:, 2])
+    b_l = b
     L = 0
     while True:
         d = intervals[L, 3] - intervals[L, 2]
@@ -1554,7 +1599,7 @@ def EIASC_algorithm(intervals, params=None):
     # Right calculations
     intervals = intervals[intervals[:,1].argsort()]
     a_r = npsum(intervals[:, 1] * intervals[:, 2])
-    b_r = npsum(intervals[:, 2])
+    b_r = b
     R = N - 1
     while True:
         d = intervals[R, 3] - intervals[R, 2]
@@ -1567,7 +1612,7 @@ def EIASC_algorithm(intervals, params=None):
     return y_l, y_r
 
 
-def WM_algorithm(interval, params=None): #, F, Y):
+def WM_algorithm(intervals, params=None):
     """
     WM algorithm
     
@@ -1590,22 +1635,29 @@ def WM_algorithm(interval, params=None): #, F, Y):
     -------
     Tuple (l, r)
     """
-    F = interval[:, 2:4]
-    Y = interval[:, 0:2]
-    sorted_index = Y[:, 0].argsort()
-    F = F[sorted_index]
-    Y = Y[sorted_index]
-    y_l_sup = min(npsum(F[:, 0] * Y[:, 0]) / npsum(F[:, 0]), npsum(F[:, 1] * Y[:, 0]) / npsum(F[:, 1]))
-    y_r_inf = min(npsum(F[:, 1] * Y[:, 1]) / npsum(F[:, 1]), npsum(F[:, 0] * Y[:, 1]) / npsum(F[:, 0]))
+    intervals = intervals[intervals[:,0].argsort()]
+    intervals = trim(intervals)
+    
+    if intervals is False:
+        return 0, 0
+    
+    F = intervals[:, 2:4]
+    Y = intervals[:, 0:2]
+    y_l_sup = min(npsum(F[:, 0] * Y[:, 0]) / npsum(F[:, 0]), 
+                  npsum(F[:, 1] * Y[:, 0]) / npsum(F[:, 1]))
+    y_r_inf = min(npsum(F[:, 1] * Y[:, 1]) / npsum(F[:, 1]), 
+                  npsum(F[:, 0] * Y[:, 1]) / npsum(F[:, 0]))
     c = npsum(F[:, 1] - F[:, 0]) / (npsum(F[:, 0]) * npsum(F[:, 1]))
-    y_l_inf = y_l_sup - c * (npsum(F[:, 0] * (Y[:, 0] - Y[0, 0])) * npsum(F[:, 1] * (Y[-1, 0] - Y[:, 0]))) / (npsum(F[:, 0] * (Y[:, 0] - Y[0, 0])) + npsum(F[:, 1] * (Y[-1, 0] - Y[:, 0])))
-    y_r_sup = y_r_inf + c * (npsum(F[:, 1] * (Y[:, 1] - Y[0, 1])) * npsum(F[:, 0] * (Y[-1, 1] - Y[:, 1]))) / (npsum(F[:, 1] * (Y[:, 1] - Y[0, 1])) + npsum(F[:, 0] * (Y[-1, 1] - Y[:, 1])))
+    y_l_inf = y_l_sup - c * (npsum(F[:, 0] * (Y[:, 0] - Y[0, 0])) * 
+                             npsum(F[:, 1] * (Y[-1, 0] - Y[:, 0]))) / (npsum(F[:, 0] * (Y[:, 0] - Y[0, 0])) + npsum(F[:, 1] * (Y[-1, 0] - Y[:, 0])))
+    y_r_sup = y_r_inf + c * (npsum(F[:, 1] * (Y[:, 1] - Y[0, 1])) * 
+                             npsum(F[:, 0] * (Y[-1, 1] - Y[:, 1]))) / (npsum(F[:, 1] * (Y[:, 1] - Y[0, 1])) + npsum(F[:, 0] * (Y[-1, 1] - Y[:, 1])))
     y_l = (y_l_sup + y_l_inf) / 2
     y_r = (y_r_sup + y_r_inf) / 2
     return y_l, y_r
 
 
-def BMM_algorithm(interval, params): #F, Y, params):
+def BMM_algorithm(intervals, params):
     """
     BMM algorithm
     
@@ -1630,15 +1682,21 @@ def BMM_algorithm(interval, params): #F, Y, params):
     
     Crisp output
     """
-    F = interval[:, 2:4]
-    Y = (interval[:, 0] + interval[:, 1]) / 2.
+    intervals = intervals[intervals[:,0].argsort()]
+    intervals = trim(intervals)
+    
+    if intervals is False:
+        return 0
+    
+    F = intervals[:, 2:4]
+    Y = (intervals[:, 0] + intervals[:, 1]) / 2.
     m = params[0]
     n = params[1]
     #Y = Y.reshape((Y.size,))
     return m * npsum(F[:, 0] * Y) / npsum(F[:, 0]) + n * npsum(F[:, 1] * Y) / npsum(F[:, 1])
 
 
-def LBMM_algorithm(interval, params): #F, Y, params):
+def LBMM_algorithm(intervals, params):
     """
     LBMM algorithm (BMM extended by Li et al.)
     
@@ -1667,14 +1725,20 @@ def LBMM_algorithm(interval, params): #F, Y, params):
     
     Crisp output
     """
-    F = interval[:, 2:4]
-    Y = interval[:, 0:2]
+    intervals = intervals[intervals[:,0].argsort()]
+    intervals = trim(intervals)
+    
+    if intervals is False:
+        return 0
+    
+    F = intervals[:, 2:4]
+    Y = intervals[:, 0:2]
     m = params[0]
     n = params[1]
     return m * npsum(F[:, 0] * Y[:, 0]) / npsum(F[:, 0]) + n * npsum(F[:, 1] * Y[:, 1]) / npsum(F[:, 1])
 
 
-def NT_algorithm(interval, params=None): #F, Y):
+def NT_algorithm(intervals, params=None):
     """
     NT algorithm
     
@@ -1699,8 +1763,14 @@ def NT_algorithm(interval, params=None): #F, Y):
     
     Crisp output
     """
-    F = interval[:, 2:4]
-    Y = (interval[:, 0] + interval[:, 1]) / 2.
+    intervals = intervals[intervals[:,0].argsort()]
+    intervals = trim(intervals)
+    
+    if intervals is False:
+        return 0
+    
+    F = intervals[:, 2:4]
+    Y = (intervals[:, 0] + intervals[:, 1]) / 2.
     return (npsum(Y * F[:, 1]) + npsum(Y * F[:, 0])) / (npsum(F[:, 0]) + npsum(F[:, 1]))
 
 
@@ -2498,7 +2568,6 @@ class IT2FLS(object):
             return TR
         else:
             raise ValueError("The method " + method + " is not implemented yet!")
-
 
 
 
