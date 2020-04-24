@@ -26,6 +26,11 @@ Or you can use pip3:
 
     (sudo) pip3 install --upgrade pyit2fls
 
+## Versions
+
+### Some notes on version 0.4
+...
+
 ## Examples
 There are some examples provided along with the toolkit which are as below:
 * Ex1: Defining an Interval Type 2 Fuzzy Set (IT2FS)
