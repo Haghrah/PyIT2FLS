@@ -32,7 +32,7 @@ Or you can use pip3:
 - [ ] Supporting both Mamdani and TSK systems
 
 ### Some notes on version 0.4
- * Some bugs have been fixed in this version especially in type reduction algorithms. I would like to say thanks to Mr. K.B Badri narayanan for reporting the errors.
+ * Some bugs have been fixed in this version especially in type reduction algorithms. I would like to say thanks to Dr. K.B Badri narayanan for reporting the errors.
  * Some new IT2FSs are added to the toolkit.
  * In previous versions, the height of the IT2FS_Gaussian_UncertStd and IT2FS_Gaussian_UncertMean IT2FSs was fixed to 1. But in new version user must give the height value in the parameters list as the last element.
 
