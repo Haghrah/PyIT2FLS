@@ -28,7 +28,7 @@ Or you can use pip3:
 
 ## Versions
 
-### Features comming in the 0.5 version
+### Features coming up in the new version
 - [ ] Supporting both Mamdani and TSK systems
 
 ### Some notes on version 0.4
