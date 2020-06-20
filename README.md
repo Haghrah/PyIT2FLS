@@ -36,6 +36,14 @@ Or you can use pip3:
  * Some new IT2FSs are added to the toolkit.
  * In previous versions, the height of the IT2FS_Gaussian_UncertStd and IT2FS_Gaussian_UncertMean IT2FSs was fixed to 1, by default. But in the new version, user must give the height value in the parameters list as the last element.
 
+## Docstrings
+Further information about functions and classes in the PyIT2FLS are accessible by docstrings. After importing a function or class, they can be seen by calling the help function. For example:
+
+```python
+>>> from pyit2fls import IT2FS_Gaussian_UncertStd
+>>> help(IT2FS_Gaussian_UncertStd)
+```
+
 ## Examples
 There are some examples provided along with the toolkit which are as below:
 * Ex1: Defining an Interval Type 2 Fuzzy Set (IT2FS)
@@ -47,15 +55,7 @@ There are some examples provided along with the toolkit which are as below:
 * Ex7: Similar to Ex3 but implemented using Mamdani class. The new Mamadani class is 3 times faster compared to the IT2FLS class. **(This example works only with the PyIT2FLS provided on this github repository. The new version of the PyIT2FLS would be released after some tests and fixing bugs.)**
 * Ex8: Defining a simple multi-input multi-output IT2 TSK FLS. **(This example works only with the PyIT2FLS provided on this github repository. The new version of the PyIT2FLS would be released after some tests and fixing bugs.)**
 
-## Docstrings
-Further information about functions and classes in the PyIT2FLS are accessible by docstrings. After importing a function or class, they can be seen by calling the help function. For example:
-
-```python
->>> from pyit2fls import IT2FS_Gaussian_UncertStd
->>> help(IT2FS_Gaussian_UncertStd)
-```
-
-## Some notes on running the examples
+### Some notes on running the examples
 If you are using Anaconda, due to the inclusion of main ddeint package in its libraries pool, an error is raised while running the 5th example. This error is raised because the 5th example uses an updated version of ddeint which is included in the examples folder. For solving this issue, please change the ddeint.py's name to ddeint1.py (in examples folder) and change the 16th line of the ex_5.py as below:
 
 ```python
