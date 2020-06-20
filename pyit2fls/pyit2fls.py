@@ -1,6 +1,6 @@
 from numpy import exp, ones_like, zeros_like, arange, multiply, \
      subtract, add, minimum, maximum, sign, c_, argmax, \
-     array, where
+     array, where, hstack
 from numpy import sum as npsum
 import matplotlib.pyplot as plt
 from math import isclose
@@ -2570,25 +2570,196 @@ class IT2FLS(object):
             raise ValueError("The method " + method + " is not implemented yet!")
 
 
+class TSK:
 
+    def __init__(self, t_norm, s_norm):
+        self.inputs = []
+        self.outputs = []
+        self.rules = []
+        self.__t_norm = t_norm
+        self.__s_norm = s_norm
+    
+    def __repr__(self):
+        pass
 
+    def add_input_variable(self, name):
+        self.inputs.append(name)
 
+    def add_output_variable(self, name):
+        self.outputs.append(name)
 
+    def add_rule(self, antecedent, consequent):
+        self.rules.append((antecedent, consequent))
+    
+    def copy(self):
+        pass
 
+    def evaluate(self, inputs):
+        F = []
+        B = {out: [] for out in self.outputs}
+        for rule in self.rules:
+            u = 1
+            l = 1
+            for input_statement in rule[0]:
+                u = self.__t_norm(u, input_statement[1].umf(inputs[input_statement[0]], input_statement[1].umf_params))
+                l = self.__t_norm(l, input_statement[1].lmf(inputs[input_statement[0]], input_statement[1].lmf_params))
+            F.append([l, u])
+            for consequent in rule[1]:
+                B[consequent[0]].append(consequent[1]["const"])
+                for input in self.inputs:
+                    # self.inputs -> Name of the input variables ...
+                    # inputs -> Dict of input and value pairs ...
+                    # consequent[1] -> dict of input and coefficient pairs ...
+                    B[consequent[0]][-1] += consequent[1][input] * inputs[input]
+        O = {}
+        for output in self.outputs:
+            y = array(B[output]).reshape((len(B[output]), 1))
+            intervals = hstack([y, y, array(F)])
+            o = EIASC_algorithm(intervals)
+            O[output] = crisp(o)
+        return O
 
+class Mamdani:
+    
+    def __init__(self, t_norm, s_norm, domain, 
+                 method="Centroid", method_params=None, 
+                 algorithm=EIASC_algorithm, algorithm_params=None):
+        self.inputs = []
+        self.outputs = []
+        self.rules = []
+        self.__t_norm = t_norm
+        self.__s_norm = s_norm
+        self.__domain = domain
+        self.__method = method
+        self.__method_params = method_params
+        self.__algorithm = algorithm
+        self.__algorithm_params = algorithm_params
+        if method == "Centroid":
+            self.evaluate = self.__Mamdani_Centroid
+        elif method == "CoSet":
+            self.evaluate = self.__Mamdani_CoSet
+        elif method == "CoSum":
+            self.evaluate = self.__Mamdani_CoSum
+        elif method == "Height":
+            self.evaluate = self.__Mamdani_Height
+        elif method == "ModiHe":
+            self.evaluate = self.__Mamdani_ModiHe
+        else:
+            raise ValueError("The method " + method + " is not implemented yet!")
 
+    def __repr__(self):
+        pass
 
+    def add_input_variable(self, name):
+        self.inputs.append(name)
 
+    def add_output_variable(self, name):
+        self.outputs.append(name)
 
-
-
-
-
-
-
-
-
-
+    def add_rule(self, antecedent, consequent):
+        self.rules.append((antecedent, consequent))
+    
+    def copy(self):
+        pass
+    
+    def __Mamdani_Centroid(self, inputs):
+        B = {out: [] for out in self.outputs}
+        for rule in self.rules:
+            u = 1
+            l = 1
+            for input_statement in rule[0]:
+                u = self.__t_norm(u, input_statement[1].umf(inputs[input_statement[0]], input_statement[1].umf_params))
+                l = self.__t_norm(l, input_statement[1].lmf(inputs[input_statement[0]], input_statement[1].lmf_params))
+            for consequent in rule[1]:
+                B_l = meet(self.__domain, 
+                           IT2FS(self.__domain, const_mf, [u], const_mf, [l]), 
+                           consequent[1], self.__t_norm)
+                B[consequent[0]].append(B_l)
+        C = {out: IT2FS(self.__domain) for out in self.outputs}
+        TR = {}
+        for out in self.outputs:
+            for B_l in B[out]:
+                C[out] = join(self.__domain, C[out], B_l, self.__s_norm)
+            TR[out] = Centroid(C[out], self.__algorithm, self.__domain, 
+                               alg_params=self.__algorithm_params)
+        return C, TR
+    
+    def __Mamdani_CoSet(self, inputs):
+        F = []
+        G = {out: [] for out in self.outputs}
+        for rule in self.rules:
+            u = 1
+            l = 1
+            for input_statement in rule[0]:
+                u = self.__t_norm(u, input_statement[1].umf(inputs[input_statement[0]], input_statement[1].umf_params))
+                l = self.__t_norm(l, input_statement[1].lmf(inputs[input_statement[0]], input_statement[1].lmf_params))
+            F.append([l, u])
+            for consequent in rule[1]:
+                G[consequent[0]].append(consequent[1])
+        TR = {}
+        for out in self.outputs:
+            TR[out] = CoSet(array(F), G[out], self.__algorithm, 
+                            self.__domain, alg_params=self.__algorithm_params)
+        return TR
+    
+    def __Mamdani_CoSum(self, inputs):
+        B = {out: [] for out in self.outputs}
+        for rule in self.rules:
+            u = 1
+            l = 1
+            for input_statement in rule[0]:
+                u = self.__t_norm(u, input_statement[1].umf(inputs[input_statement[0]], input_statement[1].umf_params))
+                l = self.__t_norm(l, input_statement[1].lmf(inputs[input_statement[0]], input_statement[1].lmf_params))
+            for consequent in rule[1]:
+                B_l = meet(self.__domain, 
+                           IT2FS(self.__domain, const_mf, [u], const_mf, [l]), 
+                           consequent[1], self.__t_norm)
+                B[consequent[0]].append(B_l)
+        TR = {}
+        for out in self.outputs:
+            TR[out] = CoSum(B[out], self.__algorithm, 
+                            self.__domain, alg_params=self.__algorithm_params)
+        return TR
+    
+    def __Mamdani_Height(self, inputs):
+        B = {out: [] for out in self.outputs}
+        for rule in self.rules:
+            u = 1
+            l = 1
+            for input_statement in rule[0]:
+                u = self.__t_norm(u, input_statement[1].umf(inputs[input_statement[0]], input_statement[1].umf_params))
+                l = self.__t_norm(l, input_statement[1].lmf(inputs[input_statement[0]], input_statement[1].lmf_params))
+            for consequent in rule[1]:
+                B_l = meet(self.__domain, 
+                           IT2FS(self.__domain, const_mf, [u], const_mf, [l]), 
+                           consequent[1], self.__t_norm)
+                B[consequent[0]].append(B_l)
+        TR = {}
+        for out in self.outputs:
+            TR[out] = Height(B[out], self.__algorithm, 
+                             self.__domain, alg_params=self.__algorithm_params)
+        return TR
+    
+    def __Mamdani_ModiHe(self, inputs):
+        B = {out: [] for out in self.outputs}
+        for rule in self.rules:
+            u = 1
+            l = 1
+            for input_statement in rule[0]:
+                u = self.__t_norm(u, input_statement[1].umf(inputs[input_statement[0]], input_statement[1].umf_params))
+                l = self.__t_norm(l, input_statement[1].lmf(inputs[input_statement[0]], input_statement[1].lmf_params))
+            for consequent in rule[1]:
+                B_l = meet(self.__domain, 
+                           IT2FS(self.__domain, const_mf, [u], const_mf, [l]), 
+                           consequent[1], self.__t_norm)
+                B[consequent[0]].append(B_l)
+        TR = {}
+        for out in self.outputs:
+            TR[out] = ModiHe(B[out], self.__method_params, self.__algorithm, 
+                             self.__domain, alg_params=self.__algorithm_params)
+        return TR
+    
+    
 
 
 
