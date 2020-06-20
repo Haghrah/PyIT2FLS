@@ -43,9 +43,9 @@ There are some examples provided along with the toolkit which are as below:
 * Ex3: Defining a simple (MIMO) IT2FLS
 * Ex4: Prediction of the Mackey-Glass chaotic time series with PSO-based parameter tuning
 * Ex5: Designing Interval Type 2 Fuzzy PID (IT2FPID) controller for a time-delay linear system
-* Ex6: Creating and plotting ten types of interval type two fuzzy sets **(Some of the sets are not supported in PyIT2FLS 0.3. This example would work correctly using the PyIT2FLS 0.4.)**
-* Ex7: Similar to Ex3 but implemented using Mamdani class. The new Mamadani class is 3 times faster compared to the IT2FLS class. **(This example works only with the unofficial version of the PyIT2FLS provided on this github repository. The new version of the PyIT2FLS would be released after some tests and fixing bugs.)**
-* Ex8: Defining a simple multi-input multi-output IT2 TSK FLS. **(This example works only with the unofficial version of the PyIT2FLS provided on this github repository. The new version of the PyIT2FLS would be released after some tests and fixing bugs.)**
+* Ex6: Creating and plotting ten types of interval type two fuzzy sets **(Some of the sets are not supported by PyIT2FLS 0.3. This example would work correctly using the PyIT2FLS 0.4.)**
+* Ex7: Similar to Ex3 but implemented using Mamdani class. The new Mamadani class is 3 times faster compared to the IT2FLS class. **(This example works only with the PyIT2FLS provided on this github repository. The new version of the PyIT2FLS would be released after some tests and fixing bugs.)**
+* Ex8: Defining a simple multi-input multi-output IT2 TSK FLS. **(This example works only with the PyIT2FLS provided on this github repository. The new version of the PyIT2FLS would be released after some tests and fixing bugs.)**
 
 ## Docstrings
 Further information about functions and classes in the PyIT2FLS are accessible by docstrings. After importing a function or class, they can be seen by calling the help function. For example:
