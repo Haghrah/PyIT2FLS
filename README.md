@@ -62,7 +62,7 @@ If you are using Anaconda, due to the inclusion of main ddeint package in its li
 from ddeint1 import ddeint
 ```
 
-### Examples output plots
+### Some output plots
 
 * Ex9: 
 
