@@ -46,15 +46,15 @@ Further information about functions and classes in the PyIT2FLS are accessible b
 
 ## Examples
 There are some examples provided along with the toolkit which are as below:
-* Ex1: Defining an Interval Type 2 Fuzzy Set (IT2FS)
-* Ex2: Application of join and meet operators and plotting the outputs
-* Ex3: Defining a simple (MIMO) IT2FLS
-* Ex4: Prediction of the Mackey-Glass chaotic time series with PSO-based parameter tuning
-* Ex5: Designing Interval Type 2 Fuzzy PID (IT2FPID) controller for a time-delay linear system
-* Ex6: Creating and plotting ten types of interval type two fuzzy sets **(Some of the sets are not supported by PyIT2FLS 0.3. This example would work correctly using the PyIT2FLS 0.4.)**
-* Ex7: Similar to Ex3 but implemented using the new Mamdani class. The new Mamadani class is **3 times faster** compared to the IT2FLS class. **(This example works only with the PyIT2FLS provided on this github repository. The new version of the PyIT2FLS would be released after some tests and fixing bugs.)**
-* Ex8: Defining a simple multi-input multi-output IT2 TSK FLS. **(This example works only with the PyIT2FLS provided on this github repository. The new version of the PyIT2FLS would be released after some tests and fixing bugs.)**
-* Ex9: Defining a multi-input multi-output IT2 TSK FLS and plotting the 3D resulting output planes. **(This example works only with the PyIT2FLS provided on this github repository. The new version of the PyIT2FLS would be released after some tests and fixing bugs.)**
+* Ex1: Defining an Interval Type 2 Fuzzy Set (IT2FS).
+* Ex2: Application of join and meet operators and plotting the outputs.
+* Ex3: Defining a simple (MIMO) IT2FLS.
+* Ex4: Prediction of the Mackey-Glass chaotic time series with PSO-based parameter tuning.
+* Ex5: Designing Interval Type 2 Fuzzy PID (IT2FPID) controller for a time-delay linear system.
+* Ex6: Creating and plotting ten types of interval type two fuzzy sets. **(Compatible with PyIT2FLS 0.4.)**
+* Ex7: Similar to Ex3 but implemented using the new Mamdani class. The new Mamadani class is **3 times faster** compared to the IT2FLS class. **(Compatible with unofficial PyIT2FLS 0.5.)**
+* Ex8: Defining a simple multi-input multi-output IT2 TSK FLS. **(Compatible with unofficial PyIT2FLS 0.5.)**
+* Ex9: Defining a multi-input multi-output IT2 TSK FLS and plotting the 3D resulting output planes. **(Compatible with unofficial PyIT2FLS 0.5.)**
 ### Some notes on running the examples
 If you are using Anaconda, due to the inclusion of main ddeint package in its libraries pool, an error is raised while running the 5th example. This error is raised because the 5th example uses an updated version of ddeint which is included in the examples folder. For solving this issue, please change the ddeint.py's name to ddeint1.py (in examples folder) and change the 16th line of the ex_5.py as below:
 
