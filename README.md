@@ -64,7 +64,7 @@ from ddeint1 import ddeint
 
 ### Some output plots
 
-* Ex 5
+* Ex5
 
 <img src="examples/5_1.png" width="128"> <img src="examples/5_2.png" width="128"> <img src="examples/5_3.png" width="128"> <img src="examples/5_4.png" width="128">
 
