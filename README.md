@@ -64,6 +64,12 @@ from ddeint1 import ddeint
 
 ### Some output plots
 
+* Ex 5
+
+<img src="examples/5_1.png" width="128"> <img src="examples/5_2.png" width="128"> <img src="examples/5_3.png" width="128"> <img src="examples/5_4.png" width="128">
+
+<img src="examples/5_block.jpg" width="512">
+
 * Ex6
 
 <img src="examples/6_1.png" width="128"> <img src="examples/6_2.png" width="128"> <img src="examples/6_3.png" width="128"> <img src="examples/6_4.png" width="128">
