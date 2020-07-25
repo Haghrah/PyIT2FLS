@@ -30,7 +30,7 @@ Or you can use pip3:
 
 ### Features coming up in the version 0.5
 - [ ] Supporting both Mamdani and TSK systems.
-- [ ] Correcting a bug, which makes it impossible to use different domains for the inputs of a FLS.
+- [ ] Correcting a bug, which makes it impossible to use different domains for the inputs and the outputs of a FLS.
 
 ### Some notes on version 0.4
  * Some bugs have been fixed in this version especially in type reduction algorithms. I would like to say thanks to Dr. K.B Badri Narayanan for reporting the errors.
@@ -56,7 +56,7 @@ There are some examples provided along with the toolkit which are as below:
 * Ex7: Similar to Ex3 but implemented using the new Mamdani class. The new Mamadani class is **3 times faster** compared to the IT2FLS class. **(Compatible with unofficial PyIT2FLS 0.5.)**
 * Ex8: Defining a simple multi-input multi-output IT2 TSK FLS. **(Compatible with unofficial PyIT2FLS 0.5.)**
 * Ex9: Defining a multi-input multi-output IT2 TSK FLS and plotting the 3D resulting output planes. **(Compatible with unofficial PyIT2FLS 0.5.)**
-* Ex10: Defining a multi-input multi-output IT2FLS with different domains for each of input variables, and plotting the output surface of the system. **(Compatible with unofficial PyIT2FLS 0.5.)**
+* Ex10: Defining a multi-input multi-output IT2FLS with different domains for each of input and output variables, and plotting the output surfaces of the system. **(Compatible with unofficial PyIT2FLS 0.5.)**
 
 ### Some notes on running the examples
 If you are using Anaconda, due to the inclusion of main ddeint package in its libraries pool, an error is raised while running the 5th example. This error is raised because the 5th example uses an updated version of ddeint which is included in the examples folder. For solving this issue, please change the ddeint.py's name to ddeint1.py (in examples folder) and change the 16th line of the ex_5.py as below:
