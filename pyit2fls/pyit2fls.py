@@ -671,6 +671,7 @@ class IT2FS(object):
         plt.show()
 
     def __neg__(self):
+        # TODO
         """
         Negates the IT2FS.
         
@@ -1150,9 +1151,11 @@ def meet(domain, it2fs1, it2fs2, t_norm):
     >>> it2fs3 = meet(domain, it2fs1, it2fs2, min_t_norm)
     >>> it2fs3.plot()
     """
-    it2fs = IT2FS(domain)
-    it2fs.upper = t_norm(it2fs1.upper, it2fs2.upper)
-    it2fs.lower = t_norm(it2fs1.lower, it2fs2.lower)
+    umf = lambda x, params: t_norm(it2fs1.umf(x, it2fs1.umf_params), 
+                                   it2fs2.umf(x, it2fs2.umf_params))
+    lmf = lambda x, params: t_norm(it2fs1.lmf(x, it2fs1.lmf_params), 
+                                   it2fs2.lmf(x, it2fs2.lmf_params))
+    it2fs = IT2FS(domain, umf, [], lmf, [])
     return it2fs
 
 
@@ -1198,9 +1201,11 @@ def join(domain, it2fs1, it2fs2, s_norm):
     >>> it2fs3 = join(domain, it2fs1, it2fs2, max_s_norm)
     >>> it2fs3.plot()
     """
-    it2fs = IT2FS(domain)
-    it2fs.upper = s_norm(it2fs1.upper, it2fs2.upper)
-    it2fs.lower = s_norm(it2fs1.lower, it2fs2.lower)
+    umf = lambda x, params: s_norm(it2fs1.umf(x, it2fs1.umf_params), 
+                                   it2fs2.umf(x, it2fs2.umf_params))
+    lmf = lambda x, params: s_norm(it2fs1.lmf(x, it2fs1.lmf_params), 
+                                   it2fs2.lmf(x, it2fs2.lmf_params))
+    it2fs = IT2FS(domain, umf, [], lmf, [])
     return it2fs
 
 def trim(intervals):
@@ -2496,13 +2501,15 @@ class IT2FLS(object):
                     u = t_norm(u, input_statement[1].umf(inputs[input_statement[0]], input_statement[1].umf_params))
                     l = t_norm(l, input_statement[1].lmf(inputs[input_statement[0]], input_statement[1].lmf_params))
                 for consequent in rule[1]:
-                    B_l = meet(domain, IT2FS(domain, const_mf, [u], const_mf, [l]), consequent[1], t_norm)
+                    B_l = meet(consequent[1].domain, 
+                               IT2FS(consequent[1].domain, const_mf, [u], const_mf, [l]), 
+                               consequent[1], t_norm)
                     B[consequent[0]].append(B_l)
             C = {out: IT2FS(domain) for out in self.outputs}
             TR = {}
             for out in self.outputs:
                 for B_l in B[out]:
-                    C[out] = join(domain, C[out], B_l, s_norm)
+                    C[out] = join(B_l.domain, C[out], B_l, s_norm)
                 TR[out] = Centroid(C[out], alg_func, domain, alg_params=algorithm_params)
             return C, TR
         elif method == "CoSet":
@@ -2519,7 +2526,8 @@ class IT2FLS(object):
                     G[consequent[0]].append(consequent[1])
             TR = {}
             for out in self.outputs:
-                TR[out] = CoSet(array(F), G[out], alg_func, domain, alg_params=algorithm_params)
+                TR[out] = CoSet(array(F), G[out], alg_func, 
+                                G[out][0].domain, alg_params=algorithm_params)
             return TR
         elif method == "CoSum":
             B = {out: [] for out in self.outputs}
@@ -2530,11 +2538,14 @@ class IT2FLS(object):
                     u = t_norm(u, input_statement[1].umf(inputs[input_statement[0]], input_statement[1].umf_params))
                     l = t_norm(l, input_statement[1].lmf(inputs[input_statement[0]], input_statement[1].lmf_params))
                 for consequent in rule[1]:
-                    B_l = meet(domain, IT2FS(domain, const_mf, [u], const_mf, [l]), consequent[1], t_norm)
+                    B_l = meet(consequent[1].domain, 
+                               IT2FS(consequent[1].domain, const_mf, [u], const_mf, [l]), 
+                               consequent[1], t_norm)
                     B[consequent[0]].append(B_l)
             TR = {}
             for out in self.outputs:
-                TR[out] = CoSum(B[out], alg_func, domain, alg_params=algorithm_params)
+                TR[out] = CoSum(B[out], alg_func, 
+                                B[out][0].domain, alg_params=algorithm_params)
             return TR
         elif method == "Height":
             B = {out: [] for out in self.outputs}
@@ -2545,11 +2556,14 @@ class IT2FLS(object):
                     u = t_norm(u, input_statement[1].umf(inputs[input_statement[0]], input_statement[1].umf_params))
                     l = t_norm(l, input_statement[1].lmf(inputs[input_statement[0]], input_statement[1].lmf_params))
                 for consequent in rule[1]:
-                    B_l = meet(domain, IT2FS(domain, const_mf, [u], const_mf, [l]), consequent[1], t_norm)
+                    B_l = meet(consequent[1].domain, 
+                               IT2FS(consequent[1].domain, const_mf, [u], const_mf, [l]), 
+                               consequent[1], t_norm)
                     B[consequent[0]].append(B_l)
             TR = {}
             for out in self.outputs:
-                TR[out] = Height(B[out], alg_func, domain, alg_params=algorithm_params)
+                TR[out] = Height(B[out], alg_func, 
+                                 B[out][0].domain, alg_params=algorithm_params)
             return TR
         elif method == "ModiHe":
             B = {out: [] for out in self.outputs}
@@ -2560,11 +2574,14 @@ class IT2FLS(object):
                     u = t_norm(u, input_statement[1].umf(inputs[input_statement[0]], input_statement[1].umf_params))
                     l = t_norm(l, input_statement[1].lmf(inputs[input_statement[0]], input_statement[1].lmf_params))
                 for consequent in rule[1]:
-                    B_l = meet(domain, IT2FS(domain, const_mf, [u], const_mf, [l]), consequent[1], t_norm)
+                    B_l = meet(consequent[1].domain, 
+                               IT2FS(consequent[1].domain, const_mf, [u], const_mf, [l]), 
+                               consequent[1], t_norm)
                     B[consequent[0]].append(B_l)
             TR = {}
             for out in self.outputs:
-                TR[out] = ModiHe(B[out], method_params, alg_func, domain, alg_params=algorithm_params)
+                TR[out] = ModiHe(B[out], method_params, alg_func, 
+                                 B[out][0].domain, alg_params=algorithm_params)
             return TR
         else:
             raise ValueError("The method " + method + " is not implemented yet!")
@@ -2621,7 +2638,7 @@ class TSK:
 
 class Mamdani:
     
-    def __init__(self, t_norm, s_norm, domain, 
+    def __init__(self, t_norm, s_norm, 
                  method="Centroid", method_params=None, 
                  algorithm=EIASC_algorithm, algorithm_params=None):
         self.inputs = []
@@ -2629,7 +2646,6 @@ class Mamdani:
         self.rules = []
         self.__t_norm = t_norm
         self.__s_norm = s_norm
-        self.__domain = domain
         self.__method = method
         self.__method_params = method_params
         self.__algorithm = algorithm
@@ -2671,16 +2687,16 @@ class Mamdani:
                 u = self.__t_norm(u, input_statement[1].umf(inputs[input_statement[0]], input_statement[1].umf_params))
                 l = self.__t_norm(l, input_statement[1].lmf(inputs[input_statement[0]], input_statement[1].lmf_params))
             for consequent in rule[1]:
-                B_l = meet(self.__domain, 
-                           IT2FS(self.__domain, const_mf, [u], const_mf, [l]), 
+                B_l = meet(consequent[1].domain, 
+                           IT2FS(consequent[1].domain, const_mf, [u], const_mf, [l]), 
                            consequent[1], self.__t_norm)
                 B[consequent[0]].append(B_l)
-        C = {out: IT2FS(self.__domain) for out in self.outputs}
+        C = {out: IT2FS(B[out][0].domain) for out in self.outputs}
         TR = {}
         for out in self.outputs:
             for B_l in B[out]:
-                C[out] = join(self.__domain, C[out], B_l, self.__s_norm)
-            TR[out] = Centroid(C[out], self.__algorithm, self.__domain, 
+                C[out] = join(B_l.domain, C[out], B_l, self.__s_norm)
+            TR[out] = Centroid(C[out], self.__algorithm, B_l.domain, 
                                alg_params=self.__algorithm_params)
         return C, TR
     
@@ -2699,7 +2715,7 @@ class Mamdani:
         TR = {}
         for out in self.outputs:
             TR[out] = CoSet(array(F), G[out], self.__algorithm, 
-                            self.__domain, alg_params=self.__algorithm_params)
+                            G[out][0].domain, alg_params=self.__algorithm_params)
         return TR
     
     def __Mamdani_CoSum(self, inputs):
@@ -2711,14 +2727,14 @@ class Mamdani:
                 u = self.__t_norm(u, input_statement[1].umf(inputs[input_statement[0]], input_statement[1].umf_params))
                 l = self.__t_norm(l, input_statement[1].lmf(inputs[input_statement[0]], input_statement[1].lmf_params))
             for consequent in rule[1]:
-                B_l = meet(self.__domain, 
-                           IT2FS(self.__domain, const_mf, [u], const_mf, [l]), 
+                B_l = meet(consequent[1].domain, 
+                           IT2FS(consequent[1].domain, const_mf, [u], const_mf, [l]), 
                            consequent[1], self.__t_norm)
                 B[consequent[0]].append(B_l)
         TR = {}
         for out in self.outputs:
             TR[out] = CoSum(B[out], self.__algorithm, 
-                            self.__domain, alg_params=self.__algorithm_params)
+                            B[out][0].domain, alg_params=self.__algorithm_params)
         return TR
     
     def __Mamdani_Height(self, inputs):
@@ -2730,14 +2746,14 @@ class Mamdani:
                 u = self.__t_norm(u, input_statement[1].umf(inputs[input_statement[0]], input_statement[1].umf_params))
                 l = self.__t_norm(l, input_statement[1].lmf(inputs[input_statement[0]], input_statement[1].lmf_params))
             for consequent in rule[1]:
-                B_l = meet(self.__domain, 
-                           IT2FS(self.__domain, const_mf, [u], const_mf, [l]), 
+                B_l = meet(consequent[1].domain, 
+                           IT2FS(consequent[1].domain, const_mf, [u], const_mf, [l]), 
                            consequent[1], self.__t_norm)
                 B[consequent[0]].append(B_l)
         TR = {}
         for out in self.outputs:
             TR[out] = Height(B[out], self.__algorithm, 
-                             self.__domain, alg_params=self.__algorithm_params)
+                             B[out][0].domain, alg_params=self.__algorithm_params)
         return TR
     
     def __Mamdani_ModiHe(self, inputs):
@@ -2749,14 +2765,14 @@ class Mamdani:
                 u = self.__t_norm(u, input_statement[1].umf(inputs[input_statement[0]], input_statement[1].umf_params))
                 l = self.__t_norm(l, input_statement[1].lmf(inputs[input_statement[0]], input_statement[1].lmf_params))
             for consequent in rule[1]:
-                B_l = meet(self.__domain, 
-                           IT2FS(self.__domain, const_mf, [u], const_mf, [l]), 
+                B_l = meet(consequent[1].domain, 
+                           IT2FS(consequent[1].domain, const_mf, [u], const_mf, [l]), 
                            consequent[1], self.__t_norm)
                 B[consequent[0]].append(B_l)
         TR = {}
         for out in self.outputs:
             TR[out] = ModiHe(B[out], self.__method_params, self.__algorithm, 
-                             self.__domain, alg_params=self.__algorithm_params)
+                             B[out][0].domain, alg_params=self.__algorithm_params)
         return TR
     
     
