@@ -671,7 +671,6 @@ class IT2FS(object):
         plt.show()
 
     def __neg__(self):
-        # TODO
         """
         Negates the IT2FS.
         
@@ -681,9 +680,9 @@ class IT2FS(object):
         
         Returns a negated copy of the IT2FS.
         """
-        neg_it2fs = IT2FS(self.domain)
-        neg_it2fs.upper = subtract(1, self.upper)
-        neg_it2fs.lower = subtract(1, self.lower)
+        umf = lambda x, params: subtract(1, self.umf(x, params))
+        lmf = lambda x, params: subtract(1, self.lmf(x, params))
+        neg_it2fs = IT2FS(self.domain, umf, self.umf_params, lmf, self.lmf_params)
         return neg_it2fs
 
 
@@ -2081,9 +2080,9 @@ class IT2FLS(object):
     
     >>> domain = linspace(0., 1., 100)
     >>> 
-    >>> Small = IT2FS_Gaussian_UncertStd(domain, [0, 0.15, 0.1])
-    >>> Medium = IT2FS_Gaussian_UncertStd(domain, [0.5, 0.15, 0.1])
-    >>> Large = IT2FS_Gaussian_UncertStd(domain, [1., 0.15, 0.1])
+    >>> Small = IT2FS_Gaussian_UncertStd(domain, [0, 0.15, 0.1, 1.])
+    >>> Medium = IT2FS_Gaussian_UncertStd(domain, [0.5, 0.15, 0.1, 1.])
+    >>> Large = IT2FS_Gaussian_UncertStd(domain, [1., 0.15, 0.1, 1.])
     >>> IT2FS_plot(Small, Medium, Large, legends=["Small", "Medium", "large"])
     >>> 
     >>> myIT2FLS = IT2FLS()
@@ -2121,6 +2120,7 @@ class IT2FLS(object):
         self.rules = []
 
     def __repr__(self):
+        # TODO!
         pass
 
     def add_input_variable(self, name):
@@ -2311,14 +2311,16 @@ class IT2FLS(object):
                         u = t_norm(u, input_statement[1].umf(inputs[input_statement[0]], input_statement[1].umf_params))
                         l = t_norm(l, input_statement[1].lmf(inputs[input_statement[0]], input_statement[1].lmf_params))
                     for consequent in rule[1]:
-                        B_l = meet(domain, IT2FS(domain, const_mf, [u], const_mf, [l]), consequent[1], t_norm)
+                        B_l = meet(consequent[1].domain, 
+                                   IT2FS(consequent[1].domain, const_mf, [u], const_mf, [l]), 
+                                   consequent[1], t_norm)
                         B[consequent[0]].append(B_l)
-                C = {out: IT2FS(domain) for out in self.outputs}
+                C = {out: IT2FS(B[out][0].domain) for out in self.outputs}
                 TR = {}
                 for out in self.outputs:
                     for B_l in B[out]:
-                        C[out] = join(domain, C[out], B_l, s_norm)
-                    TR[out] = Centroid(C[out], alg_func, domain, alg_params=algorithm_params)
+                        C[out] = join(B_l.domain, C[out], B_l, s_norm)
+                    TR[out] = Centroid(C[out], alg_func, B_l.domain, alg_params=algorithm_params)
                 Cs.append(C)
                 TRs.append(TR)
             return Cs, TRs
@@ -2337,7 +2339,8 @@ class IT2FLS(object):
                         G[consequent[0]].append(consequent[1])
                 TR = {}
                 for out in self.outputs:
-                    TR[out] = CoSet(array(F), G[out], alg_func, domain, alg_params=algorithm_params)
+                    TR[out] = CoSet(array(F), G[out], alg_func, 
+                                    G[out][0].domain, alg_params=algorithm_params)
                 outputs.append(TR)
             return outputs
         elif method == "CoSum":
@@ -2350,11 +2353,13 @@ class IT2FLS(object):
                         u = t_norm(u, input_statement[1].umf(inputs[input_statement[0]], input_statement[1].umf_params))
                         l = t_norm(l, input_statement[1].lmf(inputs[input_statement[0]], input_statement[1].lmf_params))
                     for consequent in rule[1]:
-                        B_l = meet(domain, IT2FS(domain, const_mf, [u], const_mf, [l]), consequent[1], t_norm)
+                        B_l = meet(consequent[1].domain, 
+                                   IT2FS(consequent[1].domain, const_mf, [u], const_mf, [l]), 
+                                   consequent[1], t_norm)
                         B[consequent[0]].append(B_l)
                 TR = {}
                 for out in self.outputs:
-                    TR[out] = CoSum(B[out], alg_func, domain, alg_params=algorithm_params)
+                    TR[out] = CoSum(B[out], alg_func, B[out][0].domain, alg_params=algorithm_params)
                 outputs.append(TR)
             return outputs
         elif method == "Height":
@@ -2367,11 +2372,14 @@ class IT2FLS(object):
                         u = t_norm(u, input_statement[1].umf(inputs[input_statement[0]], input_statement[1].umf_params))
                         l = t_norm(l, input_statement[1].lmf(inputs[input_statement[0]], input_statement[1].lmf_params))
                     for consequent in rule[1]:
-                        B_l = meet(domain, IT2FS(domain, const_mf, [u], const_mf, [l]), consequent[1], t_norm)
+                        B_l = meet(consequent[1].domain, 
+                                   IT2FS(consequent[1].domain, const_mf, [u], const_mf, [l]), 
+                                   consequent[1], t_norm)
                         B[consequent[0]].append(B_l)
                 TR = {}
                 for out in self.outputs:
-                    TR[out] = Height(B[out], alg_func, domain, alg_params=algorithm_params)
+                    TR[out] = Height(B[out], alg_func, 
+                                     B[out][0].domain, alg_params=algorithm_params)
                 outputs.append(TR)
             return outputs
         elif method == "ModiHe":
@@ -2384,11 +2392,14 @@ class IT2FLS(object):
                         u = t_norm(u, input_statement[1].umf(inputs[input_statement[0]], input_statement[1].umf_params))
                         l = t_norm(l, input_statement[1].lmf(inputs[input_statement[0]], input_statement[1].lmf_params))
                     for consequent in rule[1]:
-                        B_l = meet(domain, IT2FS(domain, const_mf, [u], const_mf, [l]), consequent[1], t_norm)
+                        B_l = meet(consequent[1].domain, 
+                                   IT2FS(consequent[1].domain, const_mf, [u], const_mf, [l]), 
+                                   consequent[1], t_norm)
                         B[consequent[0]].append(B_l)
                 TR = {}
                 for out in self.outputs:
-                    TR[out] = ModiHe(B[out], method_params, alg_func, domain, alg_params=algorithm_params)
+                    TR[out] = ModiHe(B[out], method_params, alg_func, 
+                                     B[out][0].domain, alg_params=algorithm_params)
                 outputs.append(TR)
             return outputs
         else:
@@ -2505,12 +2516,12 @@ class IT2FLS(object):
                                IT2FS(consequent[1].domain, const_mf, [u], const_mf, [l]), 
                                consequent[1], t_norm)
                     B[consequent[0]].append(B_l)
-            C = {out: IT2FS(domain) for out in self.outputs}
+            C = {out: IT2FS(B[out][0].domain) for out in self.outputs}
             TR = {}
             for out in self.outputs:
                 for B_l in B[out]:
                     C[out] = join(B_l.domain, C[out], B_l, s_norm)
-                TR[out] = Centroid(C[out], alg_func, domain, alg_params=algorithm_params)
+                TR[out] = Centroid(C[out], alg_func, B_l.domain, alg_params=algorithm_params)
             return C, TR
         elif method == "CoSet":
             F = []
@@ -2637,7 +2648,96 @@ class TSK:
         return O
 
 class Mamdani:
+    """
+    Interval Type 2 Mamadani Fuzzy Logic System.
     
+    Parameters
+    ----------
+    Parameters of the constructor function:
+        
+    t_norm:
+        function
+        
+        T-norm operator which would be used in FLS.
+    
+    s_norm:
+        function
+        
+        S-norm operator which would be used in FLS.
+    
+    method="Centroid":
+        str
+        
+        Indicates the type reduction method name and should be one 
+        of the methods listed below:
+        Centroid, CoSet, CoSum, Height, and ModiHe.
+    
+    method_params=None:
+        List
+        
+        Parameters of the type reduction method, if needed.
+    
+    algorithm="EIASC":
+        str
+        
+        Indicates the type reduction algorithm name and should be 
+        one of the algorithms listed below:
+        KM, EKM, WEKM, TWEKM, EIASC, WM, BMM, LBMM, and NT.
+    
+    algorithm_params=None:
+        List
+        
+        Parameters of the type reduction algorithm, if needed.
+    
+    Members
+    -------
+    
+    inputs:
+        List of str
+        
+        List of names of inputs as str
+    
+    output:
+        List of str
+        
+        List of names ot outputs as str
+        
+    rules:
+        List of tuples (antecedent, consequent)
+        
+        List of rules which each rule is defined as a 
+        tuple (antecedent, consequent)
+        
+        Both antacedent and consequent are lists of tuples. Each tuple 
+        of this list shows 
+        assignement of a variable to an IT2FS. First element of the tuple 
+        must be variable name (input or output) as a str and the second 
+        element must be an IT2FS. 
+    
+    Functions
+    ---------
+    
+    add_input_variable:
+        
+        Adds an input variable to the inputs list of the IT2FLS.
+    
+    add_output_variable:
+        
+        Adds an output variable to the outputs list of the IT2FLS.
+    
+    add_rule:
+        
+        Adds a rule to the rules list of the IT2FLS.
+    
+    copy:
+        
+        Returns a copy of the IT2FLS.
+    
+    evaluate:
+        
+        Evaluates the IT2FLS's output for a specified crisp input.
+    
+    """
     def __init__(self, t_norm, s_norm, 
                  method="Centroid", method_params=None, 
                  algorithm=EIASC_algorithm, algorithm_params=None):
@@ -2667,16 +2767,70 @@ class Mamdani:
         pass
 
     def add_input_variable(self, name):
+        """
+        Adds new input variable name.
+        
+        Parameters
+        ----------
+        
+        name:
+            str
+            
+            Name of the new input variable as a str.
+        """
         self.inputs.append(name)
 
     def add_output_variable(self, name):
+        """
+        Adds new output variable name.
+        
+        Parameters
+        ----------
+        
+        name:
+            str
+            
+            Name of the new output variable as a str.
+        """
         self.outputs.append(name)
 
     def add_rule(self, antecedent, consequent):
+        """
+        Adds new rule to the rule base of the IT2FLS.
+        
+        Parameters
+        ----------
+        
+        antecedent:
+            List of tuples
+            
+            Antecedent is a list of tuples in which each tuple indicates 
+            assignement of a variable to an IT2FS. First element of the 
+            tuple must be input variable name as str, and the second 
+            element of the tuple must be an IT2FS.
+            
+        consequent:
+            List of tuples
+            
+            Consequent is a list of tuples in which each tuple indicates 
+            assignement of a variable to an IT2FS. First element of the 
+            tuple must be output variable name as str, and the second 
+            element of the tuple must be an IT2FS.
+            
+        """
         self.rules.append((antecedent, consequent))
     
     def copy(self):
-        pass
+        """
+        Returns a copy of the IT2FLS.
+        """
+        o = Mamdani(self.__t_norm, self.__s_norm, 
+                    self.__method, self.__method_params, 
+                    self.__algorithm, self.__algorithm_params)
+        o.inputs = self.inputs.copy()
+        o.outputs = self.outputs.copy()
+        o.rules = self.rules.copy()
+        return o
     
     def __Mamdani_Centroid(self, inputs):
         B = {out: [] for out in self.outputs}
