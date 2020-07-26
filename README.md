@@ -33,7 +33,7 @@ Or you can use pip3:
 
 ### Some notes on version 0.5
 - [x] Supporting both Mamdani and TSK systems.
-- [x] Correcting some bugs. Now it is possible to use different domains for FLS inputs and outputs.
+- [x] Some bugs are fixed in this vesion. Now it is possible to use different domains for FLS inputs and outputs.
 
 ### Some notes on version 0.4
 - [x] Some bugs have been fixed in this version especially in type reduction algorithms. I would like to say thanks to Dr. K.B Badri Narayanan for reporting the errors.
