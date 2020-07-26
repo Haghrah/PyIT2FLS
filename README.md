@@ -29,8 +29,8 @@ Or you can use pip3:
 ## Versions
 
 ### Features coming up in the version 0.5
-- [ ] Supporting both Mamdani and TSK systems.
-- [ ] Correcting a bug, which makes it impossible to use different domains for the inputs and the outputs of a FLS.
+- [x] Supporting both Mamdani and TSK systems.
+- [x] Correcting a bug, which makes it impossible to use different domains for the inputs and the outputs of a FLS.
 
 ### Some notes on version 0.4
  * Some bugs have been fixed in this version especially in type reduction algorithms. I would like to say thanks to Dr. K.B Badri Narayanan for reporting the errors.
