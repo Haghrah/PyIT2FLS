@@ -36,9 +36,9 @@ Or you can use pip3:
 - [x] Correcting a bug, which makes it impossible to use different domains for the inputs and the outputs of a FLS.
 
 ### Some notes on version 0.4
- * Some bugs have been fixed in this version especially in type reduction algorithms. I would like to say thanks to Dr. K.B Badri Narayanan for reporting the errors.
- * Some new IT2FSs are added to the toolkit.
- * In previous versions, the height of the IT2FS_Gaussian_UncertStd and IT2FS_Gaussian_UncertMean IT2FSs was fixed to 1, by default. But in the new version, user must give the height value in the parameters list as the last element.
+- [x] Some bugs have been fixed in this version especially in type reduction algorithms. I would like to say thanks to Dr. K.B Badri Narayanan for reporting the errors.
+- [x] Some new IT2FSs are added to the toolkit.
+- [x] In previous versions, the height of the IT2FS_Gaussian_UncertStd and IT2FS_Gaussian_UncertMean IT2FSs was fixed to 1, by default. But in the new version, user must give the height value in the parameters list as the last element.
 
 ## Docstrings
 Further information about functions and classes in the PyIT2FLS are accessible by docstrings. After importing a function or class, they can be seen by calling the help function. For example:
