@@ -67,6 +67,10 @@ from ddeint1 import ddeint
 
 ### Some output plots
 
+* Ex4:
+
+<img src="examples/4_2.png" width="256"> <img src="examples/4_4.png" width="256">
+
 * Ex5:
 
 <img src="examples/5_1.png" width="128"> <img src="examples/5_2.png" width="128"> <img src="examples/5_3.png" width="128"> <img src="examples/5_4.png" width="128">
@@ -89,8 +93,6 @@ from ddeint1 import ddeint
 
 * Ex10: 
 
-<img src="examples/10_1.png" width="256"> <img src="examples/10_2.png" width="256">
-
-<img src="examples/10_3.png" width="256"> <img src="examples/10_4.png" width="256">
+<img src="examples/10_1.png" width="256"> <img src="examples/10_3.png" width="256">
 
 <img src="examples/10_5.png" width="256"> <img src="examples/10_6.png" width="256">
