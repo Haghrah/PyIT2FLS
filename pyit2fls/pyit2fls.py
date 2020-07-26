@@ -2774,7 +2774,7 @@ class Mamdani:
         
         Indicates the type reduction method name and should be one 
         of the methods listed below:
-        Centroid, CoSet, CoSum, Height, and ModiHe.
+            Centroid, CoSet, CoSum, Height, and ModiHe.
     
     method_params=None:
         List
@@ -2786,7 +2786,7 @@ class Mamdani:
         
         Indicates the type reduction algorithm name and should be 
         one of the algorithms listed below:
-        KM, EKM, WEKM, TWEKM, EIASC, WM, BMM, LBMM, and NT.
+            KM, EKM, WEKM, TWEKM, EIASC, WM, BMM, LBMM, and NT.
     
     algorithm_params=None:
         List
@@ -2813,10 +2813,9 @@ class Mamdani:
         tuple (antecedent, consequent)
         
         Both antacedent and consequent are lists of tuples. Each tuple 
-        of this list shows 
-        assignement of a variable to an IT2FS. First element of the tuple 
-        must be variable name (input or output) as a str and the second 
-        element must be an IT2FS. 
+        of this list shows assignement of a variable to an IT2FS. 
+        First element of the tuple must be variable name (input or output) 
+        as a str and the second element must be an IT2FS. 
     
     Functions
     ---------
@@ -2878,6 +2877,7 @@ class Mamdani:
             raise ValueError("The method " + method + " is not implemented yet!")
 
     def __repr__(self):
+        # TODO!
         pass
 
     def add_input_variable(self, name):
