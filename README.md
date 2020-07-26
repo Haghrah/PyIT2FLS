@@ -81,6 +81,10 @@ from ddeint1 import ddeint
 
 * Ex9: 
 
+<img src="examples/9_1.png" width="512">
+
+<img src="examples/9_2.png" width="512">
+
 <img src="examples/IT2TSKFLSY1.png" width="256"> <img src="examples/IT2TSKFLSY2.png" width="256">
 
 * Ex10: 
