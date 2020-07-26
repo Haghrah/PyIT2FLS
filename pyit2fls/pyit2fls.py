@@ -2608,21 +2608,125 @@ class TSK:
         self.__s_norm = s_norm
     
     def __repr__(self):
+        # TODO!
         pass
 
     def add_input_variable(self, name):
+        """
+        Adds new input variable name.
+        
+        Parameters
+        ----------
+        
+        name:
+            str
+            
+            Name of the new input variable as a str.
+        """
         self.inputs.append(name)
 
     def add_output_variable(self, name):
+        """
+        Adds new output variable name.
+        
+        Parameters
+        ----------
+        
+        name:
+            str
+            
+            Name of the new output variable as a str.
+        """
         self.outputs.append(name)
 
     def add_rule(self, antecedent, consequent):
+        """
+        Adds new rule to the rule base of the IT2FLS.
+        
+        Parameters
+        ----------
+        
+        antecedent:
+            List of tuples
+            
+            Antecedent is a list of tuples in which each tuple indicates 
+            assignement of a variable to an IT2FS. First element of the 
+            tuple must be input variable name as str, and the second 
+            element of the tuple must be an IT2FS.
+            
+        consequent:
+            List of tuples
+            
+            Consequent is a list of tuples in which each tuple indicates 
+            assignement of a variable to an output state. First element of the 
+            tuple must be output vriable name as str, and the second element 
+            of the tuple must be a dictionary. This dictionary shows the 
+            output polynomial in the case of the rule. For example let an 
+            output polynomial be as 2 x1 + 4 x2 + 5. Then the dictionary for 
+            this case would be {"const":5., "x1":2., "x2":4.}. Note that this 
+            is written for an IT2 TSK FLS with two inputs, named x1 and x2.
+        
+        Example
+        -------
+        
+        Assume that we are going to simulate an IT2 TSK FLS with two inputs 
+        named x1 and x2. Our rule base is defined as below:
+            
+            * IF x1 is Small and x2 is Small THEN y1 = x1 + x2 + 1 and y2 = 2 x1 - x2 + 1
+            * IF x1 is Small and x2 is Big THEN y1 = 1.5 x1 + 0.5 x2 + 0.5 and y2 = 1.5 x1 - 0.5 x2 + 0.5
+            * IF x1 is Big and x2 is Small THEN y1 = 2. x1 + 0.1 x2 - 0.2 and y2 = 0.5 x1 + 0.1 x2
+            * IF x1 is Big and x2 is Big THEN y1 = 4. x1 -0.5 x2 - 1 and y2 = -0.5 x1 + x2 - 0.5
+        
+        Then these rules can be added to the system using the codes below:
+        
+        >>> myIT2FLS.add_rule([("x1", Small), ("x2", Small)], 
+                              [("y1", {"const":1., "x1":1., "x2":1.}), 
+                               ("y2", {"const":1., "x1":2., "x2":-1.})])
+        >>> myIT2FLS.add_rule([("x1", Small), ("x2", Big)], 
+                              [("y1", {"const":0.5, "x1":1.5, "x2":0.5}), 
+                               ("y2", {"const":0.5, "x1":1.5, "x2":-0.5})])
+        >>> myIT2FLS.add_rule([("x1", Big), ("x2", Small)], 
+                              [("y1", {"const":-0.2, "x1":2., "x2":0.1}), 
+                               ("y2", {"const":0., "x1":0.5, "x2":0.1})])
+        >>> myIT2FLS.add_rule([("x1", Big), ("x2", Big)], 
+                              [("y1", {"const":-1., "x1":4., "x2":-0.5}), 
+                               ("y2", {"const":-0.5, "x1":-0.5, "x2":1.})])
+        
+        """
         self.rules.append((antecedent, consequent))
     
     def copy(self):
-        pass
+        """
+        Returns a copy of the IT2FLS.
+        """
+        o = TSK(self.__t_norm, self.__s_norm)
+        o.inputs = self.inputs.copy()
+        o.outputs = self.outputs.copy()
+        o.rules = self.rules.copy()
+        return o
 
     def evaluate(self, inputs):
+        """
+        Evaluates the IT2 TSK FLS based on the crisp inputs given by the user.
+
+        Parameters
+        ----------
+        inputs: 
+            dictionary
+            
+            Inputs is a dictionary, which the keys are input variable 
+            names as str and the values are the crisp value of the inputs to 
+            be evaluated.
+
+        Returns
+        -------
+        O: 
+            dictionary
+            
+            The output is a dictionary, which the keys are output variable 
+            names as str and the values are the crisp output of the system.
+
+        """
         F = []
         B = {out: [] for out in self.outputs}
         for rule in self.rules:
@@ -2735,7 +2839,17 @@ class Mamdani:
     
     evaluate:
         
-        Evaluates the IT2FLS's output for a specified crisp input.
+        Evaluates the IT2FLS's output for a specified crisp input. This function 
+        is selected based on the constructor function parameter, method, among 5 
+        private functions below:
+        __Mamdani_Centroid, __Mamdani_CoSet, __Mamdani_CoSum, __Mamdani_Height, and 
+        __Mamdani_ModiHe.
+        The only input of the evaluate function is a dictionary named inputs 
+        in which the keys are input variable names as str and the values are 
+        the crisp value of inputs to be evaluated.
+        The output of the evaluate function is depended on the method selected 
+        while constructing the class. For more information, please refer to 
+        the examples.
     
     """
     def __init__(self, t_norm, s_norm, 
