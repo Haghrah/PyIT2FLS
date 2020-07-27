@@ -34,7 +34,7 @@ for i in range(1000):
 print(it2out, tr)
     
 
-print("Mamdani speed:", (time() -t) / 1000)
+print("Mamdani average execution time:", (time() -t) / 1000)
 
 
 t = time()
@@ -60,7 +60,7 @@ for i in range(1000):
     
 print(it2out, tr)
 
-print("IT2FLS speed:", (time() -t) / 1000)
+print("IT2FLS average execution time:", (time() -t) / 1000)
 
 
 
