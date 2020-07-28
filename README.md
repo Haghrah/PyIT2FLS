@@ -28,7 +28,7 @@ Or you can use pip3:
 
 ## Versions
 
-### Features coming up in the version 1.0
+### Features coming up in the next version
 - [ ] Speeding up the codes using the Python/C API.
 
 ### Some notes on version 0.5
