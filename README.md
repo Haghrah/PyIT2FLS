@@ -50,16 +50,16 @@ Further information about functions and classes in the PyIT2FLS are accessible b
 
 ## Examples
 There are some examples provided along with the toolkit which are as below:
-* Ex1: Defining an Interval Type 2 Fuzzy Set (IT2FS).
-* Ex2: Application of join and meet operators and plotting the outputs.
-* Ex3: Defining a simple (MIMO) IT2FLS.
-* Ex4: Prediction of the Mackey-Glass chaotic time series with PSO-based parameter tuning.
-* Ex5: Designing Interval Type 2 Fuzzy PID (IT2FPID) controller for a time-delay linear system.
-* Ex6: Creating and plotting ten types of interval type two fuzzy sets. **(Compatible with PyIT2FLS 0.4.)**
-* Ex7: Similar to Ex3 but implemented using the new Mamdani class. The new Mamadani class is **3 times faster** compared to the IT2FLS class. **(Compatible with PyIT2FLS 0.5.)**
-* Ex8: Defining a simple multi-input multi-output IT2 TSK FLS. **(Compatible with PyIT2FLS 0.5.)**
-* Ex9: Defining a multi-input multi-output IT2 TSK FLS and plotting the 3D resulting output planes. **(Compatible with PyIT2FLS 0.5.)**
-* Ex10: Defining a multi-input multi-output IT2FLS with different domains for each of input and output variables, and plotting the output surfaces of the system. **(Compatible with PyIT2FLS 0.5.)**
+* [Ex1](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_1.py): Defining an Interval Type 2 Fuzzy Set (IT2FS).
+* [Ex2](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_2.py): Application of join and meet operators and plotting the outputs.
+* [Ex3](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_3.py): Defining a simple (MIMO) IT2FLS.
+* [Ex4](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_4.py): Prediction of the Mackey-Glass chaotic time series with PSO-based parameter tuning.
+* [Ex5](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_5.py): Designing Interval Type 2 Fuzzy PID (IT2FPID) controller for a time-delay linear system.
+* [Ex6](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_6.py): Creating and plotting ten types of interval type two fuzzy sets. **(Compatible with PyIT2FLS 0.4.)**
+* [Ex7](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_7.py): Similar to Ex3 but implemented using the new Mamdani class. The new Mamadani class is **3 times faster** compared to the IT2FLS class. **(Compatible with PyIT2FLS 0.5.)**
+* [Ex8](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_8.py): Defining a simple multi-input multi-output IT2 TSK FLS. **(Compatible with PyIT2FLS 0.5.)**
+* [Ex9](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_9.py): Defining a multi-input multi-output IT2 TSK FLS and plotting the 3D resulting output planes. **(Compatible with PyIT2FLS 0.5.)**
+* [Ex10](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_10.py): Defining a multi-input multi-output IT2FLS with different domains for each of input and output variables, and plotting the output surfaces of the system. **(Compatible with PyIT2FLS 0.5.)**
 
 ### Some notes on running the examples
 If you are using Anaconda, due to the inclusion of main ddeint package in its libraries pool, an error is raised while running the 5th example. This error is raised because the 5th example uses an updated version of ddeint which is included in the examples folder. For solving this issue, please change the ddeint.py's name to ddeint1.py (in examples folder) and change the 16th line of the ex_5.py as below:
