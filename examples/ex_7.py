@@ -52,8 +52,7 @@ myIT2FLS.add_rule([("x1", Large), ("x2", Large)], [("y1", Large), ("y2", Small)]
 t = time()
 
 for i in range(1000):
-    it2out, tr = myIT2FLS.evaluate({"x1":0.923, "x2":0.745}, min_t_norm, max_s_norm, domain, 
-                                   method= "Centroid", algorithm= "KM")
+    it2out, tr = myIT2FLS.evaluate({"x1":0.923, "x2":0.745}, min_t_norm, max_s_norm, domain)
 
 print("IT2FLS average execution time:", (time() -t) / 1000)
 
