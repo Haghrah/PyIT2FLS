@@ -596,10 +596,18 @@ class IT2FS(object):
         self.lmf_params = lmf_params
 
         self.domain = domain
-        self.upper = maximum(minimum(umf(domain, umf_params), 1), 0)
-        self.lower = maximum(minimum(lmf(domain, lmf_params), 1), 0)
+        # self.upper = maximum(minimum(umf(domain, umf_params), 1), 0)
+        # self.lower = maximum(minimum(lmf(domain, lmf_params), 1), 0)
         if check_set:
             self.check_set()
+
+    @property
+    def upper(self):
+        return maximum(minimum(self.umf(self.domain, self.umf_params), 1), 0)
+    
+    @property
+    def lower(self):
+        return maximum(minimum(self.lmf(self.domain, self.lmf_params), 1), 0)
 
     def check_set(self):
         """
