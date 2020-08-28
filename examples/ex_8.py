@@ -27,12 +27,20 @@ myIT2FLS.add_input_variable("x2")
 myIT2FLS.add_output_variable("y1")
 myIT2FLS.add_output_variable("y2")
 
+# IF x1 is Small AND x2 is Small
+# THEN y1 = x1 + 2.3 x2 + 0.5 AND y2 = 1.2 x1 + 1.5 x2 + 1.
 myIT2FLS.add_rule([("x1", Small), ("x2", Small)], 
                   [("y1", {"const":0.5, "x1":1., "x2":2.3}), 
                    ("y2", {"const":1., "x1":1.2, "x2":1.5})])
+
+# IF x1 is Medium AND x2 is Medium
+# THEN y1 = 2.7 x1 + 1.9 x2 + 1. AND y2 = 2.5 x1 + 2. x2 + 1.
 myIT2FLS.add_rule([("x1", Medium), ("x2", Medium)], 
                   [("y1", {"const":1., "x1":2.7, "x2":1.9}), 
                    ("y2", {"const":1., "x1":2.5, "x2":2.})])
+
+# IF x1 is Large AND x2 is Large
+# THEN y1 = 2. x1 + 3. x2 + 1. AND y2 = x1 + x2 + 2.
 myIT2FLS.add_rule([("x1", Large), ("x2", Large)], 
                   [("y1", {"const":1., "x1":2., "x2":3.}), 
                    ("y2", {"const":2., "x1":1., "x2":1.})])
