@@ -47,23 +47,3 @@ myIT2FLS.add_rule([("x1", Large), ("x2", Large)],
 
 print(myIT2FLS.evaluate({"x1":0.9, "x2":0.9}))
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
