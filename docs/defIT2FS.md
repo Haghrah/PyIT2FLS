@@ -112,4 +112,8 @@ for ax in axs.flat:
 ```
 
 
+## IT2FS Class
 
+### Defining an IT2FS
+
+### Examples
