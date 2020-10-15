@@ -37,8 +37,8 @@ def membership_function_name(x, params):
 
 This template can be used by users to define their own new membership functions. It is recommended to use Numpy based mathematic functions for defining new membership functions. The first input of the membership function is a numpy array including some points of the universe of discourse, so the output also must be a numpy array with the same size and shape.
 
-### Evaluating the membership
-Lets see an example about how membership functions can be evaluated. In this example we are going to plot multiple membership functions to see their shapes.
+### Evaluating the membership functions
+Let's see an example about how membership functions can be evaluated. In this example we are going to plot multiple membership functions to see their shapes.
 
 
 ```python
@@ -113,7 +113,25 @@ for ax in axs.flat:
 
 
 ## IT2FS Class
+The IT2FS class is designed for defining Interval Type 2 Fuzzy Sets. It's constructor function has six parameters, which are described below:
+1. domain: Universe of discourse is defined by setting the domain parameter.
+2. umf: The Upper Memebrship Function of the IT2FS. The umf must be among the introduced membership functions or a self defined membership function with the introduced structure.
+3. umf_params: Parameters of the given UMF function.
+4. lmf: The Lower Membership Function of the IT2FS. The lmf must be among the introduced membership functions or a self defined membership function with the introduced structure.
+5. lmf_params: Parameters of the given LMF function.
+6. check_set: The defualt value of this parameter is false. When it is set true, the UMF(x) > LMF(x) condition, for all x in the universe of discourse, is checked. This is useful when the user does not know the parameters of UMF and LMF functions are selected correctly or not.
 
 ### Defining an IT2FS
 
+
+
 ### Examples
+
+
+
+
+
+
+
+
+
