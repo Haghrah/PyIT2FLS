@@ -121,14 +121,24 @@ The IT2FS class is designed for defining Interval Type 2 Fuzzy Sets. It's constr
 5. lmf_params: Parameters of the given LMF function.
 6. check_set: The defualt value of this parameter is false. When it is set true, the UMF(x) > LMF(x) condition, for all x in the universe of discourse, is checked. This is useful when the user does not know the parameters of UMF and LMF functions are selected correctly or not.
 
-### Defining an IT2FS
-
-
+All of the introduced membership functions can be used as upper or lower membership functions. The main point that must be taken to account is that the parameters of the membership functions must be adjusted in such a way that UMF(x) > LMF(x) for all x in the universe of discourse.
 
 ### Examples
+In this section, some examples of defining IT2FSs are provided. The first example is after defining an IT2FS with trapezoidal UMF and triangular LMF:
 
+```python
+from pyit2fls import IT2FS, trapezoid_mf, tri_mf
+from numpy import linspace
 
+domain = linspace(0., 1., 100)
+mySet = IT2FS(domain,
+              trapezoid_mf, [0, 0.4, 0.6, 1., 1.],
+              tri_mf, [0.25, 0.5, 0.75, 0.6])
+mySet.plot(filename="mySet")
+```
 
+The output plot would be as below:
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/mySet.png" width="400"/></p>
 
 
 
