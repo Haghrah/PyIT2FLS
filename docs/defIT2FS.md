@@ -141,6 +141,8 @@ As it is said before, five parameters are needed for defining a trapezoidal memb
 
 <p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/mySet.png" width="300"/></p>
 
+#### Plotting the IT2FSs
+
 For plotting the defined IT2FSs the plot function from the **_IT2FS_** class can be used. This function has three inputs with **_None_** default value. The three inputs are **_title_**, **_legend_text_**, and **_filename_**. If the user wants to have a plot with costum title and legend, these two inputs can be set. Also, if the **_filename_** parameter is given, then the plot would be saved with the given file name.
 
 
