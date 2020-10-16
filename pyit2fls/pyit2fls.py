@@ -767,11 +767,73 @@ class IT2FS(object):
 
 
 def IT2FS_Elliptic(domain, params):
+    """
+    Creates an elliptic IT2FS.
+    
+    Parameters
+    ----------
+    
+    domain:
+        numpy (n,) shaped array
+        
+        Indicates the universe of discourse dedicated to the IT2FS.
+    
+    params:
+        List
+        
+        The parameters of the elliptic IT2FS, 
+        the center, the width, the UMF's exponent, the LMF's exponent, and the height are 
+        indicated by params[0], params[1], params[2], params[3], and params[4], respectively.
+    
+    Returns
+    -------
+    IT2FS
+        Returns an elliptic IT2FS with specified parameters.
+    
+    Examples
+    --------
+    
+    >>> domain = linspace(0., 1., 100)
+    >>> mySet = IT2FS_Elliptic(domain, [0.5, 0.25, 1.3, 0.7, 0.8])
+    >>> mySet.plot()
+    
+    """
     return IT2FS(domain, 
                  elliptic_mf, [params[0], params[1], params[2], params[4]], 
                  elliptic_mf, [params[0], params[1], params[3], params[4]])
 
 def IT2FS_Semi_Elliptic(domain, params):
+    """
+    Creates a semi-elliptic IT2FS.
+    
+    Parameters
+    ----------
+    
+    domain:
+        numpy (n,) shaped array
+        
+        Indicates the universe of discourse dedicated to the IT2FS.
+    
+    params:
+        List
+        
+        The parameters of the semi-elliptic IT2FS, 
+        the center, the UMF's width, the LMF's width, and the height are 
+        indicated by params[0], params[1], params[2], and params[3], respectively.
+    
+    Returns
+    -------
+    IT2FS
+        Returns a semi-elliptic IT2FS with specified parameters.
+    
+    Examples
+    --------
+    
+    >>> domain = linspace(0., 1., 100)
+    >>> mySet = IT2FS_Semi_Elliptic(domain, [0.5, 0.15, 0.05, 0.6])
+    >>> mySet.plot()
+    
+    """
     return IT2FS(domain, 
                  semi_elliptic_mf, [params[0], params[1], params[3]], 
                  semi_elliptic_mf, [params[0], params[2], params[3]])
