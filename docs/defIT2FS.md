@@ -119,9 +119,9 @@ The IT2FS class is designed for defining Interval Type 2 Fuzzy Sets. It's constr
 3. umf_params: Parameters of the given UMF function.
 4. lmf: The Lower Membership Function of the IT2FS. The lmf must be among the introduced membership functions or a self defined membership function with the introduced structure.
 5. lmf_params: Parameters of the given LMF function.
-6. check_set: The defualt value of this parameter is false. When it is set true, the UMF(x) > LMF(x) condition, for all x in the universe of discourse, is checked. This is useful when the user does not know the parameters of UMF and LMF functions are selected correctly or not.
+6. check_set: The defualt value of this parameter is false. When it is set true, the UMF(x) >= LMF(x) condition, for all x in the universe of discourse, is checked. This is useful when the user does not know the parameters of UMF and LMF functions are selected correctly or not.
 
-All of the introduced membership functions can be used as upper or lower membership functions. The main point that must be taken to account is that the parameters of the membership functions must be adjusted in such a way that UMF(x) > LMF(x) for all x in the universe of discourse.
+All of the introduced membership functions can be used as upper or lower membership functions. The main point that must be taken to account is that the parameters of the membership functions must be adjusted in such a way that UMF(x) >= LMF(x) for all x in the universe of discourse.
 
 ### Examples
 In this section, some examples of defining IT2FSs are provided. The first example is after defining an IT2FS with trapezoidal UMF and triangular LMF:
@@ -137,10 +137,11 @@ mySet = IT2FS(domain,
 mySet.plot(filename="mySet")
 ```
 
-The output plot would be as below:
-<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/mySet.png" width="400"/></p>
+As it is said before, five parameters are needed for defining a trapezoidal membership function. The first four parameters indicate left end, left center, right center, and right end of the trapezoidal membership function. The last parameter is the height of the membership function which must lay in the interval [0, 1]. Also, four parameters are needed for defining a triangular membership function. The last one as usual is the height of the membership function, and the first three parameters are left end, center, and right end of the triangular membership function. The output plot for given parameters and defined universe of discourse would be as below:
 
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/mySet.png" width="300"/></p>
 
+For plotting the defined IT2FSs the plot function from the **_IT2FS_** class can be used. This function has three inputs with **_None_** default value. The three inputs are **_title_**, **_legend_text_**, and **_filename_**. If the user wants to have a plot with costum title and legend, these two inputs can be set. Also, if the **_filename_** parameter is given, then the plot would be saved with the given file name.
 
 
 
