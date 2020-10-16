@@ -123,6 +123,19 @@ The IT2FS class is designed for defining Interval Type 2 Fuzzy Sets. It's constr
 
 All of the introduced membership functions can be used as upper or lower membership functions. The main point that must be taken to account is that the parameters of the membership functions must be adjusted in such a way that UMF(x) >= LMF(x) for all x in the universe of discourse.
 
+### Creating common gaussian interval type 2 fuzzy sets
+
+Most of the time, the gaussian interval type 2 fuzzy sets are preferred in many applications. There are two types of gaussian sets, gaussian interval type 2 fuzzy sets with uncertain mean value and gaussian interval type 2 fuzzy sets with uncertain standard deviation value. To define sets of these types, it is not needed to define LMF and UMF functions and specify their parameters. There are two functions for defining these sets fastly and easily, **_IT2FS_Gaussian_UncertMean_** and **_IT2FS_Gaussian_UncertStd_**. Each of these functions has two input parameters, named **_domain_** and **_params_**. The **_domain_** input is the universe of discourse, in which the set is defined on it. The **_params_** input for the **_IT2FS_Gaussian_UncertMean_** function is a list consisting of the mean center, the mean spread, the standard deviation, and the height of the set. And for the **_IT2FS_Gaussian_UncertStd_** function, it is a list consisting of the mean, the standard deviation center, the standard deviation spread, and the height of the set.
+
+In the versions 0.5.0 and above of the PyIT2FLS, two other functions for creating IT2FSs are also available, **_R_IT2FS_Gaussian_UncertStd_** and **_L_IT2FS_Gaussian_UncertStd_**. The inputs of these two functions are same as the **_IT2FS_Gaussian_UncertStd_**. The **_R_IT2FS_Gaussian_UncertStd_** is an IT2FS, in which the left side of the mean value of the **_IT2FS_Gaussian_UncertStd_** is stick to **_height_** parameter. Also, the **_L_IT2FS_Gaussian_UncertStd_** is an IT2FS, in which the right side of the mean value of the **_IT2FS_Gaussian_UncertStd_** is stick to **_height_** parameter.
+
+### Plotting the IT2FSs
+
+For plotting the defined IT2FSs the plot function from the **_IT2FS_** class can be used. This function has three inputs with **_None_** default value. The three inputs are **_title_**, **_legend_text_**, and **_filename_**. If the user wants to have a plot with costum title and legend, these two inputs can be set. Also, if the **_filename_** parameter is given, then the plot would be saved with the given file name.
+
+### Plotting multiple IT2FSs together
+If there are many sets which we would like to plot them together, we can use the **_IT2FS_plot_** function from **PyIT2FLS**. The inputs of this function, after an arbitrary number of **_IT2FSs_**, are like the intorduced plot function. It means that there are three **_title_**, **_legend_text_**, and **_filename_** parameters with the **_None_** default value.
+
 ### Examples
 In this section, some examples of defining IT2FSs are provided. The first example is after defining an IT2FS with trapezoidal UMF and triangular LMF:
 
@@ -140,11 +153,6 @@ mySet.plot(filename="mySet")
 As it is said before, five parameters are needed for defining a trapezoidal membership function. The first four parameters indicate left end, left center, right center, and right end of the trapezoidal membership function. The last parameter is the height of the membership function which must lay in the interval [0, 1]. Also, four parameters are needed for defining a triangular membership function. The last one as usual is the height of the membership function, and the first three parameters are left end, center, and right end of the triangular membership function. The output plot for given parameters and defined universe of discourse would be as below:
 
 <p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/mySet.png" width="300"/></p>
-
-#### Plotting the IT2FSs
-
-For plotting the defined IT2FSs the plot function from the **_IT2FS_** class can be used. This function has three inputs with **_None_** default value. The three inputs are **_title_**, **_legend_text_**, and **_filename_**. If the user wants to have a plot with costum title and legend, these two inputs can be set. Also, if the **_filename_** parameter is given, then the plot would be saved with the given file name.
-
 
 
 
