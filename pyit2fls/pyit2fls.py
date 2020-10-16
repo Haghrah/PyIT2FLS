@@ -1,7 +1,8 @@
 from numpy import exp, ones_like, zeros_like, arange, multiply, \
      subtract, add, minimum, maximum, sign, c_, argmax, \
-     array, where, hstack
+     array, where, hstack, logical_not, sqrt
 from numpy import sum as npsum
+from numpy import round as npround
 import matplotlib.pyplot as plt
 from math import isclose
 
@@ -120,7 +121,7 @@ def tri_mf(x, params):
         
         Additional parameters for the membership function. The left end, 
         the center, the right end, and the height of the triangular 
-        membership function is indicated by params[0], params[1], params[2], 
+        membership function are indicated by params[0], params[1], params[2], 
         and params[3], respectively.
     
     Returns
@@ -154,7 +155,7 @@ def rtri_mf(x, params):
         
         Additional parameters for the membership function.  
         The right end, the center, and the height of the triangular 
-        membership function is indicated by params[0], params[1], and params[2], 
+        membership function are indicated by params[0], params[1], and params[2], 
         respectively.
     
     Returns
@@ -187,7 +188,7 @@ def ltri_mf(x, params):
         
         Additional parameters for the membership function. The left end, 
         the center, and the height of the triangular 
-        membership function is indicated by params[0], params[1] and params[2], 
+        membership function are indicated by params[0], params[1] and params[2], 
         respectively.
     
     Returns
@@ -221,7 +222,7 @@ def trapezoid_mf(x, params):
         
         Additional parameters for the membership function. The left end, 
         the left center, the right center, the right end, and the height 
-        of the trapezoidal membership function is indicated by params[0], 
+        of the trapezoidal membership function are indicated by params[0], 
         params[1], params[2], params[3], and params[4], respectively.
     
     Returns
@@ -256,7 +257,7 @@ def gaussian_mf(x, params):
         
         Additional parameters for the membership function. The center, 
         the standard deviation, and the height 
-        of the gaussian membership function is indicated by params[0], 
+        of the gaussian membership function are indicated by params[0], 
         params[1], and params[2], respectively.
     
     Returns
@@ -289,7 +290,7 @@ def gauss_uncert_mean_umf(x, params):
         
         Additional parameters for the membership function. The lower limit 
         of mean, the upper limit of mean, the standard deviation, and the 
-        height of the gaussian membership function is indicated by params[0], 
+        height of the gaussian membership function are indicated by params[0], 
         params[1], params[2], and params[3], respectively.
     
     Returns
@@ -324,7 +325,7 @@ def gauss_uncert_mean_lmf(x, params):
         
         Additional parameters for the membership function. The lower limit 
         of mean, the upper limit of mean, the standard deviation, and the 
-        height of the gaussian membership function is indicated by params[0], 
+        height of the gaussian membership function are indicated by params[0], 
         params[1], params[2], and params[3], respectively.
     
     Returns
@@ -358,7 +359,7 @@ def gauss_uncert_std_umf(x, params):
         
         Additional parameters for the membership function. The center, 
         the lower limit of std., the upper limit of std., and the 
-        height of the gaussian membership function is indicated by params[0], 
+        height of the gaussian membership function are indicated by params[0], 
         params[1], params[2], and params[3], respectively.
     
     Returns
@@ -391,7 +392,7 @@ def gauss_uncert_std_lmf(x, params):
         
         Additional parameters for the membership function. The center, 
         the lower limit of std., the upper limit of std., and the 
-        height of the gaussian membership function is indicated by params[0], 
+        height of the gaussian membership function are indicated by params[0], 
         params[1], params[2], and params[3], respectively.
     
     Returns
@@ -424,7 +425,7 @@ def rgauss_uncert_std_umf(x, params):
         
         Additional parameters for the membership function. The center, 
         the lower limit of std., the upper limit of std., and the 
-        height of the gaussian membership function is indicated by params[0], 
+        height of the gaussian membership function are indicated by params[0], 
         params[1], params[2], and params[3], respectively.
     
     Returns
@@ -456,7 +457,7 @@ def rgauss_uncert_std_lmf(x, params):
         
         Additional parameters for the membership function. The center, 
         the lower limit of std., the upper limit of std., and the 
-        height of the gaussian membership function is indicated by params[0], 
+        height of the gaussian membership function are indicated by params[0], 
         params[1], params[2], and params[3], respectively.
     
     Returns
@@ -488,7 +489,7 @@ def lgauss_uncert_std_umf(x, params):
         
         Additional parameters for the membership function. The center, 
         the lower limit of std., the upper limit of std., and the 
-        height of the gaussian membership function is indicated by params[0], 
+        height of the gaussian membership function are indicated by params[0], 
         params[1], params[2], and params[3], respectively.
     
     Returns
@@ -520,7 +521,7 @@ def lgauss_uncert_std_lmf(x, params):
         
         Additional parameters for the membership function. The center, 
         the lower limit of std., the upper limit of std., and the 
-        height of the gaussian membership function is indicated by params[0], 
+        height of the gaussian membership function are indicated by params[0], 
         params[1], params[2], and params[3], respectively.
     
     Returns
@@ -535,6 +536,47 @@ def lgauss_uncert_std_lmf(x, params):
     >>> membership_value = lgauss_uncert_std_lmf(x, [0.5, 0.2, 0.5, 1])
     """
     return (x > params[0]) * params[3] + gauss_uncert_std_lmf(x, params) * (x <= params[0])
+
+
+def eliptic_mf(x, params):
+    """
+    Elliptic membership function.
+
+    Parameters
+    ----------
+    x : 
+        numpy (n,) shaped array
+        
+        The array like input x indicates the points from universe of 
+        discourse in which the membership function would be evaluated.
+        
+    params : 
+        list
+        
+        Parameters of the elliptic membership function. The center, the width,
+        the exponent, and the height of the elliptic membership function are 
+        indicated by params[0], params[1], params[2], and params[3].
+
+    Returns
+    -------
+    ndarray
+        Returns membership values corresponding with the input.
+    
+    Examples
+    --------
+    
+    >>> x = linspace(0, 1, 201)
+    >>> membership_value = eliptic_mf(x, [0.5, 0.25, 1.3, 1.])
+    
+    """
+    to_evaluate = ((x <= params[0] + params[1]) * (params[0] - params[1] <= x))
+    x = x * to_evaluate + (params[0] + params[1]) * logical_not(to_evaluate)
+    return params[3] * (1 - abs((x - params[0]) / params[1]) ** params[2]) ** (1. / params[2])
+
+def semi_eliptic_mf(x, params):
+    to_evaluate = ((x <= params[0] + params[1]) * (params[0] - params[1] <= x))
+    x = x * to_evaluate + (params[0] + params[1]) * logical_not(to_evaluate)
+    return npround(sqrt(abs(1 - ((params[0] - x) ** 2) / (params[1] ** 2))), decimals=6)
 
 
 class IT2FS(object):
