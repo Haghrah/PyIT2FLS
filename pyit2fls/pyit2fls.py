@@ -538,7 +538,7 @@ def lgauss_uncert_std_lmf(x, params):
     return (x > params[0]) * params[3] + gauss_uncert_std_lmf(x, params) * (x <= params[0])
 
 
-def eliptic_mf(x, params):
+def elliptic_mf(x, params):
     """
     Elliptic membership function.
 
@@ -573,10 +573,40 @@ def eliptic_mf(x, params):
     x = x * to_evaluate + (params[0] + params[1]) * logical_not(to_evaluate)
     return params[3] * (1 - abs((x - params[0]) / params[1]) ** params[2]) ** (1. / params[2])
 
-def semi_eliptic_mf(x, params):
+def semi_elliptic_mf(x, params):
+    """
+    Semi-elliptic membership function.
+
+    Parameters
+    ----------
+    x : 
+        numpy (n,) shaped array
+        
+        The array like input x indicates the points from universe of 
+        discourse in which the membership function would be evaluated.
+        
+    params : 
+        list
+        
+        Parameters of the semi-elliptic membership function. The center, the width, and
+        the height of the semi-elliptic membership function are 
+        indicated by params[0], params[1], and params[2].
+
+    Returns
+    -------
+    ndarray
+        Returns membership values corresponding with the input.
+    
+    Examples
+    --------
+    
+    >>> x = linspace(0, 1, 201)
+    >>> membership_value = eliptic_mf(x, [0.5, 0.25, 1.3, 1.])
+    
+    """
     to_evaluate = ((x <= params[0] + params[1]) * (params[0] - params[1] <= x))
     x = x * to_evaluate + (params[0] + params[1]) * logical_not(to_evaluate)
-    return npround(sqrt(abs(1 - ((params[0] - x) ** 2) / (params[1] ** 2))), decimals=6)
+    return params[2] * npround(sqrt(abs(1 - ((params[0] - x) ** 2) / (params[1] ** 2))), decimals=6)
 
 
 class IT2FS(object):
@@ -734,6 +764,17 @@ class IT2FS(object):
         lmf = lambda x, params: subtract(1, self.lmf(x, params))
         neg_it2fs = IT2FS(self.domain, umf, self.umf_params, lmf, self.lmf_params)
         return neg_it2fs
+
+
+def IT2FS_Elliptic(domain, params):
+    return IT2FS(domain, 
+                 elliptic_mf, [params[0], params[1], params[2], params[4]], 
+                 elliptic_mf, [params[0], params[1], params[3], params[4]])
+
+def IT2FS_Semi_Elliptic(domain, params):
+    return IT2FS(domain, 
+                 semi_elliptic_mf, [params[0], params[1], params[3]], 
+                 semi_elliptic_mf, [params[0], params[2], params[3]])
 
 
 def IT2FS_Gaussian_UncertMean(domain, params):
