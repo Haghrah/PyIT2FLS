@@ -114,12 +114,12 @@ for ax in axs.flat:
 
 ## IT2FS Class
 The IT2FS class is designed for defining Interval Type 2 Fuzzy Sets. It's constructor function has six parameters, which are described below:
-1. domain: Universe of discourse is defined by setting the domain parameter.
-2. umf: The Upper Memebrship Function of the IT2FS. The umf must be among the introduced membership functions or a self defined membership function with the introduced structure.
-3. umf_params: Parameters of the given UMF function.
-4. lmf: The Lower Membership Function of the IT2FS. The lmf must be among the introduced membership functions or a self defined membership function with the introduced structure.
-5. lmf_params: Parameters of the given LMF function.
-6. check_set: The defualt value of this parameter is false. When it is set true, the UMF(x) >= LMF(x) condition, for all x in the universe of discourse, is checked. This is useful when the user does not know the parameters of UMF and LMF functions are selected correctly or not.
+1. **_domain_**: Universe of discourse is defined by setting the domain parameter.
+2. **_umf_**: The Upper Memebrship Function of the IT2FS. The umf must be among the introduced membership functions or a self defined membership function with the introduced structure.
+3. **_umf_params_**: Parameters of the given UMF function.
+4. **_lmf_**: The Lower Membership Function of the **_IT2FS_**. The lmf must be among the introduced membership functions or a self defined membership function with the introduced structure.
+5. **_lmf_params_**: Parameters of the given LMF function.
+6. **_check_set_**: The defualt value of this parameter is false. When it is set true, the UMF(x) >= LMF(x) condition, for all x in the universe of discourse, is checked. This is useful when the user does not know the parameters of UMF and LMF functions are selected correctly or not.
 
 All of the introduced membership functions can be used as upper or lower membership functions. The main point that must be taken to account is that the parameters of the membership functions must be adjusted in such a way that UMF(x) >= LMF(x) for all x in the universe of discourse.
 
@@ -134,6 +134,7 @@ In the versions 0.5.0 and above of the PyIT2FLS, two other functions for creatin
 For plotting the defined IT2FSs the plot function from the **_IT2FS_** class can be used. This function has three inputs with **_None_** default value. The three inputs are **_title_**, **_legend_text_**, and **_filename_**. If the user wants to have a plot with costum title and legend, these two inputs can be set. Also, if the **_filename_** parameter is given, then the plot would be saved with the given file name.
 
 ### Plotting multiple IT2FSs together
+
 If there are many sets which we would like to plot them together, we can use the **_IT2FS_plot_** function from **PyIT2FLS**. The inputs of this function, after an arbitrary number of **_IT2FSs_**, are like the intorduced plot function. It means that there are three **_title_**, **_legend_text_**, and **_filename_** parameters with the **_None_** default value.
 
 ### Examples
@@ -154,5 +155,15 @@ As it is said before, five parameters are needed for defining a trapezoidal memb
 
 <p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/mySet.png" width="300"/></p>
 
+In the second example we are going to define three Gaussian IT2FSs with uncertain standard deviation values, and plot them all together.
 
+```python
+from pyit2fls import IT2FLS, IT2FS_Gaussian_UncertStd, IT2FS_plot
+from numpy import linspace
 
+domain = linspace(0., 1., 100)
+Small = IT2FS_Gaussian_UncertStd(domain, [0, 0.15, 0.1, 1.])
+Medium = IT2FS_Gaussian_UncertStd(domain, [0.5, 0.15, 0.1, 1.])
+Large = IT2FS_Gaussian_UncertStd(domain, [1., 0.15, 0.1, 1.])
+IT2FS_plot(Small, Medium, Large, legends=["Small", "Medium", "large"], filename="simp_ex_sets")
+```
