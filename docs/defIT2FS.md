@@ -11,8 +11,8 @@ In this section, we are going to see how IT2FSs can be defined using the **_IT2F
 | singleton_mf          | Singleton membership function | Singleton's center and height |
 | const_mf              | Constant membership function | Constant membership function's height |
 | tri_mf                | Triangular membership function | The left end, the center, the right end, and the height of the triangular membership function |
-| ltri_mf               | Left triangular membership function | The right end, the center, and the height of the triangular membership function |
-| rtri_mf               | Right triangular membership function | The left end, the center, and the height of the triangular membership function |
+| ltri_mf               | Left triangular membership function | The left end, the center, and the height of the triangular membership function |
+| rtri_mf               | Right triangular membership function | The right end, the center, and the height of the triangular membership function |
 | trapezoid_mf          | Trapezoidal membership function | The left end, the left center, the right center, the right end, and the height of the trapezoidal membership function |
 | gaussian_mf           | Gaussian membership function | The center, the standard deviation, and the height of the gaussian membership function |
 | gauss_uncert_mean_umf | Gaussian with uncertain mean UMF | The lower limit of mean, the upper limit of mean, the standard deviation, and the height of the gaussian membership function |
