@@ -168,6 +168,8 @@ Large = IT2FS_Gaussian_UncertStd(domain, [1., 0.15, 0.1, 1.])
 IT2FS_plot(Small, Medium, Large, legends=["Small", "Medium", "large"])
 ```
 
+The output plot for this example is represented below:
+
 <p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/1.2.png" width="300"/></p>
 
 
