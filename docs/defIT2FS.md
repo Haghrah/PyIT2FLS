@@ -153,7 +153,7 @@ mySet.plot(filename="mySet")
 
 As it is said before, five parameters are needed for defining a trapezoidal membership function. The first four parameters indicate left end, left center, right center, and right end of the trapezoidal membership function. The last parameter is the height of the membership function which must lay in the interval [0, 1]. Also, four parameters are needed for defining a triangular membership function. The last one as usual is the height of the membership function, and the first three parameters are left end, center, and right end of the triangular membership function. The output plot for given parameters and defined universe of discourse would be as below:
 
-<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/mySet.png" width="300"/></p>
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/mySet.png" width="300"/></p>
 
 In the second example we are going to define three Gaussian IT2FSs with uncertain standard deviation values, and plot them all together.
 
