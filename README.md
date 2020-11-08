@@ -73,30 +73,30 @@ from ddeint1 import ddeint
 
 * Ex4:
 
-<img src="examples/4_2.png" width="256"> <img src="examples/4_4.png" width="256">
+<img src="examples/images/4_2.png" width="256"> <img src="examples/images/4_4.png" width="256">
 
 * Ex5:
 
-<img src="examples/5_1.png" width="128"> <img src="examples/5_2.png" width="128"> <img src="examples/5_3.png" width="128"> <img src="examples/5_4.png" width="128">
+<img src="examples/images/5_1.png" width="128"> <img src="examples/images/5_2.png" width="128"> <img src="examples/images/5_3.png" width="128"> <img src="examples/images/5_4.png" width="128">
 
-<img src="examples/5_block.jpg" width="512">
+<img src="examples/images/5_block.jpg" width="512">
 
 * Ex6:
 
-<img src="examples/6_1.png" width="128"> <img src="examples/6_2.png" width="128"> <img src="examples/6_3.png" width="128"> <img src="examples/6_4.png" width="128">
+<img src="examples/images/6_1.png" width="128"> <img src="examples/images/6_2.png" width="128"> <img src="examples/images/6_3.png" width="128"> <img src="examples/images/6_4.png" width="128">
 
-<img src="examples/6_5.png" width="128"> <img src="examples/6_6.png" width="128"> <img src="examples/6_7.png" width="128"> <img src="examples/6_8.png" width="128">
+<img src="examples/images/6_5.png" width="128"> <img src="examples/images/6_6.png" width="128"> <img src="examples/images/6_7.png" width="128"> <img src="examples/images/6_8.png" width="128">
 
 * Ex9: 
 
-<img src="examples/9_1.png" width="512">
+<img src="examples/images/9_1.png" width="512">
 
-<img src="examples/9_2.png" width="512">
+<img src="examples/images/9_2.png" width="512">
 
-<img src="examples/IT2TSKFLSY1.png" width="256"> <img src="examples/IT2TSKFLSY2.png" width="256">
+<img src="examples/images/IT2TSKFLSY1.png" width="256"> <img src="examples/images/IT2TSKFLSY2.png" width="256">
 
 * Ex10: 
 
-<img src="examples/10_1.png" width="256"> <img src="examples/10_3.png" width="256">
+<img src="examples/images/10_1.png" width="256"> <img src="examples/images/10_3.png" width="256">
 
-<img src="examples/10_5.png" width="256"> <img src="examples/10_6.png" width="256">
+<img src="examples/images/10_5.png" width="256"> <img src="examples/images/10_6.png" width="256">
