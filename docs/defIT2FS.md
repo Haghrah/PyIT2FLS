@@ -172,5 +172,3 @@ IT2FS_plot(Small, Medium, Large, legends=["Small", "Medium", "large"])
 
 
 
-
-
