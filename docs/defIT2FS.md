@@ -168,9 +168,23 @@ Large = IT2FS_Gaussian_UncertStd(domain, [1., 0.15, 0.1, 1.])
 IT2FS_plot(Small, Medium, Large, legends=["Small", "Medium", "large"])
 ```
 
-The output plot for this example is represented below:
+The output plot for this example is represented as below:
 
 <p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/1.2.png" width="300"/></p>
+
+#### Defining a new membership function
+In this example we are going to define a new membership function and use it in defining an IT2FS. Let's assume that we are going to define the generalized bell shape membership function, which has the formula below:
+
+<img src="https://render.githubusercontent.com/render/math?math=gbell\_mf(x;a,b,c) = \frac{1}{1 + |\frac{x-c}{b}|^{2b}"> 
+
+
+
+
+
+
+
+
+
 
 
 
