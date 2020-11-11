@@ -608,6 +608,8 @@ def semi_elliptic_mf(x, params):
     x = x * to_evaluate + (params[0] + params[1]) * logical_not(to_evaluate)
     return params[2] * npround(sqrt(abs(1 - ((params[0] - x) ** 2) / (params[1] ** 2))), decimals=6)
 
+def gbell_mf(x, params):
+	return params[3] / (1 + npabs((x - params[2]) / params[0]) ** (2 * params[1]))
 
 class IT2FS(object):
     """Interval Type 2 Fuzzy Set (IT2FS).

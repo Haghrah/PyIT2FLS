@@ -158,7 +158,7 @@ As it is said before, five parameters are needed for defining a trapezoidal memb
 In the second example we are going to define three Gaussian IT2FSs with uncertain standard deviation values, and plot them all together.
 
 ```python
-from pyit2fls import IT2FLS, IT2FS_Gaussian_UncertStd, IT2FS_plot
+from pyit2fls import IT2FS_Gaussian_UncertStd, IT2FS_plot
 from numpy import linspace
 
 domain = linspace(0., 1., 100)
@@ -175,14 +175,24 @@ The output plot for this example is represented as below:
 #### Defining a new membership function
 In this example we are going to define a new membership function and use it in defining an IT2FS. Let's assume that we are going to define the generalized bell shaped membership function, which has the formula below:
 
-<img src="https://render.githubusercontent.com/render/math?math=gbell\_mf(x,a,b,c) = \frac{1}{1 %2B \frac{x-c}{b}^{2b}"> 
+<img src="https://render.githubusercontent.com/render/math?math=gbell\_mf(x,a,b,c) = \frac{1}{1 %2B |\frac{x-c}{a}|^{2b}}"> 
 
+```python
+from numpy import abs as npabs
+from numpy import linspace
+from pyit2fls import IT2FS
 
+def gbell_mf(x, params):
+	return params[3] / (1 + npabs((x - params[2]) / params[0]) ** (2 * params[1]))
 
+domain = linspace(0., 1., 100)
+mySet = IT2FS(domain, gbell_mf, [0.2, 2., 0.5, 1.], gbell_mf, [0.1, 2., 0.5, 1.], check_set=True)
+mySet.plot()
+```
 
+The output plot for this example is represented as below:
 
-
-
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/1.3.png" width="300"/></p>
 
 
 
