@@ -13,7 +13,7 @@ from pyit2fls import IT2FS_Gaussian_UncertStd, IT2FLS, \
 from numpy import linspace, array, trapz, where
 from numpy import abs as npabs
 from numpy import max as npmax
-from ddeint import ddeint
+from ddeintlib import ddeint
 
 # %%
 def ITAE(a, b, t):
