@@ -175,7 +175,7 @@ The output plot for this example is represented as below:
 #### Defining a new membership function
 In this example we are going to define a new membership function and use it in defining an IT2FS. Let's assume that we are going to define the generalized bell shaped membership function, which has the formula below:
 
-<img src="https://render.githubusercontent.com/render/math?math=gbell\_mf(x,a,b,c) = \frac{1}{1 + |\frac{x-c}{b}|^{2b}"> 
+<img src="https://render.githubusercontent.com/render/math?math=gbell\_mf(x,a,b,c) = \frac{1}{1 %2B \frac{x-c}{b}^{2b}"> 
 
 
 
