@@ -73,8 +73,6 @@ There are some examples provided along with the toolkit which are as below:
 
 <img src="examples/images/5_1.png" width="128"> <img src="examples/images/5_2.png" width="128"> <img src="examples/images/5_3.png" width="128"> <img src="examples/images/5_4.png" width="128">
 
-<img src="examples/images/5_block.jpg" width="512">
-
 * Ex6:
 
 <img src="examples/images/6_1.png" width="128"> <img src="examples/images/6_2.png" width="128"> <img src="examples/images/6_3.png" width="128"> <img src="examples/images/6_4.png" width="128">
