@@ -14,7 +14,43 @@ def userdefine_norm(a, b)
 	return some_calculations(a, b)
 ```
 
-### Examples
+### Example
+In this example we are going to apply meet and join operators on IT2FSs and plot the outputs.
+
+```python
+from pyit2fls import IT2FS_Gaussian_UncertMean, IT2FS_plot, meet, join, min_t_norm, max_s_norm
+from numpy import linspace
+
+domain = linspace(0., 1., 1000)
+A = IT2FS_Gaussian_UncertMean(domain, [0., 0.1, 0.1, 1.])
+B = IT2FS_Gaussian_UncertMean(domain, [0.5, 0.1, 0.1, 1.])
+C = IT2FS_Gaussian_UncertMean(domain, [1., 0.1, 0.1, 1.])
+IT2FS_plot(A, B, C, legends=["Small","Medium","Large"])
+
+AB = meet(domain, A, B, min_t_norm)
+AB.plot()
+
+BC = join(domain, B, C, max_s_norm)
+BC.plot()
+```
+
+The output plots of this example are represented as below.
+
+* Three, small, medium, and large sets:
+
+<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/2.1.png" width="256">
+
+* Meet of small and medium sets:
+
+<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/2.2.png" width="256">
+
+* Join of medium and large sets:
+
+<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/2.3.png" width="256">
+
+
+
+
 
 
 
