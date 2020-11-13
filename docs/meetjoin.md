@@ -36,7 +36,7 @@ BC.plot()
 
 The output plots of this example are represented as below.
 
-|  Small, medium, and large sets  | Meet of small and medium | Join of medium and large |
+|  **_SMALL_**, **_MEDIUM_**, and **_LARGE_** sets  | Meet of **_SMALL_** and **_MEDIUM_** | Join of **_MEDIUM_** and **_LARGE_** |
 |:---------------------:|:-----------:|:------------------:|
 | <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/2.1.png" width="150">               | <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/2.2.png" width="150"> | <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/2.3.png" width="150"> |
 
@@ -48,7 +48,7 @@ The next example is about defining a new s-norm and using it in join operator. W
 from pyit2fls import IT2FS_Gaussian_UncertMean, join, IT2FS_plot
 from numpy import linspace
 
-def probabilisticsum_s_norm(a, b):
+def probabilistic_sum_s_norm(a, b):
 	return a + b - a * b
 
 domain = linspace(0., 1., 1000)
@@ -56,13 +56,13 @@ A = IT2FS_Gaussian_UncertMean(domain, [0., 0.1, 0.25, 1.])
 B = IT2FS_Gaussian_UncertMean(domain, [1., 0.1, 0.25, 1.])
 IT2FS_plot(A, B, legends=["Small","Large"])
 
-BC = join(domain, A, B, probabilisticsum_s_norm)
+BC = join(domain, A, B, probabilistic_sum_s_norm)
 BC.plot()
 ```
 
 The output plots of this example are represented as below.
 
-|  Small and large sets  | Join of the two sets |
+|  The **_SMALL_** and the **_LARGE_** sets  | Join of the two sets |
 |:---------------------:|:-----------:|
 | <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/2.4.png" width="256"> | <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/2.5.png" width="256"> |
 

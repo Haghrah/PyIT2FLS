@@ -1262,6 +1262,8 @@ def max_s_norm(a, b):
     """
     return maximum(a, b)
 
+def probabilistic_sum_s_norm(a, b):
+	return a + b - a * b
 
 def meet(domain, it2fs1, it2fs2, t_norm):
     """
