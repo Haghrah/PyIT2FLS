@@ -10,7 +10,7 @@ The only s-norm defined in PyIT2FLS by default is maximum s-norm, that is access
 It must be noted that the users can define new t-norms and s-norms. The user defined t-norm or s-norm functions must follow the structure below:
 
 ```python
-def userdefine_norm(a, b)
+def userdefined_norm(a, b)
 	return some_calculations(a, b)
 ```
 
