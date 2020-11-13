@@ -36,9 +36,9 @@ BC.plot()
 
 The output plots of this example are represented as below.
 
-|  Three, small, medium, and large sets  | Meet of small and medium sets | Join of medium and large sets |
+|  Small, medium, and large sets  | Meet of small and medium | Join of medium and large |
 |:---------------------:|:-----------:|:------------------:|
-| <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/2.1.png" width="128">               | <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/2.2.png" width="128"> | <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/2.3.png" width="128"> |
+| <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/2.1.png" width="150">               | <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/2.2.png" width="150"> | <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/2.3.png" width="150"> |
 
 
 
