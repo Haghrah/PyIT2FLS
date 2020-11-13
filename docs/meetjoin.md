@@ -64,7 +64,7 @@ The output plots of this example are represented as below.
 
 |  Small and large sets  | Join of the two sets |
 |:---------------------:|:-----------:|
-| <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/2.4.png" width="150"> | <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/2.5.png" width="150"> |
+| <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/2.4.png" width="256"> | <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/2.5.png" width="256"> |
 
 
 
