@@ -32,6 +32,7 @@ Or you can use pip3:
 - [ ] Speeding up the codes using the Python/C API.
 - [ ] Supporting elliptic and semi-elliptic membership functions.
 - [ ] Supporting generalized bell shaped membership funcion.
+- [ ] Supporting many new t-norms and s-norm.
 
 ### Some notes on version 0.5
 - [x] Supporting both Mamdani and TSK systems.
