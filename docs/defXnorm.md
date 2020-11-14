@@ -17,8 +17,8 @@ A = IT2FS_Gaussian_UncertMean(domain, [0., 0.1, 0.25, 1.])
 B = IT2FS_Gaussian_UncertMean(domain, [1., 0.1, 0.25, 1.])
 IT2FS_plot(A, B, legends=["Small","Large"])
 
-BC = join(domain, A, B, probabilistic_sum_s_norm)
-BC.plot()
+AB = join(domain, A, B, probabilistic_sum_s_norm)
+AB.plot()
 ```
 
 The output plots of this example are represented as below.

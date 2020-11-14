@@ -2,6 +2,7 @@ from numpy import exp, ones_like, zeros_like, arange, multiply, \
      subtract, add, minimum, maximum, sign, c_, argmax, \
      array, where, hstack, logical_not, sqrt
 from numpy import sum as npsum
+from numpy import abs as npabs
 from numpy import round as npround
 import matplotlib.pyplot as plt
 from math import isclose
@@ -1264,6 +1265,30 @@ def max_s_norm(a, b):
 
 def probabilistic_sum_s_norm(a, b):
 	return a + b - a * b
+
+def bounded_sum_s_norm(a, b):
+	return minimum(a + b, 1)
+
+def drastic_s_norm(a, b):
+    return b * (a == 0) + a * (b == 0) + 1. * (a != 0.) * (b != 0.)
+
+def nilpotent_maximum_s_norm(a, b):
+    return maximum(a, b) * (a + b < 1) + 1. * (a + b >= 1)
+
+def einstein_sum_s_norm(a, b):
+    return (a + b) / (1 + a * b)
+
+def bounded_t_norm(a, b):
+    return maximum(0, a + b - 1)
+
+def drastic_t_norm(a, b):
+    return b * (a == 1) + a * (b == 1)
+
+def nilpotent_minimum_t_norm(a, b):
+    return minimum(a, b) * (a + b > 1)
+
+def hamacher_product_t_norm(a, b):
+    return ((a * b) / (a + b - a * b)) * logical_not((a == 0) * (b == 0))
 
 def meet(domain, it2fs1, it2fs2, t_norm):
     """
