@@ -5,14 +5,14 @@ Type reduction algorithms have a key role in obtaining crisp numbers from type 2
 
 |  Type Reduction Algorithm     | Corresponding Function in PyIT2FLS |
 |:-----------------------------:|:----------------------------------:|
-| Karnik-Mendel                 | KM_algorithm |
+| Karnik-Mendel algorithm       | KM_algorithm |
 | Enhanced KM algorithm         | EKM_algorithm |
 | Weighted EKM algorithm        | WEKM_algorithm |
 | Trapezoidal WEKM algorithm    | TWEKM_algorithm |
 | Enhanced IASC algorithm       | EIASC_algorithm |
 | Wu-Mendel algorithm           | WM_algorithm |
 | Begian-Melek-Mendel algorithm | BMM_algorithm |
-| BMM method edited by Li et al.| LBMM_algorithm |
+| BMM algorithm edited by Li et al.| LBMM_algorithm |
 | Nie-Tan algorithm             | NT_algorithm |
 
 
