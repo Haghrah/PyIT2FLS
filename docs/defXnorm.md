@@ -27,5 +27,32 @@ The output plots of this example are represented as below.
 |:---------------------:|:-----------:|
 | <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/3.1.png" width="256"> | <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/3.2.png" width="256"> |
 
+In the next example we are going to define a new t-norm an use it in meet operator. Let's define Łukasiewicz t-norm defined by the formula below:
+
+<img src="https://render.githubusercontent.com/render/math?math=\tang_{Luk}(a,b)=max\{0, a %2B b - 1\}"> 
+
+
+```python
+from pyit2fls import IT2FS_Gaussian_UncertMean, meet, IT2FS_plot
+from numpy import linspace, maximum
+
+def Lukasiewicz_t_norm(a, b):
+    return maximum(0, a + b - 1)
+
+domain = linspace(0., 1., 1000)
+A = IT2FS_Gaussian_UncertMean(domain, [0., 0.1, 0.4, 1.])
+B = IT2FS_Gaussian_UncertMean(domain, [1., 0.1, 0.4, 1.])
+IT2FS_plot(A, B, legends=["Small","Large"])
+
+AB = meet(domain, A, B, Lukasiewicz_t_norm)
+AB.plot()
+```
+
+The output plots of this example are represented as below.
+
+|  The **_SMALL_** and the **_LARGE_** sets  | Meet of the two sets |
+|:---------------------:|:-----------:|
+| <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/3.3.png" width="256"> | <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/3.4.png" width="256"> |
+
 
 

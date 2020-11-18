@@ -1278,7 +1278,7 @@ def nilpotent_maximum_s_norm(a, b):
 def einstein_sum_s_norm(a, b):
     return (a + b) / (1 + a * b)
 
-def bounded_t_norm(a, b):
+def Lukasiewicz_t_norm(a, b):
     return maximum(0, a + b - 1)
 
 def drastic_t_norm(a, b):
