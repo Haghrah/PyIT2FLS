@@ -16,6 +16,8 @@ PyIT2FLS is published under MIT license. If you are using the developed toolkit,
         archivePrefix={arXiv},
         primaryClass={eess.SY}
     }
+    
+    Haghrah, Amir Arslan, and Sehraneh Ghaemi. "PyIT2FLS: A New Python Toolkit for Interval Type 2 Fuzzy Logic Systems." __arXiv preprint arXiv:1909.10051__ (2019).
 
 ## Installation
 PyIT2FLS can be installed by unzipping the source code in a directory and using this command:
