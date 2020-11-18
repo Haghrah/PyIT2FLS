@@ -29,7 +29,7 @@ The output plots of this example are represented as below.
 
 In the next example we are going to define a new t-norm an use it in meet operator. Let's define Łukasiewicz t-norm defined by the formula below:
 
-<img src="https://render.githubusercontent.com/render/math?math=\tang_{Luk}(a,b)=max\{0, a %2B b - 1\}"> 
+<img src="https://render.githubusercontent.com/render/math?math=\top_{Luk}(a,b)=max\{0, a %2B b - 1\}"> 
 
 
 ```python
