@@ -11,17 +11,17 @@ In the following, it will be introduced how to use these two classes.
 ### **_IT2FLS_** class
 The constructor function of the **_IT2FLS_** class has no input parameters. The **_IT2FLS_** class has five functions embedded:
 
-1. add_input_variable
-2. add_output_variable
-3. add_rule
-4. evaluate
-5. evaluate_list
+1. **_add_input_variable_**
+2. **_add_output_variable_**
+3. **_add_rule_**
+4. **_evaluate_**
+5. **_evaluate_list_**
 
-Furthermore, it has three parameters:
+And, it has three parameters:
 
-1. inputs: List of string
-2. outputs: List of string
-3. rules: List of tuples
+1. **_inputs_**: List of string
+2. **_outputs_**: List of string
+3. **_rules_**: List of tuples
 
 ### **_Mamdani_** class
 
