@@ -15,5 +15,5 @@ Type reduction algorithms have a key role in obtaining crisp numbers from type 2
 | BMM algorithm edited by Li et al.| LBMM_algorithm |
 | Nie-Tan algorithm             | NT_algorithm |
 
-
+Users do not need to be directly involved with these functions and will only use them. How to use these algorithms will be explained in other sections.
 
