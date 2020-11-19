@@ -1,6 +1,6 @@
 <p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/PyIT2FLS_icon.png" width="200"/></p>
 
-## Defining TSK IT2FLSs
+## Defining TSK Interval Type 2 Fuzzy Logic Systems
 
 
 
