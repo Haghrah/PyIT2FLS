@@ -3,25 +3,10 @@
 ## Defining Mamdani Interval Type 2 Fuzzy Logic Systems
 One of the most common models of the fuzzy systems is Mamdani model. In constrast with TSK model, both of the inputs and outputs of the system in Mamdani model are fuzzy sets. There are two ways to create interval type 2 Mamdani fuzzy systems using PyIT2FLS:
 
-1. Using **_IT2FLS_** class
-2. Using **_Mamdani_** class
+1. Using **_Mamdani_** class
+2. Using **_IT2FLS_** class
 
 In the following, it will be introduced how to use these two classes.
-
-### **_IT2FLS_** class
-The constructor function of the **_IT2FLS_** class has no input parameters. The **_IT2FLS_** class has five functions embedded:
-
-1. **_add_input_variable_**
-2. **_add_output_variable_**
-3. **_add_rule_**
-4. **_evaluate_**
-5. **_evaluate_list_**
-
-And, it has three parameters:
-
-1. **_inputs_**: List of strings
-2. **_outputs_**: List of strings
-3. **_rules_**: List of tuples
 
 ### **_Mamdani_** class
 The constructor function of the **_Mamdani_** class has six inputs:
@@ -29,9 +14,9 @@ The constructor function of the **_Mamdani_** class has six inputs:
 1. **_t_norm_**: Function
 2. **_s_norm_**: Function
 3. **_method_**: String with Centroid default value
-4. **_method_params_**: List with None default value
+4. **_method_params_**: List with **_None_** default value
 5. **_algorithm_**: Function with EIASC_algorithm default value
-6. **_algorithm_params_**: List with None default value
+6. **_algorithm_params_**: List with **_None_** default value
 
 The **_t_norm_** and **_s_norm_** inputs can be selected from the t-norm and s-norm functions provided by the PyIT2FLS. The **_method_** can be one the methods listed below:
 
@@ -95,7 +80,54 @@ mySys.add_rule([("x1", Large), ("x2", Large)], [("y1", Large), ("y2", Small)])
 it2out, tr = mySys.evaluate({"x1":0.923, "x2":0.745})
 ```
 
-Evaluating the system using the **_Centroid_** method would return two outputs, interval type 2 output sets and type reduced outputs.
+Evaluating the system using the **_Centroid_** method will return two outputs, interval type 2 output sets and type reduced outputs. These two outputs are of type dictionary. The keys of these dictionaries are output variable names, nd the values are **_IT2FSs_** and type reduced intervals. In order to calculate the crisp output using the outputs, the **_crisp_** function can be used. Also, **_TR_plot_** function can plot the type reduced outputs.
+
+```python
+it2out["y1"].plot(filename="y1_out")
+TR_plot(domain, tr["y1"], filename="y1_tr")
+print(crisp(tr["y1"]))
+```
+
+Evaluating the system using methods other than **_Centroid_** will return only type reduced outputs as a dictionary.
+
+### **_IT2FLS_** class
+The constructor function of the **_IT2FLS_** class has no input parameters. The **_IT2FLS_** class has four functions embedded:
+
+1. **_add_input_variable_**
+2. **_add_output_variable_**
+3. **_add_rule_**
+4. **_evaluate_**
+
+And, it has three parameters:
+
+1. **_inputs_**: List of strings
+2. **_outputs_**: List of strings
+3. **_rules_**: List of tuples
+
+The only difference between the functions of the **_IT2FLS_** class and **_Mamdani_** class is the inputs of the **_evaluate_** function. The inputs of the evaluate function are listed as below:
+
+1. **_inputs_**: Dictionary
+2. **_t_norm_**: Function
+3. **_s_norm_**: Function
+4. **_method_**: String with **_Centroid_** default value
+5. **_method_params_**: List with **_None_** default value
+6. **_algorithm_**: String with **_EIASC_** default value
+7. **_algorithm_params_**: List with **_None_** default value
+
+The first input is similar to the only input of the Mamdani's **_evaluate_** function. The **_t_norm_** and the **_s_norm_** can be selected from the t-nomrs and s-norms provided by the PyIT2FLS. The **_method_** and the **_method_params_** are similar to the inputs of the constructor function of the **_Mamdani_** class. The **_algorithm_** is a string from the below list:
+
+1. **_KM_**
+2. **_EKM_**
+3. **_WEKM_**
+4. **_TWEKM_**
+5. **_EIASC_**
+6. **_WM_**
+7. **_BMM_**
+8. **_LBMM_**
+9. **_NT_**
+
+Finally, the **_algorithm_params_** is similar to the **_algorithm_params_** input of the constructor function of the **_Mamdani_** class.
+
 
 
 
