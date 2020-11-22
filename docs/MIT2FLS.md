@@ -71,15 +71,11 @@ And, it has three parameters:
 3. **_rules_**: List of tuples
 
 #### Functions:
-1. **_add_input_variable_**
+**_add_input_variable_** function: This function has a single input of type string, which is the name of a input variable. All the input variables must be defined for the system using this function. The variable name given to this function will be stored in the **_inputs_** list.
 
-This function has a single input of type string, which is the name of a input variable. All the input variables must be defined for the system using this function. The variable name given to this function will be stored in the **_inputs_** list.
+**_add_output_variable_** function: As the previous function, the only input of the **_add_output_variable_** is a string. Similarly, all the input variables must be defined for the system using this function. The variable name given to this function will be stored in the **_outputs_** list.
 
-2. **_add_output_variable_**
-
-As the previous function, the only input of the **_add_output_variable_** is a string. Similarly, all the input variables must be defined for the system using this function. The variable name given to this function will be stored in the **_outputs_** list.
-
-
+**_add_rule_** function
 
 
 
