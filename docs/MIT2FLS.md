@@ -45,15 +45,40 @@ The only method that needs a parameter is the **_ModiHe_** method. The **_method
 
 The **_algorithm_** defines the type reduction algorithm, and can be selected from the algorithms listed below:
 
-1. KM_algorithm
-2. EKM_algorithm
-3. WEKM_algorithm
-4. TWEKM_algorithm
-5. EIASC_algorithm
-6. WM_algorithm
-7. BMM_algorithm
-8. LBMM_algorithm
-9. NT_algorithm
+1. **_KM_algorithm_**
+2. **_EKM_algorithm_**
+3. **_WEKM_algorithm_**
+4. **_TWEKM_algorithm_**
+5. **_EIASC_algorithm_**
+6. **_WM_algorithm_**
+7. **_BMM_algorithm_**
+8. **_LBMM_algorithm_**
+9. **_NT_algorithm_**
+
+It must be noticed that the items of the above list are function names and must be imported from PyIT2FLS before using. Of these nine algorithms, only **_WEKM_algorithm_**, **_BMM_algorithm_**, and **_LBMM_algorithm_** algorithms need **_algorithm_params_**. **_algorithm_params_** should be defined as a list of floating point numbers. (For more details about these algorithms, please refer to the type two fuzzy logic reference books.)
+
+The **_Mamdani_** class has four functions embedded:
+
+1. **_add_input_variable_**
+2. **_add_output_variable_**
+3. **_add_rule_**
+4. **_evaluate_**
+
+And, it has three parameters:
+
+1. **_inputs_**: List of strings
+2. **_outputs_**: List of strings
+3. **_rules_**: List of tuples
+
+#### Functions:
+1. **_add_input_variable_**
+
+This function has a single input of type string, which is the name of a input variable. All the input variables must be defined for the system using this function. The variable name given to this function will be stored in the **_inputs_** list.
+
+2. **_add_output_variable_**
+
+As the previous function, the only input of the **_add_output_variable_** is a string. Similarly, all the input variables must be defined for the system using this function. The variable name given to this function will be stored in the **_outputs_** list.
+
 
 
 
