@@ -77,9 +77,9 @@ And, it has three parameters:
 
 **_add_rule_** function: This function has two inputs, **_antecedent_** and **_consequent_**, which are lists of tuples. Each tuple in the **_antecedent_** list, expresses the assignment of an input variable to a fuzzy set. So, the length of the **_antecedent_** list must be equal with **_inputs_** list. Similarly, the constitutive tuples of the **_consequent_** express the assignment of output variables to fuzzy sets. Also, the length of the **_consequent_** list must be equal with **_outputs_** list. Let's see an example of using the **_add_rule_** function. Assume that our system has two input variables named x1 and x2, and two output variables named y1 and y2. Also, assume that we have three fuzzy sets Small, Medium, and Large, and the rule base of our system is as below.
 
-1. IF x1 is Small  AND x2 is Small  THEN y1 is Small  AND y2 is Large
+1. IF x1 is Small AND x2 is Small THEN y1 is Small AND y2 is Large
 2. IF x1 is Medium AND x2 is Medium THEN y1 is Medium AND y2 is Small
-3. IF x1 is Large  AND x2 is Large  THEN y1 is Large  AND y2 is Small
+3. IF x1 is Large AND x2 is Large THEN y1 is Large AND y2 is Small
 
 We can add these rule to the rule-base of the system using the code below:
 
@@ -92,7 +92,11 @@ mySys.add_rule([("x1", Large), ("x2", Large)], [("y1", Large), ("y2", Small)])
 **_evaluate_** function: This function has a single input variable of type dictionary. The keys of this dictionary must be the input variable names added to the **_inputs_** list of the Mamdani class, and the values corresponded with the input variables must be their value to evaluate the system. Let's see an example of calling the **_evaluate_** function.
 
 ```python
-mySys.evaluate({"x1":0.923, "x2":0.745})
+it2out, tr = mySys.evaluate({"x1":0.923, "x2":0.745})
 ```
+
+Evaluating the system using the **_Centroid_** method would return two outputs, interval type 2 output sets and type reduced outputs.
+
+
 
 
