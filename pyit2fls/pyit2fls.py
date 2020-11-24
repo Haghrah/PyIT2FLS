@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 from math import isclose
 
 
-def zero_mf(x, params=None):
+def zero_mf(x, params=[]):
     """
     All zero membership function.
     
@@ -687,7 +687,36 @@ def T1FS_plot(*sets, filename=None, title=None, legend_text=None):
         plt.savefig(filename + ".pdf", format="pdf", dpi=300, bbox_inches="tight")
     plt.show()
 
+def T1FS_AND(domain, t1fs1, t1fs2, t_norm):
+    mf = lambda x, params: t_norm(t1fs1.mf(x, t1fs1.params), t1fs2.mf(x, t1fs2.params))
+    return T1FS(domain, mf)
 
+def T1FS_OR(domain, t1fs1, t1fs2, s_norm):
+    mf = lambda x, params: s_norm(t1fs1.mf(x, t1fs1.params), t1fs2.mf(x, t1fs2.params))
+    return T1FS(domain, mf)
+
+def CenterOfGravityDefuzzifier(t1fs):
+    pass
+
+def CenterOfAverageDefuzzifier(t1fs):
+    pass
+
+def MaximumDefuzzifier(t1fs):
+    pass
+
+class T1Mamdani:
+
+    def __init__(self, defuzz="CoG", defuzz_params=[]):
+        self.inputs = []
+        self.outputs = []
+        self.rules = []
+
+class T1TSK:
+
+    def __init__(self):
+        self.inputs = []
+        self.outputs = []
+        self.rules = []
 
 class IT2FS:
     """Interval Type 2 Fuzzy Set (IT2FS).
@@ -1691,7 +1720,7 @@ def trim(intervals):
             max2 = i[-1] + 1
         return intervals[min(min1, min2):max(max1, max2), :]
 
-def KM_algorithm(intervals, params=None):  # intervals = [[a1, b1, c1, d1], [a2, b2, c2, d2], ...]
+def KM_algorithm(intervals, params=[]):  # intervals = [[a1, b1, c1, d1], [a2, b2, c2, d2], ...]
     """
     KM algorithm
     
@@ -1777,7 +1806,7 @@ def KM_algorithm(intervals, params=None):  # intervals = [[a1, b1, c1, d1], [a2,
     return y_l, y_r
 
 
-def EKM_algorithm(intervals, params=None):
+def EKM_algorithm(intervals, params=[]):
     """
     EKM algorithm
     
@@ -1880,7 +1909,7 @@ def EKM_algorithm(intervals, params=None):
     return y_l, y_r
 
 
-def WEKM_algorithm(intervals, params=None):
+def WEKM_algorithm(intervals, params=[]):
     """
     WEKM algorithm
     
@@ -2019,7 +2048,7 @@ def TWEKM_algorithm(intervals, params):
     return WEKM_algorithm(intervals, params)
 
 
-def EIASC_algorithm(intervals, params=None):
+def EIASC_algorithm(intervals, params=[]):
     """
     EIASC algorithm
     
@@ -2081,7 +2110,7 @@ def EIASC_algorithm(intervals, params=None):
     return y_l, y_r
 
 
-def WM_algorithm(intervals, params=None):
+def WM_algorithm(intervals, params=[]):
     """
     WM algorithm
     
@@ -2207,7 +2236,7 @@ def LBMM_algorithm(intervals, params):
     return m * npsum(F[:, 0] * Y[:, 0]) / npsum(F[:, 0]) + n * npsum(F[:, 1] * Y[:, 1]) / npsum(F[:, 1])
 
 
-def NT_algorithm(intervals, params=None):
+def NT_algorithm(intervals, params=[]):
     """
     NT algorithm
     
@@ -2243,7 +2272,7 @@ def NT_algorithm(intervals, params=None):
     return (npsum(Y * F[:, 1]) + npsum(Y * F[:, 0])) / (npsum(F[:, 0]) + npsum(F[:, 1]))
 
 
-def Centroid(it2fs, alg_func, domain, alg_params=None):
+def Centroid(it2fs, alg_func, domain, alg_params=[]):
     """
     Centroid type reduction for an interval type 2 fuzzy set.
     
@@ -2284,7 +2313,7 @@ def Centroid(it2fs, alg_func, domain, alg_params=None):
     return alg_func(intervals, alg_params)
 
 
-def CoSet(firing_array, consequent_array, alg_func, domain, alg_params=None):
+def CoSet(firing_array, consequent_array, alg_func, domain, alg_params=[]):
     """
     Center of sets type reduction.
     
@@ -2333,7 +2362,7 @@ def CoSet(firing_array, consequent_array, alg_func, domain, alg_params=None):
     return alg_func(array(intervals), alg_params)
 
 
-def CoSum(it2fs_array, alg_func, domain, alg_params=None):
+def CoSum(it2fs_array, alg_func, domain, alg_params=[]):
     """
     Center of sum type reduction for an interval type 2 fuzzy set.
     
@@ -2379,7 +2408,7 @@ def CoSum(it2fs_array, alg_func, domain, alg_params=None):
     return alg_func(intervals, alg_params)
 
 
-def Height(it2fs_array, alg_func, domain, alg_params=None):
+def Height(it2fs_array, alg_func, domain, alg_params=[]):
     """
     Height type reduction for an interval type 2 fuzzy set.
     
@@ -2423,7 +2452,7 @@ def Height(it2fs_array, alg_func, domain, alg_params=None):
     return alg_func(array(intervals), alg_params)
 
 
-def ModiHe(it2fs_array, spread_array, alg_func, domain, alg_params=None):
+def ModiHe(it2fs_array, spread_array, alg_func, domain, alg_params=[]):
     """
     Modified height type reduction for an interval type 2 fuzzy set.
     
@@ -2653,8 +2682,8 @@ class IT2FLS:
         return o
     
     def evaluate_list(self, inputs, t_norm, s_norm, domain, 
-                      method="Centroid", method_params=None, 
-                      algorithm="EIASC", algorithm_params=None):
+                      method="Centroid", method_params=[], 
+                      algorithm="EIASC", algorithm_params=[]):
         """
         Evaluates the IT2FLS based on list of crisp inputs given by user.
         
@@ -2693,7 +2722,7 @@ class IT2FLS:
             of the methods listed below:
                 Centroid, CoSet, CoSum, Height, and ModiHe.
         
-        method_params=None:
+        method_params=[]:
             List
             
             Parameters of the type reduction method, if needed.
@@ -2703,7 +2732,7 @@ class IT2FLS:
             one of the algorithms listed below:
                 KM, EKM, WEKM, TWEKM, EIASC, WM, BMM, LBMM, and NT.
         
-        algorithm_params=None:
+        algorithm_params=[]:
             List
             
             Parameters of the type reduction algorithm, if needed.
@@ -2872,7 +2901,7 @@ class IT2FLS:
     
     
     def evaluate(self, inputs, t_norm, s_norm, domain, method="Centroid", 
-                 method_params=None, algorithm="EIASC", algorithm_params=None):
+                 method_params=[], algorithm="EIASC", algorithm_params=[]):
         """
         Evaluates the IT2FLS based on crisp inputs given by user.
         
@@ -2911,7 +2940,7 @@ class IT2FLS:
             of the methods listed below:
                 Centroid, CoSet, CoSum, Height, and ModiHe.
         
-        method_params=None:
+        method_params=[]:
             List
             
             Parameters of the type reduction method, if needed.
@@ -2921,7 +2950,7 @@ class IT2FLS:
             one of the algorithms listed below:
                 KM, EKM, WEKM, TWEKM, EIASC, WM, BMM, LBMM, and NT.
         
-        algorithm_params=None:
+        algorithm_params=[]:
             List
             
             Parameters of the type reduction algorithm, if needed.
@@ -3241,7 +3270,7 @@ class Mamdani:
         of the methods listed below:
             Centroid, CoSet, CoSum, Height, and ModiHe.
     
-    method_params=None:
+    method_params=[]:
         List
         
         Parameters of the type reduction method, if needed.
@@ -3253,7 +3282,7 @@ class Mamdani:
         one of the algorithms listed below:
             KM, EKM, WEKM, TWEKM, EIASC, WM, BMM, LBMM, and NT.
     
-    algorithm_params=None:
+    algorithm_params=[]:
         List
         
         Parameters of the type reduction algorithm, if needed.
@@ -3317,8 +3346,8 @@ class Mamdani:
     
     """
     def __init__(self, t_norm, s_norm, 
-                 method="Centroid", method_params=None, 
-                 algorithm=EIASC_algorithm, algorithm_params=None):
+                 method="Centroid", method_params=[], 
+                 algorithm=EIASC_algorithm, algorithm_params=[]):
         self.inputs = []
         self.outputs = []
         self.rules = []
