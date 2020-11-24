@@ -610,9 +610,86 @@ def semi_elliptic_mf(x, params):
     return params[2] * npround(sqrt(abs(1 - ((params[0] - x) ** 2) / (params[1] ** 2))), decimals=6)
 
 def gbell_mf(x, params):
-	return params[3] / (1 + npabs((x - params[2]) / params[0]) ** (2 * params[1]))
+    """
+    Generalized bell shaped membership function.
 
-class IT2FS(object):
+    Parameters
+    ----------
+    x : 
+        numpy (n,) shaped array
+        
+        The array like input x indicates the points from universe of 
+        discourse in which the membership function would be evaluated.
+        
+    params : 
+        list
+        
+        Parameters of the generalized bell shaped membership function. 
+        a, b, and c values and height of the generalized bell shaped membership 
+        function are indicated by params[0], params[1], params[2], and params[3].
+
+    Returns
+    -------
+    ndarray
+        Returns membership values corresponding with the input.
+
+    Examples
+    --------
+
+    >>> x = linspace(0, 1, 201)
+    >>> membership_value = gbell_mf(x, [0.1, 1., 0.5, 1.])
+
+    """
+    return params[3] / (1 + npabs((x - params[2]) / params[0]) ** (2 * params[1]))
+
+
+
+class T1FS:
+
+    def __init__(self, domain, mf, params=[]):
+        self.domain = domain
+        self.mf = mf
+        self.params = params
+    
+    def __call__(self, x):
+        self.mf(x, self.params)
+
+    def __neg__(self):
+        mf = lambda x, params: subtract(1, self.mf(x, self.params))
+        return T1FS(self.domain, mf)
+
+    def plot(self, filename=None, title=None, legend_text=None):
+        plt.figure()
+        plt.plot(self.domain, self.mf(self.domain, self.params))
+        if legend_text is not None:
+            plt.legend([legend_text])
+        if title is not None:
+            plt.title(title)
+        plt.xlabel("Domain")
+        plt.ylabel("Membership degree")
+        plt.grid(True)
+        if filename is not None:
+            plt.savefig(filename + ".pdf", format="pdf", dpi=300, bbox_inches="tight")
+        plt.show()
+
+def T1FS_plot(*sets, filename=None, title=None, legend_text=None):
+    plt.figure()
+    for t1fs in sets:
+        plt.plot(t1fs.domain, t1fs.mf(t1fs.domain, t1fs.params))
+    if legend_text is not None:
+        plt.legend([legend_text])
+    if title is not None:
+        plt.title(title)
+    plt.xlabel("Domain")
+    plt.ylabel("Membership degree")
+    plt.grid(True)
+    if filename is not None:
+        plt.savefig(filename + ".pdf", format="pdf", dpi=300, bbox_inches="tight")
+    plt.show()
+
+
+
+class IT2FS:
     """Interval Type 2 Fuzzy Set (IT2FS).
        
         Parameters
@@ -1236,6 +1313,109 @@ def product_t_norm(a, b):
     """
     return multiply(a, b)
 
+def lukasiewicz_t_norm(a, b):
+    """
+    Lukasiewicz t-norm function.
+    
+    Parameters
+    ----------
+    
+    a:
+        numpy (n,) shaped array
+    
+    b:
+        numpy (n,) shaped array
+    
+    Returns
+    -------
+    Returns Lukasiewicz t-norm of a and b
+    
+    Examples
+    --------
+    
+    >>> a = random.random(10,)
+    >>> b = random.random(10,)
+    >>> c = lukasiewicz_t_norm(a, b)
+    """
+    return maximum(0, a + b - 1)
+
+def drastic_t_norm(a, b):
+    """
+    Drastic t-norm function.
+    
+    Parameters
+    ----------
+    
+    a:
+        numpy (n,) shaped array
+    
+    b:
+        numpy (n,) shaped array
+    
+    Returns
+    -------
+    Returns drastic t-norm of a and b
+    
+    Examples
+    --------
+    
+    >>> a = random.random(10,)
+    >>> b = random.random(10,)
+    >>> c = drastic_t_norm(a, b)
+    """
+    return b * (a == 1) + a * (b == 1)
+
+def nilpotent_minimum_t_norm(a, b):
+    """
+    Nilpotent minimum t-norm function.
+    
+    Parameters
+    ----------
+    
+    a:
+        numpy (n,) shaped array
+    
+    b:
+        numpy (n,) shaped array
+    
+    Returns
+    -------
+    Returns nilpotent minimum t-norm of a and b
+    
+    Examples
+    --------
+    
+    >>> a = random.random(10,)
+    >>> b = random.random(10,)
+    >>> c = nilpotent_minimum_t_norm(a, b)
+    """
+    return minimum(a, b) * (a + b > 1)
+
+def hamacher_product_t_norm(a, b):
+    """
+    Hamacher product t-norm function.
+    
+    Parameters
+    ----------
+    
+    a:
+        numpy (n,) shaped array
+    
+    b:
+        numpy (n,) shaped array
+    
+    Returns
+    -------
+    Returns hamacher product t-norm of a and b
+    
+    Examples
+    --------
+    
+    >>> a = random.random(10,)
+    >>> b = random.random(10,)
+    >>> c = hamacher_product_t_norm(a, b)
+    """
+    return ((a * b) / (a + b - a * b)) * logical_not((a == 0) * (b == 0))
 
 def max_s_norm(a, b):
     """
@@ -1264,31 +1444,134 @@ def max_s_norm(a, b):
     return maximum(a, b)
 
 def probabilistic_sum_s_norm(a, b):
-	return a + b - a * b
+    """
+    Probabilistic sum s-norm function.
+
+    Parameters
+    ----------
+
+    a:
+        numpy (n,) shaped array
+
+    b:
+        numpy (n,) shaped array
+
+    Returns
+    -------
+    Returns probabilistic sum s-norm of a and b
+
+    Examples
+    --------
+
+    >>> a = random.random(10,)
+    >>> b = random.random(10,)
+    >>> c = probabilistic_sum_s_norm(a, b)
+    """
+    return a + b - a * b
 
 def bounded_sum_s_norm(a, b):
-	return minimum(a + b, 1)
+    """
+    Bounded sum s-norm function.
+
+    Parameters
+    ----------
+
+    a:
+        numpy (n,) shaped array
+
+    b:
+        numpy (n,) shaped array
+
+    Returns
+    -------
+    Returns bounded sum s-norm of a and b
+
+    Examples
+    --------
+
+    >>> a = random.random(10,)
+    >>> b = random.random(10,)
+    >>> c = bounded_sum_s_norm(a, b)
+    """
+    return minimum(a + b, 1)
 
 def drastic_s_norm(a, b):
+    """
+    Drastic s-norm function.
+
+    Parameters
+    ----------
+
+    a:
+        numpy (n,) shaped array
+
+    b:
+        numpy (n,) shaped array
+
+    Returns
+    -------
+    Returns drastic s-norm of a and b
+
+    Examples
+    --------
+
+    >>> a = random.random(10,)
+    >>> b = random.random(10,)
+    >>> c = drastic_s_norm(a, b)
+    """
     return b * (a == 0) + a * (b == 0) + 1. * (a != 0.) * (b != 0.)
 
 def nilpotent_maximum_s_norm(a, b):
+    """
+    Nilpotent maximum s-norm function.
+
+    Parameters
+    ----------
+
+    a:
+        numpy (n,) shaped array
+
+    b:
+        numpy (n,) shaped array
+
+    Returns
+    -------
+    Returns nilpotent maximum s-norm of a and b
+
+    Examples
+    --------
+
+    >>> a = random.random(10,)
+    >>> b = random.random(10,)
+    >>> c = nilpotent_maximum_s_norm(a, b)
+    """
     return maximum(a, b) * (a + b < 1) + 1. * (a + b >= 1)
 
 def einstein_sum_s_norm(a, b):
+    """
+    Einstein sum s-norm function.
+
+    Parameters
+    ----------
+
+    a:
+        numpy (n,) shaped array
+
+    b:
+        numpy (n,) shaped array
+
+    Returns
+    -------
+    Returns einstein sum s-norm of a and b
+
+    Examples
+    --------
+
+    >>> a = random.random(10,)
+    >>> b = random.random(10,)
+    >>> c = einstein_sum_s_norm(a, b)
+    """
     return (a + b) / (1 + a * b)
-
-def Lukasiewicz_t_norm(a, b):
-    return maximum(0, a + b - 1)
-
-def drastic_t_norm(a, b):
-    return b * (a == 1) + a * (b == 1)
-
-def nilpotent_minimum_t_norm(a, b):
-    return minimum(a, b) * (a + b > 1)
-
-def hamacher_product_t_norm(a, b):
-    return ((a * b) / (a + b - a * b)) * logical_not((a == 0) * (b == 0))
 
 def meet(domain, it2fs1, it2fs2, t_norm):
     """
@@ -2191,7 +2474,7 @@ def ModiHe(it2fs_array, spread_array, alg_func, domain, alg_params=None):
     return alg_func(array(intervals), alg_params)
 
 
-class IT2FLS(object):
+class IT2FLS:
     """Interval type 2 fuzzy logic system.
     
     No construction parameter is needed.

@@ -36,9 +36,9 @@ Or you can use pip3:
 
 ### Features coming up in the next version
 - [ ] Speeding up the codes using the Python/C API.
-- [ ] Supporting elliptic and semi-elliptic membership functions.
-- [ ] Supporting generalized bell shaped membership funcion.
-- [ ] Supporting many new t-norms and s-norms.
+- [x] Supporting elliptic and semi-elliptic membership functions.
+- [x] Supporting generalized bell shaped membership funcion.
+- [x] Supporting many new t-norms and s-norms.
 
 ### Some notes on version 0.5
 - [x] Supporting both Mamdani and TSK systems.
