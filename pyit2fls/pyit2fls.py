@@ -651,6 +651,9 @@ class T1FS:
         self.mf = mf
         self.params = params
     
+    def copy(self):
+        return T1FS(self.domain, self.mf, self.params)
+
     def __call__(self, x):
         self.mf(x, self.params)
 
@@ -706,10 +709,22 @@ def MaximumDefuzzifier(t1fs):
 
 class T1Mamdani:
 
-    def __init__(self, defuzz="CoG", defuzz_params=[]):
+    def __init__(self, engine="Product", defuzz="CoG", defuzz_params=[]):
         self.inputs = []
         self.outputs = []
         self.rules = []
+    
+    def add_input_variable(self, name):
+        self.inputs.append(name)
+    
+    def add_output_variable(self, name):
+        self.outputs.append(name)
+
+    def add_rule(self, antecedent, consequent):
+        self.rules.append((antecedent, consequent))
+
+    def evaluate(self, inputs):
+        pass
 
 class T1TSK:
 
@@ -717,6 +732,18 @@ class T1TSK:
         self.inputs = []
         self.outputs = []
         self.rules = []
+    
+    def add_input_variable(self, name):
+        self.inputs.append(name)
+    
+    def add_output_variable(self, name):
+        self.outputs.append(name)
+    
+    def add_rule(self, antecedent, consequent):
+        self.rules.append((antecedent, consequent))
+
+    def evaluate(self, inputs):
+        pass
 
 class IT2FS:
     """Interval Type 2 Fuzzy Set (IT2FS).
