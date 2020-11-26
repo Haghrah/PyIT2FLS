@@ -710,7 +710,7 @@ def T1FS_OR(domain, t1fs1, t1fs2, s_norm):
 
 class T1Mamdani:
 
-    def __init__(self, engine="Product", defuzz="CoG", defuzz_params=[]):
+    def __init__(self, engine="Product"):
         self.inputs = []
         self.outputs = []
         self.rules = []
