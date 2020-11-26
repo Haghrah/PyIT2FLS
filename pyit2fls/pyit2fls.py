@@ -646,7 +646,7 @@ def gbell_mf(x, params):
 
 class T1FS:
 
-    def __init__(self, domain, mf, params=[]):
+    def __init__(self, domain, mf=zero_mf, params=[]):
         self.domain = domain
         self.mf = mf
         self.params = params
@@ -660,6 +660,16 @@ class T1FS:
     def __neg__(self):
         mf = lambda x, params: subtract(1, self.mf(x, self.params))
         return T1FS(self.domain, mf)
+
+    def defuzzify(self, method="CoG"):
+        if method == "CoG":
+            pass
+        elif method == "CoA":
+            pass
+        elif method == "Max":
+            pass
+        else:
+            raise ValueError("The method" + method + " is not implemented yet!")
 
     def plot(self, filename=None, title=None, legend_text=None):
         plt.figure()
@@ -698,21 +708,25 @@ def T1FS_OR(domain, t1fs1, t1fs2, s_norm):
     mf = lambda x, params: s_norm(t1fs1.mf(x, t1fs1.params), t1fs2.mf(x, t1fs2.params))
     return T1FS(domain, mf)
 
-def CenterOfGravityDefuzzifier(t1fs):
-    pass
-
-def CenterOfAverageDefuzzifier(t1fs):
-    pass
-
-def MaximumDefuzzifier(t1fs):
-    pass
-
 class T1Mamdani:
 
     def __init__(self, engine="Product", defuzz="CoG", defuzz_params=[]):
         self.inputs = []
         self.outputs = []
         self.rules = []
+        if engine == "Product":
+            self.evaluate = self._product_evaluate
+        elif engine == "Minimum":
+            self.evaluate = self._minimum_evaluate
+        elif engine == "Lukasiewicz":
+            self.evaluate = self._lukasiewicz_evaluate
+        elif engine == "Zadeh":
+            self.evaluate = self._zadeh_evaluate
+        elif engine == "Dienes-Rescher":
+            self.evaluate = self._dienes_rescher_evaluate
+        else:
+            raise ValueError("The " + engine + " fuzzy inference engine is not implemented yet!")
+        
     
     def add_input_variable(self, name):
         self.inputs.append(name)
@@ -723,8 +737,97 @@ class T1Mamdani:
     def add_rule(self, antecedent, consequent):
         self.rules.append((antecedent, consequent))
 
-    def evaluate(self, inputs):
-        pass
+    def _product_evaluate(self, inputs):
+        B = {out: [] for out in self.outputs}
+        for rule in self.rules:
+            f = 1.
+            for input_statement in rule[0]:
+                f = f * input_statement[1].mf(inputs[input_statement[0]], input_statement[1].params)
+            for consequent in rule[1]:
+                B_l = T1FS_AND(consequent[1].domain, 
+                               T1FS(consequent[1].domain, const_mf, [f]), 
+                               consequent[1], product_t_norm)
+                B[consequent[0]].append(B_l)
+        C = {}
+        for out in self.outputs:
+            C[out] = T1FS(B[out][0].domain)
+            for B_l in B[out]:
+                C[out] = T1FS_OR(B_l.domain, C[out], B_l, max_s_norm)
+        return C
+
+    def _minimum_evaluate(self, inputs):
+        B = {out: [] for out in self.outputs}
+        for rule in self.rules:
+            f = 1.
+            for input_statement in rule[0]:
+                f = min_t_norm(f, input_statement[1].mf(inputs[input_statement[0]], input_statement[1].params))
+            for consequent in rule[1]:
+                B_l = T1FS_AND(consequent[1].domain, 
+                               T1FS(consequent[1].domain, const_mf, [f]), 
+                               consequent[1], min_t_norm)
+                B[consequent[0]].append(B_l)
+        C = {}
+        for out in self.outputs:
+            C[out] = T1FS(B[out][0].domain)
+            for B_l in B[out]:
+                C[out] = T1FS_OR(B_l.domain, C[out], B_l, max_s_norm)
+        return C
+
+    def _lukasiewicz_evaluate(self, inputs):
+        B = {out: [] for out in self.outputs}
+        for rule in self.rules:
+            f = 1.
+            for input_statement in rule[0]:
+                f = min_t_norm(f, input_statement[1].mf(inputs[input_statement[0]], input_statement[1].params))
+            for consequent in rule[1]:
+                mf = lambda x, params: 1. - f + consequent[1].mf(x, consequent[1].params)
+                B_l = T1FS(consequent[1].domain, mf)
+                B[consequent[0]].append(B_l)
+        C = {}
+        for out in self.outputs:
+            C[out] = T1FS(B[out][0].domain, const_mf, [1])
+            for B_l in B[out]:
+                C[out] = T1FS_AND(B_l.domain, C[out], B_l, min_t_norm)
+        return C
+
+    def _zadeh_evaluate(self, inputs):
+        B = {out: [] for out in self.outputs}
+        for rule in self.rules:
+            f = 1.
+            for input_statement in rule[0]:
+                f = min_t_norm(f, input_statement[1].mf(inputs[input_statement[0]], input_statement[1].params))
+            for consequent in rule[1]:
+                mf = lambda x, params: min_t_norm(f, consequent[1].mf(x, consequent[1].params))
+                B_l = T1FS_OR(consequent[1].domain, 
+                              T1FS(consequent[1].domain, const_mf, [1 - f]), 
+                              T1FS(consequent[1].domain, mf), 
+                              max_s_norm)
+                B[consequent[0]].append(B_l)
+        C = {}
+        for out in self.outputs:
+            C[out] = T1FS(B[out][0].domain)
+            for B_l in B[out]:
+                C[out] = T1FS_AND(B_l.domain, C[out], B_l, min_t_norm)
+        return C
+
+    def _dienes_rescher_evaluate(self, inputs):
+        B = {out: [] for out in self.outputs}
+        for rule in self.rules:
+            f = 1.
+            for input_statement in rule[0]:
+                f = min_t_norm(f, input_statement[1].mf(inputs[input_statement[0]], input_statement[1].params))
+            for consequent in rule[1]:
+                B_l = T1FS_OR(consequent[1].domain, 
+                              T1FS(consequent[1].domain, const_mf, [1 - f]), 
+                              consequent[1], max_s_norm)
+                B[consequent[0]].append(B_l)
+        C = {}
+        for out in self.outputs:
+            C[out] = T1FS(B[out][0].domain)
+            for B_l in B[out]:
+                C[out] = T1FS_AND(B_l.domain, C[out], B_l, min_t_norm)
+        return C
+
 
 class T1TSK:
 
