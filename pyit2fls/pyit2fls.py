@@ -661,12 +661,11 @@ class T1FS:
         mf = lambda x, params: subtract(1, self.mf(x, self.params))
         return T1FS(self.domain, mf)
 
+    def _CoG(self):
+        pass
+
     def defuzzify(self, method="CoG"):
         if method == "CoG":
-            pass
-        elif method == "CoA":
-            pass
-        elif method == "Max":
             pass
         else:
             raise ValueError("The method" + method + " is not implemented yet!")
@@ -836,6 +835,13 @@ class T1TSK:
         self.outputs = []
         self.rules = []
     
+    def copy(self):
+        o = T1TSK()
+        o.inputs = self.inputs.copy()
+        o.outputs = self.outputs.copy()
+        o.rules = self.rules.copy()
+        return o
+
     def add_input_variable(self, name):
         self.inputs.append(name)
     
@@ -846,7 +852,19 @@ class T1TSK:
         self.rules.append((antecedent, consequent))
 
     def evaluate(self, inputs):
-        pass
+        F = []
+        B = {out: 0. for out in self.outputs}
+        for rule in self.rules:
+            f = 1.
+            for input_statement in rule[0]:
+                f *= input_statement[1].mf(inputs[input_statement[0]], input_statement[1].params)
+            F.append(f)
+            for consequent in rule[1]:
+                B[consequent[0]] += f * consequent[1]
+        f = npsum(F)
+        for out in self.outputs:
+            B[out] /= f
+        return B
 
 class IT2FS:
     """Interval Type 2 Fuzzy Set (IT2FS).
