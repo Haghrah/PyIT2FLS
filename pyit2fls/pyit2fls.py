@@ -4,6 +4,7 @@ from numpy import exp, ones_like, zeros_like, arange, multiply, \
 from numpy import sum as npsum
 from numpy import abs as npabs
 from numpy import round as npround
+from scipy.integrate import trapz
 import matplotlib.pyplot as plt
 from math import isclose
 
@@ -655,18 +656,20 @@ class T1FS:
         return T1FS(self.domain, self.mf, self.params)
 
     def __call__(self, x):
-        self.mf(x, self.params)
+        return self.mf(x, self.params)
 
     def __neg__(self):
         mf = lambda x, params: subtract(1, self.mf(x, self.params))
         return T1FS(self.domain, mf)
 
     def _CoG(self):
-        pass
+        int1 = trapz(self.domain * self(self.domain), self.domain)
+        int2 = trapz(self(self.domain), self.domain)
+        return int1 / int2
 
     def defuzzify(self, method="CoG"):
         if method == "CoG":
-            pass
+            return self._CoG()
         else:
             raise ValueError("The method" + method + " is not implemented yet!")
 
@@ -684,12 +687,12 @@ class T1FS:
             plt.savefig(filename + ".pdf", format="pdf", dpi=300, bbox_inches="tight")
         plt.show()
 
-def T1FS_plot(*sets, filename=None, title=None, legend_text=None):
+def T1FS_plot(*sets, filename=None, title=None, legends=None):
     plt.figure()
     for t1fs in sets:
         plt.plot(t1fs.domain, t1fs.mf(t1fs.domain, t1fs.params))
-    if legend_text is not None:
-        plt.legend([legend_text])
+    if legends is not None:
+        plt.legend(legends)
     if title is not None:
         plt.title(title)
     plt.xlabel("Domain")
@@ -709,14 +712,16 @@ def T1FS_OR(domain, t1fs1, t1fs2, s_norm):
 
 class T1Mamdani:
 
-    def __init__(self, engine="Product"):
+    def __init__(self, engine="Product", defuzzification="CoG"):
         self.inputs = []
         self.outputs = []
         self.rules = []
         if engine == "Product":
             self.evaluate = self._product_evaluate
+            self.defuzzification = defuzzification
         elif engine == "Minimum":
             self.evaluate = self._minimum_evaluate
+            self.defuzzification = defuzzification
         elif engine == "Lukasiewicz":
             self.evaluate = self._lukasiewicz_evaluate
         elif engine == "Zadeh":
@@ -736,6 +741,28 @@ class T1Mamdani:
     def add_rule(self, antecedent, consequent):
         self.rules.append((antecedent, consequent))
 
+    def _CoG(self, B):
+        C = {}
+        D = {}
+        for out in self.outputs:
+            C[out] = T1FS(B[out][0].domain)
+            for B_l in B[out]:
+                C[out] = T1FS_OR(B_l.domain, C[out], B_l, max_s_norm)
+            D[out] = C[out].defuzzify()
+        return C, D
+
+    def _CoA(self, B):
+        D = {}
+        for out in self.outputs:
+            a = 0.
+            b = 0.
+            for B_l in B[out]:
+                tmp = B_l.defuzzify()
+                a += tmp * B_l(tmp)
+                b += B_l(tmp)
+            D[out] = a / b
+        return D
+
     def _product_evaluate(self, inputs):
         B = {out: [] for out in self.outputs}
         for rule in self.rules:
@@ -747,12 +774,13 @@ class T1Mamdani:
                                T1FS(consequent[1].domain, const_mf, [f]), 
                                consequent[1], product_t_norm)
                 B[consequent[0]].append(B_l)
-        C = {}
-        for out in self.outputs:
-            C[out] = T1FS(B[out][0].domain)
-            for B_l in B[out]:
-                C[out] = T1FS_OR(B_l.domain, C[out], B_l, max_s_norm)
-        return C
+        if self.defuzzification == "CoG":
+            return self._CoG(B)
+        elif self.defuzzification == "CoA":
+            return self._CoA(B)
+        else:
+            raise ValueError("The " + self.defuzzification + \
+                " defuzzification method is not implemented yet!")
 
     def _minimum_evaluate(self, inputs):
         B = {out: [] for out in self.outputs}
@@ -765,12 +793,13 @@ class T1Mamdani:
                                T1FS(consequent[1].domain, const_mf, [f]), 
                                consequent[1], min_t_norm)
                 B[consequent[0]].append(B_l)
-        C = {}
-        for out in self.outputs:
-            C[out] = T1FS(B[out][0].domain)
-            for B_l in B[out]:
-                C[out] = T1FS_OR(B_l.domain, C[out], B_l, max_s_norm)
-        return C
+        if self.defuzzification == "CoG":
+            return self._CoG(B)
+        elif self.defuzzification == "CoA":
+            return self._CoA(B)
+        else:
+            raise ValueError("The " + self.defuzzification + \
+                " defuzzification method is not implemented yet!")
 
     def _lukasiewicz_evaluate(self, inputs):
         B = {out: [] for out in self.outputs}
@@ -783,11 +812,13 @@ class T1Mamdani:
                 B_l = T1FS(consequent[1].domain, mf)
                 B[consequent[0]].append(B_l)
         C = {}
+        D = {}
         for out in self.outputs:
             C[out] = T1FS(B[out][0].domain, const_mf, [1])
             for B_l in B[out]:
                 C[out] = T1FS_AND(B_l.domain, C[out], B_l, min_t_norm)
-        return C
+            D[out] = C[out].defuzzify()
+        return C, D
 
     def _zadeh_evaluate(self, inputs):
         B = {out: [] for out in self.outputs}
@@ -803,11 +834,13 @@ class T1Mamdani:
                               max_s_norm)
                 B[consequent[0]].append(B_l)
         C = {}
+        D = {}
         for out in self.outputs:
-            C[out] = T1FS(B[out][0].domain)
+            C[out] = T1FS(B[out][0].domain, const_mf, [1])
             for B_l in B[out]:
                 C[out] = T1FS_AND(B_l.domain, C[out], B_l, min_t_norm)
-        return C
+            D[out] = C[out].defuzzify()
+        return C, D
 
     def _dienes_rescher_evaluate(self, inputs):
         B = {out: [] for out in self.outputs}
@@ -821,11 +854,13 @@ class T1Mamdani:
                               consequent[1], max_s_norm)
                 B[consequent[0]].append(B_l)
         C = {}
+        D = {}
         for out in self.outputs:
-            C[out] = T1FS(B[out][0].domain)
+            C[out] = T1FS(B[out][0].domain, const_mf, [1])
             for B_l in B[out]:
                 C[out] = T1FS_AND(B_l.domain, C[out], B_l, min_t_norm)
-        return C
+            D[out] = C[out].defuzzify()
+        return C, D
 
 
 class T1TSK:
@@ -851,7 +886,7 @@ class T1TSK:
     def add_rule(self, antecedent, consequent):
         self.rules.append((antecedent, consequent))
 
-    def evaluate(self, inputs):
+    def evaluate(self, inputs, params):
         F = []
         B = {out: 0. for out in self.outputs}
         for rule in self.rules:
@@ -860,7 +895,7 @@ class T1TSK:
                 f *= input_statement[1].mf(inputs[input_statement[0]], input_statement[1].params)
             F.append(f)
             for consequent in rule[1]:
-                B[consequent[0]] += f * consequent[1]
+                B[consequent[0]] += f * consequent[1](*params)
         f = npsum(F)
         for out in self.outputs:
             B[out] /= f

@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Thu Jul  2 11:35:28 2020
+Created on Sat Nov 28 10:32:55 2020
 
 @author: arslan
 """
 
 
-from pyit2fls import TSK, IT2FS_Gaussian_UncertStd, IT2FS_plot, \
-                     product_t_norm, max_s_norm
+from pyit2fls import T1FS, gaussian_mf, T1FS_plot, T1TSK
 from mpl_toolkits import mplot3d
 import matplotlib.pyplot as plt
 from matplotlib import cm
@@ -19,14 +18,39 @@ from time import time
 domain = linspace(0., 1., 100)
 
 X1, X2 = meshgrid(domain, domain)
-Y11 = X1 + X2 + 1.
-Y12 = 2. * X1 - X2 + 1.
-Y21 = 1.5 * X1 + 0.5 * X2 + 0.5
-Y22 = 1.5 * X1 - 0.5 * X2 + 0.5
-Y31 = 2. * X1 + 0.1 * X2 - 0.2
-Y32 = 0.5 * X1 + 0.1 * X2 + 0.
-Y41 = 4. * X1 - 0.5 * X2 - 1.
-Y42 = -0.5 * X1 + X2 - 0.5
+
+def y11(x1, x2):
+    return x1 + x2 + 1.
+
+def y12(x1, x2):
+    return 2. * x1 - x2 + 1.
+
+def y21(x1, x2):
+    return 1.5 * x1 + 0.5 * x2 + 0.5
+
+def y22(x1, x2):
+    return 1.5 * x1 - 0.5 * x2 + 0.5
+
+def y31(x1, x2):
+    return 2. * x1 + 0.1 * x2 - 0.2
+
+def y32(x1, x2):
+    return 0.5 * x1 + 0.1 * x2 + 0.
+
+def y41(x1, x2):
+    return 4. * x1 - 0.5 * x2 - 1.
+
+def y42(x1, x2):
+    return -0.5 * x1 + x2 - 0.5
+
+Y11 = y11(X1, X2)
+Y12 = y12(X1, X2)
+Y21 = y21(X1, X2)
+Y22 = y22(X1, X2)
+Y31 = y31(X1, X2)
+Y32 = y32(X1, X2)
+Y41 = y41(X1, X2)
+Y42 = y42(X1, X2)
 
 fig = plt.figure(figsize=plt.figaspect(0.25))
 ax = fig.add_subplot(1, 4, 1, projection="3d")
@@ -59,30 +83,31 @@ surf = ax.plot_surface(X1, X2, Y42, cmap=cm.coolwarm,
 plt.show()
 
 
-Small = IT2FS_Gaussian_UncertStd(domain, [0, 0.15, 0.1, 1.])
-Big = IT2FS_Gaussian_UncertStd(domain, [1., 0.15, 0.1, 1.])
-# IT2FS_plot(Small, Big, title="Sets", 
-#            legends=["Small", "Big"])
+Small = T1FS(domain, gaussian_mf, [0, 0.15, 1.])
+Big = T1FS(domain, gaussian_mf, [1., 0.15, 1.])
 
-myIT2FLS = TSK(product_t_norm, max_s_norm)
+T1FS_plot(Small, Big, title="Sets", 
+          legends=["Small", "Big"])
 
-myIT2FLS.add_input_variable("x1")
-myIT2FLS.add_input_variable("x2")
-myIT2FLS.add_output_variable("y1")
-myIT2FLS.add_output_variable("y2")
+SYS = T1TSK()
 
-myIT2FLS.add_rule([("x1", Small), ("x2", Small)], 
-                  [("y1", {"const":1., "x1":1., "x2":1.}), 
-                   ("y2", {"const":1., "x1":2., "x2":-1.})])
-myIT2FLS.add_rule([("x1", Small), ("x2", Big)], 
-                  [("y1", {"const":0.5, "x1":1.5, "x2":0.5}), 
-                   ("y2", {"const":0.5, "x1":1.5, "x2":-0.5})])
-myIT2FLS.add_rule([("x1", Big), ("x2", Small)], 
-                  [("y1", {"const":-0.2, "x1":2., "x2":0.1}), 
-                   ("y2", {"const":0., "x1":0.5, "x2":0.1})])
-myIT2FLS.add_rule([("x1", Big), ("x2", Big)], 
-                  [("y1", {"const":-1., "x1":4., "x2":-0.5}), 
-                   ("y2", {"const":-0.5, "x1":-0.5, "x2":1.})])
+SYS.add_input_variable("x1")
+SYS.add_input_variable("x2")
+SYS.add_output_variable("y1")
+SYS.add_output_variable("y2")
+
+SYS.add_rule([("x1", Small), ("x2", Small)], 
+             [("y1", y11), 
+              ("y2", y12)])
+SYS.add_rule([("x1", Small), ("x2", Big)], 
+             [("y1", y21), 
+              ("y2", y22)])
+SYS.add_rule([("x1", Big), ("x2", Small)], 
+             [("y1", y31), 
+              ("y2", y32)])
+SYS.add_rule([("x1", Big), ("x2", Big)], 
+             [("y1", y41), 
+              ("y2", y42)])
 
 
 Z1 = zeros(shape=X1.shape)
@@ -90,7 +115,7 @@ Z2 = zeros(shape=X1.shape)
 
 for i, x1 in zip(range(len(domain)), domain):
     for j, x2 in zip(range(len(domain)), domain):
-        z = myIT2FLS.evaluate({"x1":x1, "x2":x2})
+        z = SYS.evaluate({"x1":x1, "x2":x2}, params=(x1, x2))
         Z1[i, j], Z2[i, j] = z["y1"], z["y2"]
 
 
@@ -111,7 +136,6 @@ ax.zaxis.set_major_locator(LinearLocator(10))
 ax.zaxis.set_major_formatter(FormatStrFormatter('%.02f'))
 fig.colorbar(surf, shrink=0.5, aspect=5)
 plt.show()
-
 
 
 
