@@ -924,11 +924,96 @@ def T1FS_OR(domain, t1fs1, t1fs2, s_norm):
     return T1FS(domain, mf)
 
 class T1Mamdani:
+    """
+    Type 1 Mamdani Fuzzy Logic System.
 
+    Parameters
+    ----------
+    Parameters of the constructor function:
+
+    engine="Product":
+        str
+
+        Inference engine of the type 1 Mamdani fuzzy logic system. 
+        This parameters is a string an can be one of the following items: 
+        Product, Minimum, Lukasiewicz, Zadeh, and Dienes-Rescher.
+    
+    defuzzification="CoG":
+        str
+
+        Defuzzification method of the system. When Lukasiewicz, Zadeh, and Dienes-Rescher 
+        inference engines are selected, the defuzzification method is center of the 
+        gravity by default. But for Product and Minimum inference engines, defuzzification 
+        can be selected among the methods CoG and CoA.
+
+    Members
+    -------
+
+    inputs:
+        List of str
+
+        List of the inputs name as str.
+    
+    outputs:
+        List of str
+
+        List of the outputs name as str.
+
+    rules:
+        List of tuples (antacedent, consequent)
+
+        List of rules, which each rule is defined as a 
+        tuple (antecedent, consequent)
+        
+        Both antacedent and consequent are lists of tuples. Each tuple 
+        of this list shows assignement of a variable to an T1FS. 
+        First element of the tuple must be variable name (input or output) 
+        as a str and the second element must be an T1FS.
+
+    engine:
+        str
+
+        Indicates the engine selected by the user.
+    
+    defuzzification:
+        str
+
+        Indicates the defuzzification method selected by the user.
+
+    Functions
+    ---------
+
+    add_input_variable:
+        
+        Adds an input variable to the inputs list of the T1FLS.
+    
+    add_output_variable:
+        
+        Adds an output variable to the outputs list of the T1FLS.
+    
+    add_rule:
+        
+        Adds a rule to the rules list of the T1FLS.
+    
+    copy:
+        
+        Returns a copy of the type 1 Mamdani fuzzy logic system.
+    
+    evaluate:
+        
+        Evaluates the T1 Mamdani FLS's output for a specified crisp input.
+        The only input of the evaluate function is a dictionary named inputs 
+        in which the keys are input variable names as str and the values are 
+        the crisp value of inputs to be evaluated.
+        The output of the evaluate function is depended on the method selected 
+        while constructing the class. For more information, please refer to 
+        the examples.
+    """
     def __init__(self, engine="Product", defuzzification="CoG"):
         self.inputs = []
         self.outputs = []
         self.rules = []
+        self.engine = engine
         if engine == "Product":
             self.evaluate = self._product_evaluate
             self.defuzzification = defuzzification
@@ -943,15 +1028,65 @@ class T1Mamdani:
             self.evaluate = self._dienes_rescher_evaluate
         else:
             raise ValueError("The " + engine + " fuzzy inference engine is not implemented yet!")
-        
+    
+    def copy(self):
+        o = T1Mamdani(self.engine, self.defuzzification)
+        o.inputs = self.inputs.copy()
+        o.outputs = self.outputs.copy()
+        o.rules = self.rules.copy()
+        return o
     
     def add_input_variable(self, name):
+        """
+        Adds new input variable name.
+        
+        Parameters
+        ----------
+        
+        name:
+            str
+            
+            Name of the new input variable as a str.
+        """
         self.inputs.append(name)
     
     def add_output_variable(self, name):
+        """
+        Adds new output variable name.
+        
+        Parameters
+        ----------
+        
+        name:
+            str
+            
+            Name of the new output variable as a str.
+        """
         self.outputs.append(name)
 
     def add_rule(self, antecedent, consequent):
+        """
+        Adds a new rule to the rule base of the T1 Mamdani FLS.
+        
+        Parameters
+        ----------
+        
+        antecedent:
+            List of tuples
+            
+            Antecedent is a list of tuples in which each tuple indicates 
+            assignement of a variable to a T1FS. First element of the 
+            tuple must be input variable name as str, and the second 
+            element of the tuple must be a T1FS.
+            
+        consequent:
+            List of tuples
+            
+            Consequent is a list of tuples in which each tuple indicates 
+            assignement of a variable to a T1FS. First element of the 
+            tuple must be output variable name as str, and the second 
+            element of the tuple must be a T1FS.
+        """
         self.rules.append((antecedent, consequent))
 
     def _CoG(self, B):
@@ -1077,13 +1212,32 @@ class T1Mamdani:
 
 
 class T1TSK:
+    """
+    Type 1 TSK Fuzzy Logic System.
 
+    Parameters
+    ----------
+    Parameters of the constructor function:
+
+    The constructor function of the T1TSK class has no parameters.
+
+    Members
+    -------
+
+    Functions
+    ---------
+
+
+    """
     def __init__(self):
         self.inputs = []
         self.outputs = []
         self.rules = []
     
     def copy(self):
+        """
+        Returns a copy of the IT2FLS.
+        """
         o = T1TSK()
         o.inputs = self.inputs.copy()
         o.outputs = self.outputs.copy()
@@ -1091,15 +1245,85 @@ class T1TSK:
         return o
 
     def add_input_variable(self, name):
+        """
+        Adds new input variable name.
+        
+        Parameters
+        ----------
+        
+        name:
+            str
+            
+            Name of the new input variable as a str.
+        """
         self.inputs.append(name)
     
     def add_output_variable(self, name):
+        """
+        Adds new output variable name.
+        
+        Parameters
+        ----------
+        
+        name:
+            str
+            
+            Name of the new output variable as a str.
+        """
         self.outputs.append(name)
     
     def add_rule(self, antecedent, consequent):
+        """
+        Adds new rule to the rule base of the T1 TSK FLS.
+
+        Parameters
+        ----------
+
+        antecedent:
+            List of tuples
+            
+            Antecedent is a list of tuples in which each tuple indicates 
+            assignement of a variable to a T1FS. First element of the 
+            tuple must be input variable name as str, and the second 
+            element of the tuple must be a T1FS.
+        
+        consequent:
+            List of tuples
+
+            Consequent is a list of tuples in which each tuple indicates 
+            assignement of a variable to an output state. First element of the 
+            tuple must be output vriable name as str, and the second element 
+            of the tuple must be a function.
+        """
         self.rules.append((antecedent, consequent))
 
     def evaluate(self, inputs, params):
+        """
+        Evaluates the T1 TSK FLS based on the crisp inputs given by the user.
+
+        Parameters
+        ----------
+        inputs:
+            dictionary
+
+            Inputs is a dictionary, which the keys are input variable 
+            names as str and the values are the crisp value of the inputs to 
+            be evaluated.
+
+        params:
+            tuple
+
+            This tuple is the parameters of the functions assigned to the 
+            consequents of the system rules.
+
+        Returns
+        -------
+        O:
+            dictionary
+
+            The output is a dictionary, which the keys are output variable 
+            names as str and the values are the crisp output of the system.
+        """
         F = []
         B = {out: 0. for out in self.outputs}
         for rule in self.rules:
@@ -3488,7 +3712,7 @@ class IT2FLS:
             raise ValueError("The method " + method + " is not implemented yet!")
 
 
-class IT2TSK:
+class TSK:
 
     def __init__(self, t_norm, s_norm):
         self.inputs = []
@@ -3641,7 +3865,7 @@ class IT2TSK:
             O[output] = crisp(o)
         return O
 
-class IT2Mamdani:
+class Mamdani:
     """
     Interval Type 2 Mamadani Fuzzy Logic System.
     
@@ -3689,12 +3913,12 @@ class IT2Mamdani:
     inputs:
         List of str
         
-        List of names of inputs as str
+        List of the inputs name as str
     
     output:
         List of str
         
-        List of names ot outputs as str
+        List of the outputs name as str
         
     rules:
         List of tuples (antecedent, consequent)
@@ -3724,7 +3948,7 @@ class IT2Mamdani:
     
     copy:
         
-        Returns a copy of the IT2FLS.
+        Returns a copy of the interval type 2 mamdani fuzzy logic system.
     
     evaluate:
         
@@ -3769,6 +3993,8 @@ class IT2Mamdani:
             self.__algorithm = LBMM_algorithm
         elif algorithm == "NT":
             self.__algorithm = NT_algorithm
+        elif callable(algorithm):
+            self.__algorithm = algorithm
         else:
             raise ValueError("The algorithm, " + algorithm + ", is not implemented yet!")
 
