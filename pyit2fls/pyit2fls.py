@@ -637,7 +637,7 @@ def gbell_mf(x, params):
     Examples
     --------
 
-    >>> x = linspace(0, 1, 201)
+    >>> x = linspace(0., 1., 201)
     >>> membership_value = gbell_mf(x, [0.1, 1., 0.5, 1.])
 
     """
@@ -646,13 +646,59 @@ def gbell_mf(x, params):
 
 
 class T1FS:
+    """ Type 1 Fuzzy Set (T1FS).
+       
+        Parameters
+        ----------
+        Parameters of the constructor function:
+        
+        domain:
+            numpy (n,) shaped array
+            
+            Indicates the universe of discourse dedicated to the T1FS.
+        
+        mf:
+            Membership function
+        
+        params:
+            List of parameters of the membership function
+            
+        Functions
+        ----------
+        Functions defined in T1FS class:
+        
+            copy:
+                Returns a copy of the T1FS.
 
+            plot:
+                Plots the T1FS.
+
+            negation operator -:
+                Returns the negated T1FS.
+        
+        Examples
+        --------
+        
+        >>> mySet = T1FS(linspace(0., 1., 100), 
+                         trapezoid_mf, [0, 0.4, 0.6, 1., 1.])
+        >>> mySet.plot()
+        
+        """
     def __init__(self, domain, mf=zero_mf, params=[]):
         self.domain = domain
         self.mf = mf
         self.params = params
     
     def copy(self):
+        """
+        Copies the T1FS.
+        
+        Returns
+        -------
+        T1FS
+        
+        Returns a copy of the T1FS.
+        """
         return T1FS(self.domain, self.mf, self.params)
 
     def __call__(self, x):
@@ -668,12 +714,61 @@ class T1FS:
         return int1 / int2
 
     def defuzzify(self, method="CoG"):
+        """
+        Defuzzifies the type 1 fuzzy set.
+
+        Parameters
+        ----------
+        method:
+            str
+
+            Must be one of the methods listed below:
+            1. CoG: Center of gravity
+        
+        Returns
+        -------
+        float
+        
+        Defuzzified crisp output.
+        """
         if method == "CoG":
             return self._CoG()
         else:
             raise ValueError("The method" + method + " is not implemented yet!")
 
     def plot(self, filename=None, title=None, legend_text=None):
+        """
+        Plots the T1FS.
+        
+        Parameters
+        ----------
+        title:
+            str
+            
+            If it is set, it indicates the title which would be 
+            represented in the plot. If it is not set, the plot would not 
+            have a title.
+        
+        legend_text:
+            str
+            
+            If it is set, it indicates the legend text which would 
+            be represented in the plot. If it is not set, the plot would 
+            not contain a legend.
+        
+        filename:
+            str
+            
+            If it is set, the plot would be saved as a filename + ".pdf" 
+            file.
+        
+        Examples
+        --------
+        
+        >>> mySet = T1FS(linspace(0., 1., 100), 
+                         trapezoid_mf, [0, 0.4, 0.6, 1., 1.])
+        >>> mySet.plot(filename="mySet")
+        """
         plt.figure()
         plt.plot(self.domain, self.mf(self.domain, self.params))
         if legend_text is not None:
@@ -688,6 +783,42 @@ class T1FS:
         plt.show()
 
 def T1FS_plot(*sets, filename=None, title=None, legends=None):
+    """
+    Plots multiple T1FSs together in the same figure.
+    
+    Parameters
+    ----------
+    *sets:
+        Multiple number of T1FSs which would be plotted.
+    
+    title:
+        str
+        
+        If it is set, it indicates the title which would be 
+        represented in the plot. If it is not set, the plot would not 
+        have a title.
+        
+    legends:
+        List of strs
+        
+        List of legend texts to be presented in plot. If it is not 
+        set, no legend would be in plot.
+        
+    filename:
+        str
+        
+        If it is set, the plot would be saved as a filename + ".pdf" 
+        file.
+        
+    Examples
+    --------
+    
+    >>> domain = linspace(0., 1., 100)
+    >>> t1fs1 = T1FS(domain, gaussian_mf, [0.33, 0.2, 1.])
+    >>> t1fs2 = T1FS(domain, gaussian_mf, [0.66, 0.2, 1.])
+    >>> IT2FS_plot(t1fs1, t1fs2, title="Plotting T1FSs", 
+                   legends=["First set", "Second set"])
+    """
     plt.figure()
     for t1fs in sets:
         plt.plot(t1fs.domain, t1fs.mf(t1fs.domain, t1fs.params))
@@ -703,10 +834,92 @@ def T1FS_plot(*sets, filename=None, title=None, legends=None):
     plt.show()
 
 def T1FS_AND(domain, t1fs1, t1fs2, t_norm):
+    """
+    And operator for T1FSs.
+    
+    Parameters
+    ----------
+    
+    domain:
+        numpy (n,) shaped array
+        
+        Indicates the universe of discourse dedicated to the output T1FS.
+    
+    t1fs1:
+        T1FS
+        
+        First input of the and operator.
+        
+    t1fs2:
+        T1FS
+        
+        Second input of the and operator.
+    
+    t_norm:
+        function
+        
+        The t-norm function to be used.
+    
+    Returns
+    -------
+    T1FS
+    
+    Returns the and of the two input T1FSs.
+    
+    Examples
+    --------
+    
+    >>> domain = linspace(0., 1., 100)
+    >>> t1fs1 = T1FS(domain, gaussian_mf, [0.33, 0.2, 1.])
+    >>> t1fs2 = T1FS(domain, gaussian_mf, [0.66, 0.2, 1.])
+    >>> t1fs3 = T1FS_AND(domain, t1fs1, t1fs2, min_t_norm)
+    >>> t1fs3.plot()
+    """
     mf = lambda x, params: t_norm(t1fs1.mf(x, t1fs1.params), t1fs2.mf(x, t1fs2.params))
     return T1FS(domain, mf)
 
 def T1FS_OR(domain, t1fs1, t1fs2, s_norm):
+    """
+    Or operator for T1FSs.
+    
+    Parameters
+    ----------
+    
+    domain:
+        numpy (n,) shaped array
+        
+        Indicates the universe of discourse dedicated to the output T1FS.
+    
+    t1fs1:
+        T1FS
+        
+        First input of the or operator.
+        
+    t1fs2:
+        T1FS
+        
+        Second input of the or operator.
+    
+    s_norm:
+        function
+        
+        The s-norm function to be used.
+    
+    Returns
+    -------
+    T1FS
+    
+    Returns the or of the two input T1FSs.
+    
+    Examples
+    --------
+    
+    >>> domain = linspace(0., 1., 100)
+    >>> t1fs1 = T1FS(domain, gaussian_mf, [0.33, 0.2, 1.])
+    >>> t1fs2 = T1FS(domain, gaussian_mf, [0.66, 0.2, 1.])
+    >>> t1fs3 = T1FS_OR(domain, t1fs1, t1fs2, max_s_norm)
+    >>> t1fs3.plot()
+    """
     mf = lambda x, params: s_norm(t1fs1.mf(x, t1fs1.params), t1fs2.mf(x, t1fs2.params))
     return T1FS(domain, mf)
 
@@ -1816,14 +2029,14 @@ def meet(domain, it2fs1, it2fs2, t_norm):
     -------
     IT2FS
     
-    Return the meet of to input IT2FSs.
+    Returns the meet of the two input IT2FSs.
     
     Examples
     --------
     
     >>> domain = linspace(0., 1., 100)
-    >>> it2fs1 = IT2FS_Gaussian_UncertStd(domain, [0.33, 0.2, 0.05])
-    >>> it2fs2 = IT2FS_Gaussian_UncertStd(domain, [0.66, 0.2, 0.05])
+    >>> it2fs1 = IT2FS_Gaussian_UncertStd(domain, [0.33, 0.2, 0.05, 1.])
+    >>> it2fs2 = IT2FS_Gaussian_UncertStd(domain, [0.66, 0.2, 0.05, 1.])
     >>> it2fs3 = meet(domain, it2fs1, it2fs2, min_t_norm)
     >>> it2fs3.plot()
     """
@@ -1866,14 +2079,14 @@ def join(domain, it2fs1, it2fs2, s_norm):
     -------
     IT2FS
     
-    Return the join of to input IT2FSs.
+    Returns the join of the two input IT2FSs.
     
     Examples
     --------
     
     >>> domain = linspace(0., 1., 100)
-    >>> it2fs1 = IT2FS_Gaussian_UncertStd(domain, [0.33, 0.2, 0.05])
-    >>> it2fs2 = IT2FS_Gaussian_UncertStd(domain, [0.66, 0.2, 0.05])
+    >>> it2fs1 = IT2FS_Gaussian_UncertStd(domain, [0.33, 0.2, 0.05, 1.])
+    >>> it2fs2 = IT2FS_Gaussian_UncertStd(domain, [0.66, 0.2, 0.05, 1.])
     >>> it2fs3 = join(domain, it2fs1, it2fs2, max_s_norm)
     >>> it2fs3.plot()
     """
@@ -3275,7 +3488,7 @@ class IT2FLS:
             raise ValueError("The method " + method + " is not implemented yet!")
 
 
-class TSK:
+class IT2TSK:
 
     def __init__(self, t_norm, s_norm):
         self.inputs = []
@@ -3428,7 +3641,7 @@ class TSK:
             O[output] = crisp(o)
         return O
 
-class Mamdani:
+class IT2Mamdani:
     """
     Interval Type 2 Mamadani Fuzzy Logic System.
     
@@ -3530,7 +3743,7 @@ class Mamdani:
     """
     def __init__(self, t_norm, s_norm, 
                  method="Centroid", method_params=[], 
-                 algorithm=EIASC_algorithm, algorithm_params=[]):
+                 algorithm="EIASC", algorithm_params=[]):
         self.inputs = []
         self.outputs = []
         self.rules = []
@@ -3538,7 +3751,27 @@ class Mamdani:
         self.__s_norm = s_norm
         self.__method = method
         self.__method_params = method_params
-        self.__algorithm = algorithm
+        if algorithm == "KM":
+            self.__algorithm = KM_algorithm
+        elif algorithm == "EKM":
+            self.__algorithm = EKM_algorithm
+        elif algorithm == "WEKM":
+            self.__algorithm = WEKM_algorithm
+        elif algorithm == "TWEKM":
+            self.__algorithm = TWEKM_algorithm
+        elif algorithm == "EIASC":
+            self.__algorithm = EIASC_algorithm
+        elif algorithm == "WM":
+            self.__algorithm = WM_algorithm
+        elif algorithm == "BMM":
+            self.__algorithm = BMM_algorithm
+        elif algorithm == "LBMM":
+            self.__algorithm = LBMM_algorithm
+        elif algorithm == "NT":
+            self.__algorithm = NT_algorithm
+        else:
+            raise ValueError("The algorithm, " + algorithm + ", is not implemented yet!")
+
         self.__algorithm_params = algorithm_params
         if method == "Centroid":
             self.evaluate = self.__Mamdani_Centroid
@@ -3551,7 +3784,7 @@ class Mamdani:
         elif method == "ModiHe":
             self.evaluate = self.__Mamdani_ModiHe
         else:
-            raise ValueError("The method " + method + " is not implemented yet!")
+            raise ValueError("The method, " + method + ", is not implemented yet!")
 
     def __repr__(self):
         # TODO!
