@@ -644,7 +644,6 @@ def gbell_mf(x, params):
     return params[3] / (1 + npabs((x - params[2]) / params[0]) ** (2 * params[1]))
 
 
-
 class T1FS:
     """ Type 1 Fuzzy Set (T1FS).
        
@@ -952,12 +951,12 @@ class T1Mamdani:
     inputs:
         List of str
 
-        List of the inputs name as str.
+        List of the inputs names as str.
     
     outputs:
         List of str
 
-        List of the outputs name as str.
+        List of the outputs names as str.
 
     rules:
         List of tuples (antacedent, consequent)
@@ -966,9 +965,9 @@ class T1Mamdani:
         tuple (antecedent, consequent)
         
         Both antacedent and consequent are lists of tuples. Each tuple 
-        of this list shows assignement of a variable to an T1FS. 
+        of this list shows assignement of a variable to a T1FS. 
         First element of the tuple must be variable name (input or output) 
-        as a str and the second element must be an T1FS.
+        as a str and the second element must be a T1FS.
 
     engine:
         str
@@ -1224,9 +1223,45 @@ class T1TSK:
     Members
     -------
 
+    inputs:
+        List of str
+
+        List of the inputs names as str.
+    
+    outputs:
+        List of str
+
+        List of the outputs names as str.
+
+    rules:
+        List of tuples (antacedent, consequent)
+
+        List of rules, which each rule is defined as a 
+        tuple (antecedent, consequent)
+        
+
     Functions
     ---------
 
+    add_input_variable:
+        
+        Adds an input variable to the inputs list of the T1 TSK FLS.
+    
+    add_output_variable:
+        
+        Adds an output variable to the outputs list of the T1 TSK FLS.
+    
+    add_rule:
+        
+        Adds a rule to the rules list of the T1 TSK FLS.
+    
+    copy:
+        
+        Returns a copy of the T1 TSK FLS.
+    
+    evaluate:
+
+        Evaluates the T1 TSK FLS based on the crisp inputs given by the user.
 
     """
     def __init__(self):
@@ -1293,7 +1328,7 @@ class T1TSK:
             Consequent is a list of tuples in which each tuple indicates 
             assignement of a variable to an output state. First element of the 
             tuple must be output vriable name as str, and the second element 
-            of the tuple must be a function.
+            of the tuple must be a callable object.
         """
         self.rules.append((antecedent, consequent))
 
@@ -3712,7 +3747,7 @@ class IT2FLS:
             raise ValueError("The method " + method + " is not implemented yet!")
 
 
-class TSK:
+class IT2TSK:
 
     def __init__(self, t_norm, s_norm):
         self.inputs = []
@@ -3865,7 +3900,7 @@ class TSK:
             O[output] = crisp(o)
         return O
 
-class Mamdani:
+class IT2Mamdani:
     """
     Interval Type 2 Mamadani Fuzzy Logic System.
     
@@ -3936,15 +3971,15 @@ class Mamdani:
     
     add_input_variable:
         
-        Adds an input variable to the inputs list of the IT2FLS.
+        Adds an input variable to the inputs list of the IT2 Mamdani FLS.
     
     add_output_variable:
         
-        Adds an output variable to the outputs list of the IT2FLS.
+        Adds an output variable to the outputs list of the IT2 Mamdani FLS.
     
     add_rule:
         
-        Adds a rule to the rules list of the IT2FLS.
+        Adds a rule to the rules list of the IT2 Mamdani FLS.
     
     copy:
         
@@ -4180,6 +4215,8 @@ class Mamdani:
         return TR
     
     
+TSK = IT2TSK
 
+Mamdani = IT2Mamdani
 
 
