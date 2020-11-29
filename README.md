@@ -35,10 +35,15 @@ Or you can use pip3:
 ## Versions
 
 ### Features coming up in the next version
+- [ ] Supporting Generalized Type 2 Fuzzy Sets and Systems.
 - [ ] Speeding up the codes using the Python/C API.
+
+### Some notes on version 0.6
+- [x] Supporting Type 1 Fuzzy Sets and Systems.
 - [x] Supporting elliptic and semi-elliptic membership functions.
-- [x] Supporting generalized bell shaped membership funcion.
+- [x] Supporting generalized bell shaped membership function.
 - [x] Supporting many new t-norms and s-norms.
+- [x] Some bugs are fixed in this vesion.
 
 ### Some notes on version 0.5
 - [x] Supporting both Mamdani and TSK systems.
@@ -69,6 +74,11 @@ There are some examples provided along with the toolkit which are as below:
 * [Ex8](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_8.py): Defining a simple multi-input multi-output IT2 TSK FLS. **(PyIT2FLS v0.5.0 and upper)**
 * [Ex9](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_9.py): Defining a multi-input multi-output IT2 TSK FLS and plotting the 3D resulting output planes. **(PyIT2FLS v0.5.0 and upper)**
 * [Ex10](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_10.py): Defining a multi-input multi-output IT2FLS with different domains for each of input and output variables, and plotting the output surfaces of the system. **(PyIT2FLS v0.5.0 and upper)**
+* [Ex11](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_11.py): Generating random rule-base. **(PyIT2FLS v0.5.0 and upper)**
+* [Ex12](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_12.py): Using six different t-norms with meet operator. **(PyIT2FLS v0.6.0 and upper)**
+* [Ex13](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_13.py): Using six different s-norms with join operator. **(PyIT2FLS v0.6.0 and upper)**
+* [Ex14](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_14.py): MIMO Type 1 Mamdani Fuzzy Logic System. **(PyIT2FLS v0.6.0 and upper)**
+* [Ex15](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_15.py): MIMO Type 1 TSK Fuzzy Logic System. **(PyIT2FLS v0.6.0 and upper)**
 
 ### Some output plots
 

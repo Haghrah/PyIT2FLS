@@ -29,7 +29,6 @@ def ts(y, t):
     return t[t.size - where(yy>tol)[0][0]]
 
 # %%
-
 def u(t):
     return 1. if t > 1. else 0.
 
@@ -110,7 +109,7 @@ def raw_sys(Y, t, K, T, L):
 def cl_sys(Y, t, K, T, L):
     return array([(-1. / T) * Y[0](t) + (K / T) * (u(t - L) - Y[0](t - L))])
 
-def model_KM(Y, t, K, T, L, Ka, Kb, Ke, Kd):
+def model_fuzzy(Y, t, K, T, L, Ka, Kb, Ke, Kd, eval_func):
     y2 = Y[1](t)
     y1d = Y[0](t - L)
     y2d = Y[1](t - L)
@@ -119,59 +118,7 @@ def model_KM(Y, t, K, T, L, Ka, Kb, Ke, Kd):
     xd1 = eval_IT2FPID_KM(min(max(Ke * e1, -1), 1), min(max(Kd * de1, -1), 1))
     e2 = u(t - L - 0.01) - Y[0](t - L - 0.01)
     de2 = u_dot(t - L - 0.01) - Y[1](t - L - 0.01)
-    xd2 = eval_IT2FPID_KM(min(max(Ke * e2, -1), 1), min(max(Kd * de2, -1), 1))
-    dxd = (xd1 - xd2) / 0.01
-    return array([y2, (-1./T) * y2 + (K * Ka / T) * dxd + (K * Kb / T) * xd1])
-
-def model_EIASC(Y, t, K, T, L, Ka, Kb, Ke, Kd):
-    y2 = Y[1](t)
-    y1d = Y[0](t - L)
-    y2d = Y[1](t - L)
-    e1 = u(t - L) - y1d
-    de1 = u_dot(t - L) - y2d
-    xd1 = eval_IT2FPID_EIASC(min(max(Ke * e1, -1), 1), min(max(Kd * de1, -1), 1))
-    e2 = u(t - L - 0.01) - Y[0](t - L - 0.01)
-    de2 = u_dot(t - L - 0.01) - Y[1](t - L - 0.01)
-    xd2 = eval_IT2FPID_EIASC(min(max(Ke * e2, -1), 1), min(max(Kd * de2, -1), 1))
-    dxd = (xd1 - xd2) / 0.01
-    return array([y2, (-1./T) * y2 + (K * Ka / T) * dxd + (K * Kb / T) * xd1])
-
-def model_WM(Y, t, K, T, L, Ka, Kb, Ke, Kd):
-    y2 = Y[1](t)
-    y1d = Y[0](t - L)
-    y2d = Y[1](t - L)
-    e1 = u(t - L) - y1d
-    de1 = u_dot(t - L) - y2d
-    xd1 = eval_IT2FPID_WM(min(max(Ke * e1, -1), 1), min(max(Kd * de1, -1), 1))
-    e2 = u(t - L - 0.01) - Y[0](t - L - 0.01)
-    de2 = u_dot(t - L - 0.01) - Y[1](t - L - 0.01)
-    xd2 = eval_IT2FPID_WM(min(max(Ke * e2, -1), 1), min(max(Kd * de2, -1), 1))
-    dxd = (xd1 - xd2) / 0.01
-    return array([y2, (-1./T) * y2 + (K * Ka / T) * dxd + (K * Kb / T) * xd1])
-
-def model_BMM(Y, t, K, T, L, Ka, Kb, Ke, Kd):
-    y2 = Y[1](t)
-    y1d = Y[0](t - L)
-    y2d = Y[1](t - L)
-    e1 = u(t - L) - y1d
-    de1 = u_dot(t - L) - y2d
-    xd1 = eval_IT2FPID_BMM(min(max(Ke * e1, -1), 1), min(max(Kd * de1, -1), 1))
-    e2 = u(t - L - 0.01) - Y[0](t - L - 0.01)
-    de2 = u_dot(t - L - 0.01) - Y[1](t - L - 0.01)
-    xd2 = eval_IT2FPID_BMM(min(max(Ke * e2, -1), 1), min(max(Kd * de2, -1), 1))
-    dxd = (xd1 - xd2) / 0.01
-    return array([y2, (-1./T) * y2 + (K * Ka / T) * dxd + (K * Kb / T) * xd1])
-
-def model_NT(Y, t, K, T, L, Ka, Kb, Ke, Kd):
-    y2 = Y[1](t)
-    y1d = Y[0](t - L)
-    y2d = Y[1](t - L)
-    e1 = u(t - L) - y1d
-    de1 = u_dot(t - L) - y2d
-    xd1 = eval_IT2FPID_NT(min(max(Ke * e1, -1), 1), min(max(Kd * de1, -1), 1))
-    e2 = u(t - L - 0.01) - Y[0](t - L - 0.01)
-    de2 = u_dot(t - L - 0.01) - Y[1](t - L - 0.01)
-    xd2 = eval_IT2FPID_NT(min(max(Ke * e2, -1), 1), min(max(Kd * de2, -1), 1))
+    xd2 = eval_func(min(max(Ke * e2, -1), 1), min(max(Kd * de2, -1), 1))
     dxd = (xd1 - xd2) / 0.01
     return array([y2, (-1./T) * y2 + (K * Ka / T) * dxd + (K * Kb / T) * xd1])
 
@@ -200,39 +147,39 @@ y_raw = ddeint(raw_sys, [g1], tt, fargs=(K, T, L, ))
 y_cl = ddeint(cl_sys, [g1], tt, fargs=(K, T, L, ))
 
 print("KM evaluation start!")
-y_it2fpid_KM = ddeint(model_KM, [g1, g2], tt, fargs=(K, T, L, 0.25, 4.25, 0.8, 0.5, ))
+y_it2fpid_KM = ddeint(model_fuzzy, [g1, g2], tt, 
+                      fargs=(K, T, L, 0.25, 4.25, 0.8, 0.5, eval_IT2FPID_KM, ))
 
 print("EIASC evaluation start!")
-y_it2fpid_EIASC = ddeint(model_EIASC, [g1, g2], tt, fargs=(K, T, L, 0.25, 4.25, 0.8, 0.5, ))
+y_it2fpid_EIASC = ddeint(model_fuzzy, [g1, g2], tt, 
+                         fargs=(K, T, L, 0.25, 4.25, 0.8, 0.5, eval_IT2FPID_EIASC, ))
 
 print("WM evaluation start!")
-y_it2fpid_WM = ddeint(model_WM, [g1, g2], tt, fargs=(K, T, L, 0.25, 4.25, 0.8, 0.5, ))
+y_it2fpid_WM = ddeint(model_fuzzy, [g1, g2], tt, 
+                      fargs=(K, T, L, 0.25, 4.25, 0.8, 0.5, eval_IT2FPID_WM, ))
 
 print("BMM evaluation start!")
-y_it2fpid_BMM = ddeint(model_BMM, [g1, g2], tt, fargs=(K, T, L, 0.25, 4.25, 0.8, 0.5, ))
+y_it2fpid_BMM = ddeint(model_fuzzy, [g1, g2], tt, 
+                       fargs=(K, T, L, 0.25, 4.25, 0.8, 0.5, eval_IT2FPID_BMM, ))
 
 print("NT evaluation start!")
-y_it2fpid_NT = ddeint(model_NT, [g1, g2], tt, fargs=(K, T, L, 0.25, 4.25, 0.8, 0.5, ))
-
-figure()
-
+y_it2fpid_NT = ddeint(model_fuzzy, [g1, g2], tt, 
+                      fargs=(K, T, L, 0.25, 4.25, 0.8, 0.5, eval_IT2FPID_NT, ))
 
 ref = array([u(t) for t in tt])
 
+figure()
 plot(tt, ref, label="Reference")
 plot(tt, y_it2fpid_KM[:,0], label="KM", linewidth=1.)
 plot(tt, y_it2fpid_EIASC[:,0], label="EIASC", linewidth=1.)
 plot(tt, y_it2fpid_WM[:,0], label="WM", linewidth=1.)
 plot(tt, y_it2fpid_BMM[:,0], label="BMM", linewidth=1.)
 plot(tt, y_it2fpid_NT[:,0], label="NT", linewidth=1.)
-
-
 legend()
 xlabel("Time (s)")
 ylabel("System response")
 grid(True)
-
-#savefig("delay_pid_case1_comp.pdf", format="pdf", dpi=300, bbox_inches="tight")
+savefig("delay_pid_case1_comp.pdf", format="pdf", dpi=300, bbox_inches="tight")
 show()
 
 

@@ -34,6 +34,16 @@ LearningSet = []
 for i in range(200, 200 + L):
     LearningSet.append([[mg[i], mg[i - 1], mg[i - 2]], mg[i + 1]])
 
+it2fls = IT2FLS()
+it2fls.add_input_variable("A")
+it2fls.add_input_variable("B")
+it2fls.add_input_variable("C")
+it2fls.add_output_variable("O")
+
+it2fls.add_rule([("A", ), ("B", ), ("C", )], [("O", )])
+it2fls.add_rule([("A", ), ("B", ), ("C", )], [("O", )])
+it2fls.add_rule([("A", ), ("B", ), ("C", )], [("O", )])
+
 def calculate(x, i):
     A1 = IT2FS_Gaussian_UncertStd(domain, np.append(x[:3], 1))
     A2 = IT2FS_Gaussian_UncertStd(domain, np.append(x[3:6], 1))
@@ -51,21 +61,9 @@ def calculate(x, i):
     O2 = IT2FS_Gaussian_UncertStd(domain, np.append(x[30:33], 1))
     O3 = IT2FS_Gaussian_UncertStd(domain, np.append(x[33:36], 1))
     
-    it2fls = IT2FLS()
-    it2fls.add_input_variable("A")
-    it2fls.add_input_variable("B")
-    it2fls.add_input_variable("C")
-    it2fls.add_output_variable("O")
-    
-    it2fls.add_rule([("A", A1), ("B", B1), ("C", C1)], [("O", O1)])
-    #it2fls.add_rule([("A", A2), ("B", B2), ("C", C2)], [("O", O2)])
-    #it2fls.add_rule([("A", A3), ("B", B3), ("C", C3)], [("O", O3)])
-    #it2fls.add_rule([("A", A1), ("B", B1), ("C", C1)], [("O", O1)])
-    it2fls.add_rule([("A", A2), ("B", B2), ("C", C2)], [("O", O2)])
-    #it2fls.add_rule([("A", A3), ("B", B3), ("C", C3)], [("O", O3)])
-    #it2fls.add_rule([("A", A1), ("B", B1), ("C", C1)], [("O", O1)])
-    #it2fls.add_rule([("A", A2), ("B", B2), ("C", C2)], [("O", O2)])
-    it2fls.add_rule([("A", A3), ("B", B3), ("C", C3)], [("O", O3)])
+    it2fls.rules[0] = ([("A", A1), ("B", B1), ("C", C1)], [("O", O1)])
+    it2fls.rules[1] = ([("A", A2), ("B", B2), ("C", C2)], [("O", O2)])
+    it2fls.rules[2] = ([("A", A3), ("B", B3), ("C", C3)], [("O", O3)])
     
     tr = it2fls.evaluate({"A":i[0], "B":i[1], "C":i[2]}, 
                         min_t_norm, max_s_norm, domain, method="Height", 
@@ -90,21 +88,9 @@ def cost_func(x):
     O2 = IT2FS_Gaussian_UncertStd(domain, np.append(x[30:33], 1))
     O3 = IT2FS_Gaussian_UncertStd(domain, np.append(x[33:36], 1))
     
-    it2fls = IT2FLS()
-    it2fls.add_input_variable("A")
-    it2fls.add_input_variable("B")
-    it2fls.add_input_variable("C")
-    it2fls.add_output_variable("O")
-    
-    it2fls.add_rule([("A", A1), ("B", B1), ("C", C1)], [("O", O1)])
-    #it2fls.add_rule([("A", A2), ("B", B2), ("C", C2)], [("O", O2)])
-    #it2fls.add_rule([("A", A3), ("B", B3), ("C", C3)], [("O", O3)])
-    #it2fls.add_rule([("A", A1), ("B", B1), ("C", C1)], [("O", O1)])
-    it2fls.add_rule([("A", A2), ("B", B2), ("C", C2)], [("O", O2)])
-    #it2fls.add_rule([("A", A3), ("B", B3), ("C", C3)], [("O", O3)])
-    #it2fls.add_rule([("A", A1), ("B", B1), ("C", C1)], [("O", O1)])
-    #it2fls.add_rule([("A", A2), ("B", B2), ("C", C2)], [("O", O2)])
-    it2fls.add_rule([("A", A3), ("B", B3), ("C", C3)], [("O", O3)])
+    it2fls.rules[0] = ([("A", A1), ("B", B1), ("C", C1)], [("O", O1)])
+    it2fls.rules[1] = ([("A", A2), ("B", B2), ("C", C2)], [("O", O2)])
+    it2fls.rules[2] = ([("A", A3), ("B", B3), ("C", C3)], [("O", O3)])
     
     err = 0
     for L in LearningSet:
@@ -115,10 +101,6 @@ def cost_func(x):
         err += ((o[0] + o[1]) / 2 - L[1]) ** 2
     return err / len(LearningSet)
 
-x = np.random.random(size=(36,))
-e = cost_func(x)
-print(e)
-
 
 def solution_generator():
     return 1.5 * np.random.rand(12 * 3)
@@ -126,21 +108,17 @@ def solution_generator():
 def velocity_generator():
     return 0.25 * np.random.rand(12 * 3)
 
-mySolver = PyPSO.PyPSO(cost_func, 50, 200, solution_generator, velocity_generator)
+mySolver = PyPSO.PyPSO(cost_func, 50, 75, solution_generator, velocity_generator)
 conv = mySolver.solve()
 
 
 plt.figure()
-
 plt.plot(conv)
 plt.grid(True)
 plt.xlabel("Iteration")
 plt.ylabel("MSE")
-
 plt.savefig("convergence.pdf", format="pdf", dpi=300, bbox_inches="tight")
-
 plt.show()
-
 
 out = []
 correct = []
@@ -148,24 +126,19 @@ for i in range(200, 200 + L):
     out.append(calculate(mySolver.best_known_position, [mg[i], mg[i - 1], mg[i - 2]]))
     correct.append(mg[i + 1])
 
-
 out = np.array(out)
 correct = np.array(correct)
 error = np.abs(out - correct)
 
 plt.figure()
-
 plt.plot(out, linewidth=1.)
 plt.plot(correct, linewidth=1.)
 plt.plot(error, linewidth=1.)
-
 plt.grid(True)
 plt.legend(["Predicted", "Real", "Error"], loc=1)
 plt.xlabel("t")
 plt.ylabel("y(t)")
-
 plt.savefig("MackeyGlassSO1.pdf", format="pdf", dpi=300, bbox_inches="tight")
-
 plt.show()
 
 
@@ -174,25 +147,19 @@ correct = []
 for i in range(200 + L, 200 + 2 * L):
     out.append(calculate(mySolver.best_known_position, [mg[i], mg[i - 1], mg[i - 2]]))
     correct.append(mg[i + 1])
-
-
 out = np.array(out)
 correct = np.array(correct)
 error = np.abs(out - correct)
 
 plt.figure()
-
 plt.plot(out, linewidth=1.)
 plt.plot(correct, linewidth=1.)
 plt.plot(error, linewidth=1.)
-
 plt.grid(True)
 plt.legend(["Predicted", "Real", "Error"], loc=1)
 plt.xlabel("t")
 plt.ylabel("y(t)")
-
 plt.savefig("MackeyGlassSO2.pdf", format="pdf", dpi=300, bbox_inches="tight")
-
 plt.show()
 
 
