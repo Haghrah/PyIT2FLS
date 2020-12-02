@@ -5,7 +5,7 @@ Some extra explanations and examples about the PyIT2FLS are provided on the page
 0. [General description about the PyIT2FLS.](https://haghrah.github.io/PyIT2FLS/index.html)
 1. [Defining different Interval Type 2 Fuzzy Sets.](https://haghrah.github.io/PyIT2FLS/defIT2FS.html)
 2. [T-norms ans s-norms.](https://haghrah.github.io/PyIT2FLS/Xnorm.html)
-3. [AND and OR operator for T1FSs](https://haghrah.github.io/PyIT2FLS/T1FSOp.html)
+3. [AND and OR operators for T1FSs](https://haghrah.github.io/PyIT2FLS/T1FSOp.html)
 4. [Using Meet and Join operators.](https://haghrah.github.io/PyIT2FLS/meetjoin.html)
 5. [Defining new T-norms and S-norms.](https://haghrah.github.io/PyIT2FLS/defXnorm.html)
 6. [Type reduction algorithms.](https://haghrah.github.io/PyIT2FLS/typereduction.html)
