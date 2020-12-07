@@ -10,19 +10,22 @@ In this section, we are going to see how IT2FSs can be defined using the **_IT2F
 | zero_mf               | All zero membership function | None |
 | singleton_mf          | Singleton membership function | Singleton's center and height |
 | const_mf              | Constant membership function | Constant membership function's height |
-| tri_mf                | Triangular membership function | The left end, the center, the right end, and the height of the triangular membership function |
-| ltri_mf               | Left triangular membership function | The left end, the center, and the height of the triangular membership function |
-| rtri_mf               | Right triangular membership function | The right end, the center, and the height of the triangular membership function |
-| trapezoid_mf          | Trapezoidal membership function | The left end, the left center, the right center, the right end, and the height of the trapezoidal membership function |
-| gaussian_mf           | Gaussian membership function | The center, the standard deviation, and the height of the gaussian membership function |
-| gauss_uncert_mean_umf | Gaussian with uncertain mean UMF | The lower limit of mean, the upper limit of mean, the standard deviation, and the height of the gaussian membership function |
-| gauss_uncert_mean_lmf | Gaussian with uncertain mean LMF | The lower limit of mean, the upper limit of mean, the standard deviation, and the height of the gaussian membership function |
-| gauss_uncert_std_umf  | Gaussian with uncertain standard deviation UMF | The center, the lower limit of std., the upper limit of std., and the height of the gaussian membership function |
-| gauss_uncert_std_lmf  | Gaussian with uncertain standard deviation LMF | The center, the lower limit of std., the upper limit of std., and the height of the gaussian membership function |
-| rgauss_uncert_std_umf | Right Gaussian with uncertain standard deviation UMF | The center, the lower limit of std., the upper limit of std., and the height of the gaussian membership function |
-| rgauss_uncert_std_lmf | Right Gaussian with uncertain standard deviation LMF | The center, the lower limit of std., the upper limit of std., and the height of the gaussian membership function |
-| lgauss_uncert_std_umf | Left Gaussian with uncertain standard deviation UMF | The center, the lower limit of std., the upper limit of std., and the height of the gaussian membership function |
-| lgauss_uncert_std_lmf | Left Gaussian with uncertain standard deviation LMF | The center, the lower limit of std., the upper limit of std., and the height of the gaussian membership function |
+| tri_mf                | Triangular membership function | The left end, center, right end, and height of the triangular membership function |
+| ltri_mf               | Left triangular membership function | The left end, center, and height of the triangular membership function |
+| rtri_mf               | Right triangular membership function | The right end, center, and height of the triangular membership function |
+| trapezoid_mf          | Trapezoidal membership function | The left end, left center, right center, right end, and height of the trapezoidal membership function |
+| gaussian_mf           | Gaussian membership function | The center, standard deviation, and height of the gaussian membership function |
+| gauss_uncert_mean_umf | Gaussian with uncertain mean UMF | The lower limit of mean, upper limit of mean, standard deviation, and height of the gaussian membership function |
+| gauss_uncert_mean_lmf | Gaussian with uncertain mean LMF | The lower limit of mean, upper limit of mean, standard deviation, and height of the gaussian membership function |
+| gauss_uncert_std_umf  | Gaussian with uncertain standard deviation UMF | The center, lower limit of std., upper limit of std., and height of the gaussian membership function |
+| gauss_uncert_std_lmf  | Gaussian with uncertain standard deviation LMF | The center, lower limit of std., upper limit of std., and height of the gaussian membership function |
+| rgauss_uncert_std_umf | Right Gaussian with uncertain standard deviation UMF | The center, lower limit of std., upper limit of std., and height of the gaussian membership function |
+| rgauss_uncert_std_lmf | Right Gaussian with uncertain standard deviation LMF | The center, lower limit of std., upper limit of std., and height of the gaussian membership function |
+| lgauss_uncert_std_umf | Left Gaussian with uncertain standard deviation UMF | The center, lower limit of std., upper limit of std., and height of the gaussian membership function |
+| lgauss_uncert_std_lmf | Left Gaussian with uncertain standard deviation LMF | The center, lower limit of std., upper limit of std., and height of the gaussian membership function |
+| elliptic_mf | Elliptic membership function | The center, width, exponent, and height of the elliptic membership fuction |
+| semi_elliptic_mf | Semi-elliptic membership function | The center, width, and the height of the semi-elliptic membership function |
+| gbell_mf | Generalized bell shaped membership function | Base on the standard formula, a, b, c, and the height of the generalized bell shaped membership function |
 
 It must be noticed that the parameters of the introduced functions are passed as a list with items mentioned, respectively.
 
@@ -130,12 +133,10 @@ Most of the time, the gaussian interval type 2 fuzzy sets are preferred in many 
 In the versions 0.5.0 and above of the PyIT2FLS, two other functions for creating IT2FSs are also available, **_R_IT2FS_Gaussian_UncertStd_** and **_L_IT2FS_Gaussian_UncertStd_**. The inputs of these two functions are same as the **_IT2FS_Gaussian_UncertStd_**. The **_R_IT2FS_Gaussian_UncertStd_** is an IT2FS, in which the left side of the mean value of the **_IT2FS_Gaussian_UncertStd_** is stick to **_height_** parameter. Also, the **_L_IT2FS_Gaussian_UncertStd_** is an IT2FS, in which the right side of the mean value of the **_IT2FS_Gaussian_UncertStd_** is stick to **_height_** parameter.
 
 ### Plotting the IT2FSs
-
-For plotting the defined IT2FSs the plot function from the **_IT2FS_** class can be used. This function has three inputs with **_None_** default value. The three inputs are **_title_**, **_legend_text_**, and **_filename_**. If the user wants to have a plot with costum title and legend, these two inputs can be set. Also, if the **_filename_** parameter is given, then the plot would be saved with the given file name.
+For plotting the defined IT2FSs, the plot function from the **_IT2FS_** class can be used. This function has three inputs with **_None_** default values. The three inputs are **_title_**, **_legend_text_**, and **_filename_**. If the user wants to have a plot with costum title and legend, these two inputs can be set. Also, if the **_filename_** parameter is given, then the plot would be saved with the given file name.
 
 ### Plotting multiple IT2FSs together
-
-If there are many sets which we would like to plot them together, we can use the **_IT2FS_plot_** function from **PyIT2FLS**. The inputs of this function, after an arbitrary number of **_IT2FSs_**, are like the intorduced plot function. It means that there are three **_title_**, **_legend_text_**, and **_filename_** parameters with the **_None_** default value.
+If there are many sets which we would like to plot them together, we can use the **_IT2FS_plot_** function from **PyIT2FLS**. The inputs of this function, after an arbitrary number of **_IT2FSs_**, are like the intorduced plot function. It means that there are three **_title_**, **_legend_text_**, and **_filename_** parameters with the **_None_** default values.
 
 ### Examples
 In this section, some examples of defining IT2FSs are provided. The first example is after defining an IT2FS with trapezoidal UMF and triangular LMF:

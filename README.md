@@ -43,7 +43,7 @@ Or you can use pip3:
 - [x] Supporting elliptic and semi-elliptic membership functions.
 - [x] Supporting generalized bell shaped membership function.
 - [x] Supporting many new t-norms and s-norms.
-- [x] Some bugs are fixed in this vesion.
+- [x] Some bugs are fixed in this version.
 
 ### Some notes on version 0.5
 - [x] Supporting both Mamdani and TSK systems.
