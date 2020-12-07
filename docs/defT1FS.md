@@ -161,7 +161,7 @@ mySet.plot()
 
 The output plot for this example is represented as below:
 
-<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/1.1._.png" width="300"/></p>
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/1.3._.png" width="300"/></p>
 
 
 
