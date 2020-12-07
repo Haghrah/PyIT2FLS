@@ -107,10 +107,42 @@ For plotting the defined T1FSs, the plot function from the **_T1FS_** class can 
 If there are many sets which we would like to plot them together, we can use the **_T1FS_plot_** function from **PyIT2FLS**. The inputs of this function, after an arbitrary number of **_T1FSs_**, are like the intorduced plot function. It means that there are three **_title_**, **_legend_text_**, and **_filename_** parameters with the **_None_** default values.
 
 ### Examples
-In this section, some examples of defining T1FSs are provided.
+In this section, some examples of defining T1FSs are provided. The first example is after defining a T1FS with trapezoidal MF:
+
+```python
+from pyit2fls import T1FS, trapezoid_mf
+from numpy import linspace
+
+domain = linspace(0., 1., 100)
+mySet = T1FS(domain, trapezoid_mf, [0, 0.4, 0.6, 1., 1.])
+mySet.plot()
+```
+
+As it is said before, five parameters are needed for defining a trapezoidal membership function. The first four parameters indicate the left end, left center, right center, and right end of the trapezoidal membership function. The last parameter is the height of the membership function which must lay in the interval [0, 1]. The output plot for given parameters and defined universe of discourse would be as below:
+
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/1.1._.png" width="300"/></p>
+
+In the second example we are going to define three Gaussian T1FSs, and plot them all together.
+
+
 
 #### Defining a new membership function
 In this example we are going to define a new membership function and use it in defining an T1FS. Let's assume that we are going to define the generalized bell shaped membership function, which has the formula below:
+
+```python
+from pyit2fls import T1FS, gaussian_mf, T1FS_plot
+from numpy import linspace
+
+domain = linspace(0., 1., 100)
+Small = T1FS(domain, gaussian_mf, [0, 0.15, 1.])
+Medium = T1FS(domain, gaussian_mf, [0.5, 0.15, 1.])
+Large = T1FS(domain, gaussian_mf, [1., 0.15, 1.])
+T1FS_plot(Small, Medium, Large, legends=["Small", "Medium", "large"])
+```
+
+The output plot for this example is represented as below:
+
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/1.2._.png" width="300"/></p>
 
 <img src="https://render.githubusercontent.com/render/math?math=gbell\_mf(x,a,b,c) = \frac{1}{1 %2B |\frac{x-c}{a}|^{2b}}"> 
 
