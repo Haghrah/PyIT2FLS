@@ -1,5 +1,6 @@
-# PyIT2FLS
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/PyIT2FLS_icon.png" width="200"/></p>
 
+# PyIT2FLS
 Some extra explanations and examples about the PyIT2FLS are provided on the pages below:
 
 0. [General description about the PyIT2FLS.](https://haghrah.github.io/PyIT2FLS/overview.html)
