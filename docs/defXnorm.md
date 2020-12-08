@@ -23,7 +23,7 @@ AB.plot()
 
 The output plots of this example are represented as below.
 
-|  The **_SMALL_** and the **_LARGE_** sets  | Join of the two sets |
+|  The **_SMALL_** and **_LARGE_** sets  | Join of the two sets |
 |:---------------------:|:-----------:|
 | <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/3.1.png" width="256"> | <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/3.2.png" width="256"> |
 
@@ -50,7 +50,7 @@ AB.plot()
 
 The output plots of this example are represented as below.
 
-|  The **_SMALL_** and the **_LARGE_** sets  | Meet of the two sets |
+|  The **_SMALL_** and **_LARGE_** sets  | Meet of the two sets |
 |:---------------------:|:-----------:|
 | <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/3.3.png" width="256"> | <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/3.4.png" width="256"> |
 
