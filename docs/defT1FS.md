@@ -100,6 +100,9 @@ The T1FS class is designed for defining Type 1 Fuzzy Sets. It's constructor func
 2. **_mf_**: The membership function of the T1FS. The **_mf_** must be among the membership functions provided by the PyIT2FLS or a self defined membership function with the introduced structure.
 3. **_params_**: Parameters of the given membership function.
 
+### Defuzzification of the T1FSs
+
+
 ### Plotting the T1FSs
 For plotting the defined T1FSs, the plot function from the **_T1FS_** class can be used. This function has three inputs with **_None_** default values. The three inputs are **_title_**, **_legend_text_**, and **_filename_**. If the user wants to have a plot with costum title and legend, these two inputs can be set. Also, if the **_filename_** parameter is given, then the plot would be saved with the given file name.
 

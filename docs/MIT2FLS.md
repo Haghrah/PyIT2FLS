@@ -1,6 +1,6 @@
 <p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/PyIT2FLS_icon.png" width="200"/></p>
 
-## Defining Mamdani Interval Type 2 Fuzzy Logic Systems
+## Defining Interval Type 2 Mamdani Fuzzy Logic Systems
 One of the most common models of the fuzzy systems is Mamdani model. In constrast with TSK model, both of the inputs and outputs of the system in Mamdani model are fuzzy sets. There are two ways to create interval type 2 Mamdani fuzzy systems using PyIT2FLS:
 
 1. Using **_Mamdani_** class
