@@ -1,8 +1,9 @@
-# PyIT2FLS
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/PyIT2FLS_icon.png" width="200"/></p>
 
+# PyIT2FLS
 Some extra explanations and examples about the PyIT2FLS are provided on the pages below:
 
-0. [General description about the PyIT2FLS.](https://haghrah.github.io/PyIT2FLS/index.html)
+0. [General description about the PyIT2FLS.](https://haghrah.github.io/PyIT2FLS/overview.html)
 1. [Defining different Type 1 Fuzzy Sets.](https://haghrah.github.io/PyIT2FLS/defT1FS.html)
 1. [Defining different Interval Type 2 Fuzzy Sets.](https://haghrah.github.io/PyIT2FLS/defIT2FS.html)
 2. [T-norms ans s-norms.](https://haghrah.github.io/PyIT2FLS/Xnorm.html)
