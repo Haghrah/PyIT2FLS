@@ -2,7 +2,7 @@
 
 ## Defining TSK Interval Type 2 Fuzzy Logic Systems
 
-TSK Fuzzy systems are used in a wide range of the scientific and engineering applications. The difference between TSK model and Mamdani model is the outputs of the systems. In TSK model outputs are not fuzzy sets but some functions. The PyIT2FLS toolkit provides the **_IT2TSK_** class for creating IT2 TSK FLSs. The **_IT2TSK_** class is designed based on the reference:
+TSK Fuzzy systems are used in a wide range of the scientific and engineering applications. The difference between TSK model and Mamdani model is the outputs of the systems. In the TSK model, outputs are not fuzzy sets but some functions. The PyIT2FLS toolkit provides the **_IT2TSK_** class for creating IT2 TSK FLSs. The **_IT2TSK_** class is designed based on the reference:
 
 	Mendel, Jerry, et al. Introduction to type-2 fuzzy logic control: theory and applications. John Wiley & Sons, 2014.
 

@@ -101,7 +101,7 @@ The T1FS class is designed for defining Type 1 Fuzzy Sets. It's constructor func
 3. **_params_**: Parameters of the given membership function.
 
 ### Defuzzification of the T1FSs
-
+Defuzzification of a **_T1FS_** is done using the **_defuzzify_** function of the class. The only parameter of this function is **_method_** of type string. The default value of the parameter is **_CoG_**, which indicates the center of gravity defuzzification method. At the moment only center of gravity defuzzification method is implemented but in the near future other methods will be added, too.
 
 ### Plotting the T1FSs
 For plotting the defined T1FSs, the plot function from the **_T1FS_** class can be used. This function has three inputs with **_None_** default values. The three inputs are **_title_**, **_legend_text_**, and **_filename_**. If the user wants to have a plot with costum title and legend, these two inputs can be set. Also, if the **_filename_** parameter is given, then the plot would be saved with the given file name.
