@@ -55,6 +55,6 @@ y = mySys.evaluate({"x1":0.923, "x2":0.745}, params=(2, 4))
 print(y["y1"], y["y2"])
 ```
 
-The only output of the evaluate function is a dictionary, which keys are output variable names and the values are the outputs.
+The only output of the **_evaluate_** function is a dictionary, which keys are output variable names and the values are the outputs.
 
 
