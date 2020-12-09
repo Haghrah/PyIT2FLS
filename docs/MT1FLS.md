@@ -47,7 +47,7 @@ mySys.add_rule([("x1", Large), ("x2", Large)], [("y1", Large), ("y2", Small)])
 s, c = mySys.evaluate({"x1":0.923, "x2":0.745})
 ```
 
-The output of the evaluate function depends on the defuzzification method selected. For **_CoG_** defuzzification method, the output is a tuple, which the first item is the output fuzzy set and the second is the crisp output of the system. For other defuzzification methods, the output will only be a crisp number.
+The output of the evaluate function depends on the defuzzification method selected. For **_CoG_** defuzzification method, the output is a tuple, which the first item is a dictionary of the output fuzzy sets and the second is a dictionary of the crisp outputs of the system. For other defuzzification methods, the output will only be a dictionary of crisp numbers. It must be noticed that the keys of the output dictionaries are the output names defined previousley.
 
 
 
