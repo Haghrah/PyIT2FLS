@@ -1526,7 +1526,7 @@ class IT2FS:
         """
         umf = lambda x, params: subtract(1, self.umf(x, params))
         lmf = lambda x, params: subtract(1, self.lmf(x, params))
-        neg_it2fs = IT2FS(self.domain, umf, self.umf_params, lmf, self.lmf_params)
+        neg_it2fs = IT2FS(self.domain, lmf, self.lmf_params, umf, self.umf_params)
         return neg_it2fs
 
 
