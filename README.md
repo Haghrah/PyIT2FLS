@@ -38,6 +38,9 @@ Or you can use pip3:
 - [ ] Supporting Generalized Type 2 Fuzzy Sets and Systems.
 - [ ] Speeding up the codes using the Python/C API.
 
+### Some notes on version 0.6.1
+- [x] Some bugs are fixed in this version.
+
 ### Some notes on version 0.6
 - [x] Supporting Type 1 Fuzzy Sets and Systems.
 - [x] Supporting elliptic and semi-elliptic membership functions.
