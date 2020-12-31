@@ -815,8 +815,8 @@ def T1FS_plot(*sets, filename=None, title=None, legends=None):
     >>> domain = linspace(0., 1., 100)
     >>> t1fs1 = T1FS(domain, gaussian_mf, [0.33, 0.2, 1.])
     >>> t1fs2 = T1FS(domain, gaussian_mf, [0.66, 0.2, 1.])
-    >>> IT2FS_plot(t1fs1, t1fs2, title="Plotting T1FSs", 
-                   legends=["First set", "Second set"])
+    >>> T1FS_plot(t1fs1, t1fs2, title="Plotting T1FSs", 
+                  legends=["First set", "Second set"])
     """
     plt.figure()
     for t1fs in sets:
