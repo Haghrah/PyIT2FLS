@@ -18,8 +18,8 @@ def zero_mf(x, params=[]):
     x : 
         numpy (n,) shaped array
         
-        The array like input x indicates the points from universe of 
-        discourse in which the membership function would be evaluated.
+        The array like input x indicates the points from the universe of 
+        discourse, in which the membership function would be evaluated.
     params : 
         List 
         
@@ -29,7 +29,7 @@ def zero_mf(x, params=[]):
     Returns
     -------
     ndarray
-        Returns a vector of membership values corresponding with the input.
+        Returns an array of membership values corresponding with the input.
     
     Examples
     --------
