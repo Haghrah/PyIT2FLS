@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='pyit2fls',
-      version='0.6.1',
+      version='0.6.2',
       description='Interval Type 2 Fuzzy Logic Systems in Python',
       url='https://github.com/Haghrah/PyIT2FLS',
       author='Amir Arslan Haghrah',

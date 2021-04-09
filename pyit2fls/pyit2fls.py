@@ -122,7 +122,7 @@ def tri_mf(x, params):
         List 
         
         Additional parameters for the membership function. The left end, 
-        the center, the right end, and the height of the triangular 
+        center, right end, and height of the triangular 
         membership function are indicated by params[0], params[1], params[2], 
         and params[3], respectively.
     
@@ -156,7 +156,7 @@ def rtri_mf(x, params):
         List 
         
         Additional parameters for the membership function.  
-        The right end, the center, and the height of the triangular 
+        The right end, center, and height of the triangular 
         membership function are indicated by params[0], params[1], and params[2], 
         respectively.
     
@@ -189,7 +189,7 @@ def ltri_mf(x, params):
         List 
         
         Additional parameters for the membership function. The left end, 
-        the center, and the height of the triangular 
+        center, and height of the triangular 
         membership function are indicated by params[0], params[1] and params[2], 
         respectively.
     
@@ -223,7 +223,7 @@ def trapezoid_mf(x, params):
         List 
         
         Additional parameters for the membership function. The left end, 
-        the left center, the right center, the right end, and the height 
+        left center, right center, right end, and height 
         of the trapezoidal membership function are indicated by params[0], 
         params[1], params[2], params[3], and params[4], respectively.
     
@@ -258,7 +258,7 @@ def gaussian_mf(x, params):
         List 
         
         Additional parameters for the membership function. The center, 
-        the standard deviation, and the height 
+        standard deviation, and height 
         of the gaussian membership function are indicated by params[0], 
         params[1], and params[2], respectively.
     
@@ -291,7 +291,7 @@ def gauss_uncert_mean_umf(x, params):
         List 
         
         Additional parameters for the membership function. The lower limit 
-        of mean, the upper limit of mean, the standard deviation, and the 
+        of mean, upper limit of mean, standard deviation, and 
         height of the gaussian membership function are indicated by params[0], 
         params[1], params[2], and params[3], respectively.
     
@@ -326,7 +326,7 @@ def gauss_uncert_mean_lmf(x, params):
         List 
         
         Additional parameters for the membership function. The lower limit 
-        of mean, the upper limit of mean, the standard deviation, and the 
+        of mean, upper limit of mean, standard deviation, and 
         height of the gaussian membership function are indicated by params[0], 
         params[1], params[2], and params[3], respectively.
     
@@ -360,7 +360,7 @@ def gauss_uncert_std_umf(x, params):
         List 
         
         Additional parameters for the membership function. The center, 
-        the lower limit of std., the upper limit of std., and the 
+        lower limit of std., upper limit of std., and 
         height of the gaussian membership function are indicated by params[0], 
         params[1], params[2], and params[3], respectively.
     
@@ -393,7 +393,7 @@ def gauss_uncert_std_lmf(x, params):
         List 
         
         Additional parameters for the membership function. The center, 
-        the lower limit of std., the upper limit of std., and the 
+        lower limit of std., upper limit of std., and 
         height of the gaussian membership function are indicated by params[0], 
         params[1], params[2], and params[3], respectively.
     
@@ -426,7 +426,7 @@ def rgauss_uncert_std_umf(x, params):
         List 
         
         Additional parameters for the membership function. The center, 
-        the lower limit of std., the upper limit of std., and the 
+        lower limit of std., upper limit of std., and 
         height of the gaussian membership function are indicated by params[0], 
         params[1], params[2], and params[3], respectively.
     
@@ -458,7 +458,7 @@ def rgauss_uncert_std_lmf(x, params):
         List 
         
         Additional parameters for the membership function. The center, 
-        the lower limit of std., the upper limit of std., and the 
+        lower limit of std., upper limit of std., and 
         height of the gaussian membership function are indicated by params[0], 
         params[1], params[2], and params[3], respectively.
     
@@ -490,7 +490,7 @@ def lgauss_uncert_std_umf(x, params):
         List 
         
         Additional parameters for the membership function. The center, 
-        the lower limit of std., the upper limit of std., and the 
+        lower limit of std., upper limit of std., and 
         height of the gaussian membership function are indicated by params[0], 
         params[1], params[2], and params[3], respectively.
     
@@ -522,7 +522,7 @@ def lgauss_uncert_std_lmf(x, params):
         List 
         
         Additional parameters for the membership function. The center, 
-        the lower limit of std., the upper limit of std., and the 
+        lower limit of std., upper limit of std., and 
         height of the gaussian membership function are indicated by params[0], 
         params[1], params[2], and params[3], respectively.
     
@@ -555,8 +555,8 @@ def elliptic_mf(x, params):
     params : 
         list
         
-        Parameters of the elliptic membership function. The center, the width,
-        the exponent, and the height of the elliptic membership function are 
+        Parameters of the elliptic membership function. The center, width,
+        exponent, and height of the elliptic membership function are 
         indicated by params[0], params[1], params[2], and params[3].
 
     Returns
@@ -590,8 +590,8 @@ def semi_elliptic_mf(x, params):
     params : 
         list
         
-        Parameters of the semi-elliptic membership function. The center, the width, and
-        the height of the semi-elliptic membership function are 
+        Parameters of the semi-elliptic membership function. The center, width, and
+        height of the semi-elliptic membership function are 
         indicated by params[0], params[1], and params[2].
 
     Returns
@@ -626,8 +626,8 @@ def gbell_mf(x, params):
         list
         
         Parameters of the generalized bell shaped membership function. 
-        a, b, and c values and height of the generalized bell shaped membership 
-        function are indicated by params[0], params[1], params[2], and params[3].
+        The a, b, and c values and height of the generalized bell shaped membership 
+        function formula are indicated by params[0], params[1], params[2], and params[3].
 
     Returns
     -------
@@ -785,6 +785,8 @@ class T1FS:
 
 def T1_Emphasize(t1fs, m=2.):
     """
+    Function for creating emphasized T1FSs.
+    
     Parameters
     ----------
     t1fs : 
@@ -1561,7 +1563,39 @@ class IT2FS:
         return neg_it2fs
 
 
-def IT2FS_Elliptic(domain, params):
+def IT2_Emphasize(it2fs, m=2.):
+    """
+    Function for creating emphasized IT2FSs.
+    
+    Parameters
+    ----------
+    it2fs : 
+        IT2FS
+        
+        Interval type 2 fuzzy set to be emphasized.
+        
+    m : 
+        float, optional
+        
+        Emphasis degree. The default is 2.
+
+    Returns
+    -------
+    emphasized : 
+        IT2FS
+        
+        Emphasized interval type 2 fuzzy set.
+
+    """
+    lmf = lambda x, params : it2fs.lmf(x, it2fs.lmf_params) ** m
+    umf = lambda x, params : it2fs.umf(x, it2fs.umf_params) ** m
+    emphasized = IT2FS(it2fs.domain, 
+                       umf, it2fs.umf_params, 
+                       lmf, it2fs.lmf_params)
+    return emphasized
+
+
+def IT2FS_Elliptic(domain, params, check_set=False):
     """
     Creates an elliptic IT2FS.
     
@@ -1577,7 +1611,7 @@ def IT2FS_Elliptic(domain, params):
         List
         
         The parameters of the elliptic IT2FS, 
-        the center, the width, the UMF's exponent, the LMF's exponent, and the height are 
+        the center, width, UMF's exponent, LMF's exponent, and height are 
         indicated by params[0], params[1], params[2], params[3], and params[4], respectively.
     
     Returns
@@ -1595,9 +1629,9 @@ def IT2FS_Elliptic(domain, params):
     """
     return IT2FS(domain, 
                  elliptic_mf, [params[0], params[1], params[2], params[4]], 
-                 elliptic_mf, [params[0], params[1], params[3], params[4]])
+                 elliptic_mf, [params[0], params[1], params[3], params[4]], check_set=check_set)
 
-def IT2FS_Semi_Elliptic(domain, params):
+def IT2FS_Semi_Elliptic(domain, params, check_set=False):
     """
     Creates a semi-elliptic IT2FS.
     
@@ -1613,7 +1647,7 @@ def IT2FS_Semi_Elliptic(domain, params):
         List
         
         The parameters of the semi-elliptic IT2FS, 
-        the center, the UMF's width, the LMF's width, and the height are 
+        the center, UMF's width, LMF's width, and height are 
         indicated by params[0], params[1], params[2], and params[3], respectively.
     
     Returns
@@ -1631,10 +1665,10 @@ def IT2FS_Semi_Elliptic(domain, params):
     """
     return IT2FS(domain, 
                  semi_elliptic_mf, [params[0], params[1], params[3]], 
-                 semi_elliptic_mf, [params[0], params[2], params[3]])
+                 semi_elliptic_mf, [params[0], params[2], params[3]], check_set=False)
 
 
-def IT2FS_Gaussian_UncertMean(domain, params):
+def IT2FS_Gaussian_UncertMean(domain, params, check_set=False):
     """
     Creates an Gaussian IT2FS with uncertain mean value.
     
@@ -1650,7 +1684,7 @@ def IT2FS_Gaussian_UncertMean(domain, params):
         List
         
         The parameters of the Gaussian IT2FS with uncertain mean value, 
-        the mean center, the mean spread, the standard deviation, and the height are 
+        the mean center, mean spread, standard deviation, and height are 
         indicated by params[0], params[1], params[2], and params[3], respectively.
     
     Returns
@@ -1671,10 +1705,10 @@ def IT2FS_Gaussian_UncertMean(domain, params):
     mr = params[0] + params[1] / 2.
     return IT2FS(domain, 
                  gauss_uncert_mean_umf, [ml, mr, params[2], params[3]], 
-                 gauss_uncert_mean_lmf, [ml, mr, params[2], params[3]])
+                 gauss_uncert_mean_lmf, [ml, mr, params[2], params[3]], check_set=False)
 
 
-def IT2FS_Gaussian_UncertStd(domain, params):
+def IT2FS_Gaussian_UncertStd(domain, params, check_set=False):
     """
     Creates a Gaussian IT2FS with uncertain standard deviation value.
     
@@ -1690,8 +1724,8 @@ def IT2FS_Gaussian_UncertStd(domain, params):
         List
         
         The parameters of the Gaussian IT2FS with uncertain standard 
-        deviation value, the mean, the standard deviation center, 
-        the standard deviation spread, and the height are indicated by params[0], 
+        deviation value, the mean, standard deviation center, 
+        standard deviation spread, and height are indicated by params[0], 
         params[1], params[2], and params[3], respectively.
     
     Returns
@@ -1712,10 +1746,10 @@ def IT2FS_Gaussian_UncertStd(domain, params):
     stdr = params[1] + params[2] / 2
     return IT2FS(domain, 
                  gauss_uncert_std_umf, [params[0], stdl, stdr, params[3]], 
-                 gauss_uncert_std_lmf, [params[0], stdl, stdr, params[3]])
+                 gauss_uncert_std_lmf, [params[0], stdl, stdr, params[3]], check_set=False)
 
 
-def R_IT2FS_Gaussian_UncertStd(domain, params):
+def IT2FS_RGaussian_UncertStd(domain, params, check_set=False):
     """
     Creates a Right Gaussian IT2FS with uncertain standard deviation value.
     
@@ -1731,8 +1765,8 @@ def R_IT2FS_Gaussian_UncertStd(domain, params):
         List
         
         The parameters of the Gaussian IT2FS with uncertain standard 
-        deviation value, the mean, the standard deviation center, 
-        the standard deviation spread, and the height are indicated by params[0], 
+        deviation value, the mean, standard deviation center, 
+        standard deviation spread, and height are indicated by params[0], 
         params[1], params[2], and params[3], respectively.
     
     Returns
@@ -1755,9 +1789,9 @@ def R_IT2FS_Gaussian_UncertStd(domain, params):
                   rgauss_uncert_std_umf, 
                   [params[0], stdl, stdr, params[3]],
                   rgauss_uncert_std_lmf, 
-                  [params[0], stdl, stdr, params[3]])
+                  [params[0], stdl, stdr, params[3]], check_set=False)
 
-def L_IT2FS_Gaussian_UncertStd(domain, params):
+def IT2FS_LGaussian_UncertStd(domain, params, check_set=False):
     """
     Creates a Left Gaussian IT2FS with uncertain standard deviation value.
     
@@ -1773,8 +1807,8 @@ def L_IT2FS_Gaussian_UncertStd(domain, params):
         List
         
         The parameters of the Gaussian IT2FS with uncertain standard 
-        deviation value, the mean, the standard deviation center, 
-        the standard deviation spread, and the height are indicated by params[0], 
+        deviation value, the mean, standard deviation center, 
+        standard deviation spread, and height are indicated by params[0], 
         params[1], params[2], and params[3], respectively.
     
     Returns
@@ -1797,7 +1831,7 @@ def L_IT2FS_Gaussian_UncertStd(domain, params):
                   lgauss_uncert_std_umf, 
                   [params[0], stdl, stdr, params[3]],
                   lgauss_uncert_std_lmf, 
-                  [params[0], stdl, stdr, params[3]])
+                  [params[0], stdl, stdr, params[3]], check_set=False)
 
 
 def IT2FS_plot(*sets, title=None, legends=None, filename=None, 
