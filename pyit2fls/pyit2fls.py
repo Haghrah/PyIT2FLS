@@ -735,7 +735,8 @@ class T1FS:
         else:
             raise ValueError("The method" + method + " is not implemented yet!")
 
-    def plot(self, filename=None, title=None, legend_text=None):
+    def plot(self, filename=None, title=None, legend_text=None, 
+             ext="pdf", grid=True, xlabel="Domain", ylabel="Membership degree"):
         """
         Plots the T1FS.
         
@@ -774,14 +775,43 @@ class T1FS:
             plt.legend([legend_text])
         if title is not None:
             plt.title(title)
-        plt.xlabel("Domain")
-        plt.ylabel("Membership degree")
-        plt.grid(True)
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
+        plt.grid(grid)
         if filename is not None:
-            plt.savefig(filename + ".pdf", format="pdf", dpi=300, bbox_inches="tight")
+            plt.savefig(filename + "." + ext, format=ext, dpi=300, bbox_inches="tight")
         plt.show()
 
-def T1FS_plot(*sets, filename=None, title=None, legends=None):
+
+def T1_Emphasize(t1fs, m=2.):
+    """
+    Parameters
+    ----------
+    t1fs : 
+        T1FS
+        
+        Type 1 fuzzy set to be emphasized.
+        
+    m : 
+        float, optional
+        
+        Emphasis degree. The default is 2.
+
+    Returns
+    -------
+    emphasized : 
+        T1FS
+        
+        Emphasized type 1 fuzzy set.
+
+    """
+    mf = lambda x, params : t1fs.mf(x, params) ** m
+    emphasized = T1FS(t1fs.domain, mf, t1fs.params)
+    return emphasized
+
+
+def T1FS_plot(*sets, filename=None, title=None, legends=None, 
+              ext="pdf", grid=True, xlabel="Domain", ylabel="Membership degree"):
     """
     Plots multiple T1FSs together in the same figure.
     
@@ -825,11 +855,11 @@ def T1FS_plot(*sets, filename=None, title=None, legends=None):
         plt.legend(legends)
     if title is not None:
         plt.title(title)
-    plt.xlabel("Domain")
-    plt.ylabel("Membership degree")
-    plt.grid(True)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    plt.grid(grid)
     if filename is not None:
-        plt.savefig(filename + ".pdf", format="pdf", dpi=300, bbox_inches="tight")
+        plt.savefig(filename + "." + ext, format=ext, dpi=300, bbox_inches="tight")
     plt.show()
 
 def T1FS_AND(domain, t1fs1, t1fs2, t_norm):
@@ -1465,7 +1495,8 @@ class IT2FS:
         """
         return IT2FS(self.domain, umf=self.umf, umf_params=self.umf_params, lmf=self.lmf, lmf_params=self.lmf_params)
 
-    def plot(self, title=None, legend_text=None, filename=None):
+    def plot(self, title=None, legend_text=None, filename=None, 
+             ext="pdf", grid=True, xlabel="Domain", ylabel="Membership degree"):
         """
         Plots the IT2FS.
         
@@ -1507,11 +1538,11 @@ class IT2FS:
             plt.title(title)
         plt.plot(self.domain, self.upper, color="black")
         plt.plot(self.domain, self.lower, color="black")
-        plt.grid(True)
-        plt.xlabel("Domain")
-        plt.ylabel("Membership degree")
+        plt.grid(grid)
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
         if filename is not None:
-            plt.savefig(filename + ".pdf", format="pdf", dpi=300, bbox_inches="tight")
+            plt.savefig(filename + "." + ext, format=ext, dpi=300, bbox_inches="tight")
         plt.show()
 
     def __neg__(self):
@@ -1769,7 +1800,8 @@ def L_IT2FS_Gaussian_UncertStd(domain, params):
                   [params[0], stdl, stdr, params[3]])
 
 
-def IT2FS_plot(*sets, title=None, legends=None, filename=None):
+def IT2FS_plot(*sets, title=None, legends=None, filename=None, 
+               ext="pdf", grid=True, xlabel="Domain", ylabel="Membership degree"):
     """
     Plots multiple IT2FSs together in the same figure.
     
@@ -1816,14 +1848,15 @@ def IT2FS_plot(*sets, title=None, legends=None, filename=None):
         plt.plot(it2fs.domain, it2fs.upper, color="black")
     if title is not None:
         plt.title(title)
-    plt.xlabel("Domain")
-    plt.ylabel("Membership degree")
-    plt.grid(True)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    plt.grid(grid)
     if filename is not None:
-        plt.savefig(filename + ".pdf", format="pdf", dpi=300, bbox_inches="tight")
+        plt.savefig(filename + "." + ext, format=ext, dpi=300, bbox_inches="tight")
     plt.show()
 
-def TR_plot(domain, tr, title=None, legend=None, filename=None):
+def TR_plot(domain, tr, title=None, legend=None, filename=None, 
+            ext="pdf", grid=True, xlabel="Domain", ylabel="Membership degree"):
     """
     Plots a type reduced IT2FS.
     
@@ -1869,15 +1902,15 @@ def TR_plot(domain, tr, title=None, legend=None, filename=None):
     plt.plot([min(domain), tr[0], tr[0], tr[1], tr[1], max(domain)], 
               [0, 0, 1, 1, 0, 0], linewidth=2)
     plt.xlim((min(domain), max(domain)))
-    plt.xlabel("Domain")
-    plt.ylabel("Membership degree")
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
     if title is not None:
         plt.title(title)
     if legend is not None:
         plt.legend([legend])
-    plt.grid(True)
+    plt.grid(grid)
     if filename is not None:
-        plt.savefig(filename + ".pdf", format="pdf", dpi=300, bbox_inches="tight")
+        plt.savefig(filename + "." + ext, format=ext, dpi=300, bbox_inches="tight")
     plt.show()
 
 def crisp(tr):

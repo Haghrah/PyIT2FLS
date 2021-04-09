@@ -9,7 +9,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from pyit2fls import IT2FS_Gaussian_UncertStd, IT2FLS, min_t_norm, max_s_norm
 import PyPSO
-
+from time import time
 
 def mackey_glass(tav, n, beta, gamma, step):
     x = [np.random.random() for i in range(tav)]
@@ -109,8 +109,9 @@ def velocity_generator():
     return 0.25 * np.random.rand(12 * 3)
 
 mySolver = PyPSO.PyPSO(cost_func, 50, 75, solution_generator, velocity_generator)
+t = time()
 conv = mySolver.solve()
-
+print(time() - t)
 
 plt.figure()
 plt.plot(conv)
