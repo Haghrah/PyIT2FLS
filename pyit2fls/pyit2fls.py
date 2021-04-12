@@ -954,6 +954,7 @@ def T1FS_OR(domain, t1fs1, t1fs2, s_norm):
     mf = lambda x, params: s_norm(t1fs1.mf(x, t1fs1.params), t1fs2.mf(x, t1fs2.params))
     return T1FS(domain, mf)
 
+
 class T1Mamdani:
     """
     Type 1 Mamdani Fuzzy Logic System.
@@ -1404,6 +1405,7 @@ class T1TSK:
         for out in self.outputs:
             B[out] /= f
         return B
+
 
 class IT2FS:
     """Interval Type 2 Fuzzy Set (IT2FS).

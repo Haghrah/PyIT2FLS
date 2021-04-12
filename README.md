@@ -35,6 +35,8 @@ Or you can use pip3:
 ## Versions
 
 ### Features coming up in the next version
+- [ ] Exception handling.
+- [ ] Fuzzy matrices and related operators.
 - [ ] Supporting Generalized Type 2 Fuzzy Sets and Systems.
 - [ ] Speeding up the codes using the Python/C API.
 
@@ -64,6 +66,9 @@ Further information about the functions and classes in the PyIT2FLS are accessib
 >>> from pyit2fls import IT2FS_Gaussian_UncertStd
 >>> help(IT2FS_Gaussian_UncertStd)
 ```
+
+## Exception handling
+The exception handling will gradually be added in future versions. So improper parameters for the fuzzy sets can cause some ambiguous runtime errors at the moment. If there is any problem, let me know by opening an issue about it.
 
 ## Examples
 There are some examples provided along with the toolkit which are as below:
