@@ -1,31 +1,32 @@
-#include <Python.h>
+#include <math.h>
 
-static PyObject *KM_Algorithm(PyObject *self, PyObject *args)
-{
-	return Py_BuildValue("s", "KM type reduction algorithm!");
+void EIASC_Algorithm(double *intervals, double *params, int size, double *result){
+	double *interval = intervals;
+	int startIndex = -1, endIndex = -1;
+	double b = 0;
+	
+	for(int i = 0; i < size; i++)
+	{
+		if(interval[2] != 0. && startIndex < 0.) {
+			startIndex = i;
+		}else if(interval[2] == 0. && startIndex > -1.) {
+			endIndex = i;
+			break;
+		}
+		b += interval[2];
+		interval += 4;
+	}
+	result[0] = startIndex;
+	result[1] = endIndex;
+	result[2] = b;
 }
 
-static char KM_Algorithm_docs[] = "KM Algorithm docs!\n";
-
-static PyMethodDef TypeReduction_funcs[] = {
-    {"KM_Algorithm", (PyCFunction)KM_Algorithm, METH_NOARGS, KM_Algorithm_docs},
-    {NULL,NULL,0,NULL}
-};
-
-static struct PyModuleDef typereduction =
-{
-	PyModuleDef_HEAD_INIT,
-	"typereduction", 
-	"A set of type reduction algorithms.\n", /* module documentation, may be NULL */
-	-1,   /* size of per-interpreter state of the module, or -1 if the module keeps state in global variables. */
-	TypeReduction_funcs
-};
 
 
-PyMODINIT_FUNC PyInit_typereduction(void)
-{
-    return PyModule_Create(&typereduction);
-}
+
+
+
+
 
 
 
