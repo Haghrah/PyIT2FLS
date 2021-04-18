@@ -38,7 +38,7 @@ Or you can use pip3:
 - [ ] Exception handling.
 - [ ] Fuzzy matrices and related operators.
 - [ ] Supporting Generalized Type 2 Fuzzy Sets and Systems.
-- [ ] Speeding up the codes using the Ctypes.
+- [ ] Speeding up the codes using Ctypes.
 
 ### Some notes on version 0.6.1
 - [x] Some bugs are fixed in this version.
