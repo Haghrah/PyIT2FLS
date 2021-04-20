@@ -19,13 +19,13 @@ array_1d_double = npct.ndpointer(dtype=np.double, ndim=1, flags='CONTIGUOUS')
 libcd = npct.load_library("libtypereduction", ".")
 
 # setup the return types and argument types
-libcd.EIASC_Algorithm.restype = c_double
-libcd.EIASC_Algorithm.argtypes = [array_2d_double, array_1d_double, c_int, array_1d_double]
+libcd.EIASC_algorithm.restype = c_double
+libcd.EIASC_algorithm.argtypes = [array_2d_double, array_1d_double, c_int, array_1d_double]
 
 
-def EIASC_Algorithm(intervals, params=np.array([])):
-    o = np.zeros(shape=(3, ))
-    libcd.EIASC_Algorithm(intervals, params, len(intervals), o)
+def EIASC_algorithm(intervals, params=np.array([])):
+    o = np.zeros(shape=(4, ))
+    libcd.EIASC_algorithm(intervals, params, len(intervals), o)
     return o
 
 

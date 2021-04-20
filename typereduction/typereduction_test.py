@@ -8,6 +8,7 @@ Created on Sun Apr  18 00:29:35 2021
 
 from numpy import array
 import typereduction
+from pyit2fls import EIASC_algorithm
 
 intervals = array([[1., 2., 0., 0.], 
                    [1., 2., 0., 0.], 
@@ -20,7 +21,7 @@ intervals = array([[1., 2., 0., 0.],
                    [1., 2., 0., 0.], 
                    [1., 2., 0., 0.], 
                    [1., 2., 0., 0.], 
-                   [1., 2., 0., 0.], ])
+                   [0., 2., 10., 10.], ])
 
-print(typereduction.EIASC_Algorithm(intervals))
-
+print(typereduction.EIASC_algorithm(intervals))
+print(EIASC_algorithm(intervals))

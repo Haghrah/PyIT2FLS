@@ -2820,7 +2820,7 @@ def EIASC_algorithm(intervals, params=[]):
             break 
     # Right calculations
     intervals = intervals[intervals[:,1].argsort()]
-    a_r = npsum(intervals[:, 1] * intervals[:, 2])
+    a_r = npsum(intervals[:, 1] * intervals[:, 3])
     b_r = b
     R = N - 1
     while True:
