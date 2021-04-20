@@ -1,7 +1,7 @@
 from distutils.core import setup, Extension
 
 typreduction = Extension('typereduction',
-						 sources = ['typereduction/typereduction.c'])
+                         sources = ['typereduction/typereduction.c'])
 
 setup(name='typereduction',
       version='0.1.0',
