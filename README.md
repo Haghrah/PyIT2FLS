@@ -67,9 +67,6 @@ Further information about the functions and classes in the PyIT2FLS are accessib
 >>> help(IT2FS_Gaussian_UncertStd)
 ```
 
-## Exception handling
-The exception handling will gradually be added in future versions. So improper parameters for the fuzzy sets can cause some ambiguous runtime errors at the moment. If there is any problem, let me know by opening an issue about it.
-
 ## Examples
 There are some examples provided along with the toolkit which are as below:
 * [Ex1](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_1.py): Defining an Interval Type 2 Fuzzy Set (IT2FS).
