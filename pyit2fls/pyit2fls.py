@@ -8,6 +8,12 @@ from scipy.integrate import trapz
 import matplotlib.pyplot as plt
 from math import isclose
 
+try:
+    import typereduction
+    isThereTypereduction = True
+except:
+    isThereTypereduction = False
+
 
 def zero_mf(x, params=[]):
     """
@@ -3823,6 +3829,10 @@ class IT2TSK:
         self.rules = []
         self.__t_norm = t_norm
         self.__s_norm = s_norm
+        if isThereTypereduction:
+            self.algorithm = typereduction.EIASC_algorithm
+        else:
+            self.algorithm = EIASC_algorithm
     
     def __repr__(self):
         # TODO!
@@ -3964,7 +3974,7 @@ class IT2TSK:
         for output in self.outputs:
             y = array(B[output]).reshape((len(B[output]), 1))
             intervals = hstack([y, y, array(F)])
-            o = EIASC_algorithm(intervals)
+            o = self.algorithm(intervals)
             O[output] = crisp(o)
         return O
 
@@ -4087,7 +4097,10 @@ class IT2Mamdani:
         elif algorithm == "TWEKM":
             self.__algorithm = TWEKM_algorithm
         elif algorithm == "EIASC":
-            self.__algorithm = EIASC_algorithm
+            if isThereTypereduction:
+                self.__algorithm = typereduction.EIASC_algorithm
+            else:
+                self.__algorithm = EIASC_algorithm
         elif algorithm == "WM":
             self.__algorithm = WM_algorithm
         elif algorithm == "BMM":
@@ -4185,6 +4198,18 @@ class IT2Mamdani:
         o.rules = self.rules.copy()
         return o
     
+    def __meet(self, domain, it2fs1, l, u, t_norm):
+        umf = lambda x, params: t_norm(it2fs1.umf(x, it2fs1.umf_params), u)
+        lmf = lambda x, params: t_norm(it2fs1.lmf(x, it2fs1.lmf_params), l)
+        it2fs = IT2FS(domain, umf, [], lmf, [])
+        return it2fs
+    
+    def __join(self, domain, it2fs1, l, u, s_norm):
+        umf = lambda x, params: s_norm(it2fs1.umf(x, it2fs1.umf_params), u)
+        lmf = lambda x, params: s_norm(it2fs1.lmf(x, it2fs1.lmf_params), l)
+        it2fs = IT2FS(domain, umf, [], lmf, [])
+        return it2fs
+    
     def __Mamdani_Centroid(self, inputs):
         B = {out: [] for out in self.outputs}
         for rule in self.rules:
@@ -4194,9 +4219,7 @@ class IT2Mamdani:
                 u = self.__t_norm(u, input_statement[1].umf(inputs[input_statement[0]], input_statement[1].umf_params))
                 l = self.__t_norm(l, input_statement[1].lmf(inputs[input_statement[0]], input_statement[1].lmf_params))
             for consequent in rule[1]:
-                B_l = meet(consequent[1].domain, 
-                           IT2FS(consequent[1].domain, const_mf, [u], const_mf, [l]), 
-                           consequent[1], self.__t_norm)
+                B_l = self.__meet(consequent[1].domain, consequent[1], l, u, self.__t_norm)
                 B[consequent[0]].append(B_l)
         C = {out: IT2FS(B[out][0].domain) for out in self.outputs}
         TR = {}
@@ -4234,9 +4257,7 @@ class IT2Mamdani:
                 u = self.__t_norm(u, input_statement[1].umf(inputs[input_statement[0]], input_statement[1].umf_params))
                 l = self.__t_norm(l, input_statement[1].lmf(inputs[input_statement[0]], input_statement[1].lmf_params))
             for consequent in rule[1]:
-                B_l = meet(consequent[1].domain, 
-                           IT2FS(consequent[1].domain, const_mf, [u], const_mf, [l]), 
-                           consequent[1], self.__t_norm)
+                B_l = meet(consequent[1].domain, consequent[1], l, u, self.__t_norm)
                 B[consequent[0]].append(B_l)
         TR = {}
         for out in self.outputs:
@@ -4253,9 +4274,7 @@ class IT2Mamdani:
                 u = self.__t_norm(u, input_statement[1].umf(inputs[input_statement[0]], input_statement[1].umf_params))
                 l = self.__t_norm(l, input_statement[1].lmf(inputs[input_statement[0]], input_statement[1].lmf_params))
             for consequent in rule[1]:
-                B_l = meet(consequent[1].domain, 
-                           IT2FS(consequent[1].domain, const_mf, [u], const_mf, [l]), 
-                           consequent[1], self.__t_norm)
+                B_l = meet(consequent[1].domain, consequent[1], l, u, self.__t_norm)
                 B[consequent[0]].append(B_l)
         TR = {}
         for out in self.outputs:
@@ -4272,9 +4291,7 @@ class IT2Mamdani:
                 u = self.__t_norm(u, input_statement[1].umf(inputs[input_statement[0]], input_statement[1].umf_params))
                 l = self.__t_norm(l, input_statement[1].lmf(inputs[input_statement[0]], input_statement[1].lmf_params))
             for consequent in rule[1]:
-                B_l = meet(consequent[1].domain, 
-                           IT2FS(consequent[1].domain, const_mf, [u], const_mf, [l]), 
-                           consequent[1], self.__t_norm)
+                B_l = meet(consequent[1].domain, consequent[1], l, u, self.__t_norm)                           
                 B[consequent[0]].append(B_l)
         TR = {}
         for out in self.outputs:

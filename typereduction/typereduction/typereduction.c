@@ -30,46 +30,25 @@ void EIASC_algorithm(double *data, double *params, int size, double *result)
 	double *rawData = data;
 	Interval *intervalArray = (Interval *)(data);
 	
-	
-	//int startIndex1 = -1, endIndex1 = size, startIndex2 = -1, endIndex2 = size;
-	//int startIndex = -1, endIndex = size;
-	
 	int L = 0, R = 0;
 	double d = 0;
 	double a_l = 0, b_l = 0, a_r = 0, b_r = 0;
 	double y_l = 0, y_r = 0;
 	
-	
-	
 	for(int i = 0; i < size; i++)
 	{
-		/*if(rawData[2] != 0. && startIndex1 < 0.) {
-			startIndex1 = i;
-		}else if(rawData[2] != 0. && startIndex1 > -1.) {
-			endIndex1 = i;
-		}
-		if(rawData[3] != 0. && startIndex2 < 0.) {
-			startIndex2 = i;
-		}else if(rawData[3] != 0. && startIndex2 > -1.) {
-			endIndex2 = i;
-		}*/
 		b_l += rawData[2];
 		b_r += rawData[3];
 		a_l += rawData[0] * rawData[2];
 		a_r += rawData[1] * rawData[3];
 		rawData += 4;
 	}
-	
-	/*startIndex = startIndex1 < startIndex2 ? startIndex1 : startIndex2;
-	endIndex = endIndex1 > endIndex2 ? endIndex1 : endIndex2;
-	intervalArray = intervalArray + startIndex;
-	size = endIndex - startIndex + 1;*/
-	
-	// if (size == 0) 
+
 	if(b_l == 0 || b_r == 0)
 	{
 		return;
 	}else{
+	
 		qsort(intervalArray, size, sizeof(Interval), compare_a);
 		
 		for(L = 0; L < size; L++)
@@ -98,17 +77,9 @@ void EIASC_algorithm(double *data, double *params, int size, double *result)
 			}
 		}
 		
-		result[0] = L;
-		result[1] = R;
-		result[2] = y_l;
-		result[3] = y_r;
+		result[0] = y_l;
+		result[1] = y_r;
 	}
-	
-	
-	
-	
-	
-	
 	
 }
 
