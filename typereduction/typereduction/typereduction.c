@@ -25,11 +25,48 @@ int compare_b (const void * in1, const void * in2)
 }
 
 
+void KM_algorithm(double *data, double *params, int size, double *result)
+{
+	double *rawData = data;
+	Interval *intervalArray = (Interval *)(data);
+	
+	char allZero = 1;
+	int L = 0, R = 0;
+	double w = 0;
+	double y_l_prime = 0., y_r_prime = 0.;
+	double y_l_prime_num = 0., y_r_prime_num = 0.;
+	double y_prime_den = 0.;
+	double w_l = 0, w_r = 0, y_l = 0, y_r = 0;
+	
+	for(int i = 0; i < size; i++)
+	{
+		if (rawData[2] != 0 || rawData[3] != 0) 
+		{
+			allZero = 1;
+		}
+		w = (rawData[2] + rawData[3]) / 2;
+		y_l_prime_num += rawData[0] * w;
+		y_r_prime_num += rawData[1] * w;
+		y_prime_den += w;
+	}
+	y_l_prime = y_l_prime_num / y_prime_den;
+	y_r_prime = y_r_prime_num / y_prime_den;
+	while(1) {
+		L = 0;
+		for(int i = 1; i < size; i++)
+		{
+			
+		}
+	}
+	
+}
+
 void EIASC_algorithm(double *data, double *params, int size, double *result) 
 {
 	double *rawData = data;
 	Interval *intervalArray = (Interval *)(data);
 	
+	char allZero = 1;
 	int L = 0, R = 0;
 	double d = 0;
 	double a_l = 0, b_l = 0, a_r = 0, b_r = 0;
@@ -37,6 +74,10 @@ void EIASC_algorithm(double *data, double *params, int size, double *result)
 	
 	for(int i = 0; i < size; i++)
 	{
+		if (rawData[2] != 0 || rawData[3] != 0) 
+		{
+			allZero = 1;
+		}
 		b_l += rawData[2];
 		b_r += rawData[3];
 		a_l += rawData[0] * rawData[2];
@@ -44,8 +85,10 @@ void EIASC_algorithm(double *data, double *params, int size, double *result)
 		rawData += 4;
 	}
 
-	if(b_l == 0 || b_r == 0)
+	if(allZero)
 	{
+		result[0] = 0.;
+		result[1] = 0.;
 		return;
 	}else{
 	
@@ -63,7 +106,8 @@ void EIASC_algorithm(double *data, double *params, int size, double *result)
 			}
 		}
 		
-		qsort(intervalArray, size, sizeof(Interval), compare_b);
+		// Interval.a = Interval.b in IT2FSs
+		//qsort(intervalArray, size, sizeof(Interval), compare_b);
 		
 		for(R = size - 1; R > 0; R--)
 		{
@@ -80,7 +124,7 @@ void EIASC_algorithm(double *data, double *params, int size, double *result)
 		result[0] = y_l;
 		result[1] = y_r;
 	}
-	
+	return;
 }
 
 
