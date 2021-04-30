@@ -710,8 +710,8 @@ class T1FS:
         return self.mf(x, self.params)
 
     def __neg__(self):
-        mf = lambda x, params: subtract(1, self.mf(x, self.params))
-        return T1FS(self.domain, mf)
+        mf = lambda x, params: subtract(1, self.mf(x, params))
+        return T1FS(self.domain, mf, params=self.params)
 
     def _CoG(self):
         int1 = trapz(self.domain * self(self.domain), self.domain)
