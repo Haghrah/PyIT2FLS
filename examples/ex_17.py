@@ -9,8 +9,7 @@ from numpy import (array, random, linspace, zeros, min, max, sum,
                    minimum, maximum, vstack, hstack, zeros_like, 
                    array_equal, )
 from pyit2fls import (T1FS, gaussian_mf, min_t_norm, max_s_norm, 
-                      product_t_norm, )
-from pyit2fls import (T1FMatrix, T1FMatrix_Intersection, 
+                      product_t_norm, T1FMatrix, T1FMatrix_Intersection, 
                       T1FMatrix_Union, Minmax, Maxmin, T1FSoftMatrix, 
                       T1FMatrix_Complement, T1FSoftMatrix_Product)
 
