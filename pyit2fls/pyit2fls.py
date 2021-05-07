@@ -694,6 +694,10 @@ class T1FS:
         self.mf = mf
         self.params = params
     
+    def repr(self):
+        return "Type 1 fuzzy set with " + self.mf.__name__ + " as membership function " + \
+            "and " + str(self.params) + " as its parameters!"
+
     def copy(self):
         """
         Copies the T1FS.
@@ -741,7 +745,7 @@ class T1FS:
         else:
             raise ValueError("The method" + method + " is not implemented yet!")
 
-    def plot(self, filename=None, title=None, legend_text=None, 
+    def plot(self, title=None, legend_text=None, filename=None, 
              ext="pdf", grid=True, xlabel="Domain", ylabel="Membership degree"):
         """
         Plots the T1FS.
@@ -765,8 +769,27 @@ class T1FS:
         filename:
             str
             
-            If it is set, the plot would be saved as a filename + ".pdf" 
-            file.
+            If it is set, the plot would be saved as a filename.ext file.
+        
+        ext:
+            str
+
+            Extension of the output file with pdf default value.
+        
+        grid:
+            bool
+
+            Grid on/off.
+        
+        xlabel:
+            str
+
+            Label of the x axis.
+        
+        ylabel:
+            str
+
+            Label of the y axis.
         
         Examples
         --------
@@ -803,7 +826,7 @@ def T1_Emphasize(t1fs, m=2.):
     m : 
         float, optional
         
-        Emphasis degree. The default is 2.
+        Emphasis degree. The default value is 2.
 
     Returns
     -------
@@ -818,7 +841,7 @@ def T1_Emphasize(t1fs, m=2.):
     return emphasized
 
 
-def T1FS_plot(*sets, filename=None, title=None, legends=None, 
+def T1FS_plot(*sets, title=None, legends=None, filename=None, 
               ext="pdf", grid=True, xlabel="Domain", ylabel="Membership degree"):
     """
     Plots multiple T1FSs together in the same figure.
@@ -844,9 +867,28 @@ def T1FS_plot(*sets, filename=None, title=None, legends=None,
     filename:
         str
         
-        If it is set, the plot would be saved as a filename + ".pdf" 
-        file.
+        If it is set, the plot would be saved as a filename.ext file.
         
+    ext:
+        str
+
+        Extension of the output file with pdf default value.
+    
+    grid:
+        bool
+
+        Grid on/off.
+    
+    xlabel:
+        str
+
+        Label of the x axis.
+    
+    ylabel:
+        str
+
+        Label of the y axis.
+
     Examples
     --------
     
@@ -901,7 +943,7 @@ def T1FS_AND(domain, t1fs1, t1fs2, t_norm):
     -------
     T1FS
     
-    Returns the and of the two input T1FSs.
+    Returns the AND of the two input T1FSs.
     
     Examples
     --------
@@ -946,7 +988,7 @@ def T1FS_OR(domain, t1fs1, t1fs2, s_norm):
     -------
     T1FS
     
-    Returns the or of the two input T1FSs.
+    Returns the OR of the two input T1FSs.
     
     Examples
     --------
@@ -1005,7 +1047,7 @@ class T1Mamdani:
         
         Both antacedent and consequent are lists of tuples. Each tuple 
         of this list shows assignement of a variable to a T1FS. 
-        First element of the tuple must be variable name (input or output) 
+        First element of the tuple must be the variable name (input or output) 
         as a str and the second element must be a T1FS.
 
     engine:
@@ -1039,10 +1081,10 @@ class T1Mamdani:
     
     evaluate:
         
-        Evaluates the T1 Mamdani FLS's output for a specified crisp input.
-        The only input of the evaluate function is a dictionary named inputs 
-        in which the keys are input variable names as str and the values are 
-        the crisp value of inputs to be evaluated.
+        Evaluates the T1 Mamdani FLS's output for the specified crisp input.
+        The only input of the evaluate function is a dictionary in which the 
+        keys are input variable names as str and the values are the crisp 
+        value of inputs to be evaluated.
         The output of the evaluate function is depended on the method selected 
         while constructing the class. For more information, please refer to 
         the examples.
@@ -1067,6 +1109,10 @@ class T1Mamdani:
         else:
             raise ValueError("The " + engine + " fuzzy inference engine is not implemented yet!")
     
+    def __repr__(self):
+        return "Type 1 Mamadani fuzzy logic system with " + self.engine + " inference engine" + \
+            "and " + self.defuzzification + " defuzzification error!"
+
     def copy(self):
         o = T1Mamdani(self.engine, self.defuzzification)
         o.inputs = self.inputs.copy()
@@ -1308,6 +1354,9 @@ class T1TSK:
         self.outputs = []
         self.rules = []
     
+    def __repr__(self):
+        return "Type 1 TSK fuzzy logic system!"
+
     def copy(self):
         """
         Returns a copy of the IT2FLS.
@@ -1439,8 +1488,8 @@ class IT2FS:
         
         check_set:
             If it is True, then a function named check_set in IT2FS will 
-            verify the LMF(x) < UMF(x) for any x in the domain. If the 
-            user is sure that has selected the parameters of membership 
+            verify the LMF(x) < UMF(x) condition for any x in the domain. If the 
+            user is sure that has selected the parameters of the membership 
             functions correct, then calling this time-consuming function 
             is not needed. By default the parameter check_set is False.
             
@@ -1476,6 +1525,11 @@ class IT2FS:
         # self.lower = maximum(minimum(lmf(domain, lmf_params), 1), 0)
         if check_set:
             self.check_set()
+
+    def __repr__(self):
+        return "Interval type 2 fuzzy set with " + self.umf.__name__ + " UMF function with " + \
+             str(self.umf_params) + " parameters, and " + self.lmf.__name__ + \
+             " LMF function with " + str(self.lmf_params) + " parameters."
 
     @property
     def upper(self):
@@ -1528,9 +1582,28 @@ class IT2FS:
         
         filename:
             str
+        
+            If it is set, the plot would be saved as a filename.ext file.
             
-            If it is set, the plot would be saved as a filename + ".pdf" 
-            file.
+        ext:
+            str
+
+            Extension of the output file with pdf default value.
+        
+        grid:
+            bool
+
+            Grid on/off.
+        
+        xlabel:
+            str
+
+            Label of the x axis.
+        
+        ylabel:
+            str
+
+            Label of the y axis.
         
         Examples
         --------
@@ -1868,8 +1941,27 @@ def IT2FS_plot(*sets, title=None, legends=None, filename=None,
     filename:
         str
         
-        If it is set, the plot would be saved as a filename + ".pdf" 
-        file.
+        If it is set, the plot would be saved as a filename.ext file.
+        
+    ext:
+        str
+
+        Extension of the output file with pdf default value.
+    
+    grid:
+        bool
+
+        Grid on/off.
+    
+    xlabel:
+        str
+
+        Label of the x axis.
+    
+    ylabel:
+        str
+
+        Label of the y axis.
         
     Examples
     --------
@@ -1931,8 +2023,27 @@ def TR_plot(domain, tr, title=None, legend=None, filename=None,
     filename:
         str
         
-        If it is set, the plot would be saved as a filename + ".pdf" 
-        file.
+        If it is set, the plot would be saved as a filename.ext file.
+        
+    ext:
+        str
+
+        Extension of the output file with pdf default value.
+    
+    grid:
+        bool
+
+        Grid on/off.
+    
+    xlabel:
+        str
+
+        Label of the x axis.
+    
+    ylabel:
+        str
+
+        Label of the y axis.
         
     Examples
     --------
@@ -3256,10 +3367,9 @@ class IT2FLS:
         tuple (antecedent, consequent)
         
         Both antacedent and consequent are lists of tuples. Each tuple 
-        of this list shows 
-        assignement of a variable to an IT2FS. First element of the tuple 
-        must be variable name (input or output) as a str and the second 
-        element must be an IT2FS. 
+        of this list shows assignement of a variable to an IT2FS. First 
+        element of the tuple must be variable name (input or output) as 
+        a str and the second element must be an IT2FS. 
     
     Functions
     ---------
@@ -3331,8 +3441,7 @@ class IT2FLS:
     Notes
     -----
     
-    While using the PyIT2FLS some cares must be taken by the user 
-    himself which are listed as below:
+    While using the PyIT2FLS the user must take care of the items listed below:
         
         * The UMF defined for an IT2FS must be greater than or equal with the LMF at all points of the discrete universe of discourse. 
         * The inputs and outputs defined must be compatible while adding the rules and evluating the IT2FLS.
@@ -3343,8 +3452,7 @@ class IT2FLS:
         self.rules = []
 
     def __repr__(self):
-        # TODO!
-        pass
+        return "Interval type 2 Mamdani fuzzy logic system!"
 
     def add_input_variable(self, name):
         """
@@ -3822,7 +3930,89 @@ class IT2FLS:
 
 
 class IT2TSK:
+    """
+    Interval type 2 TSK fuzzy logic system.
 
+    Parameters
+    ----------
+    Parameters of the constructor function:
+
+    t_norm:
+        function
+
+        T-norm operator which would be used by FLS.
+    
+    s_norm:
+        function
+
+        S-norm operator which would be used bu FLS.
+    
+    Members
+    -------
+
+    inputs:
+        List of str
+
+        List of the inputs name as str.
+    
+    output:
+        List of str
+        
+        List of the outputs name as str.
+
+    rules:
+        List of tuples (antecedent, consequent)
+        
+        List of rules which each rule is defined as a 
+        tuple (antecedent, consequent)
+        
+        Both antacedent and consequent are lists of tuples. Each tuple 
+        of the antacedent list shows assignement of a variable to an IT2FS. 
+        First element of the tuple must be the input variable name  
+        as a str, and the second element must be an IT2FS. 
+
+        Each tuple of the consequent indicates assignement of a variable to 
+        an output state. First element of the tuple must be output vriable 
+        name as str, and the second element of the tuple must be a 
+        dictionary. This dictionary shows the output polynomial in the case 
+        of the rule. For example let an output polynomial be as 
+        2 x1 + 4 x2 + 5. Then the dictionary for this case would be 
+        {"const":5., "x1":2., "x2":4.}. Note that this is written for an 
+        IT2 TSK FLS with two inputs, named x1 and x2.
+    
+
+    Functions
+    ---------
+    
+    add_input_variable:
+        
+        Adds an input variable to the inputs list of the IT2 TSK FLS.
+    
+    add_output_variable:
+        
+        Adds an output variable to the outputs list of the IT2 TSK FLS.
+    
+    add_rule:
+        
+        Adds a rule to the rules list of the IT2 TSK FLS.
+    
+    copy:
+        
+        Returns a copy of the interval type 2 tsk fuzzy logic system.
+    
+    evaluate:
+
+        Evaluates the IT2 TSK FLS based on the crisp inputs given by the user.
+
+    Notes
+    -----
+    
+    While using the IT2TSK class the user must take care of the items listed below:
+        
+        * The UMF defined for an IT2FS must be greater than or equal with the LMF at all points of the discrete universe of discourse. 
+        * The inputs and outputs defined must be compatible while adding the rules and evluating the IT2FLS.
+
+    """
     def __init__(self, t_norm, s_norm):
         self.inputs = []
         self.outputs = []
@@ -3835,8 +4025,7 @@ class IT2TSK:
             self.algorithm = EIASC_algorithm
     
     def __repr__(self):
-        # TODO!
-        pass
+        return "Interval type 2 TSK fuzzy logic system!"
 
     def add_input_variable(self, name):
         """
@@ -3878,7 +4067,7 @@ class IT2TSK:
             
             Antecedent is a list of tuples in which each tuple indicates 
             assignement of a variable to an IT2FS. First element of the 
-            tuple must be input variable name as str, and the second 
+            tuple must be the input variable name as str, and the second 
             element of the tuple must be an IT2FS.
             
         consequent:
@@ -3989,12 +4178,12 @@ class IT2Mamdani:
     t_norm:
         function
         
-        T-norm operator which would be used in FLS.
+        T-norm operator which would be used by FLS.
     
     s_norm:
         function
         
-        S-norm operator which would be used in FLS.
+        S-norm operator which would be used by FLS.
     
     method="Centroid":
         str
@@ -4026,12 +4215,12 @@ class IT2Mamdani:
     inputs:
         List of str
         
-        List of the inputs name as str
+        List of the inputs name as str.
     
     output:
         List of str
         
-        List of the outputs name as str
+        List of the outputs name as str.
         
     rules:
         List of tuples (antecedent, consequent)
@@ -4040,9 +4229,9 @@ class IT2Mamdani:
         tuple (antecedent, consequent)
         
         Both antacedent and consequent are lists of tuples. Each tuple 
-        of this list shows assignement of a variable to an IT2FS. 
+        of these lists shows assignement of a variable to an IT2FS. 
         First element of the tuple must be variable name (input or output) 
-        as a str and the second element must be an IT2FS. 
+        as a str, and the second element must be an IT2FS. 
     
     Functions
     ---------
@@ -4077,6 +4266,14 @@ class IT2Mamdani:
         while constructing the class. For more information, please refer to 
         the examples.
     
+    Notes
+    -----
+    
+    While using the IT2Mamdani class the user must take care of the items listed below:
+        
+        * The UMF defined for an IT2FS must be greater than or equal with the LMF at all points of the discrete universe of discourse. 
+        * The inputs and outputs defined must be compatible while adding the rules and evluating the IT2FLS.
+
     """
     def __init__(self, t_norm, s_norm, 
                  method="Centroid", method_params=[], 
