@@ -2585,7 +2585,7 @@ def KM_algorithm(intervals, params=[]):  # intervals = [[a1, b1, c1, d1], [a2, b
     Tuple (l, r)
     """
     # left calculations
-    intervals = intervals[intervals[:,0].argsort()]
+    # left calculations
     intervals = trim(intervals)
     
     if intervals is False:
@@ -2595,6 +2595,7 @@ def KM_algorithm(intervals, params=[]):  # intervals = [[a1, b1, c1, d1], [a2, b
     w_l = w[:]
 
     N = len(intervals)
+    intervals = intervals[intervals[:,0].argsort()]
     y_l_prime_num = npsum(intervals[:, 0] * w_l)
     y_prime_den = npsum(w_l)
     
@@ -2620,9 +2621,9 @@ def KM_algorithm(intervals, params=[]):  # intervals = [[a1, b1, c1, d1], [a2, b
         else:
             y_l_prime = y_l
     # right calculations
-    intervals = intervals[intervals[:, 1].argsort()]
     w_r = w[:]
     
+    intervals = intervals[intervals[:, 1].argsort()]
     y_r_prime_num = npsum(intervals[:, 1] * w_r)
     y_r_prime = y_r_prime_num / y_prime_den
     while True:
@@ -2673,7 +2674,7 @@ def EKM_algorithm(intervals, params=[]):
     """
     
     # Left calculations
-    intervals = intervals[intervals[:,0].argsort()]
+    
     intervals = trim(intervals)
     
     if intervals is False:
@@ -2683,9 +2684,10 @@ def EKM_algorithm(intervals, params=[]):
     
     k_l = round(N / 2.4)
 
-    a_l = npsum(intervals[:k_l+1, 0] * intervals[:k_l+1, 3]) + \
-          npsum(intervals[k_l+1:, 0] * intervals[k_l+1:, 2])
-    b_l = npsum(intervals[:k_l+1, 3]) + npsum(intervals[k_l+1:, 2])
+    intervals = intervals[intervals[:, 0].argsort()]
+    a_l = npsum(intervals[:k_l, 0] * intervals[:k_l, 3]) + \
+          npsum(intervals[k_l:, 0] * intervals[k_l:, 2])
+    b_l = npsum(intervals[:k_l, 3]) + npsum(intervals[k_l:, 2])
     y_l_prime = a_l / b_l
     while True:
         k_l_prime = 0
@@ -2713,11 +2715,11 @@ def EKM_algorithm(intervals, params=[]):
         a_l = a_l_prime
         b_l = b_l_prime
     # Right calculations
-    intervals = intervals[intervals[:,1].argsort()]
+    intervals = intervals[intervals[:, 1].argsort()]
     k_r = round(N / 1.7)
-    a_r = npsum(intervals[:k_r+1, 1] * intervals[:k_r+1, 2]) + \
-          npsum(intervals[k_r+1:, 1] * intervals[k_r+1:, 3])
-    b_r = npsum(intervals[:k_r+1, 2]) + npsum(intervals[k_r+1:, 3])
+    a_r = npsum(intervals[:k_r, 1] * intervals[:k_r, 2]) + \
+          npsum(intervals[k_r:, 1] * intervals[k_r:, 3])
+    b_r = npsum(intervals[:k_r, 2]) + npsum(intervals[k_r:, 3])
 
     y_r_prime = a_r / b_r
 
@@ -2915,7 +2917,7 @@ def EIASC_algorithm(intervals, params=[]):
     """
     
     # Left calculations
-    intervals = intervals[intervals[:,0].argsort()]
+    
     intervals = trim(intervals)
     
     if intervals is False:
@@ -2923,7 +2925,7 @@ def EIASC_algorithm(intervals, params=[]):
     
     N = len(intervals)
     
-    
+    intervals = intervals[intervals[:, 0].argsort()]
     a_l = npsum(intervals[:, 0] * intervals[:, 2])
     b_l = npsum(intervals[:, 2])
     L = 0
@@ -2936,7 +2938,7 @@ def EIASC_algorithm(intervals, params=[]):
         if (y_l <= intervals[L, 0]) or isclose(y_l, intervals[L, 0]):
             break 
     # Right calculations
-    intervals = intervals[intervals[:,1].argsort()]
+    intervals = intervals[intervals[:, 1].argsort()]
     a_r = npsum(intervals[:, 1] * intervals[:, 3])
     b_r = npsum(intervals[:, 3])
     R = N - 1
