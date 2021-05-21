@@ -24,12 +24,17 @@ libcd = npct.load_library("typereduction", str(path))
 libcd.EIASC_algorithm.restype = None
 libcd.EIASC_algorithm.argtypes = [array_2d_double, array_1d_double, c_int, array_1d_double]
 
+libcd.KM_algorithm.restype = None
+libcd.KM_algorithm.argtypes = [array_2d_double, array_1d_double, c_int, array_1d_double]
 
 def EIASC_algorithm(intervals, params=[]):
     o = zeros(shape=(2, ))
     libcd.EIASC_algorithm(intervals, array(params), len(intervals), o)
     return o
 
-
+def KM_algorithm(intervals, params=[]):
+    o = zeros(shape=(2, ))
+    libcd.KM_algorithm(intervals, array(params), len(intervals), o)
+    return o
 
 

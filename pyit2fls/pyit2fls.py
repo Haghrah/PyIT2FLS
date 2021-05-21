@@ -2585,7 +2585,6 @@ def KM_algorithm(intervals, params=[]):  # intervals = [[a1, b1, c1, d1], [a2, b
     Tuple (l, r)
     """
     # left calculations
-    # left calculations
     intervals = trim(intervals)
     
     if intervals is False:
@@ -2598,8 +2597,8 @@ def KM_algorithm(intervals, params=[]):  # intervals = [[a1, b1, c1, d1], [a2, b
     intervals = intervals[intervals[:,0].argsort()]
     y_l_prime_num = npsum(intervals[:, 0] * w_l)
     y_prime_den = npsum(w_l)
-    
     y_l_prime = y_l_prime_num / y_prime_den
+    
     while True:
         k_l = 0
         for i in range(0, N-1):
@@ -2611,10 +2610,8 @@ def KM_algorithm(intervals, params=[]):  # intervals = [[a1, b1, c1, d1], [a2, b
         
         ii = arange(N)
         w_l = (ii <= k_l) * intervals[:, 3] + (ii > k_l) * intervals[:, 2]
-        y_l_num = npsum(intervals[:k_l+1, 0] * intervals[:k_l+1, 3])
-        y_l_den = npsum(intervals[:k_l+1, 3])
-        y_l_num += npsum(intervals[k_l+1:, 0] * intervals[k_l+1:, 2])
-        y_l_den += npsum(intervals[k_l+1:, 2])
+        y_l_num = npsum(intervals[:, 0] * w_l)
+        y_l_den = npsum(w_l)
         y_l = y_l_num / y_l_den
         if isclose(y_l, y_l_prime, abs_tol=1.0e-6):
             break
@@ -2630,17 +2627,15 @@ def KM_algorithm(intervals, params=[]):  # intervals = [[a1, b1, c1, d1], [a2, b
         k_r = 0
         for i in range(0, N-1):
             if (intervals[i, 1] <= y_r_prime <= intervals[i+1, 1]) or \
-                isclose(intervals[i, 0], y_r_prime) or \
-                isclose(y_r_prime, intervals[i+1, 0]):
+                isclose(intervals[i, 1], y_r_prime) or \
+                isclose(y_r_prime, intervals[i+1, 1]):
                 k_r = i
                 break
         
         ii = arange(N)
         w_r = (ii <= k_r) * intervals[:, 2] + (ii > k_r) * intervals[:, 3]
-        y_r_num = npsum(intervals[:k_r+1, 1] * intervals[:k_r+1, 2])
-        y_r_den = npsum(intervals[:k_r+1, 2])
-        y_r_num += npsum(intervals[k_r+1:, 1] * intervals[k_r+1:, 3])
-        y_r_den += npsum(intervals[k_r+1:, 3])
+        y_r_num = npsum(intervals[:, 1] * w_r)
+        y_r_den = npsum(w_r)
         y_r = y_r_num / y_r_den
         if isclose(y_r, y_r_prime, abs_tol=1.0e-6):
             break

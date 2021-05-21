@@ -31,7 +31,7 @@ fh = fl + random.rand(101)
 intervals = column_stack((x, x, fl, fh))
 
 t1 = 0
-for _ in range(10000):
+for _ in range(1000):
     t = time()
     EIASC_algorithm(intervals)
     t1 += time() - t
@@ -39,7 +39,7 @@ for _ in range(10000):
 print(t1)
 
 t2 = 0
-for _ in range(10000):
+for _ in range(1000):
     t = time()
     KM_algorithm(intervals)
     t2 += time() - t
@@ -47,14 +47,20 @@ for _ in range(10000):
 print(t2)
 
 t3 = 0
-for _ in range(10000):
+for _ in range(1000):
     t = time()
     typereduction.EIASC_algorithm(intervals)
     t3 += time() - t
 
 print(t3)
 
+t3 = 0
+for _ in range(1000):
+    t = time()
+    typereduction.KM_algorithm(intervals)
+    t3 += time() - t
 
+print(t3)
 
 
 

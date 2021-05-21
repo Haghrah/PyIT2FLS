@@ -31,33 +31,106 @@ void KM_algorithm(double *data, double *params, int size, double *result)
 	Interval *intervalArray = (Interval *)(data);
 	
 	char allZero = 1;
-	int L = 0, R = 0;
+	int k_l = 0, k_r = 0;
 	double w = 0;
 	double y_l_prime = 0., y_r_prime = 0.;
-	double y_l_prime_num = 0., y_r_prime_num = 0.;
-	double y_prime_den = 0.;
-	double w_l = 0, w_r = 0, y_l = 0, y_r = 0;
+	double y_l_num = 0., y_l_den = 0.;
+	double y_r_num = 0., y_r_den = 0.;
+	double y_prime_num = 0., y_prime_den = 0.;
+	double y_l = 0, y_r = 0;
 	
 	for(int i = 0; i < size; i++)
 	{
 		if (rawData[2] != 0 || rawData[3] != 0) 
 		{
-			allZero = 1;
+			allZero = 0;
 		}
 		w = (rawData[2] + rawData[3]) / 2;
-		y_l_prime_num += rawData[0] * w;
-		y_r_prime_num += rawData[1] * w;
+		y_prime_num += rawData[0] * w;
 		y_prime_den += w;
+		rawData += 4;
 	}
-	y_l_prime = y_l_prime_num / y_prime_den;
-	y_r_prime = y_r_prime_num / y_prime_den;
-	while(1) {
-		L = 0;
-		for(int i = 1; i < size; i++)
-		{
-			
+	
+	if(allZero)
+	{
+		result[0] = 0.;
+		result[1] = 0.;
+		return;
+	}else{
+	
+		y_l_prime = y_prime_num / y_prime_den;
+		y_r_prime = y_prime_num / y_prime_den;
+		
+		qsort(intervalArray, size, sizeof(Interval), compare_a);
+		
+		while(1) {
+			k_l = 0;
+			for(int i = 0; i < size - 1; i++)
+			{
+				if((intervalArray[i].a <= y_l_prime && intervalArray[i + 1].a >= y_l_prime) || 
+				   (fabs(y_l_prime - intervalArray[i].a) <= epsilon) || 
+				   (fabs(y_l_prime - intervalArray[i + 1].a) <= epsilon))
+				{
+					k_l = i;
+					break;
+				}
+			}
+			for(int i = 0; i <= k_l; i++)
+			{
+				y_l_num += intervalArray[i].a * intervalArray[i].d;
+				y_l_den += intervalArray[i].d;
+			}
+			for(int i = k_l + 1; i < size; i++)
+			{
+				y_l_num += intervalArray[i].a * intervalArray[i].c;
+				y_l_den += intervalArray[i].c;
+			}
+			y_l = y_l_num / y_l_den;
+			if(fabs(y_l - y_l_prime) <= epsilon)
+			{
+				break;
+			}else{
+				y_l_prime = y_l;
+			}
 		}
+		
+		while(1) {
+			k_r = 0;
+			for(int i = 0; i < size - 1; i++)
+			{
+				if((intervalArray[i].a <= y_r_prime && intervalArray[i + 1].a >= y_r_prime) || 
+				   (fabs(y_r_prime - intervalArray[i].a) <= epsilon) || 
+				   (fabs(y_r_prime - intervalArray[i + 1].a) <= epsilon))
+				{
+					k_r = i;
+					break;
+				}
+			}
+			for(int i = 0; i <= k_r; i++)
+			{
+				y_r_num += intervalArray[i].a * intervalArray[i].c;
+				y_r_den += intervalArray[i].c;
+			}
+			for(int i = k_r + 1; i < size; i++)
+			{
+				y_r_num += intervalArray[i].a * intervalArray[i].d;
+				y_r_den += intervalArray[i].d;
+			}
+			y_r = y_r_num / y_r_den;
+			if(fabs(y_r - y_r_prime) <= epsilon)
+			{
+				break;
+			}else{
+				y_r_prime = y_r;
+			}
+		}
+		
+		result[0] = y_l;
+		result[1] = y_r;
+	
 	}
+	
+	return;
 	
 }
 
@@ -76,7 +149,7 @@ void EIASC_algorithm(double *data, double *params, int size, double *result)
 	{
 		if (rawData[2] != 0 || rawData[3] != 0) 
 		{
-			allZero = 1;
+			allZero = 0;
 		}
 		b_l += rawData[2];
 		b_r += rawData[3];
@@ -106,7 +179,7 @@ void EIASC_algorithm(double *data, double *params, int size, double *result)
 			}
 		}
 		
-		// Interval.a = Interval.b in IT2FSs
+		// Interval.a = Interval.b in IT2FSs!
 		//qsort(intervalArray, size, sizeof(Interval), compare_b);
 		
 		for(R = size - 1; R > 0; R--)
