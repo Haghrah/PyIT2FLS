@@ -24,6 +24,164 @@ int compare_b (const void * in1, const void * in2)
 	else return 1;
 }
 
+int sign(double x) { 
+	if (x < 0) {
+		return -1;
+	}else if (x > 0) {
+		return +1;
+	}else{
+		return  0;
+	}
+}
+
+int min(int x1, int x2) {
+	if (x1 < x2) {
+		return x1;
+	}else{
+		return x2;
+	}
+}
+
+int max(int x1, int x2) {
+	if (x1 > x2) {
+		return x1;
+	}else{
+		return x2;
+	}
+}
+
+void EKM_algorithm(double *data, double *params, int size, double *result)
+{
+	double *rawData = data;
+	Interval *intervalArray = (Interval *)(data);
+	
+	char allZero = 1;
+	int k_l = 0, k_r = 0, k_l_prime = 0, k_r_prime = 0;
+	int s_l = 0, s_r = 0;
+	int imin = 0, imax = 0;
+	double a_l = 0., b_l = 0., a_r = 0., b_r = 0.;
+	double a_l_prime = 0., b_l_prime = 0.;
+	double a_r_prime = 0., b_r_prime = 0.;
+	double y_l = 0., y_l_prime = 0., y_r = 0., y_r_prime = 0.;
+	
+	
+	k_l = (int)(size / 2.4);
+	k_r = (int)(size / 1.7);
+	
+	for(int i = 0; i < size; i++)
+	{
+		if (rawData[2] != 0 || rawData[3] != 0) 
+		{
+			allZero = 0;
+		}
+		if (i < k_l)
+		{
+			a_l += rawData[0] * rawData[3];
+			b_l += rawData[3];
+		}else{
+			a_l += rawData[0] * rawData[2];
+			b_l += rawData[2];
+		}
+		if (i < k_r)
+		{
+			a_r += rawData[0] * rawData[2];
+			b_r += rawData[2];
+		}else{
+			a_r += rawData[0] * rawData[3];
+			b_r += rawData[3];
+		}
+		rawData += 4;
+	}
+	
+	
+	
+	if(allZero)
+	{
+		result[0] = 0.;
+		result[1] = 0.;
+		return;
+	}else{
+		y_l_prime = a_l / b_l;
+		y_r_prime = a_r / b_r;
+		
+		qsort(intervalArray, size, sizeof(Interval), compare_a);
+		
+		while(1) {
+			k_l_prime = 0;
+			for (int i = 0; i < size - 1; i++) {
+				if((intervalArray[i].a <= y_l_prime && intervalArray[i + 1].a >= y_l_prime) || 
+				   (fabs(y_l_prime - intervalArray[i].a) <= epsilon) || 
+				   (fabs(y_l_prime - intervalArray[i + 1].a) <= epsilon))
+				{
+					k_l_prime = i;
+					break;
+				}
+			}
+			if (k_l_prime == k_l) {
+				y_l = y_l_prime;
+				break;
+			}
+			
+			s_l = sign(k_l_prime - k_l);
+			imin = min(k_l, k_l_prime) + 1;
+			imax = max(k_l, k_l_prime);
+			
+			a_l_prime = 0;
+			b_l_prime = 0;
+			for (int i = imin; i < imax; i++) {
+				a_l_prime += intervalArray[i].a * (intervalArray[i].d - intervalArray[i].c);
+				b_l_prime += intervalArray[i].d - intervalArray[i].c;
+			}
+			a_l_prime = s_l * a_l_prime + a_l;
+			b_l_prime = s_l * b_l_prime + b_l;
+			
+			k_l = k_l_prime;
+			y_l_prime = a_l_prime / b_l_prime;
+			a_l = a_l_prime;
+			b_l = b_l_prime;
+		}
+		
+		while(1) {
+			k_r_prime = 0;
+			for (int i = 0; i < size - 1; i++) {
+				if((intervalArray[i].a <= y_r_prime && intervalArray[i + 1].a >= y_r_prime) || 
+				   (fabs(y_r_prime - intervalArray[i].a) <= epsilon) || 
+				   (fabs(y_r_prime - intervalArray[i + 1].a) <= epsilon))
+				{
+					k_r_prime = i;
+					break;
+				}
+			}
+			if (k_r_prime == k_r) {
+				y_r = y_r_prime;
+				break;
+			}
+			
+			s_r = sign(k_r_prime - k_r);
+			imin = min(k_r, k_r_prime) + 1;
+			imax = max(k_r, k_r_prime);
+			
+			a_r_prime = 0;
+			b_r_prime = 0;
+			for (int i = imin; i < imax; i++) {
+				a_r_prime += intervalArray[i].a * (intervalArray[i].d - intervalArray[i].c);
+				b_r_prime += intervalArray[i].d - intervalArray[i].c;
+			}
+			a_r_prime = - s_r * a_r_prime + a_r;
+			b_r_prime = - s_r * b_r_prime + b_r;
+			
+			k_r = k_r_prime;
+			y_r_prime = a_r_prime / b_r_prime;
+			a_r = a_r_prime;
+			b_r = b_r_prime;
+		}
+		
+		result[0] = y_l;
+		result[1] = y_r;
+	}
+	
+	return;
+}
 
 void KM_algorithm(double *data, double *params, int size, double *result)
 {

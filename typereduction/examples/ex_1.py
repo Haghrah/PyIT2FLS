@@ -9,7 +9,7 @@ Created on Sun Apr  18 00:29:35 2021
 from numpy import array, random, column_stack, row_stack
 from numpy import sum as npsum
 import typereduction
-from pyit2fls import EIASC_algorithm, KM_algorithm
+from pyit2fls import EIASC_algorithm, KM_algorithm, EKM_algorithm
 from time import time
 
 # intervals = array([[0.1, 0.3, 0., 0.], 
@@ -49,19 +49,34 @@ print(t2)
 t3 = 0
 for _ in range(1000):
     t = time()
-    typereduction.EIASC_algorithm(intervals)
+    EKM_algorithm(intervals)
     t3 += time() - t
 
 print(t3)
 
-t3 = 0
+t4 = 0
+for _ in range(1000):
+    t = time()
+    typereduction.EIASC_algorithm(intervals)
+    t4 += time() - t
+
+print(t4)
+
+t5 = 0
 for _ in range(1000):
     t = time()
     typereduction.KM_algorithm(intervals)
-    t3 += time() - t
+    t5 += time() - t
 
-print(t3)
+print(t5)
 
+t6 = 0
+for _ in range(1000):
+    t = time()
+    typereduction.EKM_algorithm(intervals)
+    t6 += time() - t
+
+print(t6)
 
 
 

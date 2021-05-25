@@ -4284,9 +4284,15 @@ class IT2Mamdani:
         self.__method = method
         self.__method_params = method_params
         if algorithm == "KM":
-            self.__algorithm = KM_algorithm
+            if isThereTypereduction:
+                self.__algorithm = typereduction.KM_algorithm
+            else:
+                self.__algorithm = KM_algorithm
         elif algorithm == "EKM":
-            self.__algorithm = EKM_algorithm
+            if isThereTypereduction:
+                self.__algorithm = typereduction.EKM_algorithm
+            else:
+                self.__algorithm = EKM_algorithm
         elif algorithm == "WEKM":
             self.__algorithm = WEKM_algorithm
         elif algorithm == "TWEKM":
