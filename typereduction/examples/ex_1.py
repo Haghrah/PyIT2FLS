@@ -6,10 +6,9 @@ Created on Sun Apr  18 00:29:35 2021
 @author: arslan
 """
 
-from numpy import array, random, column_stack, row_stack
-from numpy import sum as npsum
+from numpy import random, column_stack
 import typereduction
-from pyit2fls import EIASC_algorithm, KM_algorithm, EKM_algorithm
+from pyit2fls import EIASC_algorithm, KM_algorithm, EKM_algorithm, WM_algorithm
 from time import time
 
 # intervals = array([[0.1, 0.3, 0., 0.], 
@@ -25,63 +24,78 @@ from time import time
 #                    [1.1, 1.3, 0., 0.], 
 #                    [0.0, 1.4, 10., 10.], ])
 
-x = random.rand(101)
-fl = random.rand(101)
-fh = fl + random.rand(101)
+N = 1001
+M = 100
+x = random.rand(N)
+fl = random.rand(N)
+fh = fl + random.rand(N)
 intervals = column_stack((x, x, fl, fh))
 
-t1 = 0
-for _ in range(1000):
+
+
+t_ = 0
+for _ in range(M):
     t = time()
     EIASC_algorithm(intervals)
-    t1 += time() - t
+    t_ += time() - t
 
-print(t1)
+print("EIASC python implementation:", t_)
 
-t2 = 0
-for _ in range(1000):
-    t = time()
-    KM_algorithm(intervals)
-    t2 += time() - t
-
-print(t2)
-
-t3 = 0
-for _ in range(1000):
-    t = time()
-    EKM_algorithm(intervals)
-    t3 += time() - t
-
-print(t3)
-
-t4 = 0
-for _ in range(1000):
+t_ = 0
+for _ in range(M):
     t = time()
     typereduction.EIASC_algorithm(intervals)
-    t4 += time() - t
+    t_ += time() - t
 
-print(t4)
+print("EIASC C implementation:", t_)
 
-t5 = 0
-for _ in range(1000):
+t_ = 0
+for _ in range(M):
+    t = time()
+    KM_algorithm(intervals)
+    t_ += time() - t
+
+print("KM python implementation:", t_)
+
+t_ = 0
+for _ in range(M):
     t = time()
     typereduction.KM_algorithm(intervals)
-    t5 += time() - t
+    t_ += time() - t
 
-print(t5)
+print("KM C implementation:", t_)
 
-t6 = 0
-for _ in range(1000):
+t_ = 0
+for _ in range(M):
+    t = time()
+    EKM_algorithm(intervals)
+    t_ += time() - t
+
+print("EKM python implementation:", t_)
+
+t_ = 0
+for _ in range(M):
     t = time()
     typereduction.EKM_algorithm(intervals)
-    t6 += time() - t
+    t_ += time() - t
 
-print(t6)
+print("EKM C implementation:", t_)
 
+t_ = 0
+for _ in range(M):
+    t = time()
+    WM_algorithm(intervals)
+    t_ += time() - t
 
+print("WM python implementation:", t_)
 
+t_ = 0
+for _ in range(M):
+    t = time()
+    typereduction.WM_algorithm(intervals)
+    t_ += time() - t
 
-
+print("WM C implementation:", t_)
 
 
 

@@ -28,6 +28,9 @@ libcd.KM_algorithm.argtypes = [array_2d_double, array_1d_double, c_int, array_1d
 libcd.EKM_algorithm.restype = None
 libcd.EKM_algorithm.argtypes = [array_2d_double, array_1d_double, c_int, array_1d_double]
 
+libcd.WM_algorithm.restype = None
+libcd.WM_algorithm.argtypes = [array_2d_double, array_1d_double, c_int, array_1d_double]
+
 def EIASC_algorithm(intervals, params=[]):
     o = zeros(shape=(2, ))
     libcd.EIASC_algorithm(intervals, array(params), len(intervals), o)
@@ -43,7 +46,10 @@ def EKM_algorithm(intervals, params=[]):
     libcd.EKM_algorithm(intervals, array(params), len(intervals), o)
     return o
 
-
+def WM_algorithm(intervals, params=[]):
+    o = zeros(shape=(2, ))
+    libcd.WM_algorithm(intervals, array(params), len(intervals), o)
+    return o
 
 
 

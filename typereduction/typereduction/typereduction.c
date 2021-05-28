@@ -50,6 +50,78 @@ int max(int x1, int x2) {
 	}
 }
 
+double minf(double x1, double x2) {
+	if (x1 < x2) {
+		return x1;
+	}else{
+		return x2;
+	}
+}
+
+double maxf(double x1, double x2) {
+	if (x1 > x2) {
+		return x1;
+	}else{
+		return x2;
+	}
+}
+
+
+void WM_algorithm(double *data, double *params, int size, double *result)
+{
+	double *rawData = data;
+	Interval *intervalArray = (Interval *)(data);
+	
+	char allZero = 1;
+	
+	double sumF0 = 0., sumF1 = 0., sumF0Y0 = 0., sumF1Y0 = 0., sumF0Y1 = 0., sumF1Y1 = 0.;
+	double c = 0., y_l_sup = 0., y_l_inf = 0., y_r_sup = 0., y_r_inf = 0.;
+	double s1, s2;
+	
+	for(int i = 0; i < size; i++)
+	{
+		if (rawData[2] != 0 || rawData[3] != 0) 
+		{
+			allZero = 0;
+		}
+		rawData += 4;
+	}
+	if(allZero)
+	{
+		result[0] = 0.;
+		result[1] = 0.;
+		return;
+	}else{
+		qsort(intervalArray, size, sizeof(Interval), compare_a);
+		
+		for (int i = 0; i < size; i++)
+		{
+			sumF0 += intervalArray[i].c;
+			sumF1 += intervalArray[i].d;
+			sumF0Y0 += intervalArray[i].a * intervalArray[i].c;
+			sumF0Y1 += intervalArray[i].b * intervalArray[i].c;
+			sumF1Y0 += intervalArray[i].a * intervalArray[i].d;
+			sumF1Y1 += intervalArray[i].b * intervalArray[i].d;
+		}
+		c = (sumF1 - sumF0) / (sumF0 * sumF1);
+		y_l_sup = minf(sumF0Y0 / sumF0, sumF1Y0 / sumF1);
+		y_r_inf = minf(sumF1Y1 / sumF1, sumF0Y1 / sumF0);
+		
+		s1 = sumF0Y0 - sumF0 * intervalArray[0].a;
+		s2 = sumF1 * intervalArray[size - 1].a - sumF1Y0;
+		y_l_inf = y_l_sup - c * (s1 * s2) / (s1 + s2);
+		
+		s1 = sumF1Y1 - sumF1 * intervalArray[0].b;
+		s2 = sumF0 * intervalArray[size - 1].b - sumF0Y1;
+		y_r_sup = y_r_inf + c * (s1 * s2) / (s1 + s2);
+		
+		result[0] = (y_l_sup + y_l_inf) / 2;
+		result[1] = (y_r_sup + y_r_inf) / 2;
+	}
+	return;
+}
+
+
 void EKM_algorithm(double *data, double *params, int size, double *result)
 {
 	double *rawData = data;
