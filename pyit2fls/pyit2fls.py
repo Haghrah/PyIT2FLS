@@ -4303,7 +4303,10 @@ class IT2Mamdani:
             else:
                 self.__algorithm = EIASC_algorithm
         elif algorithm == "WM":
-            self.__algorithm = WM_algorithm
+            if isThereTypereduction:
+                self.__algorithm = typereduction.WM_algorithm
+            else:
+                self.__algorithm = WM_algorithm
         elif algorithm == "BMM":
             self.__algorithm = BMM_algorithm
         elif algorithm == "LBMM":
