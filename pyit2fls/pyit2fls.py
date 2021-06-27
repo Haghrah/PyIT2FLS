@@ -1746,7 +1746,7 @@ def IT2FS_Semi_Elliptic(domain, params, check_set=False):
     """
     return IT2FS(domain, 
                  semi_elliptic_mf, [params[0], params[1], params[3]], 
-                 semi_elliptic_mf, [params[0], params[2], params[3]], check_set=False)
+                 semi_elliptic_mf, [params[0], params[2], params[3]], check_set=check_set)
 
 
 def IT2FS_Gaussian_UncertMean(domain, params, check_set=False):
@@ -1786,7 +1786,7 @@ def IT2FS_Gaussian_UncertMean(domain, params, check_set=False):
     mr = params[0] + params[1] / 2.
     return IT2FS(domain, 
                  gauss_uncert_mean_umf, [ml, mr, params[2], params[3]], 
-                 gauss_uncert_mean_lmf, [ml, mr, params[2], params[3]], check_set=False)
+                 gauss_uncert_mean_lmf, [ml, mr, params[2], params[3]], check_set=check_set)
 
 
 def IT2FS_Gaussian_UncertStd(domain, params, check_set=False):
@@ -1827,7 +1827,7 @@ def IT2FS_Gaussian_UncertStd(domain, params, check_set=False):
     stdr = params[1] + params[2] / 2
     return IT2FS(domain, 
                  gauss_uncert_std_umf, [params[0], stdl, stdr, params[3]], 
-                 gauss_uncert_std_lmf, [params[0], stdl, stdr, params[3]], check_set=False)
+                 gauss_uncert_std_lmf, [params[0], stdl, stdr, params[3]], check_set=check_set)
 
 
 def IT2FS_RGaussian_UncertStd(domain, params, check_set=False):
@@ -1870,7 +1870,7 @@ def IT2FS_RGaussian_UncertStd(domain, params, check_set=False):
                   rgauss_uncert_std_umf, 
                   [params[0], stdl, stdr, params[3]],
                   rgauss_uncert_std_lmf, 
-                  [params[0], stdl, stdr, params[3]], check_set=False)
+                  [params[0], stdl, stdr, params[3]], check_set=check_set)
 
 def IT2FS_LGaussian_UncertStd(domain, params, check_set=False):
     """
@@ -1912,7 +1912,7 @@ def IT2FS_LGaussian_UncertStd(domain, params, check_set=False):
                   lgauss_uncert_std_umf, 
                   [params[0], stdl, stdr, params[3]],
                   lgauss_uncert_std_lmf, 
-                  [params[0], stdl, stdr, params[3]], check_set=False)
+                  [params[0], stdl, stdr, params[3]], check_set=check_set)
 
 
 def IT2FS_plot(*sets, title=None, legends=None, filename=None, 

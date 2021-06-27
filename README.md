@@ -35,29 +35,32 @@ Or you can use pip3:
 ## Versions
 
 ### Features coming up in the next version
-- [ ] Exception handling.
-- [ ] Fuzzy matrices and related operators.
-- [ ] Supporting Generalized Type 2 Fuzzy Sets and Systems.
-- [ ] Speeding up the codes using Ctypes.
+- Exception handling.
+- Supporting Generalized Type 2 Fuzzy Sets and Systems.
+
+### Some notes on version 0.7
+- Fuzzy matrices and related operators.
+- Speeding up the codes using Ctypes (Please visit [typereduction](https://github.com/Haghrah/PyIT2FLS/tree/master/typereduction) package).
+- Exphasize function for both type 1 and interval type 2 fuzzy sets.
 
 ### Some notes on version 0.6.1
-- [x] Some bugs have been fixed in this version.
+- Some bugs have been fixed in this version.
 
 ### Some notes on version 0.6
-- [x] Supporting Type 1 Fuzzy Sets and Systems.
-- [x] Supporting elliptic and semi-elliptic membership functions.
-- [x] Supporting generalized bell shaped membership function.
-- [x] Supporting many new t-norms and s-norms.
-- [x] Some bugs are fixed in this version.
+- Supporting Type 1 Fuzzy Sets and Systems.
+- Supporting elliptic and semi-elliptic membership functions.
+- Supporting generalized bell shaped membership function.
+- Supporting many new t-norms and s-norms.
+- Some bugs are fixed in this version.
 
 ### Some notes on version 0.5
-- [x] Supporting both Mamdani and TSK systems.
-- [x] Some bugs have fixed in this vesion. Now it is possible to use different domains for FLS inputs and outputs.
+- Supporting both Mamdani and TSK systems.
+- Some bugs have fixed in this vesion. Now it is possible to use different domains for FLS inputs and outputs.
 
 ### Some notes on version 0.4
-- [x] Some bugs have been fixed in this version especially in type reduction algorithms. I would like to say thanks to Dr. K.B Badri Narayanan for reporting the errors.
-- [x] Some new IT2FSs are added to the toolkit.
-- [x] In previous versions, the height of the IT2FS_Gaussian_UncertStd and IT2FS_Gaussian_UncertMean IT2FSs was fixed to 1, by default. But in the new version, user must give the height value in the parameters list as the last element.
+- Some bugs have been fixed in this version especially in type reduction algorithms. I would like to say thanks to Dr. K.B Badri Narayanan for reporting the errors.
+- Some new IT2FSs are added to the toolkit.
+- In previous versions, the height of the IT2FS_Gaussian_UncertStd and IT2FS_Gaussian_UncertMean IT2FSs was fixed to 1, by default. But in the new version, user must give the height value in the parameters list as the last element.
 
 ## Docstrings
 Further information about the functions and classes in the PyIT2FLS are accessible by docstrings. After importing a function or class, they can be seen by calling the help function. For example:
@@ -84,6 +87,10 @@ There are some examples provided along with the toolkit which are as below:
 * [Ex13](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_13.py): Using six different s-norms with join operator. **(PyIT2FLS v0.6.0 and upper)**
 * [Ex14](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_14.py): MIMO Type 1 Mamdani Fuzzy Logic System. **(PyIT2FLS v0.6.0 and upper)**
 * [Ex15](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_15.py): MIMO Type 1 TSK Fuzzy Logic System. **(PyIT2FLS v0.6.0 and upper)**
+* [Ex16](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_16.py): Using emphasize function for type 1 and interval type 2 fuzzy sets. **(PyIT2FLS v0.7.0 and upper)**
+* [Ex17](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_17.py): Some operators of fuzzy matrices. **(PyIT2FLS v0.7.0 and upper)**
+* [Ex18](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_18.py): Defining random rules and random sets for IT2F classifier with three inputs and one output (Based on the request of one of the users). **(PyIT2FLS v0.7.0 and upper)**
+
 
 ### Some output plots
 
