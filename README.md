@@ -41,7 +41,7 @@ Or you can use pip3:
 ### Some notes on version 0.7
 - Fuzzy matrices and related operators are now supported.
 - The fuzzy logic systems are speeded up using Ctypes (Please visit [typereduction](https://github.com/Haghrah/PyIT2FLS/tree/master/typereduction) package).
-- Emphasize function for both type 1 and interval type 2 fuzzy sets is introduced.
+- Emphasize function for both type 1 and interval type 2 fuzzy sets is introduced (Please visit [16th](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_16.py) example).
 
 ### Some notes on version 0.6.1
 - Some bugs have been fixed in this version.
