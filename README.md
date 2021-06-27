@@ -39,9 +39,9 @@ Or you can use pip3:
 - Supporting Generalized Type 2 Fuzzy Sets and Systems.
 
 ### Some notes on version 0.7
-- Fuzzy matrices and related operators.
-- Speeding up the codes using Ctypes (Please visit [typereduction](https://github.com/Haghrah/PyIT2FLS/tree/master/typereduction) package).
-- Exphasize function for both type 1 and interval type 2 fuzzy sets.
+- Fuzzy matrices and related operators are now supported.
+- The fuzzy logic systems are speeded up using Ctypes (Please visit [typereduction](https://github.com/Haghrah/PyIT2FLS/tree/master/typereduction) package).
+- Emphasize function for both type 1 and interval type 2 fuzzy sets is introduced.
 
 ### Some notes on version 0.6.1
 - Some bugs have been fixed in this version.
@@ -92,32 +92,3 @@ There are some examples provided along with the toolkit which are as below:
 * [Ex18](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_18.py): Defining random rules and random sets for IT2F classifier with three inputs and one output (Based on the request of one of the users). **(PyIT2FLS v0.7.0 and upper)**
 
 
-### Some output plots
-
-* Ex4:
-
-<img src="examples/images/4_2.png" width="256"> <img src="examples/images/4_4.png" width="256">
-
-* Ex5:
-
-<img src="examples/images/5_1.png" width="128"> <img src="examples/images/5_2.png" width="128"> <img src="examples/images/5_3.png" width="128"> <img src="examples/images/5_4.png" width="128">
-
-* Ex6:
-
-<img src="examples/images/6_1.png" width="128"> <img src="examples/images/6_2.png" width="128"> <img src="examples/images/6_3.png" width="128"> <img src="examples/images/6_4.png" width="128">
-
-<img src="examples/images/6_5.png" width="128"> <img src="examples/images/6_6.png" width="128"> <img src="examples/images/6_7.png" width="128"> <img src="examples/images/6_8.png" width="128">
-
-* Ex9: 
-
-<img src="examples/images/9_1.png" width="512">
-
-<img src="examples/images/9_2.png" width="512">
-
-<img src="examples/images/IT2TSKFLSY1.png" width="256"> <img src="examples/images/IT2TSKFLSY2.png" width="256">
-
-* Ex10: 
-
-<img src="examples/images/10_1.png" width="256"> <img src="examples/images/10_3.png" width="256">
-
-<img src="examples/images/10_5.png" width="256"> <img src="examples/images/10_6.png" width="256">
