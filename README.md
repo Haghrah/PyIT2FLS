@@ -39,11 +39,11 @@ Or you can use pip3:
 - Supporting Generalized Type 2 Fuzzy Sets and Systems.
 
 ### Some notes on version 0.7
-- Fuzzy matrices and related operators are now supported.
-- The fuzzy logic systems are speeded up using Ctypes (Please visit [typereduction](https://github.com/Haghrah/PyIT2FLS/tree/master/typereduction) package).
-- Emphasize function for both type 1 and interval type 2 fuzzy sets is introduced (Please visit [16th](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_16.py) example).
-- The **_function L_IT2FS_Gaussian_UncertStd_** is renamed to **_IT2FS_LGaussian_UncertStd_**.
-- The **_function R_IT2FS_Gaussian_UncertStd_** is renamed to **_IT2FS_RGaussian_UncertStd_**.
+- Supporting fuzzy matrices and related operators.
+- Faster IT2 FLS evaluation (Please visit [typereduction](https://github.com/Haghrah/PyIT2FLS/tree/master/typereduction) package).
+- Emphasize function for both type 1 and interval type 2 fuzzy sets (Please visit [16th](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_16.py) example).
+- The function **_L_IT2FS_Gaussian_UncertStd_** has been renamed to **_IT2FS_LGaussian_UncertStd_**.
+- The function **_R_IT2FS_Gaussian_UncertStd_** has been renamed to **_IT2FS_RGaussian_UncertStd_**.
 
 ### Some notes on version 0.6.1
 - Some bugs have been fixed in this version.
@@ -57,11 +57,11 @@ Or you can use pip3:
 
 ### Some notes on version 0.5
 - Supporting both Mamdani and TSK systems.
-- Some bugs have fixed in this vesion. Now it is possible to use different domains for FLS inputs and outputs.
+- Some bugs have been fixed in this vesion. Now, it is possible to use different domains for FLS inputs and outputs.
 
 ### Some notes on version 0.4
 - Some bugs have been fixed in this version especially in type reduction algorithms. I would like to say thanks to Dr. K.B Badri Narayanan for reporting the errors.
-- Some new IT2FSs are added to the toolkit.
+- Some new IT2FSs have been added to the toolkit.
 - In previous versions, the height of the IT2FS_Gaussian_UncertStd and IT2FS_Gaussian_UncertMean IT2FSs was fixed to 1, by default. But in the new version, user must give the height value in the parameters list as the last element.
 
 ## Docstrings
