@@ -41,7 +41,7 @@ Or you can use pip3:
 ### Some notes on version 0.7
 - Supporting fuzzy matrices and related operators.
 - Faster IT2 FLS evaluation (Please visit [typereduction](https://github.com/Haghrah/PyIT2FLS/tree/master/typereduction) package).
-- Emphasize function for both type 1 and interval type 2 fuzzy sets (Please visit [16th](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_16.py) example).
+- Introduction of emphasize function for both type 1 and interval type 2 fuzzy sets (Please visit [16th](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_16.py) example).
 - The function **_L_IT2FS_Gaussian_UncertStd_** has been renamed to **_IT2FS_LGaussian_UncertStd_**.
 - The function **_R_IT2FS_Gaussian_UncertStd_** has been renamed to **_IT2FS_RGaussian_UncertStd_**.
 
