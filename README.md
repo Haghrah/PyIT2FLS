@@ -42,6 +42,8 @@ Or you can use pip3:
 - Fuzzy matrices and related operators are now supported.
 - The fuzzy logic systems are speeded up using Ctypes (Please visit [typereduction](https://github.com/Haghrah/PyIT2FLS/tree/master/typereduction) package).
 - Emphasize function for both type 1 and interval type 2 fuzzy sets is introduced (Please visit [16th](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_16.py) example).
+- The **_function L_IT2FS_Gaussian_UncertStd_** is renamed to **_IT2FS_LGaussian_UncertStd_**.
+- The **_function R_IT2FS_Gaussian_UncertStd_** is renamed to **_IT2FS_RGaussian_UncertStd_**.
 
 ### Some notes on version 0.6.1
 - Some bugs have been fixed in this version.
