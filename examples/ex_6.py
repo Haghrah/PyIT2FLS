@@ -8,8 +8,8 @@ Created on Wed Mar 11 13:09:12 2020
 
 from pyit2fls import IT2FS, tri_mf, const_mf, rtri_mf, ltri_mf, \
     trapezoid_mf, gaussian_mf, IT2FS_Gaussian_UncertMean, \
-    IT2FS_Gaussian_UncertStd, IT2FS_RGaussian_UncertStd, \
-    IT2FS_LGaussian_UncertStd, IT2FS_plot
+    IT2FS_Gaussian_UncertStd, R_IT2FS_Gaussian_UncertStd, \
+    L_IT2FS_Gaussian_UncertStd, IT2FS_plot
 from numpy import linspace
 
 domain = linspace(0, 1, 1001)
@@ -49,10 +49,10 @@ Gaussian_UncertMean.plot(legend_text="Gaussian IT2FS with Uncertain Mean")
 Gaussian_UncertStd = IT2FS_Gaussian_UncertStd(domain, [0.5, 0.1, 0.05, 0.75])
 Gaussian_UncertStd.plot(legend_text="Gaussian IT2FS with Uncertain Std")
 
-RGaussian_UncertStd = IT2FS_RGaussian_UncertStd(domain, [0.5, 0.1, 0.05, 0.8])
+RGaussian_UncertStd = R_IT2FS_Gaussian_UncertStd(domain, [0.5, 0.1, 0.05, 0.8])
 RGaussian_UncertStd.plot(legend_text="Right Gaussian IT2FS with Uncertain Std")
 
-LGaussian_UncertStd = IT2FS_LGaussian_UncertStd(domain, [0.5, 0.1, 0.05, 0.8])
+LGaussian_UncertStd = L_IT2FS_Gaussian_UncertStd(domain, [0.5, 0.1, 0.05, 0.8])
 LGaussian_UncertStd.plot(legend_text="Left Gaussian IT2FS with Uncertain Std")
 
 

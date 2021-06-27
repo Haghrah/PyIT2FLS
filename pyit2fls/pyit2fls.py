@@ -1872,6 +1872,8 @@ def IT2FS_RGaussian_UncertStd(domain, params, check_set=False):
                   rgauss_uncert_std_lmf, 
                   [params[0], stdl, stdr, params[3]], check_set=check_set)
 
+R_IT2FS_Gaussian_UncertStd = IT2FS_RGaussian_UncertStd
+
 def IT2FS_LGaussian_UncertStd(domain, params, check_set=False):
     """
     Creates a Left Gaussian IT2FS with uncertain standard deviation value.
@@ -1914,6 +1916,8 @@ def IT2FS_LGaussian_UncertStd(domain, params, check_set=False):
                   lgauss_uncert_std_lmf, 
                   [params[0], stdl, stdr, params[3]], check_set=check_set)
 
+
+L_IT2FS_Gaussian_UncertStd = IT2FS_LGaussian_UncertStd
 
 def IT2FS_plot(*sets, title=None, legends=None, filename=None, 
                ext="pdf", grid=True, xlabel="Domain", ylabel="Membership degree"):

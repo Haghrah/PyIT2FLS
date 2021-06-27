@@ -90,7 +90,7 @@ There are some examples provided along with the toolkit which are as below:
 * [Ex14](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_14.py): MIMO Type 1 Mamdani Fuzzy Logic System. **(PyIT2FLS v0.6.0 and upper)**
 * [Ex15](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_15.py): MIMO Type 1 TSK Fuzzy Logic System. **(PyIT2FLS v0.6.0 and upper)**
 * [Ex16](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_16.py): Using emphasize function for type 1 and interval type 2 fuzzy sets. **(PyIT2FLS v0.7.0 and upper)**
-* [Ex17](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_17.py): Some operators of fuzzy matrices. **(PyIT2FLS v0.7.0 and upper)**
+* [Ex17](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_17.py): Example concerning fuzzy matrices. **(PyIT2FLS v0.7.0 and upper)**
 * [Ex18](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_18.py): Defining random rules and random sets for IT2F classifier with three inputs and one output (Based on the request of one of the users). **(PyIT2FLS v0.7.0 and upper)**
 
 
@@ -98,28 +98,28 @@ There are some examples provided along with the toolkit which are as below:
 
 * Ex4:
 
-<img src="examples/images/4_2.png" width="256"> <img src="examples/images/4_4.png" width="256">
+<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/4_2.png" width="256"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/4_4.png" width="256">
 
 * Ex5:
 
-<img src="examples/images/5_1.png" width="128"> <img src="examples/images/5_2.png" width="128"> <img src="examples/images/5_3.png" width="128"> <img src="examples/images/5_4.png" width="128">
+<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/5_1.png" width="128"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/5_2.png" width="128"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/5_3.png" width="128"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/5_4.png" width="128">
 
 * Ex6:
 
-<img src="examples/images/6_1.png" width="128"> <img src="examples/images/6_2.png" width="128"> <img src="examples/images/6_3.png" width="128"> <img src="examples/images/6_4.png" width="128">
+<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/6_1.png" width="128"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/6_2.png" width="128"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/6_3.png" width="128"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/6_4.png" width="128">
 
-<img src="examples/images/6_5.png" width="128"> <img src="examples/images/6_6.png" width="128"> <img src="examples/images/6_7.png" width="128"> <img src="examples/images/6_8.png" width="128">
+<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/6_5.png" width="128"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/6_6.png" width="128"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/6_7.png" width="128"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/6_8.png" width="128">
 
 * Ex9: 
 
-<img src="examples/images/9_1.png" width="512">
+<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/9_1.png" width="512">
 
-<img src="examples/images/9_2.png" width="512">
+<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/9_2.png" width="512">
 
-<img src="examples/images/IT2TSKFLSY1.png" width="256"> <img src="examples/images/IT2TSKFLSY2.png" width="256">
+<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/IT2TSKFLSY1.png" width="256"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/IT2TSKFLSY2.png" width="256">
 
 * Ex10: 
 
-<img src="examples/images/10_1.png" width="256"> <img src="examples/images/10_3.png" width="256">
+<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/10_1.png" width="256"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/10_3.png" width="256">
 
-<img src="examples/images/10_5.png" width="256"> <img src="examples/images/10_6.png" width="256">
+<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/10_5.png" width="256"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/10_6.png" width="256">
