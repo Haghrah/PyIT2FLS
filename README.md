@@ -41,9 +41,13 @@ Or you can use pip3:
 ### Some notes on version 0.7
 - Supporting fuzzy matrices and related operators.
 - Faster IT2 FLS evaluation (Please visit [typereduction](https://github.com/Haghrah/PyIT2FLS/tree/master/typereduction) package).
-- Introduction of emphasize function for both type 1 and interval type 2 fuzzy sets (Please visit [16th](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_16.py) example).
+- Introduction of emphasize function for both type 1 and interval type 2 fuzzy sets (See [16th](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_16.py) example).
 - The function **_L_IT2FS_Gaussian_UncertStd_** has been renamed to **_IT2FS_LGaussian_UncertStd_**.
 - The function **_R_IT2FS_Gaussian_UncertStd_** has been renamed to **_IT2FS_RGaussian_UncertStd_**.
+- New options while calling plot functions (**_T1FS.plot_**, **_IT2FS.plot_**, **_T1FS_plot_**, **_IT2FS_plot_** and **_TR_plot_**) have been added.
+	- Users can give the output file format (png, eps, pdf, and etc.) while calling the plot function by setting the **_ext_** input parameter (with "pdf" default value).
+	- Users can edit the status of the grid in output plot by setting the **_grid_** input parameter (with **_True_** default value).
+	- Users can edit the x and y-labels by setting the input parameters **_xlabel_** and **_ylabel_**, respectively. The default value of the **_xlabel_** is **_Domain_**, and the default value of the **_ylabel_** is **_Membership degree_**.
 
 ### Some notes on version 0.6.1
 - Some bugs have been fixed in this version.
