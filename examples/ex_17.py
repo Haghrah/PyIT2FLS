@@ -5,9 +5,7 @@ Created on Sat May  1 02:51:58 2021
 
 @author: arslan
 """
-from numpy import (array, random, linspace, zeros, min, max, sum, 
-                   minimum, maximum, vstack, hstack, zeros_like, 
-                   array_equal, )
+from numpy import (array, random, linspace, )
 from pyit2fls import (T1FS, gaussian_mf, min_t_norm, max_s_norm, 
                       product_t_norm, T1FMatrix, T1FMatrix_Intersection, 
                       T1FMatrix_Union, Minmax, Maxmin, T1FSoftMatrix, 
