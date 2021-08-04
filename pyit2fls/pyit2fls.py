@@ -4482,7 +4482,7 @@ class IT2Mamdani:
                 u = self.__t_norm(u, input_statement[1].umf(inputs[input_statement[0]], input_statement[1].umf_params))
                 l = self.__t_norm(l, input_statement[1].lmf(inputs[input_statement[0]], input_statement[1].lmf_params))
             for consequent in rule[1]:
-                B_l = meet(consequent[1].domain, consequent[1], l, u, self.__t_norm)
+                B_l = self.__meet(consequent[1].domain, consequent[1], l, u, self.__t_norm)
                 B[consequent[0]].append(B_l)
         TR = {}
         for out in self.outputs:
@@ -4499,7 +4499,7 @@ class IT2Mamdani:
                 u = self.__t_norm(u, input_statement[1].umf(inputs[input_statement[0]], input_statement[1].umf_params))
                 l = self.__t_norm(l, input_statement[1].lmf(inputs[input_statement[0]], input_statement[1].lmf_params))
             for consequent in rule[1]:
-                B_l = meet(consequent[1].domain, consequent[1], l, u, self.__t_norm)                           
+                B_l = self.__meet(consequent[1].domain, consequent[1], l, u, self.__t_norm)                           
                 B[consequent[0]].append(B_l)
         TR = {}
         for out in self.outputs:
