@@ -38,7 +38,10 @@ Or you can use pip3:
 - Exception handling.
 - Supporting Generalized Type 2 Fuzzy Sets and Systems.
 
-### Some notes on version 0.7
+### Some notes on version 0.7.8
+- Some bugs have been fixed in this version.
+
+### Some notes on version 0.7.0-0.7.7
 - Supporting fuzzy matrices and related operators.
 - Faster IT2 FLS evaluation (Please visit [typereduction](https://github.com/Haghrah/PyIT2FLS/tree/master/typereduction) package).
 - Introduction of emphasize function for both type 1 and interval type 2 fuzzy sets (See [16th](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_16.py) example).
