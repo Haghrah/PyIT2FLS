@@ -6,7 +6,7 @@ Typereduction library contains the Ctypes based implementations of the type redu
 
 ### Connecting with PyIT2FLS
 
-PyIT2FLS automatically detects whether the Typereduction toolkit has been installed or not and will use it in computations if installed.
+PyIT2FLS automatically detects whether the Typereduction toolkit has been installed or not and uses it in computations if installed.
 
 
 
