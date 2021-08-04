@@ -86,6 +86,7 @@ There are some examples provided along with the toolkit which are as below:
 * [Ex1](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_1.py): Defining an Interval Type 2 Fuzzy Set (IT2FS).
 * [Ex2](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_2.py): Using join and meet operators and plotting the outputs.
 * [Ex3](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_3.py): Defining a simple (MIMO) IT2FLS.
+* [Ex3 new](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_3_0.7.0.py): Example 3 using the IT2Mamdani class.
 * [Ex4](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_4.py): Prediction of the Mackey-Glass chaotic time series with PSO-based parameter tuning.
 * [Ex5](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_5.py): Designing Interval Type 2 Fuzzy PID (IT2FPID) controller for a time-delay linear system.
 * [Ex6](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_6.py): Creating and plotting ten types of interval type two fuzzy sets. **(PyIT2FLS v0.4.0 and upper)**
