@@ -382,9 +382,9 @@ void EIASC_algorithm(double *data, double *params, int size, double *result)
 			allZero = 0;
 		}
 		b_l += rawData[2];
-		b_r += rawData[3];
+		b_r += rawData[2];
 		a_l += rawData[0] * rawData[2];
-		a_r += rawData[1] * rawData[3];
+		a_r += rawData[1] * rawData[2];
 		rawData += 4;
 	}
 
@@ -409,7 +409,7 @@ void EIASC_algorithm(double *data, double *params, int size, double *result)
 			}
 		}
 		
-		// Interval.a = Interval.b in IT2FSs!
+		// We know that Interval.a = Interval.b in IT2FSs!
 		//qsort(intervalArray, size, sizeof(Interval), compare_b);
 		
 		for(R = size - 1; R > 0; R--)

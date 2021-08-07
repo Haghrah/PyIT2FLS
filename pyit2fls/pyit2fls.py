@@ -2938,8 +2938,8 @@ def EIASC_algorithm(intervals, params=[]):
             break 
     # Right calculations
     intervals = intervals[intervals[:, 1].argsort()]
-    a_r = npsum(intervals[:, 1] * intervals[:, 3])
-    b_r = npsum(intervals[:, 3])
+    a_r = npsum(intervals[:, 1] * intervals[:, 2])
+    b_r = npsum(intervals[:, 2])
     R = N - 1
     while True:
         d = intervals[R, 3] - intervals[R, 2]

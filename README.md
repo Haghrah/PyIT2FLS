@@ -38,6 +38,9 @@ Or you can use pip3:
 - Exception handling.
 - Supporting Generalized Type 2 Fuzzy Sets and Systems.
 
+### Some notes on version 0.7.9
+- Some bugs (concerning EIASC algorithm) have been fixed in this version.
+
 ### Some notes on version 0.7.8
 - Some bugs have been fixed in this version.
 

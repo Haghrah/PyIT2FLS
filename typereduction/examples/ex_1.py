@@ -44,7 +44,7 @@ print("EIASC python implementation:", t_)
 t_ = 0
 for _ in range(M):
     t = time()
-    typereduction.EIASC_algorithm(intervals)
+    eiasc = typereduction.EIASC_algorithm(intervals)
     t_ += time() - t
 
 print("EIASC C implementation:", t_)
@@ -60,7 +60,7 @@ print("KM python implementation:", t_)
 t_ = 0
 for _ in range(M):
     t = time()
-    typereduction.KM_algorithm(intervals)
+    km = typereduction.KM_algorithm(intervals)
     t_ += time() - t
 
 print("KM C implementation:", t_)
@@ -76,7 +76,7 @@ print("EKM python implementation:", t_)
 t_ = 0
 for _ in range(M):
     t = time()
-    typereduction.EKM_algorithm(intervals)
+    ekm = typereduction.EKM_algorithm(intervals)
     t_ += time() - t
 
 print("EKM C implementation:", t_)
@@ -92,12 +92,15 @@ print("WM python implementation:", t_)
 t_ = 0
 for _ in range(M):
     t = time()
-    typereduction.WM_algorithm(intervals)
+    wm = typereduction.WM_algorithm(intervals)
     t_ += time() - t
 
 print("WM C implementation:", t_)
 
 
-
+print("KM:", km)
+print("EKM:", ekm)
+print("EIASC:", eiasc)
+print("WM:", wm)
 
 
