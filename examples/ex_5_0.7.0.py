@@ -40,16 +40,16 @@ def u_dot(t):
 # %% Interval Type 2 Fuzzy PID Codes ...
 domain = linspace(-1., 1., 201)
 
-N = IT2FS_Gaussian_UncertStd(domain, [-1., 0.25, 0.05, 1.])
-Z = IT2FS_Gaussian_UncertStd(domain, [0., 0.25, 0.05, 1.])
-P = IT2FS_Gaussian_UncertStd(domain, [1., 0.25, 0.05, 1.])
+N = IT2FS_Gaussian_UncertStd(domain, [-1., 0.5, 0.1, 1.])
+Z = IT2FS_Gaussian_UncertStd(domain, [0., 0.2, 0.025, 1.])
+P = IT2FS_Gaussian_UncertStd(domain, [1., 0.5, 0.1, 1.])
 IT2FS_plot(N, Z, P, legends=["Negative", "Zero", "Positive"], filename="delay_pid_input_sets")
 
-NB = IT2FS_Gaussian_UncertStd(domain, [-1., 0.15, 0.025, 1.])
-NM = IT2FS_Gaussian_UncertStd(domain, [-0.5, 0.15, 0.025, 1.])
-ZZ = IT2FS_Gaussian_UncertStd(domain, [0., 0.15, 0.025, 1.])
-PM = IT2FS_Gaussian_UncertStd(domain, [0.5, 0.15, 0.025, 1.])
-PB = IT2FS_Gaussian_UncertStd(domain, [1., 0.15, 0.025, 1.])
+NB = IT2FS_Gaussian_UncertStd(domain, [-1., 0.1, 0.05, 1.])
+NM = IT2FS_Gaussian_UncertStd(domain, [-0.5, 0.1, 0.05, 1.])
+ZZ = IT2FS_Gaussian_UncertStd(domain, [0., 0.1, 0.05, 1.])
+PM = IT2FS_Gaussian_UncertStd(domain, [0.5, 0.1, 0.05, 1.])
+PB = IT2FS_Gaussian_UncertStd(domain, [1., 0.1, 0.05, 1.])
 IT2FS_plot(NB, NM, ZZ, PM, PB, legends=["Negative Big", "Negative Medium", 
                                        "Zero", "Positive Medium", 
                                        "Positive Big"], filename="delay_pid_output_sets")
@@ -118,8 +118,8 @@ def model_fuzzy(Y, t, K, T, L, Ka, Kb, Ke, Kd, eval_func):
     xd1 = eval_func(min(max(Ke * e1, -1), 1), min(max(Kd * de1, -1), 1))
     
     
-    e2 = u(t - L - epsilon) - Y[0](t - L)
-    de2 = u_dot(t - L - epsilon) - Y[1](t - L)
+    e2 = u(t - L - epsilon) - Y[0](t - L - epsilon)
+    de2 = u_dot(t - L - epsilon) - Y[1](t - L - epsilon)
     xd2 = eval_func(min(max(Ke * e2, -1), 1), min(max(Kd * de2, -1), 1))
     
     
@@ -135,21 +135,21 @@ g2 = lambda t : 0
 
 # %%
 # Nominal
-K = 1.
-T = 1.
-L = 0.2
+# K = 1.
+# T = 1.
+# L = 0.2
 
 # Perturbed 1.
-# K = 1.3
-# T = 1.9
-# L = 0.4
+K = 1.3
+T = 1.9
+L = 0.4
 
 #Perturbed 2.
 #K = 1.1
 #T = 1.3
 #L = 0.45
 
-tt = linspace(0., 40. ,2000)
+tt = linspace(0., 20. ,2000)
 
 y_raw = ddeint(raw_sys, [g1], tt, fargs=(K, T, L, ))
 y_cl = ddeint(cl_sys, [g1], tt, fargs=(K, T, L, ))

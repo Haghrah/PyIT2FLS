@@ -110,16 +110,18 @@ def cl_sys(Y, t, K, T, L):
     return array([(-1. / T) * Y[0](t) + (K / T) * (u(t - L) - Y[0](t - L))])
 
 def model_fuzzy(Y, t, K, T, L, Ka, Kb, Ke, Kd, eval_func):
+    epsilon = 0.001
+    
     y2 = Y[1](t)
     y1d = Y[0](t - L)
     y2d = Y[1](t - L)
     e1 = u(t - L) - y1d
     de1 = u_dot(t - L) - y2d
-    xd1 = eval_IT2FPID_KM(min(max(Ke * e1, -1), 1), min(max(Kd * de1, -1), 1))
-    e2 = u(t - L - 0.01) - Y[0](t - L - 0.01)
-    de2 = u_dot(t - L - 0.01) - Y[1](t - L - 0.01)
+    xd1 = eval_func(min(max(Ke * e1, -1), 1), min(max(Kd * de1, -1), 1))
+    e2 = u(t - L - epsilon) - Y[0](t - L - epsilon)
+    de2 = u_dot(t - L - epsilon) - Y[1](t - L - epsilon)
     xd2 = eval_func(min(max(Ke * e2, -1), 1), min(max(Kd * de2, -1), 1))
-    dxd = (xd1 - xd2) / 0.01
+    dxd = (xd1 - xd2) / epsilon
     return array([y2, (-1./T) * y2 + (K * Ka / T) * dxd + (K * Kb / T) * xd1])
 
 g1 = lambda t : 0
