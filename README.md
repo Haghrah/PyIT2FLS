@@ -100,13 +100,13 @@ There are some examples provided along with the toolkit which are as below:
 * [Ex6](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_6.py): Creating and plotting ten types of interval type two fuzzy sets. **(PyIT2FLS v0.4.0 and upper)**
 * [Ex7](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_7.py): Similar to Ex3 but implemented using the new Mamdani class. **(PyIT2FLS v0.5.0 and upper)**
 * [Ex8](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_8.py): Defining a simple multi-input multi-output IT2 TSK FLS. **(PyIT2FLS v0.5.0 and upper)**
-* [Ex8 (updated)](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_8.py): Example 8 using the IT2TSK class. **(PyIT2FLS v0.7.0 and upper)**
+* [Ex8 (updated)](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_8_0.7.0.py): Example 8 using the IT2TSK class. **(PyIT2FLS v0.7.0 and upper)**
 * [Ex9](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_9.py): Defining a multi-input multi-output IT2 TSK FLS and plotting the 3D resulting output planes. **(PyIT2FLS v0.5.0 and upper)**
-* [Ex9 (updated)](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_9.py): Example 9 using the IT2TSK class. **(PyIT2FLS v0.7.0 and upper)**
+* [Ex9 (updated)](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_9_0.7.0.py): Example 9 using the IT2TSK class. **(PyIT2FLS v0.7.0 and upper)**
 * [Ex10](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_10.py): Defining a multi-input multi-output IT2FLS with different domains for each of input and output variables, and plotting the output surfaces of the system. **(PyIT2FLS v0.5.0 and upper)**
-* [Ex10 (updated)](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_10.py): Example 10 using the IT2Mamdani class. **(PyIT2FLS v0.7.0 and upper)**
+* [Ex10 (updated)](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_10_0.7.0.py): Example 10 using the IT2Mamdani class. **(PyIT2FLS v0.7.0 and upper)**
 * [Ex11](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_11.py): Generating random rule-bases. **(PyIT2FLS v0.5.0 and upper)**
-* [Ex11 (updated)](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_11.py): Example 11 using the IT2Mamdani class. **(PyIT2FLS v0.7.0 and upper)**
+* [Ex11 (updated)](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_11_0.7.0.py): Example 11 using the IT2Mamdani class. **(PyIT2FLS v0.7.0 and upper)**
 * [Ex12](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_12.py): Using six different t-norms with meet operator. **(PyIT2FLS v0.6.0 and upper)**
 * [Ex13](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_13.py): Using six different s-norms with join operator. **(PyIT2FLS v0.6.0 and upper)**
 * [Ex14](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_14.py): MIMO Type 1 Mamdani Fuzzy Logic System. **(PyIT2FLS v0.6.0 and upper)**
