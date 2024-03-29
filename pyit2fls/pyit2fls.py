@@ -20,7 +20,7 @@ def zero_mf(x, params=[]):
     All zero membership function.
     
     Parameters
-    ----------
+    ------------------------------------------------------------------
     x : 
         numpy (n,) shaped array
         
@@ -33,12 +33,12 @@ def zero_mf(x, params=[]):
         needed for zero memebership function.
     
     Returns
-    -------
+    -------------------------------------------------
     ndarray
         Returns an array of membership values corresponding with the input.
     
     Examples
-    --------
+    --------------------------------------------------
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = zero_mf(x)
@@ -51,7 +51,7 @@ def singleton_mf(x, params):
     Singleton membership function.
     
     Parameters
-    ----------
+    -------------------------------------------------------------------
     x : 
         numpy (n,) shaped array
         
@@ -64,17 +64,17 @@ def singleton_mf(x, params):
         singleton center and params[1] indicates singleton height.
     
     Returns
-    -------
+    -------------------------------------------------
     ndarray
         Returns membership values corresponding with the input.
         
     Notes
-    -----
+    -----------------------------------------------
     The singleton center, params[0], must be in the discretized universe 
     of discourse.
     
     Examples
-    --------
+    --------------------------------------------------
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = singleton_mf(x, [0.5, 1])
@@ -87,7 +87,7 @@ def const_mf(x, params):
     Constant membership function.
     
     Parameters
-    ----------
+    -------------------------------------------------------------------
     x : 
         numpy (n,) shaped array
         
@@ -100,12 +100,12 @@ def const_mf(x, params):
         constant membership function's height.
     
     Returns
-    -------
+    -------------------------------------------------
     ndarray
         Returns membership values corresponding with the input.
     
     Examples
-    --------
+    --------------------------------------------------
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = const_mf(x, [0.5])
@@ -118,7 +118,7 @@ def tri_mf(x, params):
     Triangular membership function.
 
     Parameters
-    ----------
+    -------------------------------------------------------------------
     x : 
         numpy (n,) shaped array
         
@@ -133,12 +133,12 @@ def tri_mf(x, params):
         and params[3], respectively.
     
     Returns
-    -------
+    -------------------------------------------------
     ndarray
         Returns membership values corresponding with the input.
     
     Examples
-    --------
+    --------------------------------------------------
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = tri_mf(x, [0.1, 0.3, 0.5, 1])
@@ -152,7 +152,7 @@ def rtri_mf(x, params):
     Right triangular membership function.
 
     Parameters
-    ----------
+    -------------------------------------------------------------------
     x : 
         numpy (n,) shaped array
         
@@ -167,12 +167,12 @@ def rtri_mf(x, params):
         respectively.
     
     Returns
-    -------
+    -------------------------------------------------
     ndarray
         Returns membership values corresponding with the input.
     
     Examples
-    --------
+    --------------------------------------------------
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = ltri_mf(x, [0.5, 0.2, 1])
@@ -185,7 +185,7 @@ def ltri_mf(x, params):
     Left triangular membership function.
 
     Parameters
-    ----------
+    -------------------------------------------------------------------
     x : 
         numpy (n,) shaped array
         
@@ -200,12 +200,12 @@ def ltri_mf(x, params):
         respectively.
     
     Returns
-    -------
+    -------------------------------------------------
     ndarray
         Returns membership values corresponding with the input.
     
     Examples
-    --------
+    --------------------------------------------------
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = rtri_mf(x, [0.3, 0.5, 1])
@@ -219,7 +219,7 @@ def trapezoid_mf(x, params):
     Trapezoidal membership function
 
     Parameters
-    ----------
+    -------------------------------------------------------------------
     x : 
         numpy (n,) shaped array
         
@@ -234,12 +234,12 @@ def trapezoid_mf(x, params):
         params[1], params[2], params[3], and params[4], respectively.
     
     Returns
-    -------
+    -------------------------------------------------
     ndarray
         Returns membership values corresponding with the input.
     
     Examples
-    --------
+    --------------------------------------------------
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = trapezoid_mf(x, [0.1, 0.3, 0.5, 0.7, 1])
@@ -254,7 +254,7 @@ def gaussian_mf(x, params):
     Gaussian membership function
     
     Parameters
-    ----------
+    -------------------------------------------------------------------
     x : 
         numpy (n,) shaped array
         
@@ -269,12 +269,12 @@ def gaussian_mf(x, params):
         params[1], and params[2], respectively.
     
     Returns
-    -------
+    -------------------------------------------------
     ndarray
         Returns membership values corresponding with the input.
     
     Examples
-    --------
+    --------------------------------------------------
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = gaussian_mf(x, [0.5, 0.05, 1])
@@ -287,7 +287,7 @@ def gauss_uncert_mean_umf(x, params):
     Gaussian with uncertain mean UMF
     
     Parameters
-    ----------
+    -------------------------------------------------------------------
     x : 
         numpy (n,) shaped array
         
@@ -302,12 +302,12 @@ def gauss_uncert_mean_umf(x, params):
         params[1], params[2], and params[3], respectively.
     
     Returns
-    -------
+    -------------------------------------------------
     ndarray
         Returns membership values corresponding with the input.
     
     Examples
-    --------
+    --------------------------------------------------
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = gauss_uncert_mean_umf(x, [0.3, 0.7, 0.05, 1])
@@ -322,7 +322,7 @@ def gauss_uncert_mean_lmf(x, params):
     Gaussian with uncertain mean LMF
     
     Parameters
-    ----------
+    -------------------------------------------------------------------
     x : 
         numpy (n,) shaped array
         
@@ -337,12 +337,12 @@ def gauss_uncert_mean_lmf(x, params):
         params[1], params[2], and params[3], respectively.
     
     Returns
-    -------
+    -------------------------------------------------
     ndarray
         Returns membership values corresponding with the input.
     
     Examples
-    --------
+    --------------------------------------------------
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = gauss_uncert_mean_lmf(x, [0.3, 0.7, 0.2, 1])
@@ -356,7 +356,7 @@ def gauss_uncert_std_umf(x, params):
     Gaussian with uncertain standard deviation UMF
     
     Parameters
-    ----------
+    -------------------------------------------------------------------
     x : 
         numpy (n,) shaped array
         
@@ -371,12 +371,12 @@ def gauss_uncert_std_umf(x, params):
         params[1], params[2], and params[3], respectively.
     
     Returns
-    -------
+    -------------------------------------------------
     ndarray
         Returns membership values corresponding with the input.
     
     Examples
-    --------
+    --------------------------------------------------
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = gauss_uncert_std_umf(x, [0.5, 0.2, 0.5, 1])
@@ -389,7 +389,7 @@ def gauss_uncert_std_lmf(x, params):
     Gaussian with uncertain standard deviation LMF
     
     Parameters
-    ----------
+    -------------------------------------------------------------------
     x : 
         numpy (n,) shaped array
         
@@ -404,12 +404,12 @@ def gauss_uncert_std_lmf(x, params):
         params[1], params[2], and params[3], respectively.
     
     Returns
-    -------
+    -------------------------------------------------
     ndarray
         Returns membership values corresponding with the input.
     
     Examples
-    --------
+    --------------------------------------------------
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = gauss_uncert_std_lmf(x, [0.5, 0.2, 0.5, 1])
@@ -422,7 +422,7 @@ def rgauss_uncert_std_umf(x, params):
     Right Gaussian with uncertain standard deviation UMF
     
     Parameters
-    ----------
+    -------------------------------------------------------------------
     x : 
         numpy (n,) shaped array
         
@@ -437,12 +437,12 @@ def rgauss_uncert_std_umf(x, params):
         params[1], params[2], and params[3], respectively.
     
     Returns
-    -------
+    -------------------------------------------------
     ndarray
         Returns membership values corresponding with the input.
     
     Examples
-    --------
+    --------------------------------------------------
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = rgauss_uncert_std_umf(x, [0.5, 0.2, 0.5, 1])
@@ -454,7 +454,7 @@ def rgauss_uncert_std_lmf(x, params):
     Right Gaussian with uncertain standard deviation LMF
     
     Parameters
-    ----------
+    -------------------------------------------------------------------
     x : 
         numpy (n,) shaped array
         
@@ -469,12 +469,12 @@ def rgauss_uncert_std_lmf(x, params):
         params[1], params[2], and params[3], respectively.
     
     Returns
-    -------
+    -------------------------------------------------
     ndarray
         Returns membership values corresponding with the input.
     
     Examples
-    --------
+    --------------------------------------------------
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = rgauss_uncert_std_lmf(x, [0.5, 0.2, 0.5, 1])
@@ -486,7 +486,7 @@ def lgauss_uncert_std_umf(x, params):
     Left Gaussian with uncertain standard deviation UMF
     
     Parameters
-    ----------
+    -------------------------------------------------------------------
     x : 
         numpy (n,) shaped array
         
@@ -501,12 +501,12 @@ def lgauss_uncert_std_umf(x, params):
         params[1], params[2], and params[3], respectively.
     
     Returns
-    -------
+    -------------------------------------------------
     ndarray
         Returns membership values corresponding with the input.
     
     Examples
-    --------
+    --------------------------------------------------
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = lgauss_uncert_std_umf(x, [0.5, 0.2, 0.5, 1])
@@ -518,7 +518,7 @@ def lgauss_uncert_std_lmf(x, params):
     Left Gaussian with uncertain standard deviation LMF
     
     Parameters
-    ----------
+    -------------------------------------------------------------------
     x : 
         numpy (n,) shaped array
         
@@ -533,12 +533,12 @@ def lgauss_uncert_std_lmf(x, params):
         params[1], params[2], and params[3], respectively.
     
     Returns
-    -------
+    -------------------------------------------------
     ndarray
         Returns membership values corresponding with the input.
     
     Examples
-    --------
+    --------------------------------------------------
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = lgauss_uncert_std_lmf(x, [0.5, 0.2, 0.5, 1])
@@ -551,7 +551,7 @@ def elliptic_mf(x, params):
     Elliptic membership function.
 
     Parameters
-    ----------
+    -------------------------------------------------------------------
     x : 
         numpy (n,) shaped array
         
@@ -566,12 +566,12 @@ def elliptic_mf(x, params):
         indicated by params[0], params[1], params[2], and params[3].
 
     Returns
-    -------
+    -------------------------------------------------
     ndarray
         Returns membership values corresponding with the input.
     
     Examples
-    --------
+    --------------------------------------------------
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = eliptic_mf(x, [0.5, 0.25, 1.3, 1.])
@@ -586,7 +586,7 @@ def semi_elliptic_mf(x, params):
     Semi-elliptic membership function.
 
     Parameters
-    ----------
+    -------------------------------------------------------------------
     x : 
         numpy (n,) shaped array
         
@@ -601,12 +601,12 @@ def semi_elliptic_mf(x, params):
         indicated by params[0], params[1], and params[2].
 
     Returns
-    -------
+    -------------------------------------------------
     ndarray
         Returns membership values corresponding with the input.
     
     Examples
-    --------
+    --------------------------------------------------
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = eliptic_mf(x, [0.5, 0.25, 1.3, 1.])
@@ -621,7 +621,7 @@ def gbell_mf(x, params):
     Generalized bell shaped membership function.
 
     Parameters
-    ----------
+    -------------------------------------------------------------------
     x : 
         numpy (n,) shaped array
         
@@ -636,12 +636,12 @@ def gbell_mf(x, params):
         function formula are indicated by params[0], params[1], params[2], and params[3].
 
     Returns
-    -------
+    -------------------------------------------------
     ndarray
         Returns membership values corresponding with the input.
 
     Examples
-    --------
+    --------------------------------------------------
 
     >>> x = linspace(0., 1., 201)
     >>> membership_value = gbell_mf(x, [0.1, 1., 0.5, 1.])
@@ -654,7 +654,7 @@ class T1FS:
     """ Type 1 Fuzzy Set (T1FS).
        
         Parameters
-        ----------
+        -------------------------------------------------------------------
         Parameters of the constructor function:
         
         domain:
@@ -669,7 +669,7 @@ class T1FS:
             List of parameters of the membership function
             
         Functions
-        ----------
+        -------------------------------------------------------------------
         Functions defined in T1FS class:
         
             copy:
@@ -682,7 +682,7 @@ class T1FS:
                 Returns the negated T1FS.
         
         Examples
-        --------
+        --------------------------------------------------
         
         >>> mySet = T1FS(linspace(0., 1., 100), 
                          trapezoid_mf, [0, 0.4, 0.6, 1., 1.])
@@ -703,7 +703,7 @@ class T1FS:
         Copies the T1FS.
         
         Returns
-        -------
+        -------------------------------------------------
         T1FS
         
         Returns a copy of the T1FS.
@@ -727,7 +727,7 @@ class T1FS:
         Defuzzifies the type 1 fuzzy set.
 
         Parameters
-        ----------
+        -------------------------------------------------------------------
         method:
             str
 
@@ -735,7 +735,7 @@ class T1FS:
             1. CoG: Center of gravity
         
         Returns
-        -------
+        -------------------------------------------------
         float
         
         Defuzzified crisp output.
@@ -751,7 +751,7 @@ class T1FS:
         Plots the T1FS.
         
         Parameters
-        ----------
+        -------------------------------------------------------------------
         title:
             str
             
@@ -792,7 +792,7 @@ class T1FS:
             Label of the y axis.
         
         Examples
-        --------
+        --------------------------------------------------
         
         >>> mySet = T1FS(linspace(0., 1., 100), 
                          trapezoid_mf, [0, 0.4, 0.6, 1., 1.])
@@ -817,7 +817,7 @@ def T1_Emphasize(t1fs, m=2.):
     Function for creating emphasized T1FSs.
     
     Parameters
-    ----------
+    -------------------------------------------------------------------
     t1fs : 
         T1FS
         
@@ -829,7 +829,7 @@ def T1_Emphasize(t1fs, m=2.):
         Emphasis degree. The default value is 2.
 
     Returns
-    -------
+    -------------------------------------------------
     emphasized : 
         T1FS
         
@@ -847,7 +847,7 @@ def T1FS_plot(*sets, title=None, legends=None, filename=None,
     Plots multiple T1FSs together in the same figure.
     
     Parameters
-    ----------
+    -------------------------------------------------------------------
     *sets:
         Multiple number of T1FSs which would be plotted.
     
@@ -890,7 +890,7 @@ def T1FS_plot(*sets, title=None, legends=None, filename=None,
         Label of the y axis.
 
     Examples
-    --------
+    --------------------------------------------------
     
     >>> domain = linspace(0., 1., 100)
     >>> t1fs1 = T1FS(domain, gaussian_mf, [0.33, 0.2, 1.])
@@ -917,7 +917,7 @@ def T1FS_AND(domain, t1fs1, t1fs2, t_norm):
     And operator for T1FSs.
     
     Parameters
-    ----------
+    -------------------------------------------------------------------
     
     domain:
         numpy (n,) shaped array
@@ -940,13 +940,13 @@ def T1FS_AND(domain, t1fs1, t1fs2, t_norm):
         The t-norm function to be used.
     
     Returns
-    -------
+    -------------------------------------------------
     T1FS
     
     Returns the AND of the two input T1FSs.
     
     Examples
-    --------
+    --------------------------------------------------
     
     >>> domain = linspace(0., 1., 100)
     >>> t1fs1 = T1FS(domain, gaussian_mf, [0.33, 0.2, 1.])
@@ -962,7 +962,7 @@ def T1FS_OR(domain, t1fs1, t1fs2, s_norm):
     Or operator for T1FSs.
     
     Parameters
-    ----------
+    -------------------------------------------------------------------
     
     domain:
         numpy (n,) shaped array
@@ -985,13 +985,13 @@ def T1FS_OR(domain, t1fs1, t1fs2, s_norm):
         The s-norm function to be used.
     
     Returns
-    -------
+    -------------------------------------------------
     T1FS
     
     Returns the OR of the two input T1FSs.
     
     Examples
-    --------
+    --------------------------------------------------
     
     >>> domain = linspace(0., 1., 100)
     >>> t1fs1 = T1FS(domain, gaussian_mf, [0.33, 0.2, 1.])
@@ -1008,7 +1008,7 @@ class T1Mamdani:
     Type 1 Mamdani Fuzzy Logic System.
 
     Parameters
-    ----------
+    -------------------------------------------------------------------
     Parameters of the constructor function:
 
     engine="Product":
@@ -1027,7 +1027,7 @@ class T1Mamdani:
         can be selected among the methods CoG and CoA.
 
     Members
-    -------
+    -------------------------------------------------
 
     inputs:
         List of str
@@ -1061,7 +1061,7 @@ class T1Mamdani:
         Indicates the defuzzification method selected by the user.
 
     Functions
-    ---------
+    ------------------------------------------------------------------
 
     add_input_variable:
         
@@ -1125,7 +1125,7 @@ class T1Mamdani:
         Adds new input variable name.
         
         Parameters
-        ----------
+        -------------------------------------------------------------------
         
         name:
             str
@@ -1139,7 +1139,7 @@ class T1Mamdani:
         Adds new output variable name.
         
         Parameters
-        ----------
+        -------------------------------------------------------------------
         
         name:
             str
@@ -1153,7 +1153,7 @@ class T1Mamdani:
         Adds a new rule to the rule base of the T1 Mamdani FLS.
         
         Parameters
-        ----------
+        -------------------------------------------------------------------
         
         antecedent:
             List of tuples
@@ -1300,13 +1300,13 @@ class T1TSK:
     Type 1 TSK Fuzzy Logic System.
 
     Parameters
-    ----------
+    -------------------------------------------------------------------
     Parameters of the constructor function:
 
     The constructor function of the T1TSK class has no parameters.
 
     Members
-    -------
+    -------------------------------------------------
 
     inputs:
         List of str
@@ -1326,7 +1326,7 @@ class T1TSK:
         
 
     Functions
-    ---------
+    ------------------------------------------------------------------
 
     add_input_variable:
         
@@ -1372,7 +1372,7 @@ class T1TSK:
         Adds new input variable name.
         
         Parameters
-        ----------
+        -------------------------------------------------------------------
         
         name:
             str
@@ -1386,7 +1386,7 @@ class T1TSK:
         Adds new output variable name.
         
         Parameters
-        ----------
+        -------------------------------------------------------------------
         
         name:
             str
@@ -1400,7 +1400,7 @@ class T1TSK:
         Adds new rule to the rule base of the T1 TSK FLS.
 
         Parameters
-        ----------
+        -------------------------------------------------------------------
 
         antecedent:
             List of tuples
@@ -1425,7 +1425,7 @@ class T1TSK:
         Evaluates the T1 TSK FLS based on the crisp inputs given by the user.
 
         Parameters
-        ----------
+        -------------------------------------------------------------------
         inputs:
             dictionary
 
@@ -1440,7 +1440,7 @@ class T1TSK:
             consequents of the system rules.
 
         Returns
-        -------
+        ----------------------
         O:
             dictionary
 
@@ -1466,7 +1466,7 @@ class IT2FS:
     """Interval Type 2 Fuzzy Set (IT2FS).
        
         Parameters
-        ----------
+        ----------------------
         Parameters of the constructor function:
         
         domain:
@@ -1494,7 +1494,7 @@ class IT2FS:
             is not needed. By default the parameter check_set is False.
             
         Functions
-        ----------
+        ----------------
         Functions defined in IT2FS class:
         
             copy:
@@ -1552,7 +1552,7 @@ class IT2FS:
         Copies the IT2FS.
         
         Returns
-        -------
+        ----------------------
         IT2FS
         
         Returns a copy of the IT2FS.
@@ -1565,7 +1565,7 @@ class IT2FS:
         Plots the IT2FS.
         
         Parameters
-        ----------
+        ----------------------------------------------
         title:
             str
             
@@ -1606,7 +1606,7 @@ class IT2FS:
             Label of the y axis.
         
         Examples
-        --------
+        -----------------------
         
         >>> mySet = IT2FS(linspace(0., 1., 100), 
                           trapezoid_mf, [0, 0.4, 0.6, 1., 1.], 
@@ -1633,7 +1633,7 @@ class IT2FS:
         Negates the IT2FS.
         
         Returns
-        -------
+        ----------------------
         IT2FS
         
         Returns a negated copy of the IT2FS.
@@ -1649,7 +1649,7 @@ def IT2_Emphasize(it2fs, m=2.):
     Function for creating emphasized IT2FSs.
     
     Parameters
-    ----------
+    ----------------------------------------------
     it2fs : 
         IT2FS
         
@@ -1661,7 +1661,7 @@ def IT2_Emphasize(it2fs, m=2.):
         Emphasis degree. The default is 2.
 
     Returns
-    -------
+    ----------------------
     emphasized : 
         IT2FS
         
@@ -1681,7 +1681,7 @@ def IT2FS_Elliptic(domain, params, check_set=False):
     Creates an elliptic IT2FS.
     
     Parameters
-    ----------
+    ----------------------------------------------
     
     domain:
         numpy (n,) shaped array
@@ -1696,12 +1696,12 @@ def IT2FS_Elliptic(domain, params, check_set=False):
         indicated by params[0], params[1], params[2], params[3], and params[4], respectively.
     
     Returns
-    -------
+    ----------------------
     IT2FS
         Returns an elliptic IT2FS with specified parameters.
     
     Examples
-    --------
+    -----------------------
     
     >>> domain = linspace(0., 1., 100)
     >>> mySet = IT2FS_Elliptic(domain, [0.5, 0.25, 1.3, 0.7, 0.8])
@@ -1717,7 +1717,7 @@ def IT2FS_Semi_Elliptic(domain, params, check_set=False):
     Creates a semi-elliptic IT2FS.
     
     Parameters
-    ----------
+    ----------------------------------------------
     
     domain:
         numpy (n,) shaped array
@@ -1732,12 +1732,12 @@ def IT2FS_Semi_Elliptic(domain, params, check_set=False):
         indicated by params[0], params[1], params[2], and params[3], respectively.
     
     Returns
-    -------
+    ----------------------
     IT2FS
         Returns a semi-elliptic IT2FS with specified parameters.
     
     Examples
-    --------
+    -----------------------
     
     >>> domain = linspace(0., 1., 100)
     >>> mySet = IT2FS_Semi_Elliptic(domain, [0.5, 0.15, 0.05, 0.6])
@@ -1754,7 +1754,7 @@ def IT2FS_Gaussian_UncertMean(domain, params, check_set=False):
     Creates an Gaussian IT2FS with uncertain mean value.
     
     Parameters
-    ----------
+    ----------------------------------------------
     
     domain:
         numpy (n,) shaped array
@@ -1769,13 +1769,13 @@ def IT2FS_Gaussian_UncertMean(domain, params, check_set=False):
         indicated by params[0], params[1], params[2], and params[3], respectively.
     
     Returns
-    -------
+    ----------------------
     IT2FS
         Returns a Gaussian IT2FS with uncertain mean value with specified 
         parameters.
     
     Examples
-    --------
+    -----------------------
     
     >>> domain = linspace(0., 1., 100)
     >>> mySet = IT2FS_Gaussian_UncertMean(domain, [0., 0.25, 0.2])
@@ -1794,7 +1794,7 @@ def IT2FS_Gaussian_UncertStd(domain, params, check_set=False):
     Creates a Gaussian IT2FS with uncertain standard deviation value.
     
     Parameters
-    ----------
+    ----------------------------------------------
     
     domain:
         numpy (n,) shaped array
@@ -1810,13 +1810,13 @@ def IT2FS_Gaussian_UncertStd(domain, params, check_set=False):
         params[1], params[2], and params[3], respectively.
     
     Returns
-    -------
+    ----------------------
     IT2FS
         Returns a Gaussian IT2FS with uncertain standard deviation value 
         with specified parameters.
     
     Examples
-    --------
+    -----------------------
     
     >>> domain = linspace(0., 1., 100)
     >>> mySet = IT2FS_Gaussian_UncertStd(domain, [0.5, 0.2, 0.05, 1.])
@@ -1835,7 +1835,7 @@ def IT2FS_RGaussian_UncertStd(domain, params, check_set=False):
     Creates a Right Gaussian IT2FS with uncertain standard deviation value.
     
     Parameters
-    ----------
+    ----------------------------------------------
     
     domain:
         numpy (n,) shaped array
@@ -1851,13 +1851,13 @@ def IT2FS_RGaussian_UncertStd(domain, params, check_set=False):
         params[1], params[2], and params[3], respectively.
     
     Returns
-    -------
+    ----------------------
     IT2FS
         Returns a Gaussian IT2FS with uncertain standard deviation value 
         with specified parameters.
     
     Examples
-    --------
+    -----------------------
     
     >>> domain = linspace(0., 1., 100)
     >>> mySet = R_IT2FS_Gaussian_UncertStd(domain, [0.5, 0.2, 0.05, 1.])
@@ -1879,7 +1879,7 @@ def IT2FS_LGaussian_UncertStd(domain, params, check_set=False):
     Creates a Left Gaussian IT2FS with uncertain standard deviation value.
     
     Parameters
-    ----------
+    ----------------------------------------------
     
     domain:
         numpy (n,) shaped array
@@ -1895,13 +1895,13 @@ def IT2FS_LGaussian_UncertStd(domain, params, check_set=False):
         params[1], params[2], and params[3], respectively.
     
     Returns
-    -------
+    ----------------------
     IT2FS
         Returns a Gaussian IT2FS with uncertain standard deviation value 
         with specified parameters.
     
     Examples
-    --------
+    -----------------------
     
     >>> domain = linspace(0., 1., 100)
     >>> mySet = L_IT2FS_Gaussian_UncertStd(domain, [0.5, 0.2, 0.05, 1.])
@@ -1925,7 +1925,7 @@ def IT2FS_plot(*sets, title=None, legends=None, filename=None,
     Plots multiple IT2FSs together in the same figure.
     
     Parameters
-    ----------
+    ----------------------------------------------
     *sets:
         Multiple number of IT2FSs which would be plotted.
     
@@ -1968,7 +1968,7 @@ def IT2FS_plot(*sets, title=None, legends=None, filename=None,
         Label of the y axis.
         
     Examples
-    --------
+    -----------------------
     
     >>> domain = linspace(0., 1., 100)
     >>> it2fs1 = IT2FS_Gaussian_UncertStd(domain, [0.33, 0.2, 0.05])
@@ -1999,7 +1999,7 @@ def TR_plot(domain, tr, title=None, legend=None, filename=None,
     Plots a type reduced IT2FS.
     
     Parameters
-    ----------
+    ----------------------------------------------
     domain:
         numpy (n,) shaped array
         
@@ -2050,7 +2050,7 @@ def TR_plot(domain, tr, title=None, legend=None, filename=None,
         Label of the y axis.
         
     Examples
-    --------
+    -----------------------
     
     >>> tr1 = (0.2, 0.3)
     >>> TR_plot(linspace(0., 1., 100), tr1)
@@ -2075,7 +2075,7 @@ def crisp(tr):
     Calculates the crisp number achieved from type reduced IT2FS.
     
     Parameters
-    ----------
+    ----------------------------------------------
     
     tr:
         Tuple (l, r)
@@ -2083,13 +2083,13 @@ def crisp(tr):
         Type reduced IT2FS
     
     Returns
-    -------
+    ----------------------
     float
     
     Returns the crisp number achieved from type reduced IT2FS.
     
     Examples
-    --------
+    -----------------------
     
     >>> tr1 = (0.1, 0.3)
     >>> print(crisp(tr1))
@@ -2102,7 +2102,7 @@ def crisp_list(trs, o=None):
     function from IT2FLS class.
     
     Parameters
-    ----------
+    ----------------------------------------------
     
     trs:
         List of Tuple (l, r)
@@ -2116,7 +2116,7 @@ def crisp_list(trs, o=None):
         then the crisp outputs are calculated for all output variables.
     
     Returns
-    -------
+    ----------------------
     List of float (or Dictionary of Lists of float)
     """
     if o is None:
@@ -2139,7 +2139,7 @@ def min_t_norm(a, b):
     Minimum t-norm function.
     
     Parameters
-    ----------
+    ----------------------------------------------
     
     a:
         numpy (n,) shaped array
@@ -2148,11 +2148,11 @@ def min_t_norm(a, b):
         numpy (n,) shaped array
     
     Returns
-    -------
+    ----------------------
     Returns minimum t-norm of a and b
     
     Examples
-    --------
+    -----------------------
     
     >>> a = random.random(10,)
     >>> b = random.random(10,)
@@ -2166,7 +2166,7 @@ def product_t_norm(a, b):
     Product t-norm function.
     
     Parameters
-    ----------
+    ----------------------------------------------
     
     a:
         numpy (n,) shaped array
@@ -2175,11 +2175,11 @@ def product_t_norm(a, b):
         numpy (n,) shaped array
     
     Returns
-    -------
+    ----------------------
     Returns product t-norm of a and b
     
     Examples
-    --------
+    -----------------------
     
     >>> a = random.random(10,)
     >>> b = random.random(10,)
@@ -2192,7 +2192,7 @@ def lukasiewicz_t_norm(a, b):
     Lukasiewicz t-norm function.
     
     Parameters
-    ----------
+    ----------------------------------------------
     
     a:
         numpy (n,) shaped array
@@ -2201,11 +2201,11 @@ def lukasiewicz_t_norm(a, b):
         numpy (n,) shaped array
     
     Returns
-    -------
+    ----------------------
     Returns Lukasiewicz t-norm of a and b
     
     Examples
-    --------
+    -----------------------
     
     >>> a = random.random(10,)
     >>> b = random.random(10,)
@@ -2218,7 +2218,7 @@ def drastic_t_norm(a, b):
     Drastic t-norm function.
     
     Parameters
-    ----------
+    ----------------------------------------------
     
     a:
         numpy (n,) shaped array
@@ -2227,11 +2227,11 @@ def drastic_t_norm(a, b):
         numpy (n,) shaped array
     
     Returns
-    -------
+    ----------------------
     Returns drastic t-norm of a and b
     
     Examples
-    --------
+    -----------------------
     
     >>> a = random.random(10,)
     >>> b = random.random(10,)
@@ -2244,7 +2244,7 @@ def nilpotent_minimum_t_norm(a, b):
     Nilpotent minimum t-norm function.
     
     Parameters
-    ----------
+    ----------------------------------------------
     
     a:
         numpy (n,) shaped array
@@ -2253,11 +2253,11 @@ def nilpotent_minimum_t_norm(a, b):
         numpy (n,) shaped array
     
     Returns
-    -------
+    ----------------------
     Returns nilpotent minimum t-norm of a and b
     
     Examples
-    --------
+    -----------------------
     
     >>> a = random.random(10,)
     >>> b = random.random(10,)
@@ -2270,7 +2270,7 @@ def hamacher_product_t_norm(a, b):
     Hamacher product t-norm function.
     
     Parameters
-    ----------
+    ----------------------------------------------
     
     a:
         numpy (n,) shaped array
@@ -2279,11 +2279,11 @@ def hamacher_product_t_norm(a, b):
         numpy (n,) shaped array
     
     Returns
-    -------
+    ----------------------
     Returns hamacher product t-norm of a and b
     
     Examples
-    --------
+    -----------------------
     
     >>> a = random.random(10,)
     >>> b = random.random(10,)
@@ -2296,7 +2296,7 @@ def max_s_norm(a, b):
     Maximum s-norm function.
     
     Parameters
-    ----------
+    ----------------------------------------------
     
     a:
         numpy (n,) shaped array
@@ -2305,11 +2305,11 @@ def max_s_norm(a, b):
         numpy (n,) shaped array
     
     Returns
-    -------
+    ----------------------
     Returns maximum s-norm of a and b
     
     Examples
-    --------
+    -----------------------
     
     >>> a = random.random(10,)
     >>> b = random.random(10,)
@@ -2322,7 +2322,7 @@ def probabilistic_sum_s_norm(a, b):
     Probabilistic sum s-norm function.
 
     Parameters
-    ----------
+    ----------------------------------------------
 
     a:
         numpy (n,) shaped array
@@ -2331,11 +2331,11 @@ def probabilistic_sum_s_norm(a, b):
         numpy (n,) shaped array
 
     Returns
-    -------
+    ----------------------
     Returns probabilistic sum s-norm of a and b
 
     Examples
-    --------
+    -----------------------
 
     >>> a = random.random(10,)
     >>> b = random.random(10,)
@@ -2348,7 +2348,7 @@ def bounded_sum_s_norm(a, b):
     Bounded sum s-norm function.
 
     Parameters
-    ----------
+    ----------------------------------------------
 
     a:
         numpy (n,) shaped array
@@ -2357,11 +2357,11 @@ def bounded_sum_s_norm(a, b):
         numpy (n,) shaped array
 
     Returns
-    -------
+    ----------------------
     Returns bounded sum s-norm of a and b
 
     Examples
-    --------
+    -----------------------
 
     >>> a = random.random(10,)
     >>> b = random.random(10,)
@@ -2374,7 +2374,7 @@ def drastic_s_norm(a, b):
     Drastic s-norm function.
 
     Parameters
-    ----------
+    ----------------------------------------------
 
     a:
         numpy (n,) shaped array
@@ -2383,11 +2383,11 @@ def drastic_s_norm(a, b):
         numpy (n,) shaped array
 
     Returns
-    -------
+    ----------------------
     Returns drastic s-norm of a and b
 
     Examples
-    --------
+    -----------------------
 
     >>> a = random.random(10,)
     >>> b = random.random(10,)
@@ -2400,7 +2400,7 @@ def nilpotent_maximum_s_norm(a, b):
     Nilpotent maximum s-norm function.
 
     Parameters
-    ----------
+    ----------------------------------------------
 
     a:
         numpy (n,) shaped array
@@ -2409,11 +2409,11 @@ def nilpotent_maximum_s_norm(a, b):
         numpy (n,) shaped array
 
     Returns
-    -------
+    ----------------------
     Returns nilpotent maximum s-norm of a and b
 
     Examples
-    --------
+    -----------------------
 
     >>> a = random.random(10,)
     >>> b = random.random(10,)
@@ -2426,7 +2426,7 @@ def einstein_sum_s_norm(a, b):
     Einstein sum s-norm function.
 
     Parameters
-    ----------
+    ----------------------------------------------
 
     a:
         numpy (n,) shaped array
@@ -2435,11 +2435,11 @@ def einstein_sum_s_norm(a, b):
         numpy (n,) shaped array
 
     Returns
-    -------
+    ----------------------
     Returns einstein sum s-norm of a and b
 
     Examples
-    --------
+    -----------------------
 
     >>> a = random.random(10,)
     >>> b = random.random(10,)
@@ -2452,7 +2452,7 @@ def meet(domain, it2fs1, it2fs2, t_norm):
     Meet operator for IT2FSs.
     
     Parameters
-    ----------
+    ----------------------------------------------
     
     domain:
         numpy (n,) shaped array
@@ -2475,13 +2475,13 @@ def meet(domain, it2fs1, it2fs2, t_norm):
         The t-norm function to be used.
     
     Returns
-    -------
+    ----------------------
     IT2FS
     
     Returns the meet of the two input IT2FSs.
     
     Examples
-    --------
+    -----------------------
     
     >>> domain = linspace(0., 1., 100)
     >>> it2fs1 = IT2FS_Gaussian_UncertStd(domain, [0.33, 0.2, 0.05, 1.])
@@ -2502,7 +2502,7 @@ def join(domain, it2fs1, it2fs2, s_norm):
     Join operator for IT2FSs.
     
     Parameters
-    ----------
+    ----------------------------------------------
     
     domain:
         numpy (n,) shaped array
@@ -2525,13 +2525,13 @@ def join(domain, it2fs1, it2fs2, s_norm):
         The s-norm function to be used.
     
     Returns
-    -------
+    ----------------------
     IT2FS
     
     Returns the join of the two input IT2FSs.
     
     Examples
-    --------
+    -----------------------
     
     >>> domain = linspace(0., 1., 100)
     >>> it2fs1 = IT2FS_Gaussian_UncertStd(domain, [0.33, 0.2, 0.05, 1.])
@@ -2570,7 +2570,7 @@ def KM_algorithm(intervals, params=[]):  # intervals = [[a1, b1, c1, d1], [a2, b
     KM algorithm
     
     Parameters
-    ----------
+    ----------------------------------------------
     
     intervals:
         numpy (n, 4) array
@@ -2585,7 +2585,7 @@ def KM_algorithm(intervals, params=[]):  # intervals = [[a1, b1, c1, d1], [a2, b
         List of parameters of algorithm, if it is needed.
     
     Returns
-    -------
+    ----------------------
     Tuple (l, r)
     """
     # left calculations
@@ -2653,7 +2653,7 @@ def EKM_algorithm(intervals, params=[]):
     EKM algorithm
     
     Parameters
-    ----------
+    ----------------------------------------------
     
     intervals:
         numpy (n, 4) array
@@ -2668,7 +2668,7 @@ def EKM_algorithm(intervals, params=[]):
         List of parameters of algorithm, if it is needed.
     
     Returns
-    -------
+    ----------------------
     Tuple (l, r)
     """
     
@@ -2757,7 +2757,7 @@ def WEKM_algorithm(intervals, params=[]):
     WEKM algorithm
     
     Parameters
-    ----------
+    ----------------------------------------------
     
     intervals:
         numpy (n, 4) array
@@ -2772,7 +2772,7 @@ def WEKM_algorithm(intervals, params=[]):
         List of parameters of algorithm, if it is needed.
     
     Returns
-    -------
+    ----------------------
     Tuple (l, r)
     """
     
@@ -2863,7 +2863,7 @@ def TWEKM_algorithm(intervals, params):
     TWEKM algorithm
     
     Parameters
-    ----------
+    ----------------------------------------------
     
     intervals:
         numpy (n, 4) array
@@ -2878,7 +2878,7 @@ def TWEKM_algorithm(intervals, params):
         List of parameters of algorithm, if it is needed.
     
     Returns
-    -------
+    ----------------------
     Tuple (l, r)
     """
     params = []
@@ -2896,7 +2896,7 @@ def EIASC_algorithm(intervals, params=[]):
     EIASC algorithm
     
     Parameters
-    ----------
+    ----------------------------------------------
     
     intervals:
         numpy (n, 4) array
@@ -2911,7 +2911,7 @@ def EIASC_algorithm(intervals, params=[]):
         List of parameters of algorithm, if it is needed.
     
     Returns
-    -------
+    ----------------------
     Tuple (l, r)
     """
     
@@ -2957,7 +2957,7 @@ def WM_algorithm(intervals, params=[]):
     WM algorithm
     
     Parameters
-    ----------
+    ----------------------------------------------
     
     intervals:
         numpy (n, 4) array
@@ -2972,7 +2972,7 @@ def WM_algorithm(intervals, params=[]):
         List of parameters of algorithm, if it is needed.
     
     Returns
-    -------
+    ----------------------
     Tuple (l, r)
     """
     intervals = intervals[intervals[:,0].argsort()]
@@ -3002,7 +3002,7 @@ def BMM_algorithm(intervals, params):
     BMM algorithm
     
     Parameters
-    ----------
+    ----------------------------------------------
     
     intervals:
         numpy (n, 4) array
@@ -3017,7 +3017,7 @@ def BMM_algorithm(intervals, params):
         List of parameters of algorithm, if it is needed.
     
     Returns
-    -------
+    ----------------------
     float
     
     Crisp output
@@ -3045,7 +3045,7 @@ def LBMM_algorithm(intervals, params):
     Controllers
     
     Parameters
-    ----------
+    ----------------------------------------------
     
     intervals:
         numpy (n, 4) array
@@ -3060,7 +3060,7 @@ def LBMM_algorithm(intervals, params):
         List of parameters of algorithm, if it is needed.
     
     Returns
-    -------
+    ----------------------
     float
     
     Crisp output
@@ -3083,7 +3083,7 @@ def NT_algorithm(intervals, params=[]):
     NT algorithm
     
     Parameters
-    ----------
+    ----------------------------------------------
     
     intervals:
         numpy (n, 4) array
@@ -3098,7 +3098,7 @@ def NT_algorithm(intervals, params=[]):
         List of parameters of algorithm, if it is needed.
     
     Returns
-    -------
+    ----------------------
     float
     
     Crisp output
@@ -3119,7 +3119,7 @@ def Centroid(it2fs, alg_func, domain, alg_params=[]):
     Centroid type reduction for an interval type 2 fuzzy set.
     
     Parameters
-    ----------
+    ----------------------------------------------
     
     it2fs:
         IT2FS
@@ -3146,7 +3146,7 @@ def Centroid(it2fs, alg_func, domain, alg_params=[]):
         List of parameters of type reduction algorithm if it is needed.
     
     Returns
-    -------
+    ----------------------
     Based on selected type reduction algorithm tuple (l, r) or float
     
     Returns Centroid type reduction of the input IT2FS.
@@ -3160,7 +3160,7 @@ def CoSet(firing_array, consequent_array, alg_func, domain, alg_params=[]):
     Center of sets type reduction.
     
     Parameters
-    ----------
+    ----------------------------------------------
     
     firing_array:
         numpy (m, 2) shaped array
@@ -3192,7 +3192,7 @@ def CoSet(firing_array, consequent_array, alg_func, domain, alg_params=[]):
         List of parameters of type reduction algorithm if it is needed.
     
     Returns
-    -------
+    ----------------------
     Based on selected type reduction algorithm tuple (l, r) or float
     
     Returns Center of sets type reduction of the input IT2FS.
@@ -3209,7 +3209,7 @@ def CoSum(it2fs_array, alg_func, domain, alg_params=[]):
     Center of sum type reduction for an interval type 2 fuzzy set.
     
     Parameters
-    ----------
+    ----------------------------------------------
     
     it2fs_array:
         List of IT2FSs
@@ -3236,7 +3236,7 @@ def CoSum(it2fs_array, alg_func, domain, alg_params=[]):
         List of parameters of type reduction algorithm if it is needed.
     
     Returns
-    -------
+    ----------------------
     Based on selected type reduction algorithm tuple (l, r) or float
     
     Returns Center of sum type reduction of the input IT2FS.
@@ -3255,7 +3255,7 @@ def Height(it2fs_array, alg_func, domain, alg_params=[]):
     Height type reduction for an interval type 2 fuzzy set.
     
     Parameters
-    ----------
+    ----------------------------------------------
     
     it2fs_array:
         List of IT2FSs
@@ -3282,7 +3282,7 @@ def Height(it2fs_array, alg_func, domain, alg_params=[]):
         List of parameters of type reduction algorithm if it is needed.
     
     Returns
-    -------
+    ----------------------
     Based on selected type reduction algorithm tuple (l, r) or float
     
     Returns Height type reduction of the input IT2FS.
@@ -3299,7 +3299,7 @@ def ModiHe(it2fs_array, spread_array, alg_func, domain, alg_params=[]):
     Modified height type reduction for an interval type 2 fuzzy set.
     
     Parameters
-    ----------
+    ----------------------------------------------
     
     it2fs_array:
         List of IT2FSs
@@ -3329,7 +3329,7 @@ def ModiHe(it2fs_array, spread_array, alg_func, domain, alg_params=[]):
         List of parameters of type reduction algorithm if it is needed.
     
     Returns
-    -------
+    ----------------------
     Based on selected type reduction algorithm tuple (l, r) or float
     
     Returns Modified height type reduction of the input IT2FS.
@@ -3351,7 +3351,7 @@ class IT2FLS:
     No construction parameter is needed.
     
     Members
-    -------
+    ----------------------
     inputs:
         List of str
         
@@ -3374,7 +3374,7 @@ class IT2FLS:
         a str and the second element must be an IT2FS. 
     
     Functions
-    ---------
+    ---------------------------------------------
     
     add_input_variable:
         
@@ -3397,7 +3397,7 @@ class IT2FLS:
         Evaluates the IT2FLS's output for a specified crisp input.
     
     Examples
-    --------
+    -----------------------
     
     Assume that we are going to simulate an IT2FLS with two inputs and 
     two outputs. Each input is defined by three IT2FSs, Small, Medium, 
@@ -3461,7 +3461,7 @@ class IT2FLS:
         Adds new input variable name.
         
         Parameters
-        ----------
+        ----------------------------------------------
         
         name:
             str
@@ -3475,7 +3475,7 @@ class IT2FLS:
         Adds new output variable name.
         
         Parameters
-        ----------
+        ----------------------------------------------
         
         name:
             str
@@ -3489,7 +3489,7 @@ class IT2FLS:
         Adds new rule to the rule base of the IT2FLS.
         
         Parameters
-        ----------
+        ----------------------------------------------
         
         antecedent:
             List of tuples
@@ -3527,7 +3527,7 @@ class IT2FLS:
         Evaluates the IT2FLS based on list of crisp inputs given by user.
         
         Parameters
-        ----------
+        ----------------------------------------------
         
         inputs:
             dictionary
@@ -3577,7 +3577,7 @@ class IT2FLS:
             Parameters of the type reduction algorithm, if needed.
         
         Returns
-        -------
+        ----------------------
         It depends on which method and algorithm for type reduction is 
         chosen. If Centroid type reduction method is chosen the output 
         is a tuple with two elements. First element is the overall IT2FS 
@@ -3745,7 +3745,7 @@ class IT2FLS:
         Evaluates the IT2FLS based on crisp inputs given by user.
         
         Parameters
-        ----------
+        ----------------------------------------------
         
         inputs:
             dictionary
@@ -3795,7 +3795,7 @@ class IT2FLS:
             Parameters of the type reduction algorithm, if needed.
         
         Returns
-        -------
+        ----------------------
         It depends on which method and algorithm for type reduction is 
         chosen. If Centroid type reduction method is chosen the output 
         is a tuple with two elements. First element is the overall IT2FS 
@@ -3936,7 +3936,7 @@ class IT2TSK:
     Interval type 2 TSK fuzzy logic system.
 
     Parameters
-    ----------
+    ----------------------------------------------
     Parameters of the constructor function:
 
     t_norm:
@@ -3950,7 +3950,7 @@ class IT2TSK:
         S-norm operator which would be used bu FLS.
     
     Members
-    -------
+    ----------------------
 
     inputs:
         List of str
@@ -3984,7 +3984,7 @@ class IT2TSK:
     
 
     Functions
-    ---------
+    ---------------------------------------------
     
     add_input_variable:
         
@@ -4034,7 +4034,7 @@ class IT2TSK:
         Adds new input variable name.
         
         Parameters
-        ----------
+        ----------------------------------------------
         
         name:
             str
@@ -4048,7 +4048,7 @@ class IT2TSK:
         Adds new output variable name.
         
         Parameters
-        ----------
+        ----------------------------------------------
         
         name:
             str
@@ -4062,7 +4062,7 @@ class IT2TSK:
         Adds new rule to the rule base of the IT2FLS.
         
         Parameters
-        ----------
+        ----------------------------------------------
         
         antecedent:
             List of tuples
@@ -4085,7 +4085,7 @@ class IT2TSK:
             is written for an IT2 TSK FLS with two inputs, named x1 and x2.
         
         Example
-        -------
+        ----------------------
         
         Assume that we are going to simulate an IT2 TSK FLS with two inputs 
         named x1 and x2. Our rule base is defined as below:
@@ -4128,7 +4128,7 @@ class IT2TSK:
         Evaluates the IT2 TSK FLS based on the crisp inputs given by the user.
 
         Parameters
-        ----------
+        ----------------------------------------------
         inputs: 
             dictionary
             
@@ -4137,7 +4137,7 @@ class IT2TSK:
             be evaluated.
 
         Returns
-        -------
+        ----------------------
         O: 
             dictionary
             
@@ -4174,7 +4174,7 @@ class IT2Mamdani:
     Interval Type 2 Mamadani Fuzzy Logic System.
     
     Parameters
-    ----------
+    ----------------------------------------------
     Parameters of the constructor function:
         
     t_norm:
@@ -4212,7 +4212,7 @@ class IT2Mamdani:
         Parameters of the type reduction algorithm, if needed.
     
     Members
-    -------
+    ----------------------
     
     inputs:
         List of str
@@ -4236,7 +4236,7 @@ class IT2Mamdani:
         as a str, and the second element must be an IT2FS. 
     
     Functions
-    ---------
+    ---------------------------------------------
     
     add_input_variable:
         
@@ -4345,7 +4345,7 @@ class IT2Mamdani:
         Adds new input variable name.
         
         Parameters
-        ----------
+        ----------------------------------------------
         
         name:
             str
@@ -4359,7 +4359,7 @@ class IT2Mamdani:
         Adds new output variable name.
         
         Parameters
-        ----------
+        ----------------------------------------------
         
         name:
             str
@@ -4373,7 +4373,7 @@ class IT2Mamdani:
         Adds new rule to the rule base of the IT2FLS.
         
         Parameters
-        ----------
+        ----------------------------------------------
         
         antecedent:
             List of tuples
