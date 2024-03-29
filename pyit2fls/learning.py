@@ -11,7 +11,13 @@ from .pyit2fls import (gaussian_mf, )
 
 
 class T1TSK_ML_Model:
-
+    """
+    TSKN: Number of inputs
+    TSKM: Number of rules
+    P: Model parameters (a vector of size TSKM * (2 * TSKN + 1))
+    mf: List of membership functions for each input in each rule
+    c: Output scaling factor
+    """
     def __init__(self, P, TSKN, TSKM, mf, c=1.0):
         self.p = reshape(P[:-TSKM], (TSKM, TSKN, 2, ))
         self.q = P[-TSKM:]
@@ -67,6 +73,18 @@ class T1TSK_ML:
 
     def __init__(self, ):
         pass
+
+
+    def fit(self, X, y):
+        pass
+
+
+
+
+
+
+
+
 
 
 
