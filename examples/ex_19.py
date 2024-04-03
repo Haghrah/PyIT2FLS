@@ -1,4 +1,4 @@
-from learning import (T1TSK_ML, )
+from pyit2fls import (T1TSK_ML, )
 from numpy import (linspace, array, pi, sin, cos, meshgrid, zeros_like, )
 from scipy.optimize import (Bounds, )
 import matplotlib.pyplot as plt
