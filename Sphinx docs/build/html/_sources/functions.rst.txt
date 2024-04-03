@@ -19,19 +19,19 @@ Functions
 
 .. autofunction:: pyit2fls.crisp_list
 
+.. autofunction:: pyit2fls.meet
 
+.. autofunction:: pyit2fls.join
 
+.. autofunction:: pyit2fls.Centroid
 
+.. autofunction:: pyit2fls.CoSet
 
+.. autofunction:: pyit2fls.CoSum
 
+.. autofunction:: pyit2fls.Height
 
-
-
-
-
-
-
-
+.. autofunction:: pyit2fls.ModiHe
 
 
 

@@ -16,6 +16,7 @@ Welcome to PyIT2FLS's documentation!
    it2fs
    t_s_norms
    functions
+   algorithms
 
 
 

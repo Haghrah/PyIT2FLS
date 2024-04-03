@@ -4192,7 +4192,7 @@ class IT2Mamdani:
         
         Indicates the type reduction method name and should be one 
         of the methods listed below:
-            Centroid, CoSet, CoSum, Height, and ModiHe.
+        Centroid, CoSet, CoSum, Height, and ModiHe.
     
     method_params=[]:
         List
@@ -4204,7 +4204,7 @@ class IT2Mamdani:
         
         Indicates the type reduction algorithm name and should be 
         one of the algorithms listed below:
-            KM, EKM, WEKM, TWEKM, EIASC, WM, BMM, LBMM, and NT.
+        KM, EKM, WEKM, TWEKM, EIASC, WM, BMM, LBMM, and NT.
     
     algorithm_params=[]:
         List
