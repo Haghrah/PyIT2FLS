@@ -40,7 +40,7 @@ Or you can use pip3:
     - T1Mamdani
     - IT2TSK
     - IT2Mamdani
-- Enhancing documentations and publishing it on readthedocs.io
+- Enhancing documentations and publishing it over readthedocs.io
 - Exception handling.
 - Supporting Generalized Type 2 Fuzzy Sets and Systems.
 
