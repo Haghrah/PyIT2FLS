@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="#3f51b5">
+  <script src="_static/javascripts/modernizr.js"></script>
+  
+  
+  
+    <title>Classes &#8212; PyIT2FLS</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=83e35b93" />
+    <link rel="stylesheet" type="text/css" href="_static/material.css?v=79c92029" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=6a14807c"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Membership Functions" href="membershipfunctions.html" />
+    <link rel="prev" title="PyIT2FLS" href="_generated/pyit2fls.html" />
+  
+   
+
+  </head>
+  <body dir=ltr
+        data-md-color-primary=blue data-md-color-accent=light-blue>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#classes" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="index.html" title="PyIT2FLS"
+           class="md-header-nav__button md-logo">
+          
+            &nbsp;
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          <span class="md-header-nav__topic">PyIT2FLS</span>
+          <span class="md-header-nav__topic"> Classes </span>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+        
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="search.html" method="get" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder=""Search""
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            <a href="https://github.com/Haghrah/PyIT2FLS" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    PyIT2FLS
+  </div>
+</a>
+          </div>
+        </div>
+      
+      
+  
+  <script src="_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = ""versions.json"",
+        target_loc = "../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
+
+    </div>
+  </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    
+  <nav class="md-tabs" data-md-component="tabs">
+    <div class="md-tabs__inner md-grid">
+      <ul class="md-tabs__list">
+          <li class="md-tabs__item"><a href="index.html" class="md-tabs__link">PyIT2FLS</a></li>
+      </ul>
+    </div>
+  </nav>
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="index.html" title="PyIT2FLS" class="md-nav__button md-logo">
+      
+        <img src="_static/" alt=" logo" width="48" height="48">
+      
+    </a>
+    <a href="index.html"
+       title="PyIT2FLS">PyIT2FLS</a>
+  </label>
+    <div class="md-nav__source">
+      <a href="https://github.com/Haghrah/PyIT2FLS" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    PyIT2FLS
+  </div>
+</a>
+    </div>
+  
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">"Contents"</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#classes--page-root" class="md-nav__link">Classes</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#pyit2fls.T1FS" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">T1FS</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#pyit2fls.T1Mamdani" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">T1Mamdani</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#pyit2fls.T1TSK" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">T1TSK</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#pyit2fls.IT2FS" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">IT2FS</span></code></a>
+        </li></ul>
+            </nav>
+        </li>
+    
+<li class="md-nav__item"><a class="md-nav__extra_link" href="_sources/classes.rst.txt">Show Source</a> </li>
+
+<li id="searchbox" class="md-nav__item"></li>
+
+  </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <section id="classes">
+<h1 id="classes--page-root">Classes<a class="headerlink" href="#classes--page-root" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyit2fls.T1FS">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">T1FS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mf=&lt;function</span> <span class="pre">zero_mf&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params=[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1FS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Type 1 Fuzzy Set (T1FS).</p>
+<section id="parameters">
+<h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading">¶</a></h2>
+<p>Parameters of the constructor function:</p>
+<dl>
+<dt>domain:</dt><dd><p>numpy (n,) shaped array</p>
+<p>Indicates the universe of discourse dedicated to the T1FS.</p>
+</dd>
+<dt>mf:</dt><dd><p>Membership function</p>
+</dd>
+<dt>params:</dt><dd><p>List of parameters of the membership function</p>
+</dd>
+</dl>
+</section>
+<section id="functions">
+<h2 id="functions">Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h2>
+<p>Functions defined in T1FS class:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>copy:</dt><dd><p>Returns a copy of the T1FS.</p>
+</dd>
+<dt>plot:</dt><dd><p>Plots the T1FS.</p>
+</dd>
+<dt>negation operator -:</dt><dd><p>Returns the negated T1FS.</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="examples">
+<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span> <span class="o">=</span> <span class="n">T1FS</span><span class="p">(</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> 
+<span class="go">                 trapezoid_mf, [0, 0.4, 0.6, 1., 1.])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyit2fls.T1Mamdani">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">T1Mamdani</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Product'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defuzzification</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'CoG'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1Mamdani" title="Permalink to this definition">¶</a></dt>
+<dd><p>Type 1 Mamdani Fuzzy Logic System.</p>
+<section id="id1">
+<h2 id="id1">Parameters<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p>Parameters of the constructor function:</p>
+<dl>
+<dt>engine=”Product”:</dt><dd><p>str</p>
+<p>Inference engine of the type 1 Mamdani fuzzy logic system. 
+This parameters is a string an can be one of the following items: 
+Product, Minimum, Lukasiewicz, Zadeh, and Dienes-Rescher.</p>
+</dd>
+<dt>defuzzification=”CoG”:</dt><dd><p>str</p>
+<p>Defuzzification method of the system. When Lukasiewicz, Zadeh, and Dienes-Rescher 
+inference engines are selected, the defuzzification method is center of the 
+gravity by default. But for Product and Minimum inference engines, defuzzification 
+can be selected among the methods CoG and CoA.</p>
+</dd>
+</dl>
+</section>
+<section id="members">
+<h2 id="members">Members<a class="headerlink" href="#members" title="Permalink to this heading">¶</a></h2>
+<dl>
+<dt>inputs:</dt><dd><p>List of str</p>
+<p>List of the inputs names as str.</p>
+</dd>
+<dt>outputs:</dt><dd><p>List of str</p>
+<p>List of the outputs names as str.</p>
+</dd>
+<dt>rules:</dt><dd><p>List of tuples (antacedent, consequent)</p>
+<p>List of rules, which each rule is defined as a 
+tuple (antecedent, consequent)</p>
+<p>Both antacedent and consequent are lists of tuples. Each tuple 
+of this list shows assignement of a variable to a T1FS. 
+First element of the tuple must be the variable name (input or output) 
+as a str and the second element must be a T1FS.</p>
+</dd>
+<dt>engine:</dt><dd><p>str</p>
+<p>Indicates the engine selected by the user.</p>
+</dd>
+<dt>defuzzification:</dt><dd><p>str</p>
+<p>Indicates the defuzzification method selected by the user.</p>
+</dd>
+</dl>
+</section>
+<section id="id2">
+<h2 id="id2">Functions<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>add_input_variable:</p>
+<blockquote>
+<div><p>Adds an input variable to the inputs list of the T1FLS.</p>
+</div></blockquote>
+<p>add_output_variable:</p>
+<blockquote>
+<div><p>Adds an output variable to the outputs list of the T1FLS.</p>
+</div></blockquote>
+<p>add_rule:</p>
+<blockquote>
+<div><p>Adds a rule to the rules list of the T1FLS.</p>
+</div></blockquote>
+<p>copy:</p>
+<blockquote>
+<div><p>Returns a copy of the type 1 Mamdani fuzzy logic system.</p>
+</div></blockquote>
+<p>evaluate:</p>
+<blockquote>
+<div><p>Evaluates the T1 Mamdani FLS’s output for the specified crisp input.
+The only input of the evaluate function is a dictionary in which the 
+keys are input variable names as str and the values are the crisp 
+value of inputs to be evaluated.
+The output of the evaluate function is depended on the method selected 
+while constructing the class. For more information, please refer to 
+the examples.</p>
+</div></blockquote>
+</section>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyit2fls.T1TSK">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">T1TSK</span></span><a class="headerlink" href="#pyit2fls.T1TSK" title="Permalink to this definition">¶</a></dt>
+<dd><p>Type 1 TSK Fuzzy Logic System.</p>
+<section id="id3">
+<h2 id="id3">Parameters<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<p>Parameters of the constructor function:</p>
+<p>The constructor function of the T1TSK class has no parameters.</p>
+</section>
+<section id="id4">
+<h2 id="id4">Members<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<dl>
+<dt>inputs:</dt><dd><p>List of str</p>
+<p>List of the inputs names as str.</p>
+</dd>
+<dt>outputs:</dt><dd><p>List of str</p>
+<p>List of the outputs names as str.</p>
+</dd>
+<dt>rules:</dt><dd><p>List of tuples (antacedent, consequent)</p>
+<p>List of rules, which each rule is defined as a 
+tuple (antecedent, consequent)</p>
+</dd>
+</dl>
+</section>
+<section id="id5">
+<h2 id="id5">Functions<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<p>add_input_variable:</p>
+<blockquote>
+<div><p>Adds an input variable to the inputs list of the T1 TSK FLS.</p>
+</div></blockquote>
+<p>add_output_variable:</p>
+<blockquote>
+<div><p>Adds an output variable to the outputs list of the T1 TSK FLS.</p>
+</div></blockquote>
+<p>add_rule:</p>
+<blockquote>
+<div><p>Adds a rule to the rules list of the T1 TSK FLS.</p>
+</div></blockquote>
+<p>copy:</p>
+<blockquote>
+<div><p>Returns a copy of the T1 TSK FLS.</p>
+</div></blockquote>
+<p>evaluate:</p>
+<blockquote>
+<div><p>Evaluates the T1 TSK FLS based on the crisp inputs given by the user.</p>
+</div></blockquote>
+</section>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyit2fls.IT2FS">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">IT2FS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">umf=&lt;function</span> <span class="pre">zero_mf&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">umf_params=[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lmf=&lt;function</span> <span class="pre">zero_mf&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lmf_params=[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_set=False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2FS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interval Type 2 Fuzzy Set (IT2FS).</p>
+<section id="id6">
+<h2 id="id6">Parameters<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
+<p>Parameters of the constructor function:</p>
+<dl>
+<dt>domain:</dt><dd><p>numpy (n,) shaped array</p>
+<p>Indicates the universe of discourse dedicated to the IT2FS.</p>
+</dd>
+<dt>umf:</dt><dd><p>Upper membership function</p>
+</dd>
+<dt>umf_params:</dt><dd><p>List of parameters of upper membership function</p>
+</dd>
+<dt>lmf:</dt><dd><p>Lower membership function</p>
+</dd>
+<dt>lmf_params:</dt><dd><p>List of parameters of lower membership function</p>
+</dd>
+<dt>check_set:</dt><dd><p>If it is True, then a function named check_set in IT2FS will 
+verify the LMF(x) &lt; UMF(x) condition for any x in the domain. If the 
+user is sure that has selected the parameters of the membership 
+functions correct, then calling this time-consuming function 
+is not needed. By default the parameter check_set is False.</p>
+</dd>
+</dl>
+</section>
+<section id="id7">
+<h2 id="id7">Functions<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h2>
+<p>Functions defined in IT2FS class:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>copy:</dt><dd><p>Returns a copy of the IT2FS.</p>
+</dd>
+<dt>plot:</dt><dd><p>Plots the IT2FS.</p>
+</dd>
+<dt>negation operator -:</dt><dd><p>Returns the negated IT2FS.</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="id8">
+<h2 id="id8">Examples<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h2>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span> <span class="o">=</span> <span class="n">IT2FS</span><span class="p">(</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> 
+<span class="go">                  trapezoid_mf, [0, 0.4, 0.6, 1., 1.], </span>
+<span class="go">                  tri_mf, [0.25, 0.5, 0.75, 0.6])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">"mySet"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+</section>
+
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+            <a href="_generated/pyit2fls.html" title="PyIT2FLS"
+               class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+               rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span
+                      class="md-footer-nav__direction"> "Previous" </span> PyIT2FLS </span>
+              </div>
+            </a>
+          
+          
+            <a href="membershipfunctions.html" title="Membership Functions"
+               class="md-flex md-footer-nav__link md-footer-nav__link--next"
+               rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
+                class="md-flex__ellipsis"> <span
+                class="md-footer-nav__direction"> "Next" </span> Membership Functions </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink"><i
+                class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+          <div class="md-footer-copyright__highlight">
+              &#169; Copyright 2024, Amir Arslan Haghrah.
+              
+          </div>
+            Created using
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 7.1.2.
+             and
+            <a href="https://github.com/bashtage/sphinx-material/">Material for
+              Sphinx</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>
