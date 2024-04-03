@@ -35,6 +35,11 @@ Or you can use pip3:
 ## Versions
 
 ### Features coming up in the next version
+- Supporting machine learning models based on fuzzy systems.
+    - T1TSK (Almost done!)
+    - T1Mamdani
+    - IT2TSK
+    - IT2Mamdani
 - Exception handling.
 - Supporting Generalized Type 2 Fuzzy Sets and Systems.
 
