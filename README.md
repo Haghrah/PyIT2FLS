@@ -24,7 +24,7 @@ MLA:
     Haghrah, Amir Arslan, and Sehraneh Ghaemi. "PyIT2FLS: A New Python Toolkit for Interval Type 2 Fuzzy Logic Systems." arXiv preprint arXiv:1909.10051 (2019).
 
 ## Installation
-PyIT2FLS can be installed by unzipping the source code in a directory and using this command inside the directory:
+PyIT2FLS can be installed by unzipping the source code in a directory and using this command inside the PyIT2FLS folder:
 
     (sudo) pip3 install .
 
