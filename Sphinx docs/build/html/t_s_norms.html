@@ -54,7 +54,7 @@
     <script src="_static/sphinx_highlight.js?v=4825356b"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Membership Functions" href="functions.html" />
+    <link rel="next" title="Functions" href="functions.html" />
     <link rel="prev" title="Popular Interval Type 2 Fuzzy Sets" href="it2fs.html" />
   
    
@@ -216,6 +216,8 @@
         <li class="md-nav__item"><a href="#t-s-norms--page-root" class="md-nav__link">T-Norms and S-Norms</a><nav class="md-nav">
               <ul class="md-nav__list">
         <li class="md-nav__item"><a href="#pyit2fls.min_t_norm" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">min_t_norm()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#pyit2fls.product_t_norm" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">product_t_norm()</span></code></a>
         </li></ul>
             </nav>
         </li>
@@ -261,6 +263,32 @@
 </div>
 </section>
 </dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.product_t_norm">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">product_t_norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.product_t_norm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Product t-norm function.</p>
+<section id="id1">
+<h2 id="id1">Parameters<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<dl class="simple">
+<dt>a:</dt><dd><p>numpy (n,) shaped array</p>
+</dd>
+<dt>b:</dt><dd><p>numpy (n,) shaped array</p>
+</dd>
+</dl>
+</section>
+<section id="id2">
+<h2 id="id2">Returns<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>Returns product t-norm of a and b</p>
+</section>
+<section id="id3">
+<h2 id="id3">Examples<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">10</span><span class="p">,)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">10</span><span class="p">,)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">product_t_norm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
 </section>
 
 
@@ -287,12 +315,12 @@
             </a>
           
           
-            <a href="functions.html" title="Membership Functions"
+            <a href="functions.html" title="Functions"
                class="md-flex md-footer-nav__link md-footer-nav__link--next"
                rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
                 class="md-flex__ellipsis"> <span
-                class="md-footer-nav__direction"> "Next" </span> Membership Functions </span>
+                class="md-footer-nav__direction"> "Next" </span> Functions </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink"><i
                 class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>

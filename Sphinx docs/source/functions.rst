@@ -1,4 +1,4 @@
-Membership Functions
+Functions
 ====================
 
 .. autofunction:: pyit2fls.T1_Emphasize
