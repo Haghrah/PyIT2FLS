@@ -23,7 +23,7 @@ y1 = sin(x1) + cos(x2)
 y2 = zeros_like(y1)
 for i in range(10):
     for j in range(10):
-        y2[i, j] = myTSK.score([array([X1[j], X2[i], ]), ])[0]
+        y2[i, j] = myTSK.score([array([X1[j], X2[i], ]), ])
 
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')

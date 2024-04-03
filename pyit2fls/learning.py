@@ -6,7 +6,7 @@ Created on Sat Mar 30 01:39:58 2024
 @author: arslan
 """
 
-from numpy import (reshape, exp, array, zeros_like, )
+from numpy import (reshape, exp, array, zeros_like, asarray, )
 from numpy.linalg import (norm, )
 from numpy.random import (rand, )
 from scipy.optimize import (differential_evolution, minimize, )
@@ -124,10 +124,16 @@ class T1TSK_ML:
         return self.error(self.params, X, y)
 
     def score(self, X):
-        o = []
-        for x in X:
-            o.append(self.model.d0(x))
-        return array(o)
+        X = asarray(X)
+        if X.ndim == 1:
+            return self.model.d0(x)
+        elif X.ndim == 2:
+            o = []
+            for x in X:
+                o.append(self.model.d0(x))
+            return array(o)
+        else:
+            raise ValueError("Input must be a 1D or 2D NumPy array!")
 
 
 
