@@ -126,7 +126,7 @@ class T1TSK_ML:
     def score(self, X):
         X = asarray(X)
         if X.ndim == 1:
-            return self.model.d0(x)
+            return self.model.d0(X)
         elif X.ndim == 2:
             o = []
             for x in X:
