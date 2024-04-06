@@ -121,50 +121,47 @@
 <dt class="sig sig-object py" id="pyit2fls.T1Mamdani">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">T1Mamdani</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Product'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defuzzification</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'CoG'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1Mamdani" title="Permalink to this definition"></a></dt>
 <dd><p>Type 1 Mamdani Fuzzy Logic System.</p>
-<section id="parameters">
-<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
+<p class="rubric">Parameters</p>
 <p>Parameters of the constructor function:</p>
-<dl>
-<dt>engine=”Product”:</dt><dd><p>str</p>
-<p>Inference engine of the type 1 Mamdani fuzzy logic system. 
+<p>engine=”Product”: str</p>
+<blockquote>
+<div><p>Inference engine of the type 1 Mamdani fuzzy logic system. 
 This parameters is a string an can be one of the following items: 
 Product, Minimum, Lukasiewicz, Zadeh, and Dienes-Rescher.</p>
-</dd>
-<dt>defuzzification=”CoG”:</dt><dd><p>str</p>
-<p>Defuzzification method of the system. When Lukasiewicz, Zadeh, and Dienes-Rescher 
+</div></blockquote>
+<p>defuzzification=”CoG”: str</p>
+<blockquote>
+<div><p>Defuzzification method of the system. When Lukasiewicz, Zadeh, and Dienes-Rescher 
 inference engines are selected, the defuzzification method is center of the 
 gravity by default. But for Product and Minimum inference engines, defuzzification 
 can be selected among the methods CoG and CoA.</p>
-</dd>
-</dl>
-</section>
-<section id="members">
-<h2>Members<a class="headerlink" href="#members" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>inputs:</dt><dd><p>List of str</p>
-<p>List of the inputs names as str.</p>
-</dd>
-<dt>outputs:</dt><dd><p>List of str</p>
-<p>List of the outputs names as str.</p>
-</dd>
-<dt>rules:</dt><dd><p>List of tuples (antacedent, consequent)</p>
-<p>List of rules, which each rule is defined as a 
-tuple (antecedent, consequent)</p>
-<p>Both antacedent and consequent are lists of tuples. Each tuple 
-of this list shows assignement of a variable to a T1FS. 
-First element of the tuple must be the variable name (input or output) 
-as a str and the second element must be a T1FS.</p>
-</dd>
-<dt>engine:</dt><dd><p>str</p>
-<p>Indicates the engine selected by the user.</p>
-</dd>
-<dt>defuzzification:</dt><dd><p>str</p>
-<p>Indicates the defuzzification method selected by the user.</p>
-</dd>
-</dl>
-</section>
-<section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h2>
+</div></blockquote>
+<p class="rubric">Members</p>
+<p>inputs : list of str</p>
+<blockquote>
+<div><p>List of the inputs names as strings.</p>
+</div></blockquote>
+<p>outputs : list of str</p>
+<blockquote>
+<div><p>List of the outputs names as strings.</p>
+</div></blockquote>
+<p>rules : list of tuples (antacedent, consequent)</p>
+<blockquote>
+<div><p>List of rules, which each rule is defined as a tuple (antecedent, consequent).
+Both antacedent and consequent are lists of tuples. Each tuple 
+of this list represents the assignement of a variable to a T1FS. 
+The first element of the tuple must be the variable name (input or output) 
+as a string, and the second element must be a T1FS.</p>
+</div></blockquote>
+<p>engine : str</p>
+<blockquote>
+<div><p>Indicates the engine selected by the user.</p>
+</div></blockquote>
+<p>defuzzification : str</p>
+<blockquote>
+<div><p>Indicates the defuzzification method selected by the user.</p>
+</div></blockquote>
+<p class="rubric">Functions</p>
 <p>add_input_variable:</p>
 <blockquote>
 <div><p>Adds an input variable to the inputs list of the T1FLS.</p>
@@ -185,26 +182,25 @@ as a str and the second element must be a T1FS.</p>
 <blockquote>
 <div><p>Evaluates the T1 Mamdani FLS’s output for the specified crisp input.
 The only input of the evaluate function is a dictionary in which the 
-keys are input variable names as str and the values are the crisp 
+keys are input variable names as strings and the values are the crisp 
 value of inputs to be evaluated.
-The output of the evaluate function is depended on the method selected 
+The output of the evaluate function depends on the method selected 
 while constructing the class. For more information, please refer to 
 the examples.</p>
 </div></blockquote>
-</section>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="pyit2fls.T1TSK">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">T1TSK</span></span><a class="headerlink" href="#pyit2fls.T1TSK" title="Permalink to this definition"></a></dt>
 <dd><p>Type 1 TSK Fuzzy Logic System.</p>
-<section id="id1">
-<h2>Parameters<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
 <p>Parameters of the constructor function:</p>
 <p>The constructor function of the T1TSK class has no parameters.</p>
 </section>
-<section id="id2">
-<h2>Members<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<section id="members">
+<h2>Members<a class="headerlink" href="#members" title="Permalink to this heading"></a></h2>
 <dl>
 <dt>inputs:</dt><dd><p>List of str</p>
 <p>List of the inputs names as str.</p>
@@ -218,8 +214,8 @@ tuple (antecedent, consequent)</p>
 </dd>
 </dl>
 </section>
-<section id="id3">
-<h2>Functions<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h2>
 <p>add_input_variable:</p>
 <blockquote>
 <div><p>Adds an input variable to the inputs list of the T1 TSK FLS.</p>
@@ -247,8 +243,8 @@ tuple (antecedent, consequent)</p>
 <dt class="sig sig-object py" id="pyit2fls.IT2FS">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">IT2FS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">umf=&lt;function</span> <span class="pre">zero_mf&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">umf_params=[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lmf=&lt;function</span> <span class="pre">zero_mf&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lmf_params=[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_set=False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2FS" title="Permalink to this definition"></a></dt>
 <dd><p>Interval Type 2 Fuzzy Set (IT2FS).</p>
-<section id="id4">
-<h2>Parameters<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<section id="id1">
+<h2>Parameters<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <p>Parameters of the constructor function:</p>
 <dl>
 <dt>domain:</dt><dd><p>numpy (n,) shaped array</p>
@@ -270,8 +266,8 @@ is not needed. By default the parameter check_set is False.</p>
 </dd>
 </dl>
 </section>
-<section id="id5">
-<h2>Functions<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<section id="id2">
+<h2>Functions<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <p>Functions defined in IT2FS class:</p>
 <blockquote>
 <div><dl class="simple">
@@ -300,8 +296,8 @@ is not needed. By default the parameter check_set is False.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">IT2FLS</span></span><a class="headerlink" href="#pyit2fls.IT2FLS" title="Permalink to this definition"></a></dt>
 <dd><p>Interval type 2 fuzzy logic system.</p>
 <p>No construction parameter is needed.</p>
-<section id="id6">
-<h2>Members<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+<section id="id3">
+<h2>Members<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <dl>
 <dt>inputs:</dt><dd><p>List of str</p>
 <p>List of names of inputs as str</p>
@@ -319,8 +315,8 @@ a str and the second element must be an IT2FS.</p>
 </dd>
 </dl>
 </section>
-<section id="id7">
-<h2>Functions<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
+<section id="id4">
+<h2>Functions<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
 <p>add_input_variable:</p>
 <blockquote>
 <div><p>Adds an input variable to the inputs list of the IT2FLS.</p>
@@ -342,8 +338,8 @@ a str and the second element must be an IT2FS.</p>
 <div><p>Evaluates the IT2FLS’s output for a specified crisp input.</p>
 </div></blockquote>
 </section>
-<section id="id8">
-<h2>Examples<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
+<section id="id5">
+<h2>Examples<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
 <p>Assume that we are going to simulate an IT2FLS with two inputs and 
 two outputs. Each input is defined by three IT2FSs, Small, Medium, 
 and Large. These IT2FSs are from Gaussian type with uncertain 
@@ -404,8 +400,8 @@ would be as below:</p>
 <dt class="sig sig-object py" id="pyit2fls.IT2TSK">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">IT2TSK</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_norm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s_norm</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2TSK" title="Permalink to this definition"></a></dt>
 <dd><p>Interval type 2 TSK fuzzy logic system.</p>
-<section id="id9">
-<h2>Parameters<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h2>
+<section id="id6">
+<h2>Parameters<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
 <p>Parameters of the constructor function:</p>
 <dl>
 <dt>t_norm:</dt><dd><p>function</p>
@@ -416,8 +412,8 @@ would be as below:</p>
 </dd>
 </dl>
 </section>
-<section id="id10">
-<h2>Members<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h2>
+<section id="id7">
+<h2>Members<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
 <dl>
 <dt>inputs:</dt><dd><p>List of str</p>
 <p>List of the inputs name as str.</p>
@@ -443,8 +439,8 @@ IT2 TSK FLS with two inputs, named x1 and x2.</p>
 </dd>
 </dl>
 </section>
-<section id="id11">
-<h2>Functions<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h2>
+<section id="id8">
+<h2>Functions<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
 <p>add_input_variable:</p>
 <blockquote>
 <div><p>Adds an input variable to the inputs list of the IT2 TSK FLS.</p>
@@ -466,8 +462,8 @@ IT2 TSK FLS with two inputs, named x1 and x2.</p>
 <div><p>Evaluates the IT2 TSK FLS based on the crisp inputs given by the user.</p>
 </div></blockquote>
 </section>
-<section id="id12">
-<h2>Notes<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h2>
+<section id="id9">
+<h2>Notes<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h2>
 <p>While using the IT2TSK class the user must take care of the items listed below:</p>
 <blockquote>
 <div><ul class="simple">
@@ -482,8 +478,8 @@ IT2 TSK FLS with two inputs, named x1 and x2.</p>
 <dt class="sig sig-object py" id="pyit2fls.IT2Mamdani">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">IT2Mamdani</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_norm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s_norm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Centroid'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'EIASC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2Mamdani" title="Permalink to this definition"></a></dt>
 <dd><p>Interval Type 2 Mamadani Fuzzy Logic System.</p>
-<section id="id13">
-<h2>Parameters<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h2>
+<section id="id10">
+<h2>Parameters<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h2>
 <p>Parameters of the constructor function:</p>
 <dl>
 <dt>t_norm:</dt><dd><p>function</p>
@@ -510,8 +506,8 @@ KM, EKM, WEKM, TWEKM, EIASC, WM, BMM, LBMM, and NT.</p>
 </dd>
 </dl>
 </section>
-<section id="id14">
-<h2>Members<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h2>
+<section id="id11">
+<h2>Members<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h2>
 <dl>
 <dt>inputs:</dt><dd><p>List of str</p>
 <p>List of the inputs name as str.</p>
@@ -529,8 +525,8 @@ as a str, and the second element must be an IT2FS.</p>
 </dd>
 </dl>
 </section>
-<section id="id15">
-<h2>Functions<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h2>
+<section id="id12">
+<h2>Functions<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h2>
 <p>add_input_variable:</p>
 <blockquote>
 <div><p>Adds an input variable to the inputs list of the IT2 Mamdani FLS.</p>
@@ -562,8 +558,8 @@ while constructing the class. For more information, please refer to
 the examples.</p>
 </div></blockquote>
 </section>
-<section id="id16">
-<h2>Notes<a class="headerlink" href="#id16" title="Permalink to this heading"></a></h2>
+<section id="id13">
+<h2>Notes<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h2>
 <p>While using the IT2Mamdani class the user must take care of the items listed below:</p>
 <blockquote>
 <div><ul class="simple">

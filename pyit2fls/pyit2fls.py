@@ -805,22 +805,22 @@ def T1FS_plot(*sets, title=None, legends=None, filename=None,
     
     title : str
         
-        If it is set, it indicates the title which would be 
-        represented in the plot. If it is not set, the plot would not 
-        have a title.
+        If set, it indicates the title to be represented in the plot.
+        If not set, the plot would not have a title.
+
         
     legends : List of strs
         
-        List of legend texts to be presented in plot. If it is not 
-        set, no legend would be in plot.
+        List of legend texts to be presented in the plot. If not set,
+        no legend would be included in the plot.
         
     filename : str
         
-        If it is set, the plot would be saved as a filename.ext file.
+        If set, the plot would be saved as a filename.ext file.
         
     ext : str
 
-        Extension of the output file with pdf default value.
+        Extension of the output file with "pdf" as the default value.
     
     grid : bool
 
@@ -858,39 +858,33 @@ def T1FS_plot(*sets, title=None, legends=None, filename=None,
 
 def T1FS_AND(domain, t1fs1, t1fs2, t_norm):
     """
-    And operator for T1FSs.
+    AND operator for T1FSs.
     
-    Parameters
-    -------------------------------------------------------------------
+    .. rubric:: Parameters
     
-    domain:
-        numpy (n,) shaped array
+    domain : numpy (n,) shaped array
         
         Indicates the universe of discourse dedicated to the output T1FS.
     
-    t1fs1:
-        T1FS
+    t1fs1 : T1FS
         
-        First input of the and operator.
+        First input of the AND operator.
         
-    t1fs2:
-        T1FS
+    t1fs2 : T1FS
         
-        Second input of the and operator.
+        Second input of the AND operator.
     
-    t_norm:
-        function
+    t_norm : function
         
         The t-norm function to be used.
     
-    Returns
-    -------------------------------------------------
-    T1FS
+    .. rubric:: Returns
     
-    Returns the AND of the two input T1FSs.
+    output : T1FS
     
-    Examples
-    --------------------------------------------------
+        Returns the AND of the two input T1FSs.
+    
+    .. rubric:: Examples
     
     >>> domain = linspace(0., 1., 100)
     >>> t1fs1 = T1FS(domain, gaussian_mf, [0.33, 0.2, 1.])
@@ -903,39 +897,33 @@ def T1FS_AND(domain, t1fs1, t1fs2, t_norm):
 
 def T1FS_OR(domain, t1fs1, t1fs2, s_norm):
     """
-    Or operator for T1FSs.
+    OR operator for T1FSs.
     
-    Parameters
-    -------------------------------------------------------------------
+    .. rubric:: Parameters
     
-    domain:
-        numpy (n,) shaped array
+    domain : numpy (n,) shaped array
         
         Indicates the universe of discourse dedicated to the output T1FS.
     
-    t1fs1:
-        T1FS
+    t1fs1 : T1FS
         
-        First input of the or operator.
+        First input of the OR operator.
         
-    t1fs2:
-        T1FS
+    t1fs2 : T1FS
         
-        Second input of the or operator.
+        Second input of the OR operator.
     
-    s_norm:
-        function
+    s_norm : function
         
         The s-norm function to be used.
     
-    Returns
-    -------------------------------------------------
-    T1FS
+    .. rubric:: Returns
     
-    Returns the OR of the two input T1FSs.
+    output : T1FS
     
-    Examples
-    --------------------------------------------------
+        Returns the OR of the two input T1FSs.
+    
+    .. rubric:: Examples
     
     >>> domain = linspace(0., 1., 100)
     >>> t1fs1 = T1FS(domain, gaussian_mf, [0.33, 0.2, 1.])
@@ -951,62 +939,51 @@ class T1Mamdani:
     """
     Type 1 Mamdani Fuzzy Logic System.
 
-    Parameters
-    -------------------------------------------------------------------
+    .. rubric:: Parameters
+    
     Parameters of the constructor function:
 
-    engine="Product":
-        str
+    engine="Product": str
 
         Inference engine of the type 1 Mamdani fuzzy logic system. 
         This parameters is a string an can be one of the following items: 
         Product, Minimum, Lukasiewicz, Zadeh, and Dienes-Rescher.
     
-    defuzzification="CoG":
-        str
+    defuzzification="CoG": str
 
         Defuzzification method of the system. When Lukasiewicz, Zadeh, and Dienes-Rescher 
         inference engines are selected, the defuzzification method is center of the 
         gravity by default. But for Product and Minimum inference engines, defuzzification 
         can be selected among the methods CoG and CoA.
 
-    Members
-    -------------------------------------------------
-
-    inputs:
-        List of str
-
-        List of the inputs names as str.
+    .. rubric:: Members
     
-    outputs:
-        List of str
+    inputs : list of str
 
-        List of the outputs names as str.
+        List of the inputs names as strings.
+    
+    outputs : list of str
 
-    rules:
-        List of tuples (antacedent, consequent)
+        List of the outputs names as strings.
 
-        List of rules, which each rule is defined as a 
-        tuple (antecedent, consequent)
-        
+    rules : list of tuples (antacedent, consequent)
+
+        List of rules, which each rule is defined as a tuple (antecedent, consequent).
         Both antacedent and consequent are lists of tuples. Each tuple 
-        of this list shows assignement of a variable to a T1FS. 
-        First element of the tuple must be the variable name (input or output) 
-        as a str and the second element must be a T1FS.
+        of this list represents the assignement of a variable to a T1FS. 
+        The first element of the tuple must be the variable name (input or output) 
+        as a string, and the second element must be a T1FS.
 
-    engine:
-        str
+    engine : str
 
         Indicates the engine selected by the user.
     
-    defuzzification:
-        str
+    defuzzification : str
 
         Indicates the defuzzification method selected by the user.
 
-    Functions
-    ------------------------------------------------------------------
-
+    .. rubric:: Functions
+    
     add_input_variable:
         
         Adds an input variable to the inputs list of the T1FLS.
@@ -1027,9 +1004,9 @@ class T1Mamdani:
         
         Evaluates the T1 Mamdani FLS's output for the specified crisp input.
         The only input of the evaluate function is a dictionary in which the 
-        keys are input variable names as str and the values are the crisp 
+        keys are input variable names as strings and the values are the crisp 
         value of inputs to be evaluated.
-        The output of the evaluate function is depended on the method selected 
+        The output of the evaluate function depends on the method selected 
         while constructing the class. For more information, please refer to 
         the examples.
     """
@@ -1055,7 +1032,7 @@ class T1Mamdani:
     
     def __repr__(self):
         return "Type 1 Mamadani fuzzy logic system with " + self.engine + " inference engine" + \
-            "and " + self.defuzzification + " defuzzification error!"
+            "and " + self.defuzzification + " defuzzification!"
 
     def copy(self):
         o = T1Mamdani(self.engine, self.defuzzification)
@@ -1066,29 +1043,25 @@ class T1Mamdani:
     
     def add_input_variable(self, name):
         """
-        Adds new input variable name.
+        Adds a new input variable by name.
         
-        Parameters
-        -------------------------------------------------------------------
+        .. rubric:: Parameters
         
-        name:
-            str
+        name : str
             
-            Name of the new input variable as a str.
+            Name of the new input variable as a string.
         """
         self.inputs.append(name)
     
     def add_output_variable(self, name):
         """
-        Adds new output variable name.
+        Adds a new output variable by name.
         
-        Parameters
-        -------------------------------------------------------------------
-        
-        name:
-            str
+        .. rubric:: Parameters
+
+        name : str
             
-            Name of the new output variable as a str.
+            Name of the new output variable as a string.
         """
         self.outputs.append(name)
 
@@ -1096,23 +1069,20 @@ class T1Mamdani:
         """
         Adds a new rule to the rule base of the T1 Mamdani FLS.
         
-        Parameters
-        -------------------------------------------------------------------
-        
-        antecedent:
-            List of tuples
+        .. rubric:: Parameters
+
+        antecedent : list of tuples
             
             Antecedent is a list of tuples in which each tuple indicates 
-            assignement of a variable to a T1FS. First element of the 
-            tuple must be input variable name as str, and the second 
+            assignment of a variable to a T1FS. The first element of the 
+            tuple must be the input variable name as a string, and the second 
             element of the tuple must be a T1FS.
             
-        consequent:
-            List of tuples
+        consequent : list of tuples
             
             Consequent is a list of tuples in which each tuple indicates 
-            assignement of a variable to a T1FS. First element of the 
-            tuple must be output variable name as str, and the second 
+            assignment of a variable to a T1FS. The first element of the 
+            tuple must be the output variable name as a string, and the second 
             element of the tuple must be a T1FS.
         """
         self.rules.append((antecedent, consequent))
