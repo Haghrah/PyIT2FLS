@@ -103,64 +103,61 @@
 <dt class="sig sig-object py" id="pyit2fls.T1_Emphasize">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">T1_Emphasize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t1fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1_Emphasize" title="Permalink to this definition"></a></dt>
 <dd><p>Function for creating emphasized T1FSs.</p>
-<section id="parameters">
-<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>t1fs<span class="classifier"></span></dt><dd><p>T1FS</p>
-<p>Type 1 fuzzy set to be emphasized.</p>
-</dd>
-<dt>m<span class="classifier"></span></dt><dd><p>float, optional</p>
-<p>Emphasis degree. The default value is 2.</p>
-</dd>
-</dl>
-</section>
-<section id="returns">
-<h2>Returns<a class="headerlink" href="#returns" title="Permalink to this heading"></a></h2>
+<p class="rubric">Parameters</p>
+<p>t1fs : T1FS</p>
+<blockquote>
+<div><p>Type 1 fuzzy set to be emphasized.</p>
+</div></blockquote>
+<p>m : float, optional</p>
+<blockquote>
+<div><p>Emphasis degree. The default value is 2.</p>
+</div></blockquote>
+<p class="rubric">Returns</p>
 <dl>
 <dt>emphasized<span class="classifier"></span></dt><dd><p>T1FS</p>
 <p>Emphasized type 1 fuzzy set.</p>
 </dd>
 </dl>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.T1FS_plot">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">T1FS_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">sets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legends</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ext</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Domain'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Membership</span> <span class="pre">degree'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1FS_plot" title="Permalink to this definition"></a></dt>
 <dd><p>Plots multiple T1FSs together in the same figure.</p>
-<section id="id1">
-<h2>Parameters<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
-<dl>
-<dt><a href="#id2"><span class="problematic" id="id3">*</span></a>sets:</dt><dd><p>Multiple number of T1FSs which would be plotted.</p>
-</dd>
-<dt>title:</dt><dd><p>str</p>
-<p>If it is set, it indicates the title which would be 
+<p class="rubric">Parameters</p>
+<p><a href="#id1"><span class="problematic" id="id2">*</span></a>sets : Multiple number of T1FSs which would be plotted.</p>
+<p>title : str</p>
+<blockquote>
+<div><p>If it is set, it indicates the title which would be 
 represented in the plot. If it is not set, the plot would not 
 have a title.</p>
-</dd>
-<dt>legends:</dt><dd><p>List of strs</p>
-<p>List of legend texts to be presented in plot. If it is not 
+</div></blockquote>
+<p>legends : List of strs</p>
+<blockquote>
+<div><p>List of legend texts to be presented in plot. If it is not 
 set, no legend would be in plot.</p>
-</dd>
-<dt>filename:</dt><dd><p>str</p>
-<p>If it is set, the plot would be saved as a filename.ext file.</p>
-</dd>
-<dt>ext:</dt><dd><p>str</p>
-<p>Extension of the output file with pdf default value.</p>
-</dd>
-<dt>grid:</dt><dd><p>bool</p>
-<p>Grid on/off.</p>
-</dd>
-<dt>xlabel:</dt><dd><p>str</p>
-<p>Label of the x axis.</p>
-</dd>
-<dt>ylabel:</dt><dd><p>str</p>
-<p>Label of the y axis.</p>
-</dd>
-</dl>
-</section>
-<section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
+</div></blockquote>
+<p>filename : str</p>
+<blockquote>
+<div><p>If it is set, the plot would be saved as a filename.ext file.</p>
+</div></blockquote>
+<p>ext : str</p>
+<blockquote>
+<div><p>Extension of the output file with pdf default value.</p>
+</div></blockquote>
+<p>grid : bool</p>
+<blockquote>
+<div><p>Grid on/off.</p>
+</div></blockquote>
+<p>xlabel : str</p>
+<blockquote>
+<div><p>Label of the x axis.</p>
+</div></blockquote>
+<p>ylabel : str</p>
+<blockquote>
+<div><p>Label of the y axis.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">domain</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t1fs1</span> <span class="o">=</span> <span class="n">T1FS</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">gaussian_mf</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.33</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t1fs2</span> <span class="o">=</span> <span class="n">T1FS</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">gaussian_mf</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.66</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
@@ -168,15 +165,14 @@ set, no legend would be in plot.</p>
 <span class="go">              legends=[&quot;First set&quot;, &quot;Second set&quot;])</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.T1FS_AND">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">T1FS_AND</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t1fs1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t1fs2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_norm</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1FS_AND" title="Permalink to this definition"></a></dt>
 <dd><p>And operator for T1FSs.</p>
-<section id="id4">
-<h2>Parameters<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
 <dl>
 <dt>domain:</dt><dd><p>numpy (n,) shaped array</p>
 <p>Indicates the universe of discourse dedicated to the output T1FS.</p>
@@ -192,13 +188,13 @@ set, no legend would be in plot.</p>
 </dd>
 </dl>
 </section>
-<section id="id5">
-<h2>Returns<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<section id="returns">
+<h2>Returns<a class="headerlink" href="#returns" title="Permalink to this heading"></a></h2>
 <p>T1FS</p>
 <p>Returns the AND of the two input T1FSs.</p>
 </section>
-<section id="id6">
-<h2>Examples<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">domain</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t1fs1</span> <span class="o">=</span> <span class="n">T1FS</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">gaussian_mf</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.33</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t1fs2</span> <span class="o">=</span> <span class="n">T1FS</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">gaussian_mf</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.66</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
@@ -213,8 +209,8 @@ set, no legend would be in plot.</p>
 <dt class="sig sig-object py" id="pyit2fls.T1FS_OR">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">T1FS_OR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t1fs1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t1fs2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s_norm</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1FS_OR" title="Permalink to this definition"></a></dt>
 <dd><p>Or operator for T1FSs.</p>
-<section id="id7">
-<h2>Parameters<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
+<section id="id3">
+<h2>Parameters<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <dl>
 <dt>domain:</dt><dd><p>numpy (n,) shaped array</p>
 <p>Indicates the universe of discourse dedicated to the output T1FS.</p>
@@ -230,13 +226,13 @@ set, no legend would be in plot.</p>
 </dd>
 </dl>
 </section>
-<section id="id8">
-<h2>Returns<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
+<section id="id4">
+<h2>Returns<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
 <p>T1FS</p>
 <p>Returns the OR of the two input T1FSs.</p>
 </section>
-<section id="id9">
-<h2>Examples<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h2>
+<section id="id5">
+<h2>Examples<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">domain</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t1fs1</span> <span class="o">=</span> <span class="n">T1FS</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">gaussian_mf</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.33</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t1fs2</span> <span class="o">=</span> <span class="n">T1FS</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">gaussian_mf</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.66</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
@@ -251,8 +247,8 @@ set, no legend would be in plot.</p>
 <dt class="sig sig-object py" id="pyit2fls.IT2_Emphasize">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">IT2_Emphasize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">it2fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2_Emphasize" title="Permalink to this definition"></a></dt>
 <dd><p>Function for creating emphasized IT2FSs.</p>
-<section id="id10">
-<h2>Parameters<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h2>
+<section id="id6">
+<h2>Parameters<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
 <dl>
 <dt>it2fs<span class="classifier"></span></dt><dd><p>IT2FS</p>
 <p>Interval type 2 fuzzy set to be emphasized.</p>
@@ -262,8 +258,8 @@ set, no legend would be in plot.</p>
 </dd>
 </dl>
 </section>
-<section id="id11">
-<h2>Returns<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h2>
+<section id="id7">
+<h2>Returns<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
 <dl>
 <dt>emphasized<span class="classifier"></span></dt><dd><p>IT2FS</p>
 <p>Emphasized interval type 2 fuzzy set.</p>
@@ -276,10 +272,10 @@ set, no legend would be in plot.</p>
 <dt class="sig sig-object py" id="pyit2fls.IT2FS_plot">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">IT2FS_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">sets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legends</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ext</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Domain'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Membership</span> <span class="pre">degree'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2FS_plot" title="Permalink to this definition"></a></dt>
 <dd><p>Plots multiple IT2FSs together in the same figure.</p>
-<section id="id12">
-<h2>Parameters<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h2>
+<section id="id8">
+<h2>Parameters<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
 <dl>
-<dt><a href="#id13"><span class="problematic" id="id14">*</span></a>sets:</dt><dd><p>Multiple number of IT2FSs which would be plotted.</p>
+<dt><a href="#id9"><span class="problematic" id="id10">*</span></a>sets:</dt><dd><p>Multiple number of IT2FSs which would be plotted.</p>
 </dd>
 <dt>title:</dt><dd><p>str</p>
 <p>If it is set, it indicates the title which would be 
@@ -307,8 +303,8 @@ set, no legend would be in plot.</p>
 </dd>
 </dl>
 </section>
-<section id="id15">
-<h2>Examples<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h2>
+<section id="id11">
+<h2>Examples<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h2>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">domain</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">it2fs1</span> <span class="o">=</span> <span class="n">IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.33</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">it2fs2</span> <span class="o">=</span> <span class="n">IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.66</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">])</span>
@@ -323,8 +319,8 @@ set, no legend would be in plot.</p>
 <dt class="sig sig-object py" id="pyit2fls.TR_plot">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">TR_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ext</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Domain'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Membership</span> <span class="pre">degree'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.TR_plot" title="Permalink to this definition"></a></dt>
 <dd><p>Plots a type reduced IT2FS.</p>
-<section id="id16">
-<h2>Parameters<a class="headerlink" href="#id16" title="Permalink to this heading"></a></h2>
+<section id="id12">
+<h2>Parameters<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h2>
 <dl>
 <dt>domain:</dt><dd><p>numpy (n,) shaped array</p>
 <p>Indicates the universe of discourse dedicated to the IT2FS.</p>
@@ -359,8 +355,8 @@ not contain a legend.</p>
 </dd>
 </dl>
 </section>
-<section id="id17">
-<h2>Examples<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h2>
+<section id="id13">
+<h2>Examples<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h2>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tr1</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">TR_plot</span><span class="p">(</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">tr1</span><span class="p">)</span>
 </pre></div>
@@ -372,21 +368,21 @@ not contain a legend.</p>
 <dt class="sig sig-object py" id="pyit2fls.crisp">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">crisp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.crisp" title="Permalink to this definition"></a></dt>
 <dd><p>Calculates the crisp number achieved from type reduced IT2FS.</p>
-<section id="id18">
-<h2>Parameters<a class="headerlink" href="#id18" title="Permalink to this heading"></a></h2>
+<section id="id14">
+<h2>Parameters<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h2>
 <dl>
 <dt>tr:</dt><dd><p>Tuple (l, r)</p>
 <p>Type reduced IT2FS</p>
 </dd>
 </dl>
 </section>
-<section id="id19">
-<h2>Returns<a class="headerlink" href="#id19" title="Permalink to this heading"></a></h2>
+<section id="id15">
+<h2>Returns<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h2>
 <p>float</p>
 <p>Returns the crisp number achieved from type reduced IT2FS.</p>
 </section>
-<section id="id20">
-<h2>Examples<a class="headerlink" href="#id20" title="Permalink to this heading"></a></h2>
+<section id="id16">
+<h2>Examples<a class="headerlink" href="#id16" title="Permalink to this heading"></a></h2>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tr1</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">crisp</span><span class="p">(</span><span class="n">tr1</span><span class="p">))</span>
 </pre></div>
@@ -399,8 +395,8 @@ not contain a legend.</p>
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">crisp_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">o</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.crisp_list" title="Permalink to this definition"></a></dt>
 <dd><p>Calculates the crisp outputs achieved by calling the evaluate_list 
 function from IT2FLS class.</p>
-<section id="id21">
-<h2>Parameters<a class="headerlink" href="#id21" title="Permalink to this heading"></a></h2>
+<section id="id17">
+<h2>Parameters<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h2>
 <dl>
 <dt>trs:</dt><dd><p>List of Tuple (l, r)</p>
 <p>Type reduced IT2FSs</p>
@@ -411,8 +407,8 @@ then the crisp outputs are calculated for all output variables.</p>
 </dd>
 </dl>
 </section>
-<section id="id22">
-<h2>Returns<a class="headerlink" href="#id22" title="Permalink to this heading"></a></h2>
+<section id="id18">
+<h2>Returns<a class="headerlink" href="#id18" title="Permalink to this heading"></a></h2>
 <p>List of float (or Dictionary of Lists of float)</p>
 </section>
 </dd></dl>
@@ -421,8 +417,8 @@ then the crisp outputs are calculated for all output variables.</p>
 <dt class="sig sig-object py" id="pyit2fls.meet">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">meet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">it2fs1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">it2fs2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_norm</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.meet" title="Permalink to this definition"></a></dt>
 <dd><p>Meet operator for IT2FSs.</p>
-<section id="id23">
-<h2>Parameters<a class="headerlink" href="#id23" title="Permalink to this heading"></a></h2>
+<section id="id19">
+<h2>Parameters<a class="headerlink" href="#id19" title="Permalink to this heading"></a></h2>
 <dl>
 <dt>domain:</dt><dd><p>numpy (n,) shaped array</p>
 <p>Indicates the universe of discourse dedicated to the IT2FS.</p>
@@ -438,13 +434,13 @@ then the crisp outputs are calculated for all output variables.</p>
 </dd>
 </dl>
 </section>
-<section id="id24">
-<h2>Returns<a class="headerlink" href="#id24" title="Permalink to this heading"></a></h2>
+<section id="id20">
+<h2>Returns<a class="headerlink" href="#id20" title="Permalink to this heading"></a></h2>
 <p>IT2FS</p>
 <p>Returns the meet of the two input IT2FSs.</p>
 </section>
-<section id="id25">
-<h2>Examples<a class="headerlink" href="#id25" title="Permalink to this heading"></a></h2>
+<section id="id21">
+<h2>Examples<a class="headerlink" href="#id21" title="Permalink to this heading"></a></h2>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">domain</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">it2fs1</span> <span class="o">=</span> <span class="n">IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.33</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">it2fs2</span> <span class="o">=</span> <span class="n">IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.66</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
@@ -459,8 +455,8 @@ then the crisp outputs are calculated for all output variables.</p>
 <dt class="sig sig-object py" id="pyit2fls.join">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">join</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">it2fs1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">it2fs2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s_norm</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.join" title="Permalink to this definition"></a></dt>
 <dd><p>Join operator for IT2FSs.</p>
-<section id="id26">
-<h2>Parameters<a class="headerlink" href="#id26" title="Permalink to this heading"></a></h2>
+<section id="id22">
+<h2>Parameters<a class="headerlink" href="#id22" title="Permalink to this heading"></a></h2>
 <dl>
 <dt>domain:</dt><dd><p>numpy (n,) shaped array</p>
 <p>Indicates the universe of discourse dedicated to the IT2FS.</p>
@@ -476,13 +472,13 @@ then the crisp outputs are calculated for all output variables.</p>
 </dd>
 </dl>
 </section>
-<section id="id27">
-<h2>Returns<a class="headerlink" href="#id27" title="Permalink to this heading"></a></h2>
+<section id="id23">
+<h2>Returns<a class="headerlink" href="#id23" title="Permalink to this heading"></a></h2>
 <p>IT2FS</p>
 <p>Returns the join of the two input IT2FSs.</p>
 </section>
-<section id="id28">
-<h2>Examples<a class="headerlink" href="#id28" title="Permalink to this heading"></a></h2>
+<section id="id24">
+<h2>Examples<a class="headerlink" href="#id24" title="Permalink to this heading"></a></h2>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">domain</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">it2fs1</span> <span class="o">=</span> <span class="n">IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.33</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">it2fs2</span> <span class="o">=</span> <span class="n">IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.66</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
@@ -497,8 +493,8 @@ then the crisp outputs are calculated for all output variables.</p>
 <dt class="sig sig-object py" id="pyit2fls.Centroid">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">Centroid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">it2fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alg_func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alg_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.Centroid" title="Permalink to this definition"></a></dt>
 <dd><p>Centroid type reduction for an interval type 2 fuzzy set.</p>
-<section id="id29">
-<h2>Parameters<a class="headerlink" href="#id29" title="Permalink to this heading"></a></h2>
+<section id="id25">
+<h2>Parameters<a class="headerlink" href="#id25" title="Permalink to this heading"></a></h2>
 <dl>
 <dt>it2fs:</dt><dd><p>IT2FS</p>
 <p>IT2FS which would be type reduced.</p>
@@ -519,8 +515,8 @@ NT_algorithm</p>
 </dd>
 </dl>
 </section>
-<section id="id30">
-<h2>Returns<a class="headerlink" href="#id30" title="Permalink to this heading"></a></h2>
+<section id="id26">
+<h2>Returns<a class="headerlink" href="#id26" title="Permalink to this heading"></a></h2>
 <p>Based on selected type reduction algorithm tuple (l, r) or float</p>
 <p>Returns Centroid type reduction of the input IT2FS.</p>
 </section>
@@ -530,8 +526,8 @@ NT_algorithm</p>
 <dt class="sig sig-object py" id="pyit2fls.CoSet">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">CoSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">firing_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">consequent_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alg_func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alg_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.CoSet" title="Permalink to this definition"></a></dt>
 <dd><p>Center of sets type reduction.</p>
-<section id="id31">
-<h2>Parameters<a class="headerlink" href="#id31" title="Permalink to this heading"></a></h2>
+<section id="id27">
+<h2>Parameters<a class="headerlink" href="#id27" title="Permalink to this heading"></a></h2>
 <dl>
 <dt>firing_array:</dt><dd><p>numpy (m, 2) shaped array</p>
 <p>Firing strength of consequents.</p>
@@ -555,8 +551,8 @@ NT_algorithm</p>
 </dd>
 </dl>
 </section>
-<section id="id32">
-<h2>Returns<a class="headerlink" href="#id32" title="Permalink to this heading"></a></h2>
+<section id="id28">
+<h2>Returns<a class="headerlink" href="#id28" title="Permalink to this heading"></a></h2>
 <p>Based on selected type reduction algorithm tuple (l, r) or float</p>
 <p>Returns Center of sets type reduction of the input IT2FS.</p>
 </section>
@@ -566,8 +562,8 @@ NT_algorithm</p>
 <dt class="sig sig-object py" id="pyit2fls.CoSum">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">CoSum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">it2fs_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alg_func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alg_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.CoSum" title="Permalink to this definition"></a></dt>
 <dd><p>Center of sum type reduction for an interval type 2 fuzzy set.</p>
-<section id="id33">
-<h2>Parameters<a class="headerlink" href="#id33" title="Permalink to this heading"></a></h2>
+<section id="id29">
+<h2>Parameters<a class="headerlink" href="#id29" title="Permalink to this heading"></a></h2>
 <dl>
 <dt>it2fs_array:</dt><dd><p>List of IT2FSs</p>
 <p>List of final IT2FSs achieved by evaluating rule base.</p>
@@ -588,8 +584,8 @@ NT_algorithm</p>
 </dd>
 </dl>
 </section>
-<section id="id34">
-<h2>Returns<a class="headerlink" href="#id34" title="Permalink to this heading"></a></h2>
+<section id="id30">
+<h2>Returns<a class="headerlink" href="#id30" title="Permalink to this heading"></a></h2>
 <p>Based on selected type reduction algorithm tuple (l, r) or float</p>
 <p>Returns Center of sum type reduction of the input IT2FS.</p>
 </section>
@@ -599,8 +595,8 @@ NT_algorithm</p>
 <dt class="sig sig-object py" id="pyit2fls.Height">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">Height</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">it2fs_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alg_func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alg_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.Height" title="Permalink to this definition"></a></dt>
 <dd><p>Height type reduction for an interval type 2 fuzzy set.</p>
-<section id="id35">
-<h2>Parameters<a class="headerlink" href="#id35" title="Permalink to this heading"></a></h2>
+<section id="id31">
+<h2>Parameters<a class="headerlink" href="#id31" title="Permalink to this heading"></a></h2>
 <dl>
 <dt>it2fs_array:</dt><dd><p>List of IT2FSs</p>
 <p>List of final IT2FSs achieved by evaluating rule base.</p>
@@ -621,8 +617,8 @@ NT_algorithm</p>
 </dd>
 </dl>
 </section>
-<section id="id36">
-<h2>Returns<a class="headerlink" href="#id36" title="Permalink to this heading"></a></h2>
+<section id="id32">
+<h2>Returns<a class="headerlink" href="#id32" title="Permalink to this heading"></a></h2>
 <p>Based on selected type reduction algorithm tuple (l, r) or float</p>
 <p>Returns Height type reduction of the input IT2FS.</p>
 </section>
@@ -632,8 +628,8 @@ NT_algorithm</p>
 <dt class="sig sig-object py" id="pyit2fls.ModiHe">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">ModiHe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">it2fs_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spread_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alg_func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alg_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.ModiHe" title="Permalink to this definition"></a></dt>
 <dd><p>Modified height type reduction for an interval type 2 fuzzy set.</p>
-<section id="id37">
-<h2>Parameters<a class="headerlink" href="#id37" title="Permalink to this heading"></a></h2>
+<section id="id33">
+<h2>Parameters<a class="headerlink" href="#id33" title="Permalink to this heading"></a></h2>
 <dl>
 <dt>it2fs_array:</dt><dd><p>List of IT2FSs</p>
 <p>List of final IT2FSs achieved by evaluating rule base.</p>
@@ -656,8 +652,8 @@ NT_algorithm</p>
 </dd>
 </dl>
 </section>
-<section id="id38">
-<h2>Returns<a class="headerlink" href="#id38" title="Permalink to this heading"></a></h2>
+<section id="id34">
+<h2>Returns<a class="headerlink" href="#id34" title="Permalink to this heading"></a></h2>
 <p>Based on selected type reduction algorithm tuple (l, r) or float</p>
 <p>Returns Modified height type reduction of the input IT2FS.</p>
 </section>

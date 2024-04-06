@@ -626,41 +626,33 @@ def gbell_mf(x, params):
 class T1FS:
     """ Type 1 Fuzzy Set (T1FS).
        
-        Parameters
-        -------------------------------------------------------------------
+        .. rubric:: Parameters
+        
         Parameters of the constructor function:
         
-        domain:
-            numpy (n,) shaped array
+        domain : numpy (n,) shaped array
             
             Indicates the universe of discourse dedicated to the T1FS.
         
-        mf:
-            Membership function
+        mf : Membership function
         
-        params:
-            List of parameters of the membership function
+        params: List of parameters of the membership function
             
-        Functions
-        -------------------------------------------------------------------
+        .. rubric:: Functions
+        
         Functions defined in T1FS class:
         
-            copy:
-                Returns a copy of the T1FS.
+            copy : Returns a copy of the T1FS.
 
-            plot:
-                Plots the T1FS.
+            plot : Plots the T1FS.
 
-            negation operator -:
-                Returns the negated T1FS.
+            negation operator - : Returns the negated T1FS.
         
-        Examples
-        --------------------------------------------------
+        .. rubric:: Examples
         
         >>> mySet = T1FS(linspace(0., 1., 100), 
                          trapezoid_mf, [0, 0.4, 0.6, 1., 1.])
         >>> mySet.plot()
-        
         """
     def __init__(self, domain, mf=zero_mf, params=[]):
         self.domain = domain
@@ -675,11 +667,11 @@ class T1FS:
         """
         Copies the T1FS.
         
-        Returns
-        -------------------------------------------------
-        T1FS
+        .. rubric:: Returns
         
-        Returns a copy of the T1FS.
+        output : T1FS
+        
+            Returns a copy of the T1FS.
         """
         return T1FS(self.domain, self.mf, self.params)
 
@@ -699,17 +691,16 @@ class T1FS:
         """
         Defuzzifies the type 1 fuzzy set.
 
-        Parameters
-        -------------------------------------------------------------------
-        method:
-            str
+        .. rubric:: Parameters
+        
+        method : str
 
             Must be one of the methods listed below:
             1. CoG: Center of gravity
         
-        Returns
-        -------------------------------------------------
-        float
+        .. rubric:: Returns
+        
+        output : float
         
         Defuzzified crisp output.
         """
@@ -723,49 +714,41 @@ class T1FS:
         """
         Plots the T1FS.
         
-        Parameters
-        -------------------------------------------------------------------
-        title:
-            str
+        .. rubric:: Parameters
+        
+        title : str
             
             If it is set, it indicates the title which would be 
             represented in the plot. If it is not set, the plot would not 
             have a title.
         
-        legend_text:
-            str
+        legend_text : str
             
             If it is set, it indicates the legend text which would 
             be represented in the plot. If it is not set, the plot would 
             not contain a legend.
         
-        filename:
-            str
+        filename : str
             
             If it is set, the plot would be saved as a filename.ext file.
         
-        ext:
-            str
+        ext : str
 
             Extension of the output file with pdf default value.
         
-        grid:
-            bool
+        grid : bool
 
             Grid on/off.
         
-        xlabel:
-            str
+        xlabel : str
 
             Label of the x axis.
         
-        ylabel:
-            str
+        ylabel : str
 
             Label of the y axis.
         
-        Examples
-        --------------------------------------------------
+        .. rubric:: Examples
         
         >>> mySet = T1FS(linspace(0., 1., 100), 
                          trapezoid_mf, [0, 0.4, 0.6, 1., 1.])
@@ -789,25 +772,22 @@ def T1_Emphasize(t1fs, m=2.):
     """
     Function for creating emphasized T1FSs.
     
-    Parameters
-    -------------------------------------------------------------------
-    t1fs : 
-        T1FS
+    .. rubric:: Parameters
+    
+    t1fs : T1FS
         
         Type 1 fuzzy set to be emphasized.
         
-    m : 
-        float, optional
+    m : float, optional
         
         Emphasis degree. The default value is 2.
 
-    Returns
-    -------------------------------------------------
+    .. rubric:: Returns
+    
     emphasized : 
         T1FS
         
         Emphasized type 1 fuzzy set.
-
     """
     mf = lambda x, params : t1fs.mf(x, params) ** m
     emphasized = T1FS(t1fs.domain, mf, t1fs.params)
@@ -819,51 +799,42 @@ def T1FS_plot(*sets, title=None, legends=None, filename=None,
     """
     Plots multiple T1FSs together in the same figure.
     
-    Parameters
-    -------------------------------------------------------------------
-    *sets:
-        Multiple number of T1FSs which would be plotted.
+    .. rubric:: Parameters
     
-    title:
-        str
+    *sets : Multiple number of T1FSs which would be plotted.
+    
+    title : str
         
         If it is set, it indicates the title which would be 
         represented in the plot. If it is not set, the plot would not 
         have a title.
         
-    legends:
-        List of strs
+    legends : List of strs
         
         List of legend texts to be presented in plot. If it is not 
         set, no legend would be in plot.
         
-    filename:
-        str
+    filename : str
         
         If it is set, the plot would be saved as a filename.ext file.
         
-    ext:
-        str
+    ext : str
 
         Extension of the output file with pdf default value.
     
-    grid:
-        bool
+    grid : bool
 
         Grid on/off.
     
-    xlabel:
-        str
+    xlabel : str
 
         Label of the x axis.
     
-    ylabel:
-        str
+    ylabel : str
 
         Label of the y axis.
 
-    Examples
-    --------------------------------------------------
+    .. rubric:: Examples
     
     >>> domain = linspace(0., 1., 100)
     >>> t1fs1 = T1FS(domain, gaussian_mf, [0.33, 0.2, 1.])
