@@ -19,26 +19,25 @@ def zero_mf(x, params=[]):
     """
     All zero membership function.
     
-    Parameters
-    ------------------------------------------------------------------
-    x : 
-        numpy (n,) shaped array
-        
-        The array like input x indicates the points from the universe of 
-        discourse, in which the membership function would be evaluated.
-    params : 
-        List 
-        
-        Additional parameters for the membership function, which is not 
-        needed for zero memebership function.
+    .. rubric:: Parameters
     
-    Returns
-    -------------------------------------------------
-    ndarray
-        Returns an array of membership values corresponding with the input.
+    x : numpy (n,) shaped array
+        
+        The array-like input x indicates the points from the universe of discourse 
+        at which the membership function will be evaluated.
+
+    params : list, optional
+        
+        Additional parameters for the membership function, which are not needed
+        for the zero membership function.
     
-    Examples
-    --------------------------------------------------
+    .. rubric:: Returns
+
+    output : ndarray
+
+        Returns an array of membership values corresponding to the input.
+    
+    .. rubric:: Examples
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = zero_mf(x)
