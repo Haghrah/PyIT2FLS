@@ -49,31 +49,30 @@ def singleton_mf(x, params):
     """
     Singleton membership function.
     
-    Parameters
-    -------------------------------------------------------------------
-    x : 
-        numpy (n,) shaped array
-        
-        The array like input x indicates the points from universe of 
-        discourse in which the membership function would be evaluated.
-    params : 
-        List 
-        
-        Additional parameters for the membership function. params[0] indicates
-        singleton center and params[1] indicates singleton height.
+    .. rubric:: Parameters
     
-    Returns
-    -------------------------------------------------
-    ndarray
-        Returns membership values corresponding with the input.
+    x : numpy (n,) shaped array
         
-    Notes
-    -----------------------------------------------
-    The singleton center, params[0], must be in the discretized universe 
-    of discourse.
+        The array-like input x indicates the points from the universe of discourse
+        at which the membership function will be evaluated.
     
-    Examples
-    --------------------------------------------------
+    params : list 
+        
+        Additional parameters for the membership function. params[0] indicates the
+        singleton center, and params[1] indicates the singleton height.
+    
+    .. rubric:: Returns
+    
+    output : ndarray
+
+        Returns membership values corresponding to the input.
+        
+    .. rubric:: Notes
+    
+    The singleton center, params[0], must be within the discretized universe of
+    discourse.
+    
+    .. rubric:: Examples
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = singleton_mf(x, [0.5, 1])
@@ -85,26 +84,25 @@ def const_mf(x, params):
     """
     Constant membership function.
     
-    Parameters
-    -------------------------------------------------------------------
-    x : 
-        numpy (n,) shaped array
+    .. rubric:: Parameters
+    
+    x : numpy (n,) shaped array
         
-        The array like input x indicates the points from universe of 
-        discourse in which the membership function would be evaluated.
-    params : 
-        List 
+        The array-like input x indicates the points from the universe of discourse
+        at which the membership function will be evaluated.
+
+    params : list 
         
         Additional parameters for the membership function. params[0] indicates
-        constant membership function's height.
+        the constant membership function's height.
     
-    Returns
-    -------------------------------------------------
-    ndarray
-        Returns membership values corresponding with the input.
+    .. rubric:: Returns
     
-    Examples
-    --------------------------------------------------
+    output : ndarray
+
+        Returns membership values corresponding to the input.
+    
+    .. rubric:: Examples
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = const_mf(x, [0.5])
@@ -116,28 +114,26 @@ def tri_mf(x, params):
     """
     Triangular membership function.
 
-    Parameters
-    -------------------------------------------------------------------
-    x : 
-        numpy (n,) shaped array
-        
-        The array like input x indicates the points from universe of 
-        discourse in which the membership function would be evaluated.
-    params : 
-        List 
-        
-        Additional parameters for the membership function. The left end, 
-        center, right end, and height of the triangular 
-        membership function are indicated by params[0], params[1], params[2], 
-        and params[3], respectively.
+    .. rubric:: Parameters
     
-    Returns
-    -------------------------------------------------
-    ndarray
-        Returns membership values corresponding with the input.
+    x : numpy (n,) shaped array
+        
+        The array-like input x indicates the points from the universe of discourse
+        at which the membership function will be evaluated.
     
-    Examples
-    --------------------------------------------------
+    params : list 
+        
+        Additional parameters for the membership function. The left end, center,
+        right end, and height of the triangular membership function are indicated
+        by params[0], params[1], params[2], and params[3], respectively.
+    
+    .. rubric:: Returns
+    
+    output : ndarray
+
+        Returns membership values corresponding to the input.
+    
+    .. rubric:: Examples
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = tri_mf(x, [0.1, 0.3, 0.5, 1])
@@ -150,29 +146,27 @@ def rtri_mf(x, params):
     """
     Right triangular membership function.
 
-    Parameters
-    -------------------------------------------------------------------
-    x : 
-        numpy (n,) shaped array
+    .. rubric:: Parameters
+    
+    x : numpy (n,) shaped array
         
-        The array like input x indicates the points from universe of 
-        discourse in which the membership function would be evaluated.
-    params : 
-        List 
+        The array-like input x indicates the points from the universe of discourse
+        at which the membership function will be evaluated.
+    
+    params : list 
         
-        Additional parameters for the membership function.  
-        The right end, center, and height of the triangular 
-        membership function are indicated by params[0], params[1], and params[2], 
-        respectively.
+        Additional parameters for the membership function. The right end, center,
+        and height of the triangular membership function are indicated by
+        params[0], params[1], and params[2], respectively.
     
-    Returns
-    -------------------------------------------------
-    ndarray
-        Returns membership values corresponding with the input.
+    .. rubric:: Returns
     
-    Examples
-    --------------------------------------------------
+    output : ndarray
+        
+        Returns membership values corresponding to the input.
     
+    .. rubric:: Examples
+
     >>> x = linspace(0, 1, 201)
     >>> membership_value = ltri_mf(x, [0.5, 0.2, 1])
     """
@@ -183,28 +177,26 @@ def ltri_mf(x, params):
     """
     Left triangular membership function.
 
-    Parameters
-    -------------------------------------------------------------------
-    x : 
-        numpy (n,) shaped array
-        
-        The array like input x indicates the points from universe of 
-        discourse in which the membership function would be evaluated.
-    params : 
-        List 
-        
-        Additional parameters for the membership function. The left end, 
-        center, and height of the triangular 
-        membership function are indicated by params[0], params[1] and params[2], 
-        respectively.
+    .. rubric:: Parameters
     
-    Returns
-    -------------------------------------------------
-    ndarray
-        Returns membership values corresponding with the input.
+    x : numpy (n,) shaped array
+        
+        The array-like input x indicates the points from the universe of discourse
+        at which the membership function will be evaluated.
     
-    Examples
-    --------------------------------------------------
+    params : list 
+        
+        Additional parameters for the membership function. The left end, center,
+        and height of the triangular membership function are indicated by
+        params[0], params[1], and params[2], respectively.
+    
+    .. rubric:: Returns
+    
+    output : ndarray
+
+        Returns membership values corresponding to the input.
+    
+    .. rubric:: Examples
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = rtri_mf(x, [0.3, 0.5, 1])
@@ -215,30 +207,29 @@ def ltri_mf(x, params):
 
 def trapezoid_mf(x, params):
     """
-    Trapezoidal membership function
+    Trapezoidal membership function.
 
-    Parameters
-    -------------------------------------------------------------------
-    x : 
-        numpy (n,) shaped array
-        
-        The array like input x indicates the points from universe of 
-        discourse in which the membership function would be evaluated.
-    params : 
-        List 
-        
-        Additional parameters for the membership function. The left end, 
-        left center, right center, right end, and height 
-        of the trapezoidal membership function are indicated by params[0], 
-        params[1], params[2], params[3], and params[4], respectively.
+    .. rubric:: Parameters
     
-    Returns
-    -------------------------------------------------
-    ndarray
-        Returns membership values corresponding with the input.
+    x : numpy (n,) shaped array
+        
+        The array-like input x indicates the points from the universe of discourse
+        at which the membership function will be evaluated.
     
-    Examples
-    --------------------------------------------------
+    params : list 
+        
+        Additional parameters for the membership function. The left end, left center,
+        right center, right end, and height of the trapezoidal membership function
+        are indicated by params[0], params[1], params[2], params[3], and params[4],
+        respectively.
+    
+    .. rubric:: Returns
+    
+    output : ndarray
+
+        Returns membership values corresponding to the input.
+    
+    .. rubric:: Examples
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = trapezoid_mf(x, [0.1, 0.3, 0.5, 0.7, 1])
@@ -250,30 +241,28 @@ def trapezoid_mf(x, params):
 
 def gaussian_mf(x, params):
     """
-    Gaussian membership function
+    Gaussian membership function.
     
-    Parameters
-    -------------------------------------------------------------------
-    x : 
-        numpy (n,) shaped array
+    .. rubric:: Parameters
+    
+    x : numpy (n,) shaped array
         
-        The array like input x indicates the points from universe of 
-        discourse in which the membership function would be evaluated.
-    params : 
-        List 
+        The array-like input x indicates the points from the universe of discourse
+        at which the membership function will be evaluated.
+    
+    params : list 
         
-        Additional parameters for the membership function. The center, 
-        standard deviation, and height 
-        of the gaussian membership function are indicated by params[0], 
-        params[1], and params[2], respectively.
+        Additional parameters for the membership function. The center,
+        standard deviation, and height of the Gaussian membership function
+        are indicated by params[0], params[1], and params[2], respectively.
     
-    Returns
-    -------------------------------------------------
-    ndarray
-        Returns membership values corresponding with the input.
+    .. rubric:: Returns
     
-    Examples
-    --------------------------------------------------
+    output : ndarray
+        
+        Returns membership values corresponding to the input.
+    
+    .. rubric:: Examples
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = gaussian_mf(x, [0.5, 0.05, 1])
@@ -283,30 +272,29 @@ def gaussian_mf(x, params):
 
 def gauss_uncert_mean_umf(x, params):
     """
-    Gaussian with uncertain mean UMF
+    Gaussian with uncertain mean UMF.
     
-    Parameters
-    -------------------------------------------------------------------
-    x : 
-        numpy (n,) shaped array
+    .. rubric:: Parameters
+    
+    x : numpy (n,) shaped array
         
-        The array like input x indicates the points from universe of 
-        discourse in which the membership function would be evaluated.
-    params : 
-        List 
+        The array-like input x indicates the points from the universe of discourse
+        at which the membership function will be evaluated.
+    
+    params : list 
         
-        Additional parameters for the membership function. The lower limit 
-        of mean, upper limit of mean, standard deviation, and 
-        height of the gaussian membership function are indicated by params[0], 
-        params[1], params[2], and params[3], respectively.
+        Additional parameters for the membership function. The lower limit of
+        mean, upper limit of mean, standard deviation, and height of the Gaussian
+        membership function are indicated by params[0], params[1], params[2], and
+        params[3], respectively.
     
-    Returns
-    -------------------------------------------------
-    ndarray
-        Returns membership values corresponding with the input.
+    .. rubric:: Returns
     
-    Examples
-    --------------------------------------------------
+    output : ndarray
+        
+        Returns membership values corresponding to the input.
+    
+    .. rubric:: Examples
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = gauss_uncert_mean_umf(x, [0.3, 0.7, 0.05, 1])
@@ -318,30 +306,29 @@ def gauss_uncert_mean_umf(x, params):
 
 def gauss_uncert_mean_lmf(x, params):
     """
-    Gaussian with uncertain mean LMF
+    Gaussian with uncertain mean LMF.
     
-    Parameters
-    -------------------------------------------------------------------
-    x : 
-        numpy (n,) shaped array
+    .. rubric:: Parameters
+    
+    x : numpy (n,) shaped array
         
-        The array like input x indicates the points from universe of 
-        discourse in which the membership function would be evaluated.
-    params : 
-        List 
+        The array-like input x indicates the points from the universe of discourse
+        at which the membership function will be evaluated.
+    
+    params : list 
         
-        Additional parameters for the membership function. The lower limit 
-        of mean, upper limit of mean, standard deviation, and 
-        height of the gaussian membership function are indicated by params[0], 
-        params[1], params[2], and params[3], respectively.
+        Additional parameters for the membership function. The lower limit of mean,
+        upper limit of mean, standard deviation, and height of the Gaussian
+        membership function are indicated by params[0], params[1], params[2], and
+        params[3], respectively.
     
-    Returns
-    -------------------------------------------------
-    ndarray
-        Returns membership values corresponding with the input.
+    .. rubric:: Returns
     
-    Examples
-    --------------------------------------------------
+    output : ndarray
+        
+        Returns membership values corresponding to the input.
+    
+    .. rubric:: Examples
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = gauss_uncert_mean_lmf(x, [0.3, 0.7, 0.2, 1])
@@ -352,30 +339,29 @@ def gauss_uncert_mean_lmf(x, params):
 
 def gauss_uncert_std_umf(x, params):
     """
-    Gaussian with uncertain standard deviation UMF
+    Gaussian with uncertain standard deviation UMF.
     
-    Parameters
-    -------------------------------------------------------------------
-    x : 
-        numpy (n,) shaped array
+    .. rubric:: Parameters
+    
+    x : numpy (n,) shaped array
         
-        The array like input x indicates the points from universe of 
-        discourse in which the membership function would be evaluated.
-    params : 
-        List 
+        The array-like input x indicates the points from the universe of discourse
+        at which the membership function will be evaluated.
+    
+    params : list 
         
-        Additional parameters for the membership function. The center, 
-        lower limit of std., upper limit of std., and 
-        height of the gaussian membership function are indicated by params[0], 
-        params[1], params[2], and params[3], respectively.
+        Additional parameters for the membership function. The center, lower limit
+        of standard deviation, upper limit of standard deviation, and height of the
+        Gaussian membership function are indicated by params[0], params[1], params[2],
+        and params[3], respectively.
     
-    Returns
-    -------------------------------------------------
-    ndarray
-        Returns membership values corresponding with the input.
+    .. rubric:: Returns
     
-    Examples
-    --------------------------------------------------
+    output : ndarray
+
+        Returns membership values corresponding to the input.
+    
+    .. rubric:: Examples
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = gauss_uncert_std_umf(x, [0.5, 0.2, 0.5, 1])
@@ -385,30 +371,29 @@ def gauss_uncert_std_umf(x, params):
 
 def gauss_uncert_std_lmf(x, params):
     """
-    Gaussian with uncertain standard deviation LMF
+    Gaussian with uncertain standard deviation LMF.
     
-    Parameters
-    -------------------------------------------------------------------
-    x : 
-        numpy (n,) shaped array
+    .. rubric:: Parameters
+    
+    x : numpy (n,) shaped array
         
-        The array like input x indicates the points from universe of 
-        discourse in which the membership function would be evaluated.
-    params : 
-        List 
+        The array-like input x indicates the points from the universe of discourse
+        at which the membership function will be evaluated.
+    
+    params : list 
         
-        Additional parameters for the membership function. The center, 
-        lower limit of std., upper limit of std., and 
-        height of the gaussian membership function are indicated by params[0], 
-        params[1], params[2], and params[3], respectively.
+        Additional parameters for the membership function. The center, lower limit
+        of standard deviation, upper limit of standard deviation, and height of the
+        Gaussian membership function are indicated by params[0], params[1], params[2],
+        and params[3], respectively.
     
-    Returns
-    -------------------------------------------------
-    ndarray
-        Returns membership values corresponding with the input.
+    .. rubric:: Returns
     
-    Examples
-    --------------------------------------------------
+    output : ndarray
+        
+        Returns membership values corresponding to the input.
+    
+    .. rubric:: Examples
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = gauss_uncert_std_lmf(x, [0.5, 0.2, 0.5, 1])
@@ -418,30 +403,29 @@ def gauss_uncert_std_lmf(x, params):
 
 def rgauss_uncert_std_umf(x, params):
     """
-    Right Gaussian with uncertain standard deviation UMF
+    Right Gaussian with uncertain standard deviation UMF.
     
-    Parameters
-    -------------------------------------------------------------------
-    x : 
-        numpy (n,) shaped array
+    .. rubric:: Parameters
+    
+    x : numpy (n,) shaped array
         
-        The array like input x indicates the points from universe of 
-        discourse in which the membership function would be evaluated.
-    params : 
-        List 
+        The array-like input x indicates the points from the universe of discourse
+        at which the membership function will be evaluated.
+    
+    params : list 
         
-        Additional parameters for the membership function. The center, 
-        lower limit of std., upper limit of std., and 
-        height of the gaussian membership function are indicated by params[0], 
-        params[1], params[2], and params[3], respectively.
+        Additional parameters for the membership function. The center, lower limit
+        of standard deviation, upper limit of standard deviation, and height of the
+        Gaussian membership function are indicated by params[0], params[1], params[2],
+        and params[3], respectively.
     
-    Returns
-    -------------------------------------------------
-    ndarray
-        Returns membership values corresponding with the input.
+    .. rubric:: Returns
     
-    Examples
-    --------------------------------------------------
+    output : ndarray
+        
+        Returns membership values corresponding to the input.
+    
+    .. rubric:: Examples
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = rgauss_uncert_std_umf(x, [0.5, 0.2, 0.5, 1])
@@ -450,30 +434,29 @@ def rgauss_uncert_std_umf(x, params):
 
 def rgauss_uncert_std_lmf(x, params):
     """
-    Right Gaussian with uncertain standard deviation LMF
+    Right Gaussian with uncertain standard deviation LMF.
     
-    Parameters
-    -------------------------------------------------------------------
-    x : 
-        numpy (n,) shaped array
+    .. rubric:: Parameters
+    
+    x : numpy (n,) shaped array
         
-        The array like input x indicates the points from universe of 
-        discourse in which the membership function would be evaluated.
-    params : 
-        List 
+        The array-like input x indicates the points from the universe of discourse
+        at which the membership function will be evaluated.
+    
+    params : list 
         
-        Additional parameters for the membership function. The center, 
-        lower limit of std., upper limit of std., and 
-        height of the gaussian membership function are indicated by params[0], 
-        params[1], params[2], and params[3], respectively.
+        Additional parameters for the membership function. The center, lower limit
+        of standard deviation, upper limit of standard deviation, and height of the
+        Gaussian membership function are indicated by params[0], params[1], params[2],
+        and params[3], respectively.
     
-    Returns
-    -------------------------------------------------
-    ndarray
-        Returns membership values corresponding with the input.
+    .. rubric:: Returns
     
-    Examples
-    --------------------------------------------------
+    output : ndarray
+        
+        Returns membership values corresponding to the input.
+    
+    .. rubric:: Examples
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = rgauss_uncert_std_lmf(x, [0.5, 0.2, 0.5, 1])
@@ -482,30 +465,30 @@ def rgauss_uncert_std_lmf(x, params):
 
 def lgauss_uncert_std_umf(x, params):
     """
-    Left Gaussian with uncertain standard deviation UMF
+    Left Gaussian with uncertain standard deviation UMF.
     
-    Parameters
-    -------------------------------------------------------------------
-    x : 
-        numpy (n,) shaped array
+    .. rubric:: Parameters
+    
+    x : numpy (n,) shaped array
         
-        The array like input x indicates the points from universe of 
-        discourse in which the membership function would be evaluated.
-    params : 
-        List 
+        The array-like input x indicates the points from the universe of discourse
+        at which the membership function will be evaluated.
+    
+    params : list 
         
-        Additional parameters for the membership function. The center, 
-        lower limit of std., upper limit of std., and 
-        height of the gaussian membership function are indicated by params[0], 
-        params[1], params[2], and params[3], respectively.
+        Additional parameters for the membership function. The center, lower limit
+        of standard deviation, upper limit of standard deviation, and height of the
+        Gaussian membership function are indicated by params[0], params[1], params[2],
+        and params[3], respectively.
+
     
-    Returns
-    -------------------------------------------------
-    ndarray
-        Returns membership values corresponding with the input.
+    .. rubric:: Returns
     
-    Examples
-    --------------------------------------------------
+    output : ndarray
+        
+        Returns membership values corresponding to the input.
+    
+    .. rubric:: Examples
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = lgauss_uncert_std_umf(x, [0.5, 0.2, 0.5, 1])
@@ -514,30 +497,29 @@ def lgauss_uncert_std_umf(x, params):
 
 def lgauss_uncert_std_lmf(x, params):
     """
-    Left Gaussian with uncertain standard deviation LMF
+    Left Gaussian with uncertain standard deviation LMF.
     
-    Parameters
-    -------------------------------------------------------------------
-    x : 
-        numpy (n,) shaped array
+    .. rubric:: Parameters
+    
+    x : numpy (n,) shaped array
         
-        The array like input x indicates the points from universe of 
-        discourse in which the membership function would be evaluated.
-    params : 
-        List 
+        The array-like input x indicates the points from the universe of discourse
+        at which the membership function will be evaluated.
+    
+    params : list 
         
-        Additional parameters for the membership function. The center, 
-        lower limit of std., upper limit of std., and 
-        height of the gaussian membership function are indicated by params[0], 
-        params[1], params[2], and params[3], respectively.
+        Additional parameters for the membership function. The center, lower limit
+        of standard deviation, upper limit of standard deviation, and height of the
+        Gaussian membership function are indicated by params[0], params[1], params[2],
+        and params[3], respectively.
     
-    Returns
-    -------------------------------------------------
-    ndarray
-        Returns membership values corresponding with the input.
+    .. rubric:: Returns
     
-    Examples
-    --------------------------------------------------
+    output : ndarray
+        
+        Returns membership values corresponding to the input.
+    
+    .. rubric:: Examples
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = lgauss_uncert_std_lmf(x, [0.5, 0.2, 0.5, 1])
@@ -549,32 +531,29 @@ def elliptic_mf(x, params):
     """
     Elliptic membership function.
 
-    Parameters
-    -------------------------------------------------------------------
-    x : 
-        numpy (n,) shaped array
+    .. rubric:: Parameters
+    
+    x : numpy (n,) shaped array
         
-        The array like input x indicates the points from universe of 
-        discourse in which the membership function would be evaluated.
+        The array-like input x indicates the points from the universe of discourse
+        in which the membership function will be evaluated.
         
-    params : 
-        list
+    params : list
         
         Parameters of the elliptic membership function. The center, width,
         exponent, and height of the elliptic membership function are 
         indicated by params[0], params[1], params[2], and params[3].
 
-    Returns
-    -------------------------------------------------
-    ndarray
-        Returns membership values corresponding with the input.
+    .. rubric:: Returns
     
-    Examples
-    --------------------------------------------------
+    output : ndarray
+        
+        Returns membership values corresponding to the input.
+    
+    .. rubric:: Examples
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = eliptic_mf(x, [0.5, 0.25, 1.3, 1.])
-    
     """
     to_evaluate = ((x <= params[0] + params[1]) * (params[0] - params[1] <= x))
     x = x * to_evaluate + (params[0] + params[1]) * logical_not(to_evaluate)
@@ -584,32 +563,29 @@ def semi_elliptic_mf(x, params):
     """
     Semi-elliptic membership function.
 
-    Parameters
-    -------------------------------------------------------------------
-    x : 
-        numpy (n,) shaped array
-        
-        The array like input x indicates the points from universe of 
-        discourse in which the membership function would be evaluated.
-        
-    params : 
-        list
-        
-        Parameters of the semi-elliptic membership function. The center, width, and
-        height of the semi-elliptic membership function are 
-        indicated by params[0], params[1], and params[2].
-
-    Returns
-    -------------------------------------------------
-    ndarray
-        Returns membership values corresponding with the input.
+    .. rubric:: Parameters
     
-    Examples
-    --------------------------------------------------
+    x : numpy (n,) shaped array
+        
+        The array-like input x indicates the points from the universe of discourse
+        in which the membership function will be evaluated.
+        
+    params : list
+        
+        Parameters of the semi-elliptic membership function. The center, width, 
+        and height of the semi-elliptic membership function are indicated by 
+        params[0], params[1], and params[2].
+
+    .. rubric:: Returns
+    
+    output : ndarray
+        
+        Returns membership values corresponding to the input.
+    
+    .. rubric:: Examples
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = eliptic_mf(x, [0.5, 0.25, 1.3, 1.])
-    
     """
     to_evaluate = ((x <= params[0] + params[1]) * (params[0] - params[1] <= x))
     x = x * to_evaluate + (params[0] + params[1]) * logical_not(to_evaluate)
@@ -619,29 +595,27 @@ def gbell_mf(x, params):
     """
     Generalized bell shaped membership function.
 
-    Parameters
-    -------------------------------------------------------------------
-    x : 
-        numpy (n,) shaped array
+    .. rubric:: Parameters
+    
+    x : numpy (n,) shaped array
         
         The array like input x indicates the points from universe of 
         discourse in which the membership function would be evaluated.
         
-    params : 
-        list
+    params : list
         
         Parameters of the generalized bell shaped membership function. 
         The a, b, and c values and height of the generalized bell shaped membership 
         function formula are indicated by params[0], params[1], params[2], and params[3].
 
-    Returns
-    -------------------------------------------------
-    ndarray
+    .. rubric:: Returns
+    
+    output : ndarray
+        
         Returns membership values corresponding with the input.
 
-    Examples
-    --------------------------------------------------
-
+    .. rubric:: Examples
+    
     >>> x = linspace(0., 1., 201)
     >>> membership_value = gbell_mf(x, [0.1, 1., 0.5, 1.])
 

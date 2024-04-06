@@ -133,628 +133,514 @@ for the zero membership function.</p>
 <dt class="sig sig-object py" id="pyit2fls.singleton_mf">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">singleton_mf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.singleton_mf" title="Permalink to this definition"></a></dt>
 <dd><p>Singleton membership function.</p>
-<section id="parameters">
-<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>x<span class="classifier"></span></dt><dd><p>numpy (n,) shaped array</p>
-<p>The array like input x indicates the points from universe of 
-discourse in which the membership function would be evaluated.</p>
-</dd>
-<dt>params<span class="classifier"></span></dt><dd><p>List</p>
-<p>Additional parameters for the membership function. params[0] indicates
-singleton center and params[1] indicates singleton height.</p>
-</dd>
-</dl>
-</section>
-<section id="returns">
-<h2>Returns<a class="headerlink" href="#returns" title="Permalink to this heading"></a></h2>
-<dl class="simple">
-<dt>ndarray</dt><dd><p>Returns membership values corresponding with the input.</p>
-</dd>
-</dl>
-</section>
-<section id="notes">
-<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this heading"></a></h2>
-<p>The singleton center, params[0], must be in the discretized universe 
-of discourse.</p>
-</section>
-<section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
+<p class="rubric">Parameters</p>
+<p>x : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>The array-like input x indicates the points from the universe of discourse
+at which the membership function will be evaluated.</p>
+</div></blockquote>
+<p>params : list</p>
+<blockquote>
+<div><p>Additional parameters for the membership function. params[0] indicates the
+singleton center, and params[1] indicates the singleton height.</p>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : ndarray</p>
+<blockquote>
+<div><p>Returns membership values corresponding to the input.</p>
+</div></blockquote>
+<p class="rubric">Notes</p>
+<p>The singleton center, params[0], must be within the discretized universe of
+discourse.</p>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">201</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">membership_value</span> <span class="o">=</span> <span class="n">singleton_mf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.const_mf">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">const_mf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.const_mf" title="Permalink to this definition"></a></dt>
 <dd><p>Constant membership function.</p>
-<section id="id1">
-<h2>Parameters<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>x<span class="classifier"></span></dt><dd><p>numpy (n,) shaped array</p>
-<p>The array like input x indicates the points from universe of 
-discourse in which the membership function would be evaluated.</p>
-</dd>
-<dt>params<span class="classifier"></span></dt><dd><p>List</p>
-<p>Additional parameters for the membership function. params[0] indicates
-constant membership function’s height.</p>
-</dd>
-</dl>
-</section>
-<section id="id2">
-<h2>Returns<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
-<dl class="simple">
-<dt>ndarray</dt><dd><p>Returns membership values corresponding with the input.</p>
-</dd>
-</dl>
-</section>
-<section id="id3">
-<h2>Examples<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<p class="rubric">Parameters</p>
+<p>x : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>The array-like input x indicates the points from the universe of discourse
+at which the membership function will be evaluated.</p>
+</div></blockquote>
+<p>params : list</p>
+<blockquote>
+<div><p>Additional parameters for the membership function. params[0] indicates
+the constant membership function’s height.</p>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : ndarray</p>
+<blockquote>
+<div><p>Returns membership values corresponding to the input.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">201</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">membership_value</span> <span class="o">=</span> <span class="n">const_mf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">])</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.tri_mf">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">tri_mf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.tri_mf" title="Permalink to this definition"></a></dt>
 <dd><p>Triangular membership function.</p>
-<section id="id4">
-<h2>Parameters<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>x<span class="classifier"></span></dt><dd><p>numpy (n,) shaped array</p>
-<p>The array like input x indicates the points from universe of 
-discourse in which the membership function would be evaluated.</p>
-</dd>
-<dt>params<span class="classifier"></span></dt><dd><p>List</p>
-<p>Additional parameters for the membership function. The left end, 
-center, right end, and height of the triangular 
-membership function are indicated by params[0], params[1], params[2], 
-and params[3], respectively.</p>
-</dd>
-</dl>
-</section>
-<section id="id5">
-<h2>Returns<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
-<dl class="simple">
-<dt>ndarray</dt><dd><p>Returns membership values corresponding with the input.</p>
-</dd>
-</dl>
-</section>
-<section id="id6">
-<h2>Examples<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+<p class="rubric">Parameters</p>
+<p>x : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>The array-like input x indicates the points from the universe of discourse
+at which the membership function will be evaluated.</p>
+</div></blockquote>
+<p>params : list</p>
+<blockquote>
+<div><p>Additional parameters for the membership function. The left end, center,
+right end, and height of the triangular membership function are indicated
+by params[0], params[1], params[2], and params[3], respectively.</p>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : ndarray</p>
+<blockquote>
+<div><p>Returns membership values corresponding to the input.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">201</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">membership_value</span> <span class="o">=</span> <span class="n">tri_mf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.rtri_mf">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">rtri_mf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.rtri_mf" title="Permalink to this definition"></a></dt>
 <dd><p>Right triangular membership function.</p>
-<section id="id7">
-<h2>Parameters<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>x<span class="classifier"></span></dt><dd><p>numpy (n,) shaped array</p>
-<p>The array like input x indicates the points from universe of 
-discourse in which the membership function would be evaluated.</p>
-</dd>
-<dt>params<span class="classifier"></span></dt><dd><p>List</p>
-<p>Additional parameters for the membership function.  
-The right end, center, and height of the triangular 
-membership function are indicated by params[0], params[1], and params[2], 
-respectively.</p>
-</dd>
-</dl>
-</section>
-<section id="id8">
-<h2>Returns<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
-<dl class="simple">
-<dt>ndarray</dt><dd><p>Returns membership values corresponding with the input.</p>
-</dd>
-</dl>
-</section>
-<section id="id9">
-<h2>Examples<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h2>
+<p class="rubric">Parameters</p>
+<p>x : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>The array-like input x indicates the points from the universe of discourse
+at which the membership function will be evaluated.</p>
+</div></blockquote>
+<p>params : list</p>
+<blockquote>
+<div><p>Additional parameters for the membership function. The right end, center,
+and height of the triangular membership function are indicated by
+params[0], params[1], and params[2], respectively.</p>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : ndarray</p>
+<blockquote>
+<div><p>Returns membership values corresponding to the input.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">201</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">membership_value</span> <span class="o">=</span> <span class="n">ltri_mf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.ltri_mf">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">ltri_mf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.ltri_mf" title="Permalink to this definition"></a></dt>
 <dd><p>Left triangular membership function.</p>
-<section id="id10">
-<h2>Parameters<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>x<span class="classifier"></span></dt><dd><p>numpy (n,) shaped array</p>
-<p>The array like input x indicates the points from universe of 
-discourse in which the membership function would be evaluated.</p>
-</dd>
-<dt>params<span class="classifier"></span></dt><dd><p>List</p>
-<p>Additional parameters for the membership function. The left end, 
-center, and height of the triangular 
-membership function are indicated by params[0], params[1] and params[2], 
-respectively.</p>
-</dd>
-</dl>
-</section>
-<section id="id11">
-<h2>Returns<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h2>
-<dl class="simple">
-<dt>ndarray</dt><dd><p>Returns membership values corresponding with the input.</p>
-</dd>
-</dl>
-</section>
-<section id="id12">
-<h2>Examples<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h2>
+<p class="rubric">Parameters</p>
+<p>x : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>The array-like input x indicates the points from the universe of discourse
+at which the membership function will be evaluated.</p>
+</div></blockquote>
+<p>params : list</p>
+<blockquote>
+<div><p>Additional parameters for the membership function. The left end, center,
+and height of the triangular membership function are indicated by
+params[0], params[1], and params[2], respectively.</p>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : ndarray</p>
+<blockquote>
+<div><p>Returns membership values corresponding to the input.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">201</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">membership_value</span> <span class="o">=</span> <span class="n">rtri_mf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.trapezoid_mf">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">trapezoid_mf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.trapezoid_mf" title="Permalink to this definition"></a></dt>
-<dd><p>Trapezoidal membership function</p>
-<section id="id13">
-<h2>Parameters<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>x<span class="classifier"></span></dt><dd><p>numpy (n,) shaped array</p>
-<p>The array like input x indicates the points from universe of 
-discourse in which the membership function would be evaluated.</p>
-</dd>
-<dt>params<span class="classifier"></span></dt><dd><p>List</p>
-<p>Additional parameters for the membership function. The left end, 
-left center, right center, right end, and height 
-of the trapezoidal membership function are indicated by params[0], 
-params[1], params[2], params[3], and params[4], respectively.</p>
-</dd>
-</dl>
-</section>
-<section id="id14">
-<h2>Returns<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h2>
-<dl class="simple">
-<dt>ndarray</dt><dd><p>Returns membership values corresponding with the input.</p>
-</dd>
-</dl>
-</section>
-<section id="id15">
-<h2>Examples<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h2>
+<dd><p>Trapezoidal membership function.</p>
+<p class="rubric">Parameters</p>
+<p>x : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>The array-like input x indicates the points from the universe of discourse
+at which the membership function will be evaluated.</p>
+</div></blockquote>
+<p>params : list</p>
+<blockquote>
+<div><p>Additional parameters for the membership function. The left end, left center,
+right center, right end, and height of the trapezoidal membership function
+are indicated by params[0], params[1], params[2], params[3], and params[4],
+respectively.</p>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : ndarray</p>
+<blockquote>
+<div><p>Returns membership values corresponding to the input.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">201</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">membership_value</span> <span class="o">=</span> <span class="n">trapezoid_mf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.gaussian_mf">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">gaussian_mf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.gaussian_mf" title="Permalink to this definition"></a></dt>
-<dd><p>Gaussian membership function</p>
-<section id="id16">
-<h2>Parameters<a class="headerlink" href="#id16" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>x<span class="classifier"></span></dt><dd><p>numpy (n,) shaped array</p>
-<p>The array like input x indicates the points from universe of 
-discourse in which the membership function would be evaluated.</p>
-</dd>
-<dt>params<span class="classifier"></span></dt><dd><p>List</p>
-<p>Additional parameters for the membership function. The center, 
-standard deviation, and height 
-of the gaussian membership function are indicated by params[0], 
-params[1], and params[2], respectively.</p>
-</dd>
-</dl>
-</section>
-<section id="id17">
-<h2>Returns<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h2>
-<dl class="simple">
-<dt>ndarray</dt><dd><p>Returns membership values corresponding with the input.</p>
-</dd>
-</dl>
-</section>
-<section id="id18">
-<h2>Examples<a class="headerlink" href="#id18" title="Permalink to this heading"></a></h2>
+<dd><p>Gaussian membership function.</p>
+<p class="rubric">Parameters</p>
+<p>x : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>The array-like input x indicates the points from the universe of discourse
+at which the membership function will be evaluated.</p>
+</div></blockquote>
+<p>params : list</p>
+<blockquote>
+<div><p>Additional parameters for the membership function. The center,
+standard deviation, and height of the Gaussian membership function
+are indicated by params[0], params[1], and params[2], respectively.</p>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : ndarray</p>
+<blockquote>
+<div><p>Returns membership values corresponding to the input.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">201</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">membership_value</span> <span class="o">=</span> <span class="n">gaussian_mf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.gauss_uncert_mean_umf">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">gauss_uncert_mean_umf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.gauss_uncert_mean_umf" title="Permalink to this definition"></a></dt>
-<dd><p>Gaussian with uncertain mean UMF</p>
-<section id="id19">
-<h2>Parameters<a class="headerlink" href="#id19" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>x<span class="classifier"></span></dt><dd><p>numpy (n,) shaped array</p>
-<p>The array like input x indicates the points from universe of 
-discourse in which the membership function would be evaluated.</p>
-</dd>
-<dt>params<span class="classifier"></span></dt><dd><p>List</p>
-<p>Additional parameters for the membership function. The lower limit 
-of mean, upper limit of mean, standard deviation, and 
-height of the gaussian membership function are indicated by params[0], 
-params[1], params[2], and params[3], respectively.</p>
-</dd>
-</dl>
-</section>
-<section id="id20">
-<h2>Returns<a class="headerlink" href="#id20" title="Permalink to this heading"></a></h2>
-<dl class="simple">
-<dt>ndarray</dt><dd><p>Returns membership values corresponding with the input.</p>
-</dd>
-</dl>
-</section>
-<section id="id21">
-<h2>Examples<a class="headerlink" href="#id21" title="Permalink to this heading"></a></h2>
+<dd><p>Gaussian with uncertain mean UMF.</p>
+<p class="rubric">Parameters</p>
+<p>x : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>The array-like input x indicates the points from the universe of discourse
+at which the membership function will be evaluated.</p>
+</div></blockquote>
+<p>params : list</p>
+<blockquote>
+<div><p>Additional parameters for the membership function. The lower limit of
+mean, upper limit of mean, standard deviation, and height of the Gaussian
+membership function are indicated by params[0], params[1], params[2], and
+params[3], respectively.</p>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : ndarray</p>
+<blockquote>
+<div><p>Returns membership values corresponding to the input.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">201</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">membership_value</span> <span class="o">=</span> <span class="n">gauss_uncert_mean_umf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.gauss_uncert_mean_lmf">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">gauss_uncert_mean_lmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.gauss_uncert_mean_lmf" title="Permalink to this definition"></a></dt>
-<dd><p>Gaussian with uncertain mean LMF</p>
-<section id="id22">
-<h2>Parameters<a class="headerlink" href="#id22" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>x<span class="classifier"></span></dt><dd><p>numpy (n,) shaped array</p>
-<p>The array like input x indicates the points from universe of 
-discourse in which the membership function would be evaluated.</p>
-</dd>
-<dt>params<span class="classifier"></span></dt><dd><p>List</p>
-<p>Additional parameters for the membership function. The lower limit 
-of mean, upper limit of mean, standard deviation, and 
-height of the gaussian membership function are indicated by params[0], 
-params[1], params[2], and params[3], respectively.</p>
-</dd>
-</dl>
-</section>
-<section id="id23">
-<h2>Returns<a class="headerlink" href="#id23" title="Permalink to this heading"></a></h2>
-<dl class="simple">
-<dt>ndarray</dt><dd><p>Returns membership values corresponding with the input.</p>
-</dd>
-</dl>
-</section>
-<section id="id24">
-<h2>Examples<a class="headerlink" href="#id24" title="Permalink to this heading"></a></h2>
+<dd><p>Gaussian with uncertain mean LMF.</p>
+<p class="rubric">Parameters</p>
+<p>x : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>The array-like input x indicates the points from the universe of discourse
+at which the membership function will be evaluated.</p>
+</div></blockquote>
+<p>params : list</p>
+<blockquote>
+<div><p>Additional parameters for the membership function. The lower limit of mean,
+upper limit of mean, standard deviation, and height of the Gaussian
+membership function are indicated by params[0], params[1], params[2], and
+params[3], respectively.</p>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : ndarray</p>
+<blockquote>
+<div><p>Returns membership values corresponding to the input.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">201</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">membership_value</span> <span class="o">=</span> <span class="n">gauss_uncert_mean_lmf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.gauss_uncert_std_umf">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">gauss_uncert_std_umf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.gauss_uncert_std_umf" title="Permalink to this definition"></a></dt>
-<dd><p>Gaussian with uncertain standard deviation UMF</p>
-<section id="id25">
-<h2>Parameters<a class="headerlink" href="#id25" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>x<span class="classifier"></span></dt><dd><p>numpy (n,) shaped array</p>
-<p>The array like input x indicates the points from universe of 
-discourse in which the membership function would be evaluated.</p>
-</dd>
-<dt>params<span class="classifier"></span></dt><dd><p>List</p>
-<p>Additional parameters for the membership function. The center, 
-lower limit of std., upper limit of std., and 
-height of the gaussian membership function are indicated by params[0], 
-params[1], params[2], and params[3], respectively.</p>
-</dd>
-</dl>
-</section>
-<section id="id26">
-<h2>Returns<a class="headerlink" href="#id26" title="Permalink to this heading"></a></h2>
-<dl class="simple">
-<dt>ndarray</dt><dd><p>Returns membership values corresponding with the input.</p>
-</dd>
-</dl>
-</section>
-<section id="id27">
-<h2>Examples<a class="headerlink" href="#id27" title="Permalink to this heading"></a></h2>
+<dd><p>Gaussian with uncertain standard deviation UMF.</p>
+<p class="rubric">Parameters</p>
+<p>x : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>The array-like input x indicates the points from the universe of discourse
+at which the membership function will be evaluated.</p>
+</div></blockquote>
+<p>params : list</p>
+<blockquote>
+<div><p>Additional parameters for the membership function. The center, lower limit
+of standard deviation, upper limit of standard deviation, and height of the
+Gaussian membership function are indicated by params[0], params[1], params[2],
+and params[3], respectively.</p>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : ndarray</p>
+<blockquote>
+<div><p>Returns membership values corresponding to the input.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">201</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">membership_value</span> <span class="o">=</span> <span class="n">gauss_uncert_std_umf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.gauss_uncert_std_lmf">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">gauss_uncert_std_lmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.gauss_uncert_std_lmf" title="Permalink to this definition"></a></dt>
-<dd><p>Gaussian with uncertain standard deviation LMF</p>
-<section id="id28">
-<h2>Parameters<a class="headerlink" href="#id28" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>x<span class="classifier"></span></dt><dd><p>numpy (n,) shaped array</p>
-<p>The array like input x indicates the points from universe of 
-discourse in which the membership function would be evaluated.</p>
-</dd>
-<dt>params<span class="classifier"></span></dt><dd><p>List</p>
-<p>Additional parameters for the membership function. The center, 
-lower limit of std., upper limit of std., and 
-height of the gaussian membership function are indicated by params[0], 
-params[1], params[2], and params[3], respectively.</p>
-</dd>
-</dl>
-</section>
-<section id="id29">
-<h2>Returns<a class="headerlink" href="#id29" title="Permalink to this heading"></a></h2>
-<dl class="simple">
-<dt>ndarray</dt><dd><p>Returns membership values corresponding with the input.</p>
-</dd>
-</dl>
-</section>
-<section id="id30">
-<h2>Examples<a class="headerlink" href="#id30" title="Permalink to this heading"></a></h2>
+<dd><p>Gaussian with uncertain standard deviation LMF.</p>
+<p class="rubric">Parameters</p>
+<p>x : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>The array-like input x indicates the points from the universe of discourse
+at which the membership function will be evaluated.</p>
+</div></blockquote>
+<p>params : list</p>
+<blockquote>
+<div><p>Additional parameters for the membership function. The center, lower limit
+of standard deviation, upper limit of standard deviation, and height of the
+Gaussian membership function are indicated by params[0], params[1], params[2],
+and params[3], respectively.</p>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : ndarray</p>
+<blockquote>
+<div><p>Returns membership values corresponding to the input.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">201</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">membership_value</span> <span class="o">=</span> <span class="n">gauss_uncert_std_lmf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.rgauss_uncert_std_umf">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">rgauss_uncert_std_umf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.rgauss_uncert_std_umf" title="Permalink to this definition"></a></dt>
-<dd><p>Right Gaussian with uncertain standard deviation UMF</p>
-<section id="id31">
-<h2>Parameters<a class="headerlink" href="#id31" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>x<span class="classifier"></span></dt><dd><p>numpy (n,) shaped array</p>
-<p>The array like input x indicates the points from universe of 
-discourse in which the membership function would be evaluated.</p>
-</dd>
-<dt>params<span class="classifier"></span></dt><dd><p>List</p>
-<p>Additional parameters for the membership function. The center, 
-lower limit of std., upper limit of std., and 
-height of the gaussian membership function are indicated by params[0], 
-params[1], params[2], and params[3], respectively.</p>
-</dd>
-</dl>
-</section>
-<section id="id32">
-<h2>Returns<a class="headerlink" href="#id32" title="Permalink to this heading"></a></h2>
-<dl class="simple">
-<dt>ndarray</dt><dd><p>Returns membership values corresponding with the input.</p>
-</dd>
-</dl>
-</section>
-<section id="id33">
-<h2>Examples<a class="headerlink" href="#id33" title="Permalink to this heading"></a></h2>
+<dd><p>Right Gaussian with uncertain standard deviation UMF.</p>
+<p class="rubric">Parameters</p>
+<p>x : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>The array-like input x indicates the points from the universe of discourse
+at which the membership function will be evaluated.</p>
+</div></blockquote>
+<p>params : list</p>
+<blockquote>
+<div><p>Additional parameters for the membership function. The center, lower limit
+of standard deviation, upper limit of standard deviation, and height of the
+Gaussian membership function are indicated by params[0], params[1], params[2],
+and params[3], respectively.</p>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : ndarray</p>
+<blockquote>
+<div><p>Returns membership values corresponding to the input.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">201</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">membership_value</span> <span class="o">=</span> <span class="n">rgauss_uncert_std_umf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.rgauss_uncert_std_lmf">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">rgauss_uncert_std_lmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.rgauss_uncert_std_lmf" title="Permalink to this definition"></a></dt>
-<dd><p>Right Gaussian with uncertain standard deviation LMF</p>
-<section id="id34">
-<h2>Parameters<a class="headerlink" href="#id34" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>x<span class="classifier"></span></dt><dd><p>numpy (n,) shaped array</p>
-<p>The array like input x indicates the points from universe of 
-discourse in which the membership function would be evaluated.</p>
-</dd>
-<dt>params<span class="classifier"></span></dt><dd><p>List</p>
-<p>Additional parameters for the membership function. The center, 
-lower limit of std., upper limit of std., and 
-height of the gaussian membership function are indicated by params[0], 
-params[1], params[2], and params[3], respectively.</p>
-</dd>
-</dl>
-</section>
-<section id="id35">
-<h2>Returns<a class="headerlink" href="#id35" title="Permalink to this heading"></a></h2>
-<dl class="simple">
-<dt>ndarray</dt><dd><p>Returns membership values corresponding with the input.</p>
-</dd>
-</dl>
-</section>
-<section id="id36">
-<h2>Examples<a class="headerlink" href="#id36" title="Permalink to this heading"></a></h2>
+<dd><p>Right Gaussian with uncertain standard deviation LMF.</p>
+<p class="rubric">Parameters</p>
+<p>x : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>The array-like input x indicates the points from the universe of discourse
+at which the membership function will be evaluated.</p>
+</div></blockquote>
+<p>params : list</p>
+<blockquote>
+<div><p>Additional parameters for the membership function. The center, lower limit
+of standard deviation, upper limit of standard deviation, and height of the
+Gaussian membership function are indicated by params[0], params[1], params[2],
+and params[3], respectively.</p>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : ndarray</p>
+<blockquote>
+<div><p>Returns membership values corresponding to the input.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">201</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">membership_value</span> <span class="o">=</span> <span class="n">rgauss_uncert_std_lmf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.lgauss_uncert_std_umf">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">lgauss_uncert_std_umf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.lgauss_uncert_std_umf" title="Permalink to this definition"></a></dt>
-<dd><p>Left Gaussian with uncertain standard deviation UMF</p>
-<section id="id37">
-<h2>Parameters<a class="headerlink" href="#id37" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>x<span class="classifier"></span></dt><dd><p>numpy (n,) shaped array</p>
-<p>The array like input x indicates the points from universe of 
-discourse in which the membership function would be evaluated.</p>
-</dd>
-<dt>params<span class="classifier"></span></dt><dd><p>List</p>
-<p>Additional parameters for the membership function. The center, 
-lower limit of std., upper limit of std., and 
-height of the gaussian membership function are indicated by params[0], 
-params[1], params[2], and params[3], respectively.</p>
-</dd>
-</dl>
-</section>
-<section id="id38">
-<h2>Returns<a class="headerlink" href="#id38" title="Permalink to this heading"></a></h2>
-<dl class="simple">
-<dt>ndarray</dt><dd><p>Returns membership values corresponding with the input.</p>
-</dd>
-</dl>
-</section>
-<section id="id39">
-<h2>Examples<a class="headerlink" href="#id39" title="Permalink to this heading"></a></h2>
+<dd><p>Left Gaussian with uncertain standard deviation UMF.</p>
+<p class="rubric">Parameters</p>
+<p>x : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>The array-like input x indicates the points from the universe of discourse
+at which the membership function will be evaluated.</p>
+</div></blockquote>
+<p>params : list</p>
+<blockquote>
+<div><p>Additional parameters for the membership function. The center, lower limit
+of standard deviation, upper limit of standard deviation, and height of the
+Gaussian membership function are indicated by params[0], params[1], params[2],
+and params[3], respectively.</p>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : ndarray</p>
+<blockquote>
+<div><p>Returns membership values corresponding to the input.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">201</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">membership_value</span> <span class="o">=</span> <span class="n">lgauss_uncert_std_umf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.lgauss_uncert_std_lmf">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">lgauss_uncert_std_lmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.lgauss_uncert_std_lmf" title="Permalink to this definition"></a></dt>
-<dd><p>Left Gaussian with uncertain standard deviation LMF</p>
-<section id="id40">
-<h2>Parameters<a class="headerlink" href="#id40" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>x<span class="classifier"></span></dt><dd><p>numpy (n,) shaped array</p>
-<p>The array like input x indicates the points from universe of 
-discourse in which the membership function would be evaluated.</p>
-</dd>
-<dt>params<span class="classifier"></span></dt><dd><p>List</p>
-<p>Additional parameters for the membership function. The center, 
-lower limit of std., upper limit of std., and 
-height of the gaussian membership function are indicated by params[0], 
-params[1], params[2], and params[3], respectively.</p>
-</dd>
-</dl>
-</section>
-<section id="id41">
-<h2>Returns<a class="headerlink" href="#id41" title="Permalink to this heading"></a></h2>
-<dl class="simple">
-<dt>ndarray</dt><dd><p>Returns membership values corresponding with the input.</p>
-</dd>
-</dl>
-</section>
-<section id="id42">
-<h2>Examples<a class="headerlink" href="#id42" title="Permalink to this heading"></a></h2>
+<dd><p>Left Gaussian with uncertain standard deviation LMF.</p>
+<p class="rubric">Parameters</p>
+<p>x : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>The array-like input x indicates the points from the universe of discourse
+at which the membership function will be evaluated.</p>
+</div></blockquote>
+<p>params : list</p>
+<blockquote>
+<div><p>Additional parameters for the membership function. The center, lower limit
+of standard deviation, upper limit of standard deviation, and height of the
+Gaussian membership function are indicated by params[0], params[1], params[2],
+and params[3], respectively.</p>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : ndarray</p>
+<blockquote>
+<div><p>Returns membership values corresponding to the input.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">201</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">membership_value</span> <span class="o">=</span> <span class="n">lgauss_uncert_std_lmf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.elliptic_mf">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">elliptic_mf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.elliptic_mf" title="Permalink to this definition"></a></dt>
 <dd><p>Elliptic membership function.</p>
-<section id="id43">
-<h2>Parameters<a class="headerlink" href="#id43" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>x<span class="classifier"></span></dt><dd><p>numpy (n,) shaped array</p>
-<p>The array like input x indicates the points from universe of 
-discourse in which the membership function would be evaluated.</p>
-</dd>
-<dt>params<span class="classifier"></span></dt><dd><p>list</p>
-<p>Parameters of the elliptic membership function. The center, width,
+<p class="rubric">Parameters</p>
+<p>x : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>The array-like input x indicates the points from the universe of discourse
+in which the membership function will be evaluated.</p>
+</div></blockquote>
+<p>params : list</p>
+<blockquote>
+<div><p>Parameters of the elliptic membership function. The center, width,
 exponent, and height of the elliptic membership function are 
 indicated by params[0], params[1], params[2], and params[3].</p>
-</dd>
-</dl>
-</section>
-<section id="id44">
-<h2>Returns<a class="headerlink" href="#id44" title="Permalink to this heading"></a></h2>
-<dl class="simple">
-<dt>ndarray</dt><dd><p>Returns membership values corresponding with the input.</p>
-</dd>
-</dl>
-</section>
-<section id="id45">
-<h2>Examples<a class="headerlink" href="#id45" title="Permalink to this heading"></a></h2>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : ndarray</p>
+<blockquote>
+<div><p>Returns membership values corresponding to the input.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">201</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">membership_value</span> <span class="o">=</span> <span class="n">eliptic_mf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.semi_elliptic_mf">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">semi_elliptic_mf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.semi_elliptic_mf" title="Permalink to this definition"></a></dt>
 <dd><p>Semi-elliptic membership function.</p>
-<section id="id46">
-<h2>Parameters<a class="headerlink" href="#id46" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>x<span class="classifier"></span></dt><dd><p>numpy (n,) shaped array</p>
-<p>The array like input x indicates the points from universe of 
-discourse in which the membership function would be evaluated.</p>
-</dd>
-<dt>params<span class="classifier"></span></dt><dd><p>list</p>
-<p>Parameters of the semi-elliptic membership function. The center, width, and
-height of the semi-elliptic membership function are 
-indicated by params[0], params[1], and params[2].</p>
-</dd>
-</dl>
-</section>
-<section id="id47">
-<h2>Returns<a class="headerlink" href="#id47" title="Permalink to this heading"></a></h2>
-<dl class="simple">
-<dt>ndarray</dt><dd><p>Returns membership values corresponding with the input.</p>
-</dd>
-</dl>
-</section>
-<section id="id48">
-<h2>Examples<a class="headerlink" href="#id48" title="Permalink to this heading"></a></h2>
+<p class="rubric">Parameters</p>
+<p>x : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>The array-like input x indicates the points from the universe of discourse
+in which the membership function will be evaluated.</p>
+</div></blockquote>
+<p>params : list</p>
+<blockquote>
+<div><p>Parameters of the semi-elliptic membership function. The center, width, 
+and height of the semi-elliptic membership function are indicated by 
+params[0], params[1], and params[2].</p>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : ndarray</p>
+<blockquote>
+<div><p>Returns membership values corresponding to the input.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">201</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">membership_value</span> <span class="o">=</span> <span class="n">eliptic_mf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.gbell_mf">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">gbell_mf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.gbell_mf" title="Permalink to this definition"></a></dt>
 <dd><p>Generalized bell shaped membership function.</p>
-<section id="id49">
-<h2>Parameters<a class="headerlink" href="#id49" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>x<span class="classifier"></span></dt><dd><p>numpy (n,) shaped array</p>
-<p>The array like input x indicates the points from universe of 
+<p class="rubric">Parameters</p>
+<p>x : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>The array like input x indicates the points from universe of 
 discourse in which the membership function would be evaluated.</p>
-</dd>
-<dt>params<span class="classifier"></span></dt><dd><p>list</p>
-<p>Parameters of the generalized bell shaped membership function. 
+</div></blockquote>
+<p>params : list</p>
+<blockquote>
+<div><p>Parameters of the generalized bell shaped membership function. 
 The a, b, and c values and height of the generalized bell shaped membership 
 function formula are indicated by params[0], params[1], params[2], and params[3].</p>
-</dd>
-</dl>
-</section>
-<section id="id50">
-<h2>Returns<a class="headerlink" href="#id50" title="Permalink to this heading"></a></h2>
-<dl class="simple">
-<dt>ndarray</dt><dd><p>Returns membership values corresponding with the input.</p>
-</dd>
-</dl>
-</section>
-<section id="id51">
-<h2>Examples<a class="headerlink" href="#id51" title="Permalink to this heading"></a></h2>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : ndarray</p>
+<blockquote>
+<div><p>Returns membership values corresponding with the input.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">201</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">membership_value</span> <span class="o">=</span> <span class="n">gbell_mf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 </section>
