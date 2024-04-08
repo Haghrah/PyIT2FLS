@@ -1213,35 +1213,29 @@ class T1TSK:
     """
     Type 1 TSK Fuzzy Logic System.
 
-    Parameters
-    -------------------------------------------------------------------
+    .. rubric:: Parameters
+    
     Parameters of the constructor function:
 
     The constructor function of the T1TSK class has no parameters.
 
-    Members
-    -------------------------------------------------
-
-    inputs:
-        List of str
+    .. rubric:: Members
+    
+    inputs : list of str
 
         List of the inputs names as str.
     
-    outputs:
-        List of str
+    outputs : list of str
 
         List of the outputs names as str.
 
-    rules:
-        List of tuples (antacedent, consequent)
+    rules : list of tuples (antacedent, consequent)
 
         List of rules, which each rule is defined as a 
         tuple (antecedent, consequent)
         
-
-    Functions
-    ------------------------------------------------------------------
-
+    .. rubric:: Functions
+    
     add_input_variable:
         
         Adds an input variable to the inputs list of the T1 TSK FLS.
@@ -1261,7 +1255,6 @@ class T1TSK:
     evaluate:
 
         Evaluates the T1 TSK FLS based on the crisp inputs given by the user.
-
     """
     def __init__(self):
         self.inputs = []
@@ -1285,11 +1278,9 @@ class T1TSK:
         """
         Adds new input variable name.
         
-        Parameters
-        -------------------------------------------------------------------
-        
-        name:
-            str
+        .. rubric:: Parameters
+
+        name : str
             
             Name of the new input variable as a str.
         """
@@ -1299,11 +1290,9 @@ class T1TSK:
         """
         Adds new output variable name.
         
-        Parameters
-        -------------------------------------------------------------------
+        .. rubric:: Parameters
         
-        name:
-            str
+        name : str
             
             Name of the new output variable as a str.
         """
@@ -1313,23 +1302,20 @@ class T1TSK:
         """
         Adds new rule to the rule base of the T1 TSK FLS.
 
-        Parameters
-        -------------------------------------------------------------------
-
-        antecedent:
-            List of tuples
+        .. rubric:: Parameters
+        
+        antecedent : list of tuples
             
             Antecedent is a list of tuples in which each tuple indicates 
-            assignement of a variable to a T1FS. First element of the 
-            tuple must be input variable name as str, and the second 
+            assignement of a variable to a T1FS. The first element of the 
+            tuple must be the input variable name as a string, and the second 
             element of the tuple must be a T1FS.
         
-        consequent:
-            List of tuples
+        consequent : list of tuples
 
             Consequent is a list of tuples in which each tuple indicates 
-            assignement of a variable to an output state. First element of the 
-            tuple must be output vriable name as str, and the second element 
+            assignement of a variable to an output state. The first element of the 
+            tuple must be the output vriable name as a string, and the second element 
             of the tuple must be a callable object.
         """
         self.rules.append((antecedent, consequent))
@@ -1338,28 +1324,26 @@ class T1TSK:
         """
         Evaluates the T1 TSK FLS based on the crisp inputs given by the user.
 
-        Parameters
-        -------------------------------------------------------------------
-        inputs:
-            dictionary
+        .. rubric:: Parameters
+        
+        inputs : dictionary
 
-            Inputs is a dictionary, which the keys are input variable 
-            names as str and the values are the crisp value of the inputs to 
-            be evaluated.
+            Inputs is a dictionary, where the keys are input variable 
+            names as strings and the corresponded values are the crisp values 
+            of the inputs to be evaluated.
 
-        params:
-            tuple
+        params : tuple
 
-            This tuple is the parameters of the functions assigned to the 
+            This tuple contains the parameters of the functions assigned to the 
             consequents of the system rules.
 
-        Returns
-        ----------------------
-        O:
-            dictionary
+        .. rubric:: Returns
+        
+        Output : dict
 
-            The output is a dictionary, which the keys are output variable 
-            names as str and the values are the crisp output of the system.
+            The output is a dictionary, where the keys are output variable 
+            names as strings and the corresponded values are the crisp outputs 
+            of the system.
         """
         F = []
         B = {out: 0. for out in self.outputs}
@@ -1379,53 +1363,56 @@ class T1TSK:
 class IT2FS:
     """Interval Type 2 Fuzzy Set (IT2FS).
        
-        Parameters
-        ----------------------
+        .. rubric:: Parameters
+        
         Parameters of the constructor function:
         
-        domain:
-            numpy (n,) shaped array
+        domain : numpy (n,) shaped array
             
             Indicates the universe of discourse dedicated to the IT2FS.
         
-        umf:
-            Upper membership function
+        umf : Upper membership function
         
-        umf_params:
-            List of parameters of upper membership function
+        umf_params : list 
         
-        lmf:
-            Lower membership function
+            Parameters of the upper membership function
         
-        lmf_params:
-            List of parameters of lower membership function
+        lmf : Lower membership function
         
-        check_set:
-            If it is True, then a function named check_set in IT2FS will 
-            verify the LMF(x) < UMF(x) condition for any x in the domain. If the 
-            user is sure that has selected the parameters of the membership 
-            functions correct, then calling this time-consuming function 
+        lmf_params : list 
+        
+            Parameters of lower membership function
+        
+        check_set : boolean
+        
+            If True, then a function named check_set in IT2FS will 
+            verify the condition LMF(x) < UMF(x) for any x in the domain. If the 
+            user is sure that they have selected the parameters of the membership 
+            functions correctly, then calling this time-consuming function 
             is not needed. By default the parameter check_set is False.
             
-        Functions
-        ----------------
+        .. rubric:: Functions
+        
         Functions defined in IT2FS class:
         
             copy:
+
                 Returns a copy of the IT2FS.
+            
             plot:
+                
                 Plots the IT2FS.
+            
             negation operator -:
+                
                 Returns the negated IT2FS.
         
-        Examples
-        --------
+        .. rubric:: Examples
         
         >>> mySet = IT2FS(linspace(0., 1., 100), 
                           trapezoid_mf, [0, 0.4, 0.6, 1., 1.], 
                           tri_mf, [0.25, 0.5, 0.75, 0.6])
         >>> mySet.plot(filename="mySet")
-        
         """
 
     def __init__(self, domain, umf=zero_mf, umf_params=[], lmf=zero_mf, lmf_params=[], check_set=False):
