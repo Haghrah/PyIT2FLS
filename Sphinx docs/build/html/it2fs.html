@@ -93,211 +93,174 @@
 <dt class="sig sig-object py" id="pyit2fls.IT2FS_Elliptic">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">IT2FS_Elliptic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_set</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2FS_Elliptic" title="Permalink to this definition"></a></dt>
 <dd><p>Creates an elliptic IT2FS.</p>
-<section id="parameters">
-<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>domain:</dt><dd><p>numpy (n,) shaped array</p>
-<p>Indicates the universe of discourse dedicated to the IT2FS.</p>
-</dd>
-<dt>params:</dt><dd><p>List</p>
-<p>The parameters of the elliptic IT2FS, 
-the center, width, UMF’s exponent, LMF’s exponent, and height are 
-indicated by params[0], params[1], params[2], params[3], and params[4], respectively.</p>
-</dd>
-</dl>
-</section>
-<section id="returns">
-<h2>Returns<a class="headerlink" href="#returns" title="Permalink to this heading"></a></h2>
-<dl class="simple">
-<dt>IT2FS</dt><dd><p>Returns an elliptic IT2FS with specified parameters.</p>
-</dd>
-</dl>
-</section>
-<section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
+<p class="rubric">Parameters</p>
+<p>domain : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>Indicates the universe of discourse dedicated to the IT2FS.</p>
+</div></blockquote>
+<p>params : list</p>
+<blockquote>
+<div><p>The parameters of the elliptic IT2FS. The center, width, UMF’s exponent, 
+LMF’s exponent, and height are indicated by params[0], params[1], params[2], 
+params[3], and params[4], respectively.</p>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : IT2FS</p>
+<blockquote>
+<div><p>Returns an elliptic IT2FS with specified parameters.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">domain</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span> <span class="o">=</span> <span class="n">IT2FS_Elliptic</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.IT2FS_Semi_Elliptic">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">IT2FS_Semi_Elliptic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_set</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2FS_Semi_Elliptic" title="Permalink to this definition"></a></dt>
 <dd><p>Creates a semi-elliptic IT2FS.</p>
-<section id="id1">
-<h2>Parameters<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>domain:</dt><dd><p>numpy (n,) shaped array</p>
-<p>Indicates the universe of discourse dedicated to the IT2FS.</p>
-</dd>
-<dt>params:</dt><dd><p>List</p>
-<p>The parameters of the semi-elliptic IT2FS, 
-the center, UMF’s width, LMF’s width, and height are 
-indicated by params[0], params[1], params[2], and params[3], respectively.</p>
-</dd>
-</dl>
-</section>
-<section id="id2">
-<h2>Returns<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
-<dl class="simple">
-<dt>IT2FS</dt><dd><p>Returns a semi-elliptic IT2FS with specified parameters.</p>
-</dd>
-</dl>
-</section>
-<section id="id3">
-<h2>Examples<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<p class="rubric">Parameters</p>
+<p>domain : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>Indicates the universe of discourse dedicated to the IT2FS.</p>
+</div></blockquote>
+<p>params : list</p>
+<blockquote>
+<div><p>The parameters of the semi-elliptic IT2FS. The center, UMF’s width, 
+LMF’s width, and height are indicated by params[0], params[1], params[2], 
+and params[3], respectively.</p>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : IT2FS</p>
+<blockquote>
+<div><p>Returns a semi-elliptic IT2FS with specified parameters.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">domain</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span> <span class="o">=</span> <span class="n">IT2FS_Semi_Elliptic</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.IT2FS_Gaussian_UncertMean">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">IT2FS_Gaussian_UncertMean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_set</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2FS_Gaussian_UncertMean" title="Permalink to this definition"></a></dt>
-<dd><p>Creates an Gaussian IT2FS with uncertain mean value.</p>
-<section id="id4">
-<h2>Parameters<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>domain:</dt><dd><p>numpy (n,) shaped array</p>
-<p>Indicates the universe of discourse dedicated to the IT2FS.</p>
-</dd>
-<dt>params:</dt><dd><p>List</p>
-<p>The parameters of the Gaussian IT2FS with uncertain mean value, 
-the mean center, mean spread, standard deviation, and height are 
+<dd><p>Creates a Gaussian IT2FS with uncertain mean value.</p>
+<p class="rubric">Parameters</p>
+<p>domain : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>Indicates the universe of discourse dedicated to the IT2FS.</p>
+</div></blockquote>
+<p>params : list</p>
+<blockquote>
+<div><p>The parameters of the Gaussian IT2FS with uncertain mean value. 
+The mean center, mean spread, standard deviation, and height are 
 indicated by params[0], params[1], params[2], and params[3], respectively.</p>
-</dd>
-</dl>
-</section>
-<section id="id5">
-<h2>Returns<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
-<dl class="simple">
-<dt>IT2FS</dt><dd><p>Returns a Gaussian IT2FS with uncertain mean value with specified 
-parameters.</p>
-</dd>
-</dl>
-</section>
-<section id="id6">
-<h2>Examples<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : IT2FS</p>
+<blockquote>
+<div><p>Returns a Gaussian IT2FS with uncertain mean value with specified parameters.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">domain</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span> <span class="o">=</span> <span class="n">IT2FS_Gaussian_UncertMean</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.IT2FS_Gaussian_UncertStd">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">IT2FS_Gaussian_UncertStd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_set</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2FS_Gaussian_UncertStd" title="Permalink to this definition"></a></dt>
 <dd><p>Creates a Gaussian IT2FS with uncertain standard deviation value.</p>
-<section id="id7">
-<h2>Parameters<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>domain:</dt><dd><p>numpy (n,) shaped array</p>
-<p>Indicates the universe of discourse dedicated to the IT2FS.</p>
-</dd>
-<dt>params:</dt><dd><p>List</p>
-<p>The parameters of the Gaussian IT2FS with uncertain standard 
-deviation value, the mean, standard deviation center, 
-standard deviation spread, and height are indicated by params[0], 
-params[1], params[2], and params[3], respectively.</p>
-</dd>
-</dl>
-</section>
-<section id="id8">
-<h2>Returns<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
-<dl class="simple">
-<dt>IT2FS</dt><dd><p>Returns a Gaussian IT2FS with uncertain standard deviation value 
+<p class="rubric">Parameters</p>
+<p>domain : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>Indicates the universe of discourse dedicated to the IT2FS.</p>
+</div></blockquote>
+<p>params : list</p>
+<blockquote>
+<div><p>The parameters of the Gaussian IT2FS with uncertain standard deviation 
+value, the mean, standard deviation center, standard deviation spread, 
+and height are indicated by params[0], params[1], params[2], and 
+params[3], respectively.</p>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : IT2FS</p>
+<blockquote>
+<div><p>Returns a Gaussian IT2FS with uncertain standard deviation value 
 with specified parameters.</p>
-</dd>
-</dl>
-</section>
-<section id="id9">
-<h2>Examples<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h2>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">domain</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span> <span class="o">=</span> <span class="n">IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.IT2FS_RGaussian_UncertStd">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">IT2FS_RGaussian_UncertStd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_set</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2FS_RGaussian_UncertStd" title="Permalink to this definition"></a></dt>
 <dd><p>Creates a Right Gaussian IT2FS with uncertain standard deviation value.</p>
-<section id="id10">
-<h2>Parameters<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>domain:</dt><dd><p>numpy (n,) shaped array</p>
-<p>Indicates the universe of discourse dedicated to the IT2FS.</p>
-</dd>
-<dt>params:</dt><dd><p>List</p>
-<p>The parameters of the Gaussian IT2FS with uncertain standard 
-deviation value, the mean, standard deviation center, 
-standard deviation spread, and height are indicated by params[0], 
-params[1], params[2], and params[3], respectively.</p>
-</dd>
-</dl>
-</section>
-<section id="id11">
-<h2>Returns<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h2>
-<dl class="simple">
-<dt>IT2FS</dt><dd><p>Returns a Gaussian IT2FS with uncertain standard deviation value 
+<p class="rubric">Parameters</p>
+<p>domain : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>Indicates the universe of discourse dedicated to the IT2FS.</p>
+</div></blockquote>
+<p>params : list</p>
+<blockquote>
+<div><p>The parameters of the Gaussian IT2FS with uncertain standard 
+deviation value, the mean, standard deviation center, standard deviation 
+spread, and height are indicated by params[0], params[1], params[2], 
+and params[3], respectively.</p>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : IT2FS</p>
+<blockquote>
+<div><p>Returns a Gaussian IT2FS with uncertain standard deviation value 
 with specified parameters.</p>
-</dd>
-</dl>
-</section>
-<section id="id12">
-<h2>Examples<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h2>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">domain</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span> <span class="o">=</span> <span class="n">R_IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.IT2FS_LGaussian_UncertStd">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">IT2FS_LGaussian_UncertStd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_set</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2FS_LGaussian_UncertStd" title="Permalink to this definition"></a></dt>
 <dd><p>Creates a Left Gaussian IT2FS with uncertain standard deviation value.</p>
-<section id="id13">
-<h2>Parameters<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>domain:</dt><dd><p>numpy (n,) shaped array</p>
-<p>Indicates the universe of discourse dedicated to the IT2FS.</p>
-</dd>
-<dt>params:</dt><dd><p>List</p>
-<p>The parameters of the Gaussian IT2FS with uncertain standard 
-deviation value, the mean, standard deviation center, 
-standard deviation spread, and height are indicated by params[0], 
-params[1], params[2], and params[3], respectively.</p>
-</dd>
-</dl>
-</section>
-<section id="id14">
-<h2>Returns<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h2>
+<p class="rubric">Parameters</p>
+<p>domain : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>Indicates the universe of discourse dedicated to the IT2FS.</p>
+</div></blockquote>
+<p>params : list</p>
+<blockquote>
+<div><p>The parameters of the Gaussian IT2FS with uncertain standard deviation 
+value, the mean, standard deviation center, standard deviation spread, 
+and height are indicated by params[0], params[1], params[2], and 
+params[3], respectively.</p>
+</div></blockquote>
+<p class="rubric">Returns</p>
 <dl class="simple">
-<dt>IT2FS</dt><dd><p>Returns a Gaussian IT2FS with uncertain standard deviation value 
+<dt>output<span class="classifier">IT2FS</span></dt><dd><p>Returns a Gaussian IT2FS with uncertain standard deviation value 
 with specified parameters.</p>
 </dd>
 </dl>
-</section>
-<section id="id15">
-<h2>Examples<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h2>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">domain</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span> <span class="o">=</span> <span class="n">L_IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 </section>

@@ -1383,7 +1383,7 @@ class IT2FS:
         
             Parameters of lower membership function
         
-        check_set : boolean
+        check_set : bool
         
             If True, then a function named check_set in IT2FS will 
             verify the condition LMF(x) < UMF(x) for any x in the domain. If the 
@@ -1442,7 +1442,7 @@ class IT2FS:
 
     def check_set(self):
         """
-        Verifies the LMF(x) < UMF(x) for any x in the domain.
+        Verifies the condition LMF(x) < UMF(x) for any x in the domain.
         """
         for l, u in zip(self.lower, self.upper):
             if l > u:
@@ -1452,9 +1452,9 @@ class IT2FS:
         """
         Copies the IT2FS.
         
-        Returns
-        ----------------------
-        IT2FS
+        .. rubric:: Returns
+        
+        output : IT2FS
         
         Returns a copy of the IT2FS.
         """
@@ -1465,49 +1465,41 @@ class IT2FS:
         """
         Plots the IT2FS.
         
-        Parameters
-        ----------------------------------------------
-        title:
-            str
+        .. rubric:: Parameters
+        
+        title : str
             
-            If it is set, it indicates the title which would be 
-            represented in the plot. If it is not set, the plot would not 
+            If set, it indicates the title to be 
+            represented in the plot. If not set, the plot will not 
             have a title.
         
-        legend_text:
-            str
+        legend_text : str
             
-            If it is set, it indicates the legend text which would 
-            be represented in the plot. If it is not set, the plot would 
+            If set, it indicates the legend text to 
+            be represented in the plot. If not set, the plot will 
             not contain a legend.
         
-        filename:
-            str
+        filename : str
         
-            If it is set, the plot would be saved as a filename.ext file.
+            If set, the plot will be saved as a filename.ext file.
             
-        ext:
-            str
+        ext : str
 
-            Extension of the output file with pdf default value.
+            Extension of the output file, with 'pdf' as the default value.
         
-        grid:
-            bool
+        grid : bool
 
-            Grid on/off.
+            Determines whether the grid is displayed in the plot.
         
-        xlabel:
-            str
+        xlabel : str
 
-            Label of the x axis.
+            Label of the x-axis.
         
-        ylabel:
-            str
+        ylabel : str
 
-            Label of the y axis.
+            Label of the y-axis.
         
-        Examples
-        -----------------------
+        .. rubric:: Examples
         
         >>> mySet = IT2FS(linspace(0., 1., 100), 
                           trapezoid_mf, [0, 0.4, 0.6, 1., 1.], 
@@ -1533,11 +1525,11 @@ class IT2FS:
         """
         Negates the IT2FS.
         
-        Returns
-        ----------------------
-        IT2FS
+        .. rubric:: Returns
         
-        Returns a negated copy of the IT2FS.
+        output : IT2FS
+        
+            Returns a negated copy of the IT2FS.
         """
         umf = lambda x, params: subtract(1, self.umf(x, params))
         lmf = lambda x, params: subtract(1, self.lmf(x, params))
@@ -1549,25 +1541,21 @@ def IT2_Emphasize(it2fs, m=2.):
     """
     Function for creating emphasized IT2FSs.
     
-    Parameters
-    ----------------------------------------------
-    it2fs : 
-        IT2FS
+    .. rubric:: Parameters
+    
+    it2fs : IT2FS
         
         Interval type 2 fuzzy set to be emphasized.
         
-    m : 
-        float, optional
+    m : float, optional
         
-        Emphasis degree. The default is 2.
+        Emphasis degree. The default value is 2.
 
-    Returns
-    ----------------------
-    emphasized : 
-        IT2FS
+    .. rubric:: Returns
+    
+    emphasized : IT2FS
         
         Emphasized interval type 2 fuzzy set.
-
     """
     lmf = lambda x, params : it2fs.lmf(x, it2fs.lmf_params) ** m
     umf = lambda x, params : it2fs.umf(x, it2fs.umf_params) ** m
@@ -1581,33 +1569,29 @@ def IT2FS_Elliptic(domain, params, check_set=False):
     """
     Creates an elliptic IT2FS.
     
-    Parameters
-    ----------------------------------------------
+    .. rubric:: Parameters
     
-    domain:
-        numpy (n,) shaped array
+    domain : numpy (n,) shaped array
         
         Indicates the universe of discourse dedicated to the IT2FS.
     
-    params:
-        List
+    params : list
         
-        The parameters of the elliptic IT2FS, 
-        the center, width, UMF's exponent, LMF's exponent, and height are 
-        indicated by params[0], params[1], params[2], params[3], and params[4], respectively.
+        The parameters of the elliptic IT2FS. The center, width, UMF's exponent, 
+        LMF's exponent, and height are indicated by params[0], params[1], params[2], 
+        params[3], and params[4], respectively.
     
-    Returns
-    ----------------------
-    IT2FS
+    .. rubric:: Returns
+    
+    output : IT2FS
+        
         Returns an elliptic IT2FS with specified parameters.
     
-    Examples
-    -----------------------
+    .. rubric:: Examples
     
     >>> domain = linspace(0., 1., 100)
     >>> mySet = IT2FS_Elliptic(domain, [0.5, 0.25, 1.3, 0.7, 0.8])
     >>> mySet.plot()
-    
     """
     return IT2FS(domain, 
                  elliptic_mf, [params[0], params[1], params[2], params[4]], 
@@ -1617,33 +1601,29 @@ def IT2FS_Semi_Elliptic(domain, params, check_set=False):
     """
     Creates a semi-elliptic IT2FS.
     
-    Parameters
-    ----------------------------------------------
+    .. rubric:: Parameters
     
-    domain:
-        numpy (n,) shaped array
+    domain : numpy (n,) shaped array
         
         Indicates the universe of discourse dedicated to the IT2FS.
     
-    params:
-        List
+    params : list
         
-        The parameters of the semi-elliptic IT2FS, 
-        the center, UMF's width, LMF's width, and height are 
-        indicated by params[0], params[1], params[2], and params[3], respectively.
+        The parameters of the semi-elliptic IT2FS. The center, UMF's width, 
+        LMF's width, and height are indicated by params[0], params[1], params[2], 
+        and params[3], respectively.
     
-    Returns
-    ----------------------
-    IT2FS
+    .. rubric:: Returns
+    
+    output : IT2FS
+        
         Returns a semi-elliptic IT2FS with specified parameters.
     
-    Examples
-    -----------------------
+    .. rubric:: Examples
     
     >>> domain = linspace(0., 1., 100)
     >>> mySet = IT2FS_Semi_Elliptic(domain, [0.5, 0.15, 0.05, 0.6])
     >>> mySet.plot()
-    
     """
     return IT2FS(domain, 
                  semi_elliptic_mf, [params[0], params[1], params[3]], 
@@ -1652,36 +1632,31 @@ def IT2FS_Semi_Elliptic(domain, params, check_set=False):
 
 def IT2FS_Gaussian_UncertMean(domain, params, check_set=False):
     """
-    Creates an Gaussian IT2FS with uncertain mean value.
+    Creates a Gaussian IT2FS with uncertain mean value.
     
-    Parameters
-    ----------------------------------------------
+    .. rubric:: Parameters
     
-    domain:
-        numpy (n,) shaped array
+    domain : numpy (n,) shaped array
         
         Indicates the universe of discourse dedicated to the IT2FS.
     
-    params:
-        List
+    params : list
         
-        The parameters of the Gaussian IT2FS with uncertain mean value, 
-        the mean center, mean spread, standard deviation, and height are 
+        The parameters of the Gaussian IT2FS with uncertain mean value. 
+        The mean center, mean spread, standard deviation, and height are 
         indicated by params[0], params[1], params[2], and params[3], respectively.
     
-    Returns
-    ----------------------
-    IT2FS
-        Returns a Gaussian IT2FS with uncertain mean value with specified 
-        parameters.
+    .. rubric:: Returns
     
-    Examples
-    -----------------------
+    output : IT2FS
+        
+        Returns a Gaussian IT2FS with uncertain mean value with specified parameters.
+    
+    .. rubric:: Examples
     
     >>> domain = linspace(0., 1., 100)
     >>> mySet = IT2FS_Gaussian_UncertMean(domain, [0., 0.25, 0.2])
     >>> mySet.plot()
-    
     """
     ml = params[0] - params[1] / 2.
     mr = params[0] + params[1] / 2.
@@ -1694,35 +1669,31 @@ def IT2FS_Gaussian_UncertStd(domain, params, check_set=False):
     """
     Creates a Gaussian IT2FS with uncertain standard deviation value.
     
-    Parameters
-    ----------------------------------------------
-    
-    domain:
-        numpy (n,) shaped array
+    .. rubric:: Parameters
+
+    domain : numpy (n,) shaped array
         
         Indicates the universe of discourse dedicated to the IT2FS.
     
-    params:
-        List
+    params : list
         
-        The parameters of the Gaussian IT2FS with uncertain standard 
-        deviation value, the mean, standard deviation center, 
-        standard deviation spread, and height are indicated by params[0], 
-        params[1], params[2], and params[3], respectively.
+        The parameters of the Gaussian IT2FS with uncertain standard deviation 
+        value, the mean, standard deviation center, standard deviation spread, 
+        and height are indicated by params[0], params[1], params[2], and 
+        params[3], respectively.
     
-    Returns
-    ----------------------
-    IT2FS
+    .. rubric:: Returns
+    
+    output : IT2FS
+
         Returns a Gaussian IT2FS with uncertain standard deviation value 
         with specified parameters.
     
-    Examples
-    -----------------------
+    .. rubric:: Examples
     
     >>> domain = linspace(0., 1., 100)
     >>> mySet = IT2FS_Gaussian_UncertStd(domain, [0.5, 0.2, 0.05, 1.])
     >>> mySet.plot()
-    
     """
     stdl = params[1] - params[2] / 2
     stdr = params[1] + params[2] / 2
@@ -1735,35 +1706,31 @@ def IT2FS_RGaussian_UncertStd(domain, params, check_set=False):
     """
     Creates a Right Gaussian IT2FS with uncertain standard deviation value.
     
-    Parameters
-    ----------------------------------------------
+    .. rubric:: Parameters
     
-    domain:
-        numpy (n,) shaped array
+    domain : numpy (n,) shaped array
         
         Indicates the universe of discourse dedicated to the IT2FS.
     
-    params:
-        List
+    params : list
         
         The parameters of the Gaussian IT2FS with uncertain standard 
-        deviation value, the mean, standard deviation center, 
-        standard deviation spread, and height are indicated by params[0], 
-        params[1], params[2], and params[3], respectively.
+        deviation value, the mean, standard deviation center, standard deviation 
+        spread, and height are indicated by params[0], params[1], params[2], 
+        and params[3], respectively.
     
-    Returns
-    ----------------------
-    IT2FS
+    .. rubric:: Returns
+    
+    output : IT2FS
+
         Returns a Gaussian IT2FS with uncertain standard deviation value 
         with specified parameters.
     
-    Examples
-    -----------------------
+    .. rubric:: Examples
     
     >>> domain = linspace(0., 1., 100)
     >>> mySet = R_IT2FS_Gaussian_UncertStd(domain, [0.5, 0.2, 0.05, 1.])
     >>> mySet.plot()
-    
     """
     stdl = params[1] - params[2] / 2
     stdr = params[1] + params[2] / 2
@@ -1779,35 +1746,30 @@ def IT2FS_LGaussian_UncertStd(domain, params, check_set=False):
     """
     Creates a Left Gaussian IT2FS with uncertain standard deviation value.
     
-    Parameters
-    ----------------------------------------------
+    .. rubric:: Parameters
     
-    domain:
-        numpy (n,) shaped array
+    domain : numpy (n,) shaped array
         
         Indicates the universe of discourse dedicated to the IT2FS.
     
-    params:
-        List
+    params : list
         
-        The parameters of the Gaussian IT2FS with uncertain standard 
-        deviation value, the mean, standard deviation center, 
-        standard deviation spread, and height are indicated by params[0], 
-        params[1], params[2], and params[3], respectively.
+        The parameters of the Gaussian IT2FS with uncertain standard deviation 
+        value, the mean, standard deviation center, standard deviation spread, 
+        and height are indicated by params[0], params[1], params[2], and 
+        params[3], respectively.
     
-    Returns
-    ----------------------
-    IT2FS
+    .. rubric:: Returns
+    
+    output : IT2FS
         Returns a Gaussian IT2FS with uncertain standard deviation value 
         with specified parameters.
     
-    Examples
-    -----------------------
+    .. rubric:: Examples
     
     >>> domain = linspace(0., 1., 100)
     >>> mySet = L_IT2FS_Gaussian_UncertStd(domain, [0.5, 0.2, 0.05, 1.])
     >>> mySet.plot()
-    
     """
     stdl = params[1] - params[2] / 2
     stdr = params[1] + params[2] / 2
@@ -1825,51 +1787,43 @@ def IT2FS_plot(*sets, title=None, legends=None, filename=None,
     """
     Plots multiple IT2FSs together in the same figure.
     
-    Parameters
-    ----------------------------------------------
+    .. rubric:: Parameters
+    
     *sets:
-        Multiple number of IT2FSs which would be plotted.
-    
-    title:
-        str
-        
-        If it is set, it indicates the title which would be 
-        represented in the plot. If it is not set, the plot would not 
-        have a title.
-        
-    legends:
-        List of strs
-        
-        List of legend texts to be presented in plot. If it is not 
-        set, no legend would be in plot.
-        
-    filename:
-        str
-        
-        If it is set, the plot would be saved as a filename.ext file.
-        
-    ext:
-        str
 
-        Extension of the output file with pdf default value.
+        Multiple number of IT2FSs which will be plotted.
     
-    grid:
-        bool
+    title : str
+        
+        If set, it indicates the title to be represented in the plot. 
+        If not set, the plot will not have a title.
+        
+    legends : list of strs
+        
+        List of legend texts to be presented in plot. If not 
+        set, no legend will be in plot.
+        
+    filename : str
+        
+        If set, the plot will be saved as a filename.ext file.
+        
+    ext : str
 
-        Grid on/off.
+        Extension of the output file with pdf as the default value.
     
-    xlabel:
-        str
+    grid : bool
+
+        Determines whether the grid is displayed in the plot.
+    
+    xlabel : str
 
         Label of the x axis.
     
-    ylabel:
-        str
+    ylabel : str
 
         Label of the y axis.
         
-    Examples
-    -----------------------
+    .. rubric:: Examples
     
     >>> domain = linspace(0., 1., 100)
     >>> it2fs1 = IT2FS_Gaussian_UncertStd(domain, [0.33, 0.2, 0.05])
