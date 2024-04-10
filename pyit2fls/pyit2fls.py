@@ -1853,59 +1853,49 @@ def TR_plot(domain, tr, title=None, legend=None, filename=None,
     """
     Plots a type reduced IT2FS.
     
-    Parameters
-    ----------------------------------------------
-    domain:
-        numpy (n,) shaped array
+    .. rubric:: Parameters
+    
+    domain : numpy (n,) shaped array
         
         Indicates the universe of discourse dedicated to the IT2FS.
     
-    tr:
-        Tuple (l, r)
+    tr : Tuple (l, r)
         
         Indicates the type reduced set to be plotted.
     
-    title:
-        str
+    title : str
         
         If it is set, it indicates the title which would be 
         represented in the plot. If it is not set, the plot would not 
         have a title.
         
-    legend:
-        str
+    legend : str
         
         If it is set, it indicates the legend text which would 
         be represented in the plot. If it is not set, the plot would 
         not contain a legend.
         
-    filename:
-        str
+    filename : str
         
         If it is set, the plot would be saved as a filename.ext file.
         
-    ext:
-        str
+    ext : str
 
         Extension of the output file with pdf default value.
     
-    grid:
-        bool
+    grid : bool
 
         Grid on/off.
     
-    xlabel:
-        str
+    xlabel : str
 
         Label of the x axis.
     
-    ylabel:
-        str
+    ylabel : str
 
         Label of the y axis.
         
-    Examples
-    -----------------------
+    .. rubric:: Examples
     
     >>> tr1 = (0.2, 0.3)
     >>> TR_plot(linspace(0., 1., 100), tr1)
