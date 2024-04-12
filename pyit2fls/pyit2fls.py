@@ -718,27 +718,25 @@ class T1FS:
         
         title : str
             
-            If it is set, it indicates the title which would be 
-            represented in the plot. If it is not set, the plot would not 
-            have a title.
+            If set, it indicates the title which will be represented in the plot. 
+            If not set, the plot will not have a title.
         
         legend_text : str
             
-            If it is set, it indicates the legend text which would 
-            be represented in the plot. If it is not set, the plot would 
-            not contain a legend.
+            If set, it indicates the legend text which will be represented in the plot. 
+            If not set, the plot will not contain a legend.
         
         filename : str
             
-            If it is set, the plot would be saved as a filename.ext file.
+            If set, the plot will be saved as a filename.ext file.
         
         ext : str
 
-            Extension of the output file with pdf default value.
+            Extension of the output file with 'pdf' as the default value.
         
         grid : bool
 
-            Grid on/off.
+            Determines whether the grid is displayed in the plot.
         
         xlabel : str
 
@@ -1865,27 +1863,25 @@ def TR_plot(domain, tr, title=None, legend=None, filename=None,
     
     title : str
         
-        If it is set, it indicates the title which would be 
-        represented in the plot. If it is not set, the plot would not 
-        have a title.
+        If set, it indicates the title which will be represented in the plot. 
+        If not set, the plot will not have a title.
         
     legend : str
         
-        If it is set, it indicates the legend text which would 
-        be represented in the plot. If it is not set, the plot would 
-        not contain a legend.
+        If set, it indicates the legend text which will be represented in the plot. 
+        If not set, the plot will not contain a legend.
         
     filename : str
         
-        If it is set, the plot would be saved as a filename.ext file.
+        If set, the plot will be saved as a filename.ext file.
         
     ext : str
 
-        Extension of the output file with pdf default value.
+        Extension of the output file with 'pdf' as the default value.
     
     grid : bool
 
-        Grid on/off.
+        Determines whether the grid is displayed in the plot.
     
     xlabel : str
 
@@ -1919,22 +1915,19 @@ def crisp(tr):
     """
     Calculates the crisp number achieved from type reduced IT2FS.
     
-    Parameters
-    ----------------------------------------------
+    .. rubric:: Parameters
     
-    tr:
-        Tuple (l, r)
+    tr : Tuple (l, r)
         
         Type reduced IT2FS
     
-    Returns
-    ----------------------
-    float
+    .. rubric:: Returns
     
-    Returns the crisp number achieved from type reduced IT2FS.
+    output : float
     
-    Examples
-    -----------------------
+        Returns the crisp number resulting from type reduced IT2FS.
+    
+    .. rubric:: Examples
     
     >>> tr1 = (0.1, 0.3)
     >>> print(crisp(tr1))
