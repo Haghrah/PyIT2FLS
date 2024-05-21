@@ -99,324 +99,288 @@
 <dt class="sig sig-object py" id="pyit2fls.min_t_norm">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">min_t_norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.min_t_norm" title="Permalink to this definition"></a></dt>
 <dd><p>Minimum t-norm function.</p>
-<section id="parameters">
-<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
+<p class="rubric">Parameters</p>
 <dl class="simple">
 <dt>a:</dt><dd><p>numpy (n,) shaped array</p>
 </dd>
 <dt>b:</dt><dd><p>numpy (n,) shaped array</p>
 </dd>
 </dl>
-</section>
-<section id="returns">
-<h2>Returns<a class="headerlink" href="#returns" title="Permalink to this heading"></a></h2>
-<p>Returns minimum t-norm of a and b</p>
-</section>
-<section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
+<p class="rubric">Returns</p>
+<p>output : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>Returns minimum t-norm of a and b.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">10</span><span class="p">,)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">10</span><span class="p">,)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">min_t_norm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.product_t_norm">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">product_t_norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.product_t_norm" title="Permalink to this definition"></a></dt>
 <dd><p>Product t-norm function.</p>
-<section id="id1">
-<h2>Parameters<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<p class="rubric">Parameters</p>
 <dl class="simple">
 <dt>a:</dt><dd><p>numpy (n,) shaped array</p>
 </dd>
 <dt>b:</dt><dd><p>numpy (n,) shaped array</p>
 </dd>
 </dl>
-</section>
-<section id="id2">
-<h2>Returns<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
-<p>Returns product t-norm of a and b</p>
-</section>
-<section id="id3">
-<h2>Examples<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<p class="rubric">Returns</p>
+<p>output : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>Returns product t-norm of a and b.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">10</span><span class="p">,)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">10</span><span class="p">,)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">product_t_norm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.lukasiewicz_t_norm">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">lukasiewicz_t_norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.lukasiewicz_t_norm" title="Permalink to this definition"></a></dt>
 <dd><p>Lukasiewicz t-norm function.</p>
-<section id="id4">
-<h2>Parameters<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<p class="rubric">Parameters</p>
 <dl class="simple">
 <dt>a:</dt><dd><p>numpy (n,) shaped array</p>
 </dd>
 <dt>b:</dt><dd><p>numpy (n,) shaped array</p>
 </dd>
 </dl>
-</section>
-<section id="id5">
-<h2>Returns<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
-<p>Returns Lukasiewicz t-norm of a and b</p>
-</section>
-<section id="id6">
-<h2>Examples<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+<p class="rubric">Returns</p>
+<p>output : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>Returns Lukasiewicz t-norm of a and b.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">10</span><span class="p">,)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">10</span><span class="p">,)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">lukasiewicz_t_norm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.drastic_t_norm">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">drastic_t_norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.drastic_t_norm" title="Permalink to this definition"></a></dt>
 <dd><p>Drastic t-norm function.</p>
-<section id="id7">
-<h2>Parameters<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
+<p class="rubric">Parameters</p>
 <dl class="simple">
 <dt>a:</dt><dd><p>numpy (n,) shaped array</p>
 </dd>
 <dt>b:</dt><dd><p>numpy (n,) shaped array</p>
 </dd>
 </dl>
-</section>
-<section id="id8">
-<h2>Returns<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
-<p>Returns drastic t-norm of a and b</p>
-</section>
-<section id="id9">
-<h2>Examples<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h2>
+<p class="rubric">Returns</p>
+<p>output : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>Returns drastic t-norm of a and b.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">10</span><span class="p">,)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">10</span><span class="p">,)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">drastic_t_norm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.nilpotent_minimum_t_norm">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">nilpotent_minimum_t_norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.nilpotent_minimum_t_norm" title="Permalink to this definition"></a></dt>
 <dd><p>Nilpotent minimum t-norm function.</p>
-<section id="id10">
-<h2>Parameters<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h2>
+<p class="rubric">Parameters</p>
 <dl class="simple">
 <dt>a:</dt><dd><p>numpy (n,) shaped array</p>
 </dd>
 <dt>b:</dt><dd><p>numpy (n,) shaped array</p>
 </dd>
 </dl>
-</section>
-<section id="id11">
-<h2>Returns<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h2>
-<p>Returns nilpotent minimum t-norm of a and b</p>
-</section>
-<section id="id12">
-<h2>Examples<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h2>
+<p class="rubric">Returns</p>
+<p>output : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>Returns nilpotent minimum t-norm of a and b.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">10</span><span class="p">,)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">10</span><span class="p">,)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">nilpotent_minimum_t_norm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.hamacher_product_t_norm">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">hamacher_product_t_norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.hamacher_product_t_norm" title="Permalink to this definition"></a></dt>
 <dd><p>Hamacher product t-norm function.</p>
-<section id="id13">
-<h2>Parameters<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h2>
+<p class="rubric">Parameters</p>
 <dl class="simple">
 <dt>a:</dt><dd><p>numpy (n,) shaped array</p>
 </dd>
 <dt>b:</dt><dd><p>numpy (n,) shaped array</p>
 </dd>
 </dl>
-</section>
-<section id="id14">
-<h2>Returns<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h2>
-<p>Returns hamacher product t-norm of a and b</p>
-</section>
-<section id="id15">
-<h2>Examples<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h2>
+<p class="rubric">Returns</p>
+<p>output : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>Returns hamacher product t-norm of a and b.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">10</span><span class="p">,)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">10</span><span class="p">,)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">hamacher_product_t_norm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.max_s_norm">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">max_s_norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.max_s_norm" title="Permalink to this definition"></a></dt>
 <dd><p>Maximum s-norm function.</p>
-<section id="id16">
-<h2>Parameters<a class="headerlink" href="#id16" title="Permalink to this heading"></a></h2>
+<p class="rubric">Parameters</p>
 <dl class="simple">
 <dt>a:</dt><dd><p>numpy (n,) shaped array</p>
 </dd>
 <dt>b:</dt><dd><p>numpy (n,) shaped array</p>
 </dd>
 </dl>
-</section>
-<section id="id17">
-<h2>Returns<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h2>
-<p>Returns maximum s-norm of a and b</p>
-</section>
-<section id="id18">
-<h2>Examples<a class="headerlink" href="#id18" title="Permalink to this heading"></a></h2>
+<p class="rubric">Returns</p>
+<p>output : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>Returns maximum s-norm of a and b.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">10</span><span class="p">,)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">10</span><span class="p">,)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">max_s_norm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.probabilistic_sum_s_norm">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">probabilistic_sum_s_norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.probabilistic_sum_s_norm" title="Permalink to this definition"></a></dt>
 <dd><p>Probabilistic sum s-norm function.</p>
-<section id="id19">
-<h2>Parameters<a class="headerlink" href="#id19" title="Permalink to this heading"></a></h2>
+<p class="rubric">Parameters</p>
 <dl class="simple">
 <dt>a:</dt><dd><p>numpy (n,) shaped array</p>
 </dd>
 <dt>b:</dt><dd><p>numpy (n,) shaped array</p>
 </dd>
 </dl>
-</section>
-<section id="id20">
-<h2>Returns<a class="headerlink" href="#id20" title="Permalink to this heading"></a></h2>
-<p>Returns probabilistic sum s-norm of a and b</p>
-</section>
-<section id="id21">
-<h2>Examples<a class="headerlink" href="#id21" title="Permalink to this heading"></a></h2>
+<p class="rubric">Returns</p>
+<p>output : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>Returns probabilistic sum s-norm of a and b.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">10</span><span class="p">,)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">10</span><span class="p">,)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">probabilistic_sum_s_norm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.bounded_sum_s_norm">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">bounded_sum_s_norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.bounded_sum_s_norm" title="Permalink to this definition"></a></dt>
 <dd><p>Bounded sum s-norm function.</p>
-<section id="id22">
-<h2>Parameters<a class="headerlink" href="#id22" title="Permalink to this heading"></a></h2>
+<p class="rubric">Parameters</p>
 <dl class="simple">
 <dt>a:</dt><dd><p>numpy (n,) shaped array</p>
 </dd>
 <dt>b:</dt><dd><p>numpy (n,) shaped array</p>
 </dd>
 </dl>
-</section>
-<section id="id23">
-<h2>Returns<a class="headerlink" href="#id23" title="Permalink to this heading"></a></h2>
-<p>Returns bounded sum s-norm of a and b</p>
-</section>
-<section id="id24">
-<h2>Examples<a class="headerlink" href="#id24" title="Permalink to this heading"></a></h2>
+<p class="rubric">Returns</p>
+<p>output : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>Returns bounded sum s-norm of a and b.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">10</span><span class="p">,)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">10</span><span class="p">,)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">bounded_sum_s_norm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.drastic_s_norm">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">drastic_s_norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.drastic_s_norm" title="Permalink to this definition"></a></dt>
 <dd><p>Drastic s-norm function.</p>
-<section id="id25">
-<h2>Parameters<a class="headerlink" href="#id25" title="Permalink to this heading"></a></h2>
+<p class="rubric">Parameters</p>
 <dl class="simple">
 <dt>a:</dt><dd><p>numpy (n,) shaped array</p>
 </dd>
 <dt>b:</dt><dd><p>numpy (n,) shaped array</p>
 </dd>
 </dl>
-</section>
-<section id="id26">
-<h2>Returns<a class="headerlink" href="#id26" title="Permalink to this heading"></a></h2>
-<p>Returns drastic s-norm of a and b</p>
-</section>
-<section id="id27">
-<h2>Examples<a class="headerlink" href="#id27" title="Permalink to this heading"></a></h2>
+<p class="rubric">Returns</p>
+<p>output : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>Returns drastic s-norm of a and b.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">10</span><span class="p">,)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">10</span><span class="p">,)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">drastic_s_norm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.nilpotent_maximum_s_norm">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">nilpotent_maximum_s_norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.nilpotent_maximum_s_norm" title="Permalink to this definition"></a></dt>
 <dd><p>Nilpotent maximum s-norm function.</p>
-<section id="id28">
-<h2>Parameters<a class="headerlink" href="#id28" title="Permalink to this heading"></a></h2>
+<p class="rubric">Parameters</p>
 <dl class="simple">
 <dt>a:</dt><dd><p>numpy (n,) shaped array</p>
 </dd>
 <dt>b:</dt><dd><p>numpy (n,) shaped array</p>
 </dd>
 </dl>
-</section>
-<section id="id29">
-<h2>Returns<a class="headerlink" href="#id29" title="Permalink to this heading"></a></h2>
-<p>Returns nilpotent maximum s-norm of a and b</p>
-</section>
-<section id="id30">
-<h2>Examples<a class="headerlink" href="#id30" title="Permalink to this heading"></a></h2>
+<p class="rubric">Returns</p>
+<p>output : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>Returns nilpotent maximum s-norm of a and b</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">10</span><span class="p">,)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">10</span><span class="p">,)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">nilpotent_maximum_s_norm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.einstein_sum_s_norm">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">einstein_sum_s_norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.einstein_sum_s_norm" title="Permalink to this definition"></a></dt>
 <dd><p>Einstein sum s-norm function.</p>
-<section id="id31">
-<h2>Parameters<a class="headerlink" href="#id31" title="Permalink to this heading"></a></h2>
+<p class="rubric">Parameters</p>
 <dl class="simple">
 <dt>a:</dt><dd><p>numpy (n,) shaped array</p>
 </dd>
 <dt>b:</dt><dd><p>numpy (n,) shaped array</p>
 </dd>
 </dl>
-</section>
-<section id="id32">
-<h2>Returns<a class="headerlink" href="#id32" title="Permalink to this heading"></a></h2>
-<p>Returns einstein sum s-norm of a and b</p>
-</section>
-<section id="id33">
-<h2>Examples<a class="headerlink" href="#id33" title="Permalink to this heading"></a></h2>
+<p class="rubric">Returns</p>
+<p>output : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>Returns einstein sum s-norm of a and b</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">10</span><span class="p">,)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">10</span><span class="p">,)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">einstein_sum_s_norm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 </section>

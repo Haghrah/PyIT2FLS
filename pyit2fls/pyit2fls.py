@@ -1913,19 +1913,19 @@ def TR_plot(domain, tr, title=None, legend=None, filename=None,
 
 def crisp(tr):
     """
-    Calculates the crisp number achieved from type reduced IT2FS.
+    Calculates the crisp number obtained from type reduced IT2FS.
     
     .. rubric:: Parameters
     
     tr : Tuple (l, r)
         
-        Type reduced IT2FS
+        A tuple (l, r) representing the type-reduced Interval Type-2 Fuzzy Set (IT2FS).
     
     .. rubric:: Returns
     
     output : float
     
-        Returns the crisp number resulting from type reduced IT2FS.
+        The crisp number resulting from the type-reduced IT2FS.
     
     .. rubric:: Examples
     
@@ -1936,26 +1936,25 @@ def crisp(tr):
 
 def crisp_list(trs, o=None):
     """
-    Calculates the crisp outputs achieved by calling the evaluate_list 
+    Calculates the crisp outputs obtained by calling the evaluate_list 
     function from IT2FLS class.
     
-    Parameters
-    ----------------------------------------------
+    .. rubric:: Parameters
     
-    trs:
-        List of Tuple (l, r)
+    trs : List of Tuples (l, r)
         
-        Type reduced IT2FSs
+        A list of tuples (l, r) representing the type-reduced Interval Type-2 Fuzzy Sets.
     
-    o:
-        str
+    o : str
         
-        The name of the output variable to be processed. If it is not given, 
-        then the crisp outputs are calculated for all output variables.
+        The name of the output variable to be processed. If not given, 
+        the crisp outputs are calculated for all output variables.
     
-    Returns
-    ----------------------
-    List of float (or Dictionary of Lists of float)
+    .. rubric:: Returns
+    
+    output : List of floats or Dictionary of {str: List of float}
+    
+        List of floats (or Dictionary of Lists of float with output variable names as keys).
     """
     if o is None:
         output = {}
@@ -1976,8 +1975,7 @@ def min_t_norm(a, b):
     """
     Minimum t-norm function.
     
-    Parameters
-    ----------------------------------------------
+    .. rubric:: Parameters
     
     a:
         numpy (n,) shaped array
@@ -1985,12 +1983,13 @@ def min_t_norm(a, b):
     b:
         numpy (n,) shaped array
     
-    Returns
-    ----------------------
-    Returns minimum t-norm of a and b
+    .. rubric:: Returns
     
-    Examples
-    -----------------------
+    output : numpy (n,) shaped array
+
+        Returns minimum t-norm of a and b.
+    
+    .. rubric:: Examples
     
     >>> a = random.random(10,)
     >>> b = random.random(10,)
@@ -2003,8 +2002,7 @@ def product_t_norm(a, b):
     """
     Product t-norm function.
     
-    Parameters
-    ----------------------------------------------
+    .. rubric:: Parameters
     
     a:
         numpy (n,) shaped array
@@ -2012,12 +2010,13 @@ def product_t_norm(a, b):
     b:
         numpy (n,) shaped array
     
-    Returns
-    ----------------------
-    Returns product t-norm of a and b
+    .. rubric:: Returns
+
+    output : numpy (n,) shaped array
     
-    Examples
-    -----------------------
+        Returns product t-norm of a and b.
+    
+    .. rubric:: Examples
     
     >>> a = random.random(10,)
     >>> b = random.random(10,)
@@ -2029,8 +2028,7 @@ def lukasiewicz_t_norm(a, b):
     """
     Lukasiewicz t-norm function.
     
-    Parameters
-    ----------------------------------------------
+    .. rubric:: Parameters
     
     a:
         numpy (n,) shaped array
@@ -2038,12 +2036,13 @@ def lukasiewicz_t_norm(a, b):
     b:
         numpy (n,) shaped array
     
-    Returns
-    ----------------------
-    Returns Lukasiewicz t-norm of a and b
+    .. rubric:: Returns
+
+    output : numpy (n,) shaped array
     
-    Examples
-    -----------------------
+        Returns Lukasiewicz t-norm of a and b.
+    
+    .. rubric:: Examples
     
     >>> a = random.random(10,)
     >>> b = random.random(10,)
@@ -2055,8 +2054,7 @@ def drastic_t_norm(a, b):
     """
     Drastic t-norm function.
     
-    Parameters
-    ----------------------------------------------
+    .. rubric:: Parameters
     
     a:
         numpy (n,) shaped array
@@ -2064,12 +2062,13 @@ def drastic_t_norm(a, b):
     b:
         numpy (n,) shaped array
     
-    Returns
-    ----------------------
-    Returns drastic t-norm of a and b
+    .. rubric:: Returns
+
+    output : numpy (n,) shaped array
     
-    Examples
-    -----------------------
+        Returns drastic t-norm of a and b.
+    
+    .. rubric:: Examples
     
     >>> a = random.random(10,)
     >>> b = random.random(10,)
@@ -2081,8 +2080,7 @@ def nilpotent_minimum_t_norm(a, b):
     """
     Nilpotent minimum t-norm function.
     
-    Parameters
-    ----------------------------------------------
+    .. rubric:: Parameters
     
     a:
         numpy (n,) shaped array
@@ -2090,12 +2088,13 @@ def nilpotent_minimum_t_norm(a, b):
     b:
         numpy (n,) shaped array
     
-    Returns
-    ----------------------
-    Returns nilpotent minimum t-norm of a and b
+    .. rubric:: Returns
+
+    output : numpy (n,) shaped array
     
-    Examples
-    -----------------------
+        Returns nilpotent minimum t-norm of a and b.
+    
+    .. rubric:: Examples
     
     >>> a = random.random(10,)
     >>> b = random.random(10,)
@@ -2107,8 +2106,7 @@ def hamacher_product_t_norm(a, b):
     """
     Hamacher product t-norm function.
     
-    Parameters
-    ----------------------------------------------
+    .. rubric:: Parameters
     
     a:
         numpy (n,) shaped array
@@ -2116,12 +2114,13 @@ def hamacher_product_t_norm(a, b):
     b:
         numpy (n,) shaped array
     
-    Returns
-    ----------------------
-    Returns hamacher product t-norm of a and b
+    .. rubric:: Returns
+
+    output : numpy (n,) shaped array
     
-    Examples
-    -----------------------
+        Returns hamacher product t-norm of a and b.
+    
+    .. rubric:: Examples
     
     >>> a = random.random(10,)
     >>> b = random.random(10,)
@@ -2133,8 +2132,7 @@ def max_s_norm(a, b):
     """
     Maximum s-norm function.
     
-    Parameters
-    ----------------------------------------------
+    .. rubric:: Parameters
     
     a:
         numpy (n,) shaped array
@@ -2142,12 +2140,13 @@ def max_s_norm(a, b):
     b:
         numpy (n,) shaped array
     
-    Returns
-    ----------------------
-    Returns maximum s-norm of a and b
+    .. rubric:: Returns
+
+    output : numpy (n,) shaped array
     
-    Examples
-    -----------------------
+        Returns maximum s-norm of a and b.
+    
+    .. rubric:: Examples
     
     >>> a = random.random(10,)
     >>> b = random.random(10,)
@@ -2159,22 +2158,22 @@ def probabilistic_sum_s_norm(a, b):
     """
     Probabilistic sum s-norm function.
 
-    Parameters
-    ----------------------------------------------
-
+    .. rubric:: Parameters
+    
     a:
         numpy (n,) shaped array
 
     b:
         numpy (n,) shaped array
 
-    Returns
-    ----------------------
-    Returns probabilistic sum s-norm of a and b
+    .. rubric:: Returns
 
-    Examples
-    -----------------------
+    output : numpy (n,) shaped array
+    
+        Returns probabilistic sum s-norm of a and b.
 
+    .. rubric:: Examples
+    
     >>> a = random.random(10,)
     >>> b = random.random(10,)
     >>> c = probabilistic_sum_s_norm(a, b)
@@ -2185,22 +2184,22 @@ def bounded_sum_s_norm(a, b):
     """
     Bounded sum s-norm function.
 
-    Parameters
-    ----------------------------------------------
-
+    .. rubric:: Parameters
+    
     a:
         numpy (n,) shaped array
 
     b:
         numpy (n,) shaped array
 
-    Returns
-    ----------------------
-    Returns bounded sum s-norm of a and b
+    .. rubric:: Returns
 
-    Examples
-    -----------------------
+    output : numpy (n,) shaped array
+    
+        Returns bounded sum s-norm of a and b.
 
+    .. rubric:: Examples
+    
     >>> a = random.random(10,)
     >>> b = random.random(10,)
     >>> c = bounded_sum_s_norm(a, b)
@@ -2211,22 +2210,22 @@ def drastic_s_norm(a, b):
     """
     Drastic s-norm function.
 
-    Parameters
-    ----------------------------------------------
-
+    .. rubric:: Parameters
+    
     a:
         numpy (n,) shaped array
 
     b:
         numpy (n,) shaped array
 
-    Returns
-    ----------------------
-    Returns drastic s-norm of a and b
+    .. rubric:: Returns
 
-    Examples
-    -----------------------
+    output : numpy (n,) shaped array
+    
+        Returns drastic s-norm of a and b.
 
+    .. rubric:: Examples
+    
     >>> a = random.random(10,)
     >>> b = random.random(10,)
     >>> c = drastic_s_norm(a, b)
@@ -2237,22 +2236,22 @@ def nilpotent_maximum_s_norm(a, b):
     """
     Nilpotent maximum s-norm function.
 
-    Parameters
-    ----------------------------------------------
-
+    .. rubric:: Parameters
+    
     a:
         numpy (n,) shaped array
 
     b:
         numpy (n,) shaped array
 
-    Returns
-    ----------------------
-    Returns nilpotent maximum s-norm of a and b
+    .. rubric:: Returns
 
-    Examples
-    -----------------------
+    output : numpy (n,) shaped array
+    
+        Returns nilpotent maximum s-norm of a and b
 
+    .. rubric:: Examples
+    
     >>> a = random.random(10,)
     >>> b = random.random(10,)
     >>> c = nilpotent_maximum_s_norm(a, b)
@@ -2263,22 +2262,22 @@ def einstein_sum_s_norm(a, b):
     """
     Einstein sum s-norm function.
 
-    Parameters
-    ----------------------------------------------
-
+    .. rubric:: Parameters
+    
     a:
         numpy (n,) shaped array
 
     b:
         numpy (n,) shaped array
 
-    Returns
-    ----------------------
-    Returns einstein sum s-norm of a and b
+    .. rubric:: Returns
 
-    Examples
-    -----------------------
+    output : numpy (n,) shaped array
+    
+        Returns einstein sum s-norm of a and b
 
+    .. rubric:: Examples
+    
     >>> a = random.random(10,)
     >>> b = random.random(10,)
     >>> c = einstein_sum_s_norm(a, b)
