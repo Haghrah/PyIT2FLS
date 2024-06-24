@@ -1977,11 +1977,9 @@ def min_t_norm(a, b):
     
     .. rubric:: Parameters
     
-    a:
-        numpy (n,) shaped array
+    a : numpy (n,) shaped array
     
-    b:
-        numpy (n,) shaped array
+    b : numpy (n,) shaped array
     
     .. rubric:: Returns
     
@@ -2004,11 +2002,9 @@ def product_t_norm(a, b):
     
     .. rubric:: Parameters
     
-    a:
-        numpy (n,) shaped array
+    a : numpy (n,) shaped array
     
-    b:
-        numpy (n,) shaped array
+    b : numpy (n,) shaped array
     
     .. rubric:: Returns
 
@@ -2030,11 +2026,9 @@ def lukasiewicz_t_norm(a, b):
     
     .. rubric:: Parameters
     
-    a:
-        numpy (n,) shaped array
+    a : numpy (n,) shaped array
     
-    b:
-        numpy (n,) shaped array
+    b : numpy (n,) shaped array
     
     .. rubric:: Returns
 
@@ -2056,11 +2050,9 @@ def drastic_t_norm(a, b):
     
     .. rubric:: Parameters
     
-    a:
-        numpy (n,) shaped array
+    a : numpy (n,) shaped array
     
-    b:
-        numpy (n,) shaped array
+    b : numpy (n,) shaped array
     
     .. rubric:: Returns
 
@@ -2082,11 +2074,9 @@ def nilpotent_minimum_t_norm(a, b):
     
     .. rubric:: Parameters
     
-    a:
-        numpy (n,) shaped array
+    a : numpy (n,) shaped array
     
-    b:
-        numpy (n,) shaped array
+    b : numpy (n,) shaped array
     
     .. rubric:: Returns
 
@@ -2108,11 +2098,9 @@ def hamacher_product_t_norm(a, b):
     
     .. rubric:: Parameters
     
-    a:
-        numpy (n,) shaped array
+    a : numpy (n,) shaped array
     
-    b:
-        numpy (n,) shaped array
+    b : numpy (n,) shaped array
     
     .. rubric:: Returns
 
@@ -2134,11 +2122,9 @@ def max_s_norm(a, b):
     
     .. rubric:: Parameters
     
-    a:
-        numpy (n,) shaped array
+    a : numpy (n,) shaped array
     
-    b:
-        numpy (n,) shaped array
+    b : numpy (n,) shaped array
     
     .. rubric:: Returns
 
@@ -2160,11 +2146,9 @@ def probabilistic_sum_s_norm(a, b):
 
     .. rubric:: Parameters
     
-    a:
-        numpy (n,) shaped array
+    a : numpy (n,) shaped array
 
-    b:
-        numpy (n,) shaped array
+    b : numpy (n,) shaped array
 
     .. rubric:: Returns
 
@@ -2186,11 +2170,9 @@ def bounded_sum_s_norm(a, b):
 
     .. rubric:: Parameters
     
-    a:
-        numpy (n,) shaped array
+    a : numpy (n,) shaped array
 
-    b:
-        numpy (n,) shaped array
+    b : numpy (n,) shaped array
 
     .. rubric:: Returns
 
@@ -2212,11 +2194,9 @@ def drastic_s_norm(a, b):
 
     .. rubric:: Parameters
     
-    a:
-        numpy (n,) shaped array
+    a : numpy (n,) shaped array
 
-    b:
-        numpy (n,) shaped array
+    b : numpy (n,) shaped array
 
     .. rubric:: Returns
 
@@ -2238,11 +2218,9 @@ def nilpotent_maximum_s_norm(a, b):
 
     .. rubric:: Parameters
     
-    a:
-        numpy (n,) shaped array
+    a : numpy (n,) shaped array
 
-    b:
-        numpy (n,) shaped array
+    b : numpy (n,) shaped array
 
     .. rubric:: Returns
 
@@ -2264,11 +2242,9 @@ def einstein_sum_s_norm(a, b):
 
     .. rubric:: Parameters
     
-    a:
-        numpy (n,) shaped array
+    a : numpy (n,) shaped array
 
-    b:
-        numpy (n,) shaped array
+    b : numpy (n,) shaped array
 
     .. rubric:: Returns
 
@@ -2288,37 +2264,31 @@ def meet(domain, it2fs1, it2fs2, t_norm):
     """
     Meet operator for IT2FSs.
     
-    Parameters
-    ----------------------------------------------
+    .. rubric:: Parameters
     
-    domain:
-        numpy (n,) shaped array
+    domain : numpy (n,) shaped array
         
         Indicates the universe of discourse dedicated to the IT2FS.
     
-    it2fs1:
-        IT2FS
+    it2fs1 : IT2FS
         
         First input of the meet operator.
         
-    it2fs2:
-        IT2FS
+    it2fs2 : IT2FS
         
         Second input of the meet operator.
     
-    t_norm:
-        function
+    t_norm : function
         
         The t-norm function to be used.
     
-    Returns
-    ----------------------
-    IT2FS
+    .. rubric:: Returns
     
-    Returns the meet of the two input IT2FSs.
+    output : IT2FS
     
-    Examples
-    -----------------------
+        Returns the meet of the two input IT2FSs.
+    
+    .. rubric:: Examples
     
     >>> domain = linspace(0., 1., 100)
     >>> it2fs1 = IT2FS_Gaussian_UncertStd(domain, [0.33, 0.2, 0.05, 1.])
