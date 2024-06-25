@@ -2308,37 +2308,31 @@ def join(domain, it2fs1, it2fs2, s_norm):
     """
     Join operator for IT2FSs.
     
-    Parameters
-    ----------------------------------------------
+    .. rubric:: Parameters
     
-    domain:
-        numpy (n,) shaped array
+    domain : numpy (n,) shaped array
         
         Indicates the universe of discourse dedicated to the IT2FS.
     
-    it2fs1:
-        IT2FS
+    it2fs1 : IT2FS
         
         First input of the join operator.
         
-    it2fs2:
-        IT2FS
+    it2fs2 : IT2FS
         
         Second input of the join operator.
     
-    s_norm:
-        function
+    s_norm : function
         
         The s-norm function to be used.
     
-    Returns
-    ----------------------
-    IT2FS
+    .. rubric:: Returns
     
-    Returns the join of the two input IT2FSs.
+    output : IT2FS
     
-    Examples
-    -----------------------
+        Returns the join of the two input IT2FSs.
+    
+    .. rubric:: Examples
     
     >>> domain = linspace(0., 1., 100)
     >>> it2fs1 = IT2FS_Gaussian_UncertStd(domain, [0.33, 0.2, 0.05, 1.])
@@ -2376,24 +2370,21 @@ def KM_algorithm(intervals, params=[]):  # intervals = [[a1, b1, c1, d1], [a2, b
     """
     KM algorithm
     
-    Parameters
-    ----------------------------------------------
+    .. rubric:: Parameters
     
-    intervals:
-        numpy (n, 4) array
+    intervals : numpy (n, 4) array
         
         Y = intervals[:, 0:2]
         
         F = intervals[:, 2:4]
     
-    params:
-        List
+    params : List
         
         List of parameters of algorithm, if it is needed.
     
-    Returns
-    ----------------------
-    Tuple (l, r)
+    .. rubric:: Returns
+    
+    output : Tuple (l, r)
     """
     # left calculations
     intervals = trim(intervals)
@@ -2459,24 +2450,21 @@ def EKM_algorithm(intervals, params=[]):
     """
     EKM algorithm
     
-    Parameters
-    ----------------------------------------------
+    .. rubric:: Parameters
     
-    intervals:
-        numpy (n, 4) array
+    intervals : numpy (n, 4) array
         
         Y = intervals[:, 0:2]
         
         F = intervals[:, 2:4]
     
-    params:
-        List
+    params : List
         
         List of parameters of algorithm, if it is needed.
     
-    Returns
-    ----------------------
-    Tuple (l, r)
+    .. rubric:: Returns
+    
+    output : Tuple (l, r)
     """
     
     # Left calculations
@@ -2563,24 +2551,21 @@ def WEKM_algorithm(intervals, params=[]):
     """
     WEKM algorithm
     
-    Parameters
-    ----------------------------------------------
+    .. rubric:: Parameters
     
-    intervals:
-        numpy (n, 4) array
+    intervals : numpy (n, 4) array
         
         Y = intervals[:, 0:2]
         
         F = intervals[:, 2:4]
     
-    params:
-        List
+    params : List
         
         List of parameters of algorithm, if it is needed.
     
-    Returns
-    ----------------------
-    Tuple (l, r)
+    .. rubric:: Returns
+    
+    output : Tuple (l, r)
     """
     
     # Left calculations
@@ -2669,24 +2654,21 @@ def TWEKM_algorithm(intervals, params):
     """
     TWEKM algorithm
     
-    Parameters
-    ----------------------------------------------
+    .. rubric:: Parameters
     
-    intervals:
-        numpy (n, 4) array
+    intervals : numpy (n, 4) array
         
         Y = intervals[:, 0:2]
         
         F = intervals[:, 2:4]
     
-    params:
-        List
+    params : List
         
         List of parameters of algorithm, if it is needed.
     
-    Returns
-    ----------------------
-    Tuple (l, r)
+    .. rubric:: Returns
+    
+    output : Tuple (l, r)
     """
     params = []
     N = len(intervals)
@@ -2702,24 +2684,21 @@ def EIASC_algorithm(intervals, params=[]):
     """
     EIASC algorithm
     
-    Parameters
-    ----------------------------------------------
+    .. rubric:: Parameters
     
-    intervals:
-        numpy (n, 4) array
+    intervals : numpy (n, 4) array
         
         Y = intervals[:, 0:2]
         
         F = intervals[:, 2:4]
     
-    params:
-        List
+    params : List
         
         List of parameters of algorithm, if it is needed.
     
-    Returns
-    ----------------------
-    Tuple (l, r)
+    .. rubric:: Returns
+    
+    output : Tuple (l, r)
     """
     
     # Left calculations
@@ -2763,24 +2742,21 @@ def WM_algorithm(intervals, params=[]):
     """
     WM algorithm
     
-    Parameters
-    ----------------------------------------------
+    .. rubric:: Parameters
     
-    intervals:
-        numpy (n, 4) array
+    intervals : numpy (n, 4) array
         
         Y = intervals[:, 0:2]
         
         F = intervals[:, 2:4]
     
-    params:
-        List
+    params : List
         
         List of parameters of algorithm, if it is needed.
     
-    Returns
-    ----------------------
-    Tuple (l, r)
+    .. rubric:: Returns
+
+    output : Tuple (l, r)
     """
     intervals = intervals[intervals[:,0].argsort()]
     intervals = trim(intervals)
@@ -2808,26 +2784,23 @@ def BMM_algorithm(intervals, params):
     """
     BMM algorithm
     
-    Parameters
-    ----------------------------------------------
+    .. rubric:: Parameters
     
-    intervals:
-        numpy (n, 4) array
+    intervals : numpy (n, 4) array
         
         Y = intervals[:, 0:2]
         
         F = intervals[:, 2:4]
     
-    params:
-        List
+    params : List
         
         List of parameters of algorithm, if it is needed.
     
-    Returns
-    ----------------------
-    float
+    .. rubric:: Returns
     
-    Crisp output
+    output : float
+    
+        Crisp output
     """
     intervals = intervals[intervals[:,0].argsort()]
     intervals = trim(intervals)
@@ -2851,26 +2824,23 @@ def LBMM_algorithm(intervals, params):
     Reducing the Computational Costof Interval Type-2 Fuzzy Logic 
     Controllers
     
-    Parameters
-    ----------------------------------------------
+    .. rubric:: Parameters
     
-    intervals:
-        numpy (n, 4) array
+    intervals : numpy (n, 4) array
         
         Y = intervals[:, 0:2]
         
         F = intervals[:, 2:4]
     
-    params:
-        List
+    params : List
         
         List of parameters of algorithm, if it is needed.
     
-    Returns
-    ----------------------
-    float
+    .. rubric:: Returns
     
-    Crisp output
+    output : float
+    
+        Crisp output
     """
     intervals = intervals[intervals[:,0].argsort()]
     intervals = trim(intervals)
@@ -2889,26 +2859,23 @@ def NT_algorithm(intervals, params=[]):
     """
     NT algorithm
     
-    Parameters
-    ----------------------------------------------
+    .. rubric:: Parameters
     
-    intervals:
-        numpy (n, 4) array
+    intervals : numpy (n, 4) array
         
         Y = intervals[:, 0:2]
         
         F = intervals[:, 2:4]
     
-    params:
-        List
+    params : List
         
         List of parameters of algorithm, if it is needed.
     
-    Returns
-    ----------------------
-    float
+    .. rubric:: Returns
     
-    Crisp output
+    output : float
+    
+        Crisp output
     """
     intervals = intervals[intervals[:,0].argsort()]
     intervals = trim(intervals)
@@ -2925,38 +2892,33 @@ def Centroid(it2fs, alg_func, domain, alg_params=[]):
     """
     Centroid type reduction for an interval type 2 fuzzy set.
     
-    Parameters
-    ----------------------------------------------
+    .. rubric:: Parameters
     
-    it2fs:
-        IT2FS
+    it2fs : IT2FS
         
         IT2FS which would be type reduced.
     
-    alg_func:
-        Function
+    alg_func : Function
         
-        Type reduction algorithm to be used, which is one of these:
+        Type reduction algorithm to be used, one of the list below:
             
             KM_algorithm, EKM_algorithm, WEKM_algorithm, TWEKM_algorithm, 
             EIASC_algorithm, WM_algorithm, BMM_algorithm, LBMM_algorithm, and 
             NT_algorithm
     
-    domain:
-        numpy (n,) shaped array
+    domain : numpy (n,) shaped array
         
         Indicates the universe of discourse dedicated to the IT2FS.
     
-    alg_params:
-        List
+    alg_params : List
         
         List of parameters of type reduction algorithm if it is needed.
     
-    Returns
-    ----------------------
-    Based on selected type reduction algorithm tuple (l, r) or float
+    .. rubric:: Returns
     
-    Returns Centroid type reduction of the input IT2FS.
+    output : Based on selected type reduction algorithm tuple (l, r) or float
+    
+        Returns Centroid type reduction of the input IT2FS.
     """
     intervals = c_[domain, domain, it2fs.lower, it2fs.upper]
     return alg_func(intervals, alg_params)
@@ -2966,43 +2928,37 @@ def CoSet(firing_array, consequent_array, alg_func, domain, alg_params=[]):
     """
     Center of sets type reduction.
     
-    Parameters
-    ----------------------------------------------
+    .. rubric:: Parameters
     
-    firing_array:
-        numpy (m, 2) shaped array
+    firing_array : numpy (m, 2) shaped array
         
         Firing strength of consequents.
     
-    consequent_array:
-        List of IT2FS
+    consequent_array : List of IT2FS
         
         List of consequents corresponding with the rules of IT2FLS
     
-    alg_func:
-        Function
+    alg_func : Function
         
-        Type reduction algorithm to be used, which is one of these:
+        Type reduction algorithm to be used, one of the list below:
             
             KM_algorithm, EKM_algorithm, WEKM_algorithm, TWEKM_algorithm, 
             EIASC_algorithm, WM_algorithm, BMM_algorithm, LBMM_algorithm, and 
             NT_algorithm
     
-    domain:
-        numpy (n,) shaped array
+    domain : numpy (n,) shaped array
         
         Indicates the universe of discourse dedicated to the IT2FS.
     
-    alg_params:
-        List
+    alg_params : List
         
         List of parameters of type reduction algorithm if it is needed.
     
-    Returns
-    ----------------------
-    Based on selected type reduction algorithm tuple (l, r) or float
+    .. rubric:: Returns
     
-    Returns Center of sets type reduction of the input IT2FS.
+    output : Based on selected type reduction algorithm tuple (l, r) or float
+    
+        Returns Center of sets type reduction of the input IT2FS.
     """
     intervals = []
     for l in range(len(consequent_array)):
