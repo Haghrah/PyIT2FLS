@@ -696,6 +696,7 @@ class T1FS:
         method : str
 
             Must be one of the methods listed below:
+            
             1. CoG: Center of gravity
         
         .. rubric:: Returns
@@ -3287,6 +3288,7 @@ class IT2FLS:
             
             Indicates the type reduction method name and should be one 
             of the methods listed below:
+            
                 Centroid, CoSet, CoSum, Height, and ModiHe.
         
         method_params=[] : List

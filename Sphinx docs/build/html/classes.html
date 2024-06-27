@@ -48,13 +48,93 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="_generated/pyit2fls.html">PyIT2FLS</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Classes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#pyit2fls.T1FS"><code class="docutils literal notranslate"><span class="pre">T1FS</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#pyit2fls.T1Mamdani"><code class="docutils literal notranslate"><span class="pre">T1Mamdani</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#pyit2fls.T1TSK"><code class="docutils literal notranslate"><span class="pre">T1TSK</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#pyit2fls.IT2FS"><code class="docutils literal notranslate"><span class="pre">IT2FS</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#pyit2fls.IT2FLS"><code class="docutils literal notranslate"><span class="pre">IT2FLS</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#pyit2fls.IT2TSK"><code class="docutils literal notranslate"><span class="pre">IT2TSK</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#pyit2fls.IT2Mamdani"><code class="docutils literal notranslate"><span class="pre">IT2Mamdani</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#t1fs">T1FS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.T1FS"><code class="docutils literal notranslate"><span class="pre">T1FS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.T1FS.__repr__"><code class="docutils literal notranslate"><span class="pre">__repr__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.T1FS.copy"><code class="docutils literal notranslate"><span class="pre">copy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.T1FS.__call__"><code class="docutils literal notranslate"><span class="pre">__call__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.T1FS.__neg__"><code class="docutils literal notranslate"><span class="pre">__neg__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.T1FS._CoG"><code class="docutils literal notranslate"><span class="pre">_CoG()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.T1FS.defuzzify"><code class="docutils literal notranslate"><span class="pre">defuzzify()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.T1FS.plot"><code class="docutils literal notranslate"><span class="pre">plot()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#t1tsk">T1TSK</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.T1TSK"><code class="docutils literal notranslate"><span class="pre">T1TSK</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.T1TSK.__repr__"><code class="docutils literal notranslate"><span class="pre">__repr__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.T1TSK.copy"><code class="docutils literal notranslate"><span class="pre">copy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.T1TSK.add_input_variable"><code class="docutils literal notranslate"><span class="pre">add_input_variable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.T1TSK.add_output_variable"><code class="docutils literal notranslate"><span class="pre">add_output_variable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.T1TSK.add_rule"><code class="docutils literal notranslate"><span class="pre">add_rule()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.T1TSK.evaluate"><code class="docutils literal notranslate"><span class="pre">evaluate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#t1mamdani">T1Mamdani</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.T1Mamdani"><code class="docutils literal notranslate"><span class="pre">T1Mamdani</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.T1Mamdani.__repr__"><code class="docutils literal notranslate"><span class="pre">__repr__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.T1Mamdani.copy"><code class="docutils literal notranslate"><span class="pre">copy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.T1Mamdani.add_input_variable"><code class="docutils literal notranslate"><span class="pre">add_input_variable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.T1Mamdani.add_output_variable"><code class="docutils literal notranslate"><span class="pre">add_output_variable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.T1Mamdani.add_rule"><code class="docutils literal notranslate"><span class="pre">add_rule()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.T1Mamdani._CoG"><code class="docutils literal notranslate"><span class="pre">_CoG()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.T1Mamdani._CoA"><code class="docutils literal notranslate"><span class="pre">_CoA()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.T1Mamdani._product_evaluate"><code class="docutils literal notranslate"><span class="pre">_product_evaluate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.T1Mamdani._minimum_evaluate"><code class="docutils literal notranslate"><span class="pre">_minimum_evaluate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.T1Mamdani._lukasiewicz_evaluate"><code class="docutils literal notranslate"><span class="pre">_lukasiewicz_evaluate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.T1Mamdani._zadeh_evaluate"><code class="docutils literal notranslate"><span class="pre">_zadeh_evaluate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.T1Mamdani._dienes_rescher_evaluate"><code class="docutils literal notranslate"><span class="pre">_dienes_rescher_evaluate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#it2fs">IT2FS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2FS"><code class="docutils literal notranslate"><span class="pre">IT2FS</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyit2fls.IT2FS.upper"><code class="docutils literal notranslate"><span class="pre">IT2FS.upper</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyit2fls.IT2FS.lower"><code class="docutils literal notranslate"><span class="pre">IT2FS.lower</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2FS.__repr__"><code class="docutils literal notranslate"><span class="pre">__repr__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2FS.check_set"><code class="docutils literal notranslate"><span class="pre">check_set()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2FS.copy"><code class="docutils literal notranslate"><span class="pre">copy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2FS.plot"><code class="docutils literal notranslate"><span class="pre">plot()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2FS.__neg__"><code class="docutils literal notranslate"><span class="pre">__neg__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#it2fls">IT2FLS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2FLS"><code class="docutils literal notranslate"><span class="pre">IT2FLS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2FLS.__repr__"><code class="docutils literal notranslate"><span class="pre">__repr__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2FLS.add_input_variable"><code class="docutils literal notranslate"><span class="pre">add_input_variable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2FLS.add_output_variable"><code class="docutils literal notranslate"><span class="pre">add_output_variable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2FLS.add_rule"><code class="docutils literal notranslate"><span class="pre">add_rule()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2FLS.copy"><code class="docutils literal notranslate"><span class="pre">copy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2FLS.evaluate_list"><code class="docutils literal notranslate"><span class="pre">evaluate_list()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2FLS.evaluate"><code class="docutils literal notranslate"><span class="pre">evaluate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#it2tsk">IT2TSK</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2TSK"><code class="docutils literal notranslate"><span class="pre">IT2TSK</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2TSK.__repr__"><code class="docutils literal notranslate"><span class="pre">__repr__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2TSK.add_input_variable"><code class="docutils literal notranslate"><span class="pre">add_input_variable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2TSK.add_output_variable"><code class="docutils literal notranslate"><span class="pre">add_output_variable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2TSK.add_rule"><code class="docutils literal notranslate"><span class="pre">add_rule()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2TSK.copy"><code class="docutils literal notranslate"><span class="pre">copy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2TSK.evaluate"><code class="docutils literal notranslate"><span class="pre">evaluate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#it2mamdani">IT2Mamdani</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2Mamdani"><code class="docutils literal notranslate"><span class="pre">IT2Mamdani</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2Mamdani.__repr__"><code class="docutils literal notranslate"><span class="pre">__repr__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2Mamdani.add_input_variable"><code class="docutils literal notranslate"><span class="pre">add_input_variable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2Mamdani.add_output_variable"><code class="docutils literal notranslate"><span class="pre">add_output_variable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2Mamdani.add_rule"><code class="docutils literal notranslate"><span class="pre">add_rule()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2Mamdani.copy"><code class="docutils literal notranslate"><span class="pre">copy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2Mamdani.__meet"><code class="docutils literal notranslate"><span class="pre">__meet()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2Mamdani.__join"><code class="docutils literal notranslate"><span class="pre">__join()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2Mamdani.__Mamdani_Centroid"><code class="docutils literal notranslate"><span class="pre">__Mamdani_Centroid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2Mamdani.__Mamdani_CoSet"><code class="docutils literal notranslate"><span class="pre">__Mamdani_CoSet()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2Mamdani.__Mamdani_CoSum"><code class="docutils literal notranslate"><span class="pre">__Mamdani_CoSum()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2Mamdani.__Mamdani_Height"><code class="docutils literal notranslate"><span class="pre">__Mamdani_Height()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyit2fls.IT2Mamdani.__Mamdani_ModiHe"><code class="docutils literal notranslate"><span class="pre">__Mamdani_ModiHe()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="membershipfunctions.html">Membership Functions</a></li>
@@ -90,6 +170,8 @@
              
   <section id="classes">
 <h1>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h1>
+<section id="t1fs">
+<h2>T1FS<a class="headerlink" href="#t1fs" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyit2fls.T1FS">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">T1FS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mf=&lt;function</span> <span class="pre">zero_mf&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params=[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1FS" title="Permalink to this definition"></a></dt>
@@ -117,6 +199,229 @@
 </div>
 </dd></dl>
 
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.T1FS.__repr__">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.T1FS.</span></span><span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1FS.__repr__" title="Permalink to this definition"></a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.T1FS.copy">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.T1FS.</span></span><span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1FS.copy" title="Permalink to this definition"></a></dt>
+<dd><p>Copies the T1FS.</p>
+<p class="rubric">Returns</p>
+<p>output : T1FS</p>
+<blockquote>
+<div><p>Returns a copy of the T1FS.</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.T1FS.__call__">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.T1FS.</span></span><span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1FS.__call__" title="Permalink to this definition"></a></dt>
+<dd><p>Call self as a function.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.T1FS.__neg__">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.T1FS.</span></span><span class="sig-name descname"><span class="pre">__neg__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1FS.__neg__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.T1FS._CoG">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.T1FS.</span></span><span class="sig-name descname"><span class="pre">_CoG</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1FS._CoG" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.T1FS.defuzzify">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.T1FS.</span></span><span class="sig-name descname"><span class="pre">defuzzify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'CoG'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1FS.defuzzify" title="Permalink to this definition"></a></dt>
+<dd><p>Defuzzifies the type 1 fuzzy set.</p>
+<p class="rubric">Parameters</p>
+<p>method : str</p>
+<blockquote>
+<div><p>Must be one of the methods listed below:</p>
+<ol class="arabic simple">
+<li><p>CoG: Center of gravity</p></li>
+</ol>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : float</p>
+<p>Defuzzified crisp output.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.T1FS.plot">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.T1FS.</span></span><span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ext</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Domain'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Membership</span> <span class="pre">degree'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1FS.plot" title="Permalink to this definition"></a></dt>
+<dd><p>Plots the T1FS.</p>
+<p class="rubric">Parameters</p>
+<p>title : str</p>
+<blockquote>
+<div><p>If set, it indicates the title which will be represented in the plot. 
+If not set, the plot will not have a title.</p>
+</div></blockquote>
+<p>legend_text : str</p>
+<blockquote>
+<div><p>If set, it indicates the legend text which will be represented in the plot. 
+If not set, the plot will not contain a legend.</p>
+</div></blockquote>
+<p>filename : str</p>
+<blockquote>
+<div><p>If set, the plot will be saved as a filename.ext file.</p>
+</div></blockquote>
+<p>ext : str</p>
+<blockquote>
+<div><p>Extension of the output file with ‘pdf’ as the default value.</p>
+</div></blockquote>
+<p>grid : bool</p>
+<blockquote>
+<div><p>Determines whether the grid is displayed in the plot.</p>
+</div></blockquote>
+<p>xlabel : str</p>
+<blockquote>
+<div><p>Label of the x axis.</p>
+</div></blockquote>
+<p>ylabel : str</p>
+<blockquote>
+<div><p>Label of the y axis.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span> <span class="o">=</span> <span class="n">T1FS</span><span class="p">(</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> 
+<span class="go">                 trapezoid_mf, [0, 0.4, 0.6, 1., 1.])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;mySet&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="t1tsk">
+<h2>T1TSK<a class="headerlink" href="#t1tsk" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyit2fls.T1TSK">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">T1TSK</span></span><a class="headerlink" href="#pyit2fls.T1TSK" title="Permalink to this definition"></a></dt>
+<dd><p>Type 1 TSK Fuzzy Logic System.</p>
+<p class="rubric">Parameters</p>
+<p>Parameters of the constructor function:</p>
+<p>The constructor function of the T1TSK class has no parameters.</p>
+<p class="rubric">Members</p>
+<p>inputs : list of str</p>
+<blockquote>
+<div><p>List of the inputs names as str.</p>
+</div></blockquote>
+<p>outputs : list of str</p>
+<blockquote>
+<div><p>List of the outputs names as str.</p>
+</div></blockquote>
+<p>rules : list of tuples (antacedent, consequent)</p>
+<blockquote>
+<div><p>List of rules, which each rule is defined as a 
+tuple (antecedent, consequent)</p>
+</div></blockquote>
+<p class="rubric">Functions</p>
+<p>add_input_variable:</p>
+<blockquote>
+<div><p>Adds an input variable to the inputs list of the T1 TSK FLS.</p>
+</div></blockquote>
+<p>add_output_variable:</p>
+<blockquote>
+<div><p>Adds an output variable to the outputs list of the T1 TSK FLS.</p>
+</div></blockquote>
+<p>add_rule:</p>
+<blockquote>
+<div><p>Adds a rule to the rules list of the T1 TSK FLS.</p>
+</div></blockquote>
+<p>copy:</p>
+<blockquote>
+<div><p>Returns a copy of the T1 TSK FLS.</p>
+</div></blockquote>
+<p>evaluate:</p>
+<blockquote>
+<div><p>Evaluates the T1 TSK FLS based on the crisp inputs given by the user.</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.T1TSK.__repr__">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.T1TSK.</span></span><span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1TSK.__repr__" title="Permalink to this definition"></a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.T1TSK.copy">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.T1TSK.</span></span><span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1TSK.copy" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a copy of the IT2FLS.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.T1TSK.add_input_variable">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.T1TSK.</span></span><span class="sig-name descname"><span class="pre">add_input_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1TSK.add_input_variable" title="Permalink to this definition"></a></dt>
+<dd><p>Adds new input variable name.</p>
+<p class="rubric">Parameters</p>
+<p>name : str</p>
+<blockquote>
+<div><p>Name of the new input variable as a str.</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.T1TSK.add_output_variable">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.T1TSK.</span></span><span class="sig-name descname"><span class="pre">add_output_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1TSK.add_output_variable" title="Permalink to this definition"></a></dt>
+<dd><p>Adds new output variable name.</p>
+<p class="rubric">Parameters</p>
+<p>name : str</p>
+<blockquote>
+<div><p>Name of the new output variable as a str.</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.T1TSK.add_rule">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.T1TSK.</span></span><span class="sig-name descname"><span class="pre">add_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">antecedent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">consequent</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1TSK.add_rule" title="Permalink to this definition"></a></dt>
+<dd><p>Adds new rule to the rule base of the T1 TSK FLS.</p>
+<p class="rubric">Parameters</p>
+<p>antecedent : list of tuples</p>
+<blockquote>
+<div><p>Antecedent is a list of tuples in which each tuple indicates 
+assignement of a variable to a T1FS. The first element of the 
+tuple must be the input variable name as a string, and the second 
+element of the tuple must be a T1FS.</p>
+</div></blockquote>
+<p>consequent : list of tuples</p>
+<blockquote>
+<div><p>Consequent is a list of tuples in which each tuple indicates 
+assignement of a variable to an output state. The first element of the 
+tuple must be the output vriable name as a string, and the second element 
+of the tuple must be a callable object.</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.T1TSK.evaluate">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.T1TSK.</span></span><span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1TSK.evaluate" title="Permalink to this definition"></a></dt>
+<dd><p>Evaluates the T1 TSK FLS based on the crisp inputs given by the user.</p>
+<p class="rubric">Parameters</p>
+<p>inputs : dictionary</p>
+<blockquote>
+<div><p>Inputs is a dictionary, where the keys are input variable 
+names as strings and the corresponded values are the crisp values 
+of the inputs to be evaluated.</p>
+</div></blockquote>
+<p>params : tuple</p>
+<blockquote>
+<div><p>This tuple contains the parameters of the functions assigned to the 
+consequents of the system rules.</p>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>Output : dict</p>
+<blockquote>
+<div><p>The output is a dictionary, where the keys are output variable 
+names as strings and the corresponded values are the crisp outputs 
+of the system.</p>
+</div></blockquote>
+</dd></dl>
+
+</section>
+<section id="t1mamdani">
+<h2>T1Mamdani<a class="headerlink" href="#t1mamdani" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyit2fls.T1Mamdani">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">T1Mamdani</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Product'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defuzzification</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'CoG'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1Mamdani" title="Permalink to this definition"></a></dt>
@@ -190,50 +495,98 @@ the examples.</p>
 </div></blockquote>
 </dd></dl>
 
-<dl class="py class">
-<dt class="sig sig-object py" id="pyit2fls.T1TSK">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">T1TSK</span></span><a class="headerlink" href="#pyit2fls.T1TSK" title="Permalink to this definition"></a></dt>
-<dd><p>Type 1 TSK Fuzzy Logic System.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.T1Mamdani.__repr__">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.T1Mamdani.</span></span><span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1Mamdani.__repr__" title="Permalink to this definition"></a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.T1Mamdani.copy">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.T1Mamdani.</span></span><span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1Mamdani.copy" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.T1Mamdani.add_input_variable">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.T1Mamdani.</span></span><span class="sig-name descname"><span class="pre">add_input_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1Mamdani.add_input_variable" title="Permalink to this definition"></a></dt>
+<dd><p>Adds a new input variable by name.</p>
 <p class="rubric">Parameters</p>
-<p>Parameters of the constructor function:</p>
-<p>The constructor function of the T1TSK class has no parameters.</p>
-<p class="rubric">Members</p>
-<p>inputs : list of str</p>
+<p>name : str</p>
 <blockquote>
-<div><p>List of the inputs names as str.</p>
-</div></blockquote>
-<p>outputs : list of str</p>
-<blockquote>
-<div><p>List of the outputs names as str.</p>
-</div></blockquote>
-<p>rules : list of tuples (antacedent, consequent)</p>
-<blockquote>
-<div><p>List of rules, which each rule is defined as a 
-tuple (antecedent, consequent)</p>
-</div></blockquote>
-<p class="rubric">Functions</p>
-<p>add_input_variable:</p>
-<blockquote>
-<div><p>Adds an input variable to the inputs list of the T1 TSK FLS.</p>
-</div></blockquote>
-<p>add_output_variable:</p>
-<blockquote>
-<div><p>Adds an output variable to the outputs list of the T1 TSK FLS.</p>
-</div></blockquote>
-<p>add_rule:</p>
-<blockquote>
-<div><p>Adds a rule to the rules list of the T1 TSK FLS.</p>
-</div></blockquote>
-<p>copy:</p>
-<blockquote>
-<div><p>Returns a copy of the T1 TSK FLS.</p>
-</div></blockquote>
-<p>evaluate:</p>
-<blockquote>
-<div><p>Evaluates the T1 TSK FLS based on the crisp inputs given by the user.</p>
+<div><p>Name of the new input variable as a string.</p>
 </div></blockquote>
 </dd></dl>
 
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.T1Mamdani.add_output_variable">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.T1Mamdani.</span></span><span class="sig-name descname"><span class="pre">add_output_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1Mamdani.add_output_variable" title="Permalink to this definition"></a></dt>
+<dd><p>Adds a new output variable by name.</p>
+<p class="rubric">Parameters</p>
+<p>name : str</p>
+<blockquote>
+<div><p>Name of the new output variable as a string.</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.T1Mamdani.add_rule">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.T1Mamdani.</span></span><span class="sig-name descname"><span class="pre">add_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">antecedent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">consequent</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1Mamdani.add_rule" title="Permalink to this definition"></a></dt>
+<dd><p>Adds a new rule to the rule base of the T1 Mamdani FLS.</p>
+<p class="rubric">Parameters</p>
+<p>antecedent : list of tuples</p>
+<blockquote>
+<div><p>Antecedent is a list of tuples in which each tuple indicates 
+assignment of a variable to a T1FS. The first element of the 
+tuple must be the input variable name as a string, and the second 
+element of the tuple must be a T1FS.</p>
+</div></blockquote>
+<p>consequent : list of tuples</p>
+<blockquote>
+<div><p>Consequent is a list of tuples in which each tuple indicates 
+assignment of a variable to a T1FS. The first element of the 
+tuple must be the output variable name as a string, and the second 
+element of the tuple must be a T1FS.</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.T1Mamdani._CoG">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.T1Mamdani.</span></span><span class="sig-name descname"><span class="pre">_CoG</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1Mamdani._CoG" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.T1Mamdani._CoA">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.T1Mamdani.</span></span><span class="sig-name descname"><span class="pre">_CoA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1Mamdani._CoA" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.T1Mamdani._product_evaluate">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.T1Mamdani.</span></span><span class="sig-name descname"><span class="pre">_product_evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1Mamdani._product_evaluate" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.T1Mamdani._minimum_evaluate">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.T1Mamdani.</span></span><span class="sig-name descname"><span class="pre">_minimum_evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1Mamdani._minimum_evaluate" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.T1Mamdani._lukasiewicz_evaluate">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.T1Mamdani.</span></span><span class="sig-name descname"><span class="pre">_lukasiewicz_evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1Mamdani._lukasiewicz_evaluate" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.T1Mamdani._zadeh_evaluate">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.T1Mamdani.</span></span><span class="sig-name descname"><span class="pre">_zadeh_evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1Mamdani._zadeh_evaluate" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.T1Mamdani._dienes_rescher_evaluate">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.T1Mamdani.</span></span><span class="sig-name descname"><span class="pre">_dienes_rescher_evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.T1Mamdani._dienes_rescher_evaluate" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="it2fs">
+<h2>IT2FS<a class="headerlink" href="#it2fs" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyit2fls.IT2FS">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">IT2FS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">umf=&lt;function</span> <span class="pre">zero_mf&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">umf_params=[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lmf=&lt;function</span> <span class="pre">zero_mf&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lmf_params=[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_set=False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2FS" title="Permalink to this definition"></a></dt>
@@ -287,6 +640,97 @@ is not needed. By default the parameter check_set is False.</p>
 </div>
 </dd></dl>
 
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.IT2FS.__repr__">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.IT2FS.</span></span><span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2FS.__repr__" title="Permalink to this definition"></a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyit2fls.IT2FS.upper">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">IT2FS.</span></span><span class="sig-name descname"><span class="pre">upper</span></span><a class="headerlink" href="#pyit2fls.IT2FS.upper" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyit2fls.IT2FS.lower">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">IT2FS.</span></span><span class="sig-name descname"><span class="pre">lower</span></span><a class="headerlink" href="#pyit2fls.IT2FS.lower" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.IT2FS.check_set">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.IT2FS.</span></span><span class="sig-name descname"><span class="pre">check_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2FS.check_set" title="Permalink to this definition"></a></dt>
+<dd><p>Verifies the condition LMF(x) &lt; UMF(x) for any x in the domain.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.IT2FS.copy">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.IT2FS.</span></span><span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2FS.copy" title="Permalink to this definition"></a></dt>
+<dd><p>Copies the IT2FS.</p>
+<p class="rubric">Returns</p>
+<p>output : IT2FS</p>
+<p>Returns a copy of the IT2FS.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.IT2FS.plot">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.IT2FS.</span></span><span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ext</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Domain'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Membership</span> <span class="pre">degree'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2FS.plot" title="Permalink to this definition"></a></dt>
+<dd><p>Plots the IT2FS.</p>
+<p class="rubric">Parameters</p>
+<p>title : str</p>
+<blockquote>
+<div><p>If set, it indicates the title to be 
+represented in the plot. If not set, the plot will not 
+have a title.</p>
+</div></blockquote>
+<p>legend_text : str</p>
+<blockquote>
+<div><p>If set, it indicates the legend text to 
+be represented in the plot. If not set, the plot will 
+not contain a legend.</p>
+</div></blockquote>
+<p>filename : str</p>
+<blockquote>
+<div><p>If set, the plot will be saved as a filename.ext file.</p>
+</div></blockquote>
+<p>ext : str</p>
+<blockquote>
+<div><p>Extension of the output file, with ‘pdf’ as the default value.</p>
+</div></blockquote>
+<p>grid : bool</p>
+<blockquote>
+<div><p>Determines whether the grid is displayed in the plot.</p>
+</div></blockquote>
+<p>xlabel : str</p>
+<blockquote>
+<div><p>Label of the x-axis.</p>
+</div></blockquote>
+<p>ylabel : str</p>
+<blockquote>
+<div><p>Label of the y-axis.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span> <span class="o">=</span> <span class="n">IT2FS</span><span class="p">(</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> 
+<span class="go">                  trapezoid_mf, [0, 0.4, 0.6, 1., 1.], </span>
+<span class="go">                  tri_mf, [0.25, 0.5, 0.75, 0.6])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;mySet&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.IT2FS.__neg__">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.IT2FS.</span></span><span class="sig-name descname"><span class="pre">__neg__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2FS.__neg__" title="Permalink to this definition"></a></dt>
+<dd><p>Negates the IT2FS.</p>
+<p class="rubric">Returns</p>
+<p>output : IT2FS</p>
+<blockquote>
+<div><p>Returns a negated copy of the IT2FS.</p>
+</div></blockquote>
+</dd></dl>
+
+</section>
+<section id="it2fls">
+<h2>IT2FLS<a class="headerlink" href="#it2fls" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyit2fls.IT2FLS">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">IT2FLS</span></span><a class="headerlink" href="#pyit2fls.IT2FLS" title="Permalink to this definition"></a></dt>
@@ -385,6 +829,214 @@ would be as below:</p>
 </div></blockquote>
 </dd></dl>
 
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.IT2FLS.__repr__">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.IT2FLS.</span></span><span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2FLS.__repr__" title="Permalink to this definition"></a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.IT2FLS.add_input_variable">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.IT2FLS.</span></span><span class="sig-name descname"><span class="pre">add_input_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2FLS.add_input_variable" title="Permalink to this definition"></a></dt>
+<dd><p>Adds new input variable name.</p>
+<p class="rubric">Parameters</p>
+<p>name : str</p>
+<blockquote>
+<div><p>Name of the new input variable as a str.</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.IT2FLS.add_output_variable">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.IT2FLS.</span></span><span class="sig-name descname"><span class="pre">add_output_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2FLS.add_output_variable" title="Permalink to this definition"></a></dt>
+<dd><p>Adds new output variable name.</p>
+<p class="rubric">Parameters</p>
+<p>name : str</p>
+<blockquote>
+<div><p>Name of the new output variable as a str.</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.IT2FLS.add_rule">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.IT2FLS.</span></span><span class="sig-name descname"><span class="pre">add_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">antecedent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">consequent</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2FLS.add_rule" title="Permalink to this definition"></a></dt>
+<dd><p>Adds new rule to the rule base of the IT2FLS.</p>
+<p class="rubric">Parameters</p>
+<p>antecedent : List of tuples</p>
+<blockquote>
+<div><p>Antecedent is a list of tuples in which each tuple indicates 
+assignement of a variable to an IT2FS. First element of the 
+tuple must be input variable name as str, and the second 
+element of the tuple must be an IT2FS.</p>
+</div></blockquote>
+<p>consequent : List of tuples</p>
+<blockquote>
+<div><p>Consequent is a list of tuples in which each tuple indicates 
+assignement of a variable to an IT2FS. First element of the 
+tuple must be output variable name as str, and the second 
+element of the tuple must be an IT2FS.</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.IT2FLS.copy">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.IT2FLS.</span></span><span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2FLS.copy" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a copy of the IT2FLS.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.IT2FLS.evaluate_list">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.IT2FLS.</span></span><span class="sig-name descname"><span class="pre">evaluate_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_norm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s_norm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Centroid'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'EIASC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2FLS.evaluate_list" title="Permalink to this definition"></a></dt>
+<dd><p>Evaluates the IT2FLS based on list of crisp inputs given by user.</p>
+<p class="rubric">Parameters</p>
+<p>inputs : dictionary</p>
+<blockquote>
+<div><p>Inputs is a dictionary in which the keys are input variable 
+names as str and the values are the list of crisp values 
+corresponded with the inputs to be evaluated.</p>
+</div></blockquote>
+<p>t_norm : function</p>
+<blockquote>
+<div><p>Indicates the t-norm operator to be used, and should be chosen 
+between min_t_norm, product_t_norm, or other user defined 
+t-norms.</p>
+</div></blockquote>
+<p>s_norm : function</p>
+<blockquote>
+<div><p>Indicates the s-norm operator to be used, and should be chosen 
+between max_s_norm or other user defined s-norms.</p>
+</div></blockquote>
+<p>domain : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>Indicates the universe of discourse dedicated to the IT2FS.</p>
+</div></blockquote>
+<p>method=”Centroid” : str</p>
+<blockquote>
+<div><p>Indicates the type reduction method name and should be one 
+of the methods listed below:</p>
+<blockquote>
+<div><p>Centroid, CoSet, CoSum, Height, and ModiHe.</p>
+</div></blockquote>
+</div></blockquote>
+<p>method_params=[] : List</p>
+<blockquote>
+<div><p>Parameters of the type reduction method, if needed.</p>
+</div></blockquote>
+<p>algorithm=”EIASC” : str</p>
+<blockquote>
+<div><p>Indicates the type reduction algorithm name and should be 
+one of the algorithms listed below:</p>
+<blockquote>
+<div><p>KM, EKM, WEKM, TWEKM, EIASC, WM, BMM, LBMM, and NT.</p>
+</div></blockquote>
+</div></blockquote>
+<p>algorithm_params=[] : List</p>
+<blockquote>
+<div><p>Parameters of the type reduction algorithm, if needed.</p>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : tuple or list</p>
+<blockquote>
+<div><p>It depends on which method and algorithm for type reduction is 
+chosen. If Centroid type reduction method is chosen the output 
+is a tuple with two elements. First element is the overall IT2FS 
+outputs of the system as a list of dictionaries with output names as keys 
+and sets as values. The second output is outputs of the 
+selected type reduction algorithm as a list of dictionaries with 
+output names as keys and type reduction algorithm function output 
+as value. For other type reduction methods the only output is a list of  
+dictionaries of the type reduction algorithm function outputs for 
+each output variable name as a key.</p>
+</div></blockquote>
+<p class="rubric">Notes</p>
+<p>While using the evaluate function some cares must be taken by the user 
+himself which are listed as below:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The inputs must be lay in the defined universe of discourse.</p></li>
+<li><p>The type reduction method and the type reduction algorithm must be selected from the lists provided in docstrings.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.IT2FLS.evaluate">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.IT2FLS.</span></span><span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_norm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s_norm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Centroid'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'EIASC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2FLS.evaluate" title="Permalink to this definition"></a></dt>
+<dd><p>Evaluates the IT2FLS based on crisp inputs given by user.</p>
+<p class="rubric">Parameters</p>
+<p>inputs : dictionary</p>
+<blockquote>
+<div><p>Inputs is a dictionary in which the keys are input variable 
+names as str and the values are the crisp value of inputs to 
+be evaluated.</p>
+</div></blockquote>
+<p>t_norm : function</p>
+<blockquote>
+<div><p>Indicates the t-norm operator to be used, and should be chosen 
+between min_t_norm, product_t_norm, or other user defined 
+t-norms.</p>
+</div></blockquote>
+<p>s_norm : function</p>
+<blockquote>
+<div><p>Indicates the s-norm operator to be used, and should be chosen 
+between max_s_norm or other user defined s-norms.</p>
+</div></blockquote>
+<p>domain : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>Indicates the universe of discourse dedicated to the IT2FS.</p>
+</div></blockquote>
+<p>method=”Centroid” : str</p>
+<blockquote>
+<div><p>Indicates the type reduction method name and should be one 
+of the methods listed below:</p>
+<blockquote>
+<div><p>Centroid, CoSet, CoSum, Height, and ModiHe.</p>
+</div></blockquote>
+</div></blockquote>
+<p>method_params=[] : List</p>
+<blockquote>
+<div><p>Parameters of the type reduction method, if needed.</p>
+</div></blockquote>
+<p>algorithm=”EIASC” : str</p>
+<blockquote>
+<div><p>Indicates the type reduction algorithm name and should be 
+one of the algorithms listed below:</p>
+<blockquote>
+<div><p>KM, EKM, WEKM, TWEKM, EIASC, WM, BMM, LBMM, and NT.</p>
+</div></blockquote>
+</div></blockquote>
+<p>algorithm_params=[] : List</p>
+<blockquote>
+<div><p>Parameters of the type reduction algorithm, if needed.</p>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : tuple or dict</p>
+<blockquote>
+<div><p>It depends on which method and algorithm for type reduction is 
+chosen. If Centroid type reduction method is chosen the output 
+is a tuple with two elements. First element is the overall IT2FS 
+outputs of the system as a dictionary with output names as keys 
+and sets as values. The second output is outputs of the 
+selected type reduction algorithm as a dictionary with 
+output names as keys and type reduction algorithm function output 
+as value. For other type reduction methods the only output is the 
+dictionary of the type reduction algorithm function outputs for 
+each output variable name as a key.</p>
+</div></blockquote>
+<p class="rubric">Notes</p>
+<p>While using the evaluate function some cares must be taken by the user 
+himself which are listed as below:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The inputs must be lay in the defined universe of discourse.</p></li>
+<li><p>The type reduction method and the type reduction algorithm must be selected from the lists provided in docstrings.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</section>
+<section id="it2tsk">
+<h2>IT2TSK<a class="headerlink" href="#it2tsk" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyit2fls.IT2TSK">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">IT2TSK</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_norm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s_norm</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2TSK" title="Permalink to this definition"></a></dt>
@@ -456,6 +1108,113 @@ IT2 TSK FLS with two inputs, named x1 and x2.</p>
 </div></blockquote>
 </dd></dl>
 
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.IT2TSK.__repr__">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.IT2TSK.</span></span><span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2TSK.__repr__" title="Permalink to this definition"></a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.IT2TSK.add_input_variable">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.IT2TSK.</span></span><span class="sig-name descname"><span class="pre">add_input_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2TSK.add_input_variable" title="Permalink to this definition"></a></dt>
+<dd><p>Adds new input variable name.</p>
+<p class="rubric">Parameters</p>
+<p>name : str</p>
+<blockquote>
+<div><p>Name of the new input variable as a str.</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.IT2TSK.add_output_variable">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.IT2TSK.</span></span><span class="sig-name descname"><span class="pre">add_output_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2TSK.add_output_variable" title="Permalink to this definition"></a></dt>
+<dd><p>Adds new output variable name.</p>
+<p class="rubric">Parameters</p>
+<p>name : str</p>
+<blockquote>
+<div><p>Name of the new output variable as a str.</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.IT2TSK.add_rule">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.IT2TSK.</span></span><span class="sig-name descname"><span class="pre">add_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">antecedent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">consequent</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2TSK.add_rule" title="Permalink to this definition"></a></dt>
+<dd><p>Adds new rule to the rule base of the IT2FLS.</p>
+<p class="rubric">Parameters</p>
+<p>antecedent : List of tuples</p>
+<blockquote>
+<div><p>Antecedent is a list of tuples in which each tuple indicates 
+assignement of a variable to an IT2FS. First element of the 
+tuple must be the input variable name as str, and the second 
+element of the tuple must be an IT2FS.</p>
+</div></blockquote>
+<p>consequent : List of tuples</p>
+<blockquote>
+<div><p>Consequent is a list of tuples in which each tuple indicates 
+assignement of a variable to an output state. First element of the 
+tuple must be output vriable name as str, and the second element 
+of the tuple must be a dictionary. This dictionary shows the 
+output polynomial in the case of the rule. For example let an 
+output polynomial be as 2 x1 + 4 x2 + 5. Then the dictionary for 
+this case would be {“const”:5., “x1”:2., “x2”:4.}. Note that this 
+is written for an IT2 TSK FLS with two inputs, named x1 and x2.</p>
+</div></blockquote>
+<p class="rubric">Example</p>
+<p>Assume that we are going to simulate an IT2 TSK FLS with two inputs 
+named x1 and x2. Our rule base is defined as below:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>IF x1 is Small and x2 is Small THEN y1 = x1 + x2 + 1 and y2 = 2 x1 - x2 + 1</p></li>
+<li><p>IF x1 is Small and x2 is Big THEN y1 = 1.5 x1 + 0.5 x2 + 0.5 and y2 = 1.5 x1 - 0.5 x2 + 0.5</p></li>
+<li><p>IF x1 is Big and x2 is Small THEN y1 = 2. x1 + 0.1 x2 - 0.2 and y2 = 0.5 x1 + 0.1 x2</p></li>
+<li><p>IF x1 is Big and x2 is Big THEN y1 = 4. x1 -0.5 x2 - 1 and y2 = -0.5 x1 + x2 - 0.5</p></li>
+</ul>
+</div></blockquote>
+<p>Then these rules can be added to the system using the codes below:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myIT2FLS</span><span class="o">.</span><span class="n">add_rule</span><span class="p">([(</span><span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="n">Small</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="n">Small</span><span class="p">)],</span> 
+<span class="go">                      [(&quot;y1&quot;, {&quot;const&quot;:1., &quot;x1&quot;:1., &quot;x2&quot;:1.}), </span>
+<span class="go">                       (&quot;y2&quot;, {&quot;const&quot;:1., &quot;x1&quot;:2., &quot;x2&quot;:-1.})])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myIT2FLS</span><span class="o">.</span><span class="n">add_rule</span><span class="p">([(</span><span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="n">Small</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="n">Big</span><span class="p">)],</span> 
+<span class="go">                      [(&quot;y1&quot;, {&quot;const&quot;:0.5, &quot;x1&quot;:1.5, &quot;x2&quot;:0.5}), </span>
+<span class="go">                       (&quot;y2&quot;, {&quot;const&quot;:0.5, &quot;x1&quot;:1.5, &quot;x2&quot;:-0.5})])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myIT2FLS</span><span class="o">.</span><span class="n">add_rule</span><span class="p">([(</span><span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="n">Big</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="n">Small</span><span class="p">)],</span> 
+<span class="go">                      [(&quot;y1&quot;, {&quot;const&quot;:-0.2, &quot;x1&quot;:2., &quot;x2&quot;:0.1}), </span>
+<span class="go">                       (&quot;y2&quot;, {&quot;const&quot;:0., &quot;x1&quot;:0.5, &quot;x2&quot;:0.1})])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myIT2FLS</span><span class="o">.</span><span class="n">add_rule</span><span class="p">([(</span><span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="n">Big</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="n">Big</span><span class="p">)],</span> 
+<span class="go">                      [(&quot;y1&quot;, {&quot;const&quot;:-1., &quot;x1&quot;:4., &quot;x2&quot;:-0.5}), </span>
+<span class="go">                       (&quot;y2&quot;, {&quot;const&quot;:-0.5, &quot;x1&quot;:-0.5, &quot;x2&quot;:1.})])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.IT2TSK.copy">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.IT2TSK.</span></span><span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2TSK.copy" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a copy of the IT2FLS.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.IT2TSK.evaluate">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.IT2TSK.</span></span><span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2TSK.evaluate" title="Permalink to this definition"></a></dt>
+<dd><p>Evaluates the IT2 TSK FLS based on the crisp inputs given by the user.</p>
+<p class="rubric">Parameters</p>
+<p>inputs : dictionary</p>
+<blockquote>
+<div><p>Inputs is a dictionary, which the keys are input variable 
+names as str and the values are the crisp value of the inputs to 
+be evaluated.</p>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : dictionary</p>
+<blockquote>
+<div><p>The output is a dictionary, which the keys are output variable 
+names as str and the values are the crisp output of the system.</p>
+</div></blockquote>
+</dd></dl>
+
+</section>
+<section id="it2mamdani">
+<h2>IT2Mamdani<a class="headerlink" href="#it2mamdani" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyit2fls.IT2Mamdani">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">IT2Mamdani</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_norm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s_norm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Centroid'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'EIASC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2Mamdani" title="Permalink to this definition"></a></dt>
@@ -549,6 +1308,97 @@ the examples.</p>
 </div></blockquote>
 </dd></dl>
 
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.IT2Mamdani.__repr__">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.IT2Mamdani.</span></span><span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2Mamdani.__repr__" title="Permalink to this definition"></a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.IT2Mamdani.add_input_variable">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.IT2Mamdani.</span></span><span class="sig-name descname"><span class="pre">add_input_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2Mamdani.add_input_variable" title="Permalink to this definition"></a></dt>
+<dd><p>Adds new input variable name.</p>
+<p class="rubric">Parameters</p>
+<p>name : str</p>
+<blockquote>
+<div><p>Name of the new input variable as a str.</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.IT2Mamdani.add_output_variable">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.IT2Mamdani.</span></span><span class="sig-name descname"><span class="pre">add_output_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2Mamdani.add_output_variable" title="Permalink to this definition"></a></dt>
+<dd><p>Adds new output variable name.</p>
+<p class="rubric">Parameters</p>
+<p>name : str</p>
+<blockquote>
+<div><p>Name of the new output variable as a str.</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.IT2Mamdani.add_rule">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.IT2Mamdani.</span></span><span class="sig-name descname"><span class="pre">add_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">antecedent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">consequent</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2Mamdani.add_rule" title="Permalink to this definition"></a></dt>
+<dd><p>Adds new rule to the rule base of the IT2FLS.</p>
+<p class="rubric">Parameters</p>
+<p>antecedent : List of tuples</p>
+<blockquote>
+<div><p>Antecedent is a list of tuples in which each tuple indicates 
+assignement of a variable to an IT2FS. First element of the 
+tuple must be input variable name as str, and the second 
+element of the tuple must be an IT2FS.</p>
+</div></blockquote>
+<p>consequent : List of tuples</p>
+<blockquote>
+<div><p>Consequent is a list of tuples in which each tuple indicates 
+assignement of a variable to an IT2FS. First element of the 
+tuple must be output variable name as str, and the second 
+element of the tuple must be an IT2FS.</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.IT2Mamdani.copy">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.IT2Mamdani.</span></span><span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2Mamdani.copy" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a copy of the IT2FLS.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.IT2Mamdani.__meet">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.IT2Mamdani.</span></span><span class="sig-name descname"><span class="pre">__meet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">it2fs1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_norm</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2Mamdani.__meet" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.IT2Mamdani.__join">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.IT2Mamdani.</span></span><span class="sig-name descname"><span class="pre">__join</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">it2fs1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s_norm</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2Mamdani.__join" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.IT2Mamdani.__Mamdani_Centroid">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.IT2Mamdani.</span></span><span class="sig-name descname"><span class="pre">__Mamdani_Centroid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2Mamdani.__Mamdani_Centroid" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.IT2Mamdani.__Mamdani_CoSet">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.IT2Mamdani.</span></span><span class="sig-name descname"><span class="pre">__Mamdani_CoSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2Mamdani.__Mamdani_CoSet" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.IT2Mamdani.__Mamdani_CoSum">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.IT2Mamdani.</span></span><span class="sig-name descname"><span class="pre">__Mamdani_CoSum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2Mamdani.__Mamdani_CoSum" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.IT2Mamdani.__Mamdani_Height">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.IT2Mamdani.</span></span><span class="sig-name descname"><span class="pre">__Mamdani_Height</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2Mamdani.__Mamdani_Height" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyit2fls.IT2Mamdani.__Mamdani_ModiHe">
+<span class="sig-prename descclassname"><span class="pre">pyit2fls.IT2Mamdani.</span></span><span class="sig-name descname"><span class="pre">__Mamdani_ModiHe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2Mamdani.__Mamdani_ModiHe" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
 </section>
 
 
