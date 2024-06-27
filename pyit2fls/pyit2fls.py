@@ -636,7 +636,7 @@ class T1FS:
         
         mf : Membership function
         
-        params: List of parameters of the membership function
+        params : List of parameters of the membership function
             
         .. rubric:: Functions
         
@@ -2971,16 +2971,13 @@ def CoSum(it2fs_array, alg_func, domain, alg_params=[]):
     """
     Center of sum type reduction for an interval type 2 fuzzy set.
     
-    Parameters
-    ----------------------------------------------
+    .. rubric:: Parameters
     
-    it2fs_array:
-        List of IT2FSs
+    it2fs_array : List of IT2FSs
         
         List of final IT2FSs achieved by evaluating rule base.
     
-    alg_func:
-        Function
+    alg_func : Function
         
         Type reduction algorithm to be used, which is one of these:
             
@@ -2988,21 +2985,19 @@ def CoSum(it2fs_array, alg_func, domain, alg_params=[]):
             EIASC_algorithm, WM_algorithm, BMM_algorithm, LBMM_algorithm, and 
             NT_algorithm
     
-    domain:
-        numpy (n,) shaped array
+    domain : numpy (n,) shaped array
         
         Indicates the universe of discourse dedicated to the IT2FS.
     
-    alg_params:
-        List
+    alg_params : List
         
         List of parameters of type reduction algorithm if it is needed.
     
-    Returns
-    ----------------------
-    Based on selected type reduction algorithm tuple (l, r) or float
+    .. rubric:: Returns
     
-    Returns Center of sum type reduction of the input IT2FS.
+    output : Based on selected type reduction algorithm tuple (l, r) or float
+    
+        Returns Center of sum type reduction of the input IT2FS.
     """
     lower_sum = zeros_like(domain)
     upper_sum = zeros_like(domain)
@@ -3017,16 +3012,13 @@ def Height(it2fs_array, alg_func, domain, alg_params=[]):
     """
     Height type reduction for an interval type 2 fuzzy set.
     
-    Parameters
-    ----------------------------------------------
+    .. rubric:: Parameters
     
-    it2fs_array:
-        List of IT2FSs
+    it2fs_array : List of IT2FSs
         
         List of final IT2FSs achieved by evaluating rule base.
     
-    alg_func:
-        Function
+    alg_func : Function
         
         Type reduction algorithm to be used, which is one of these:
             
@@ -3034,21 +3026,19 @@ def Height(it2fs_array, alg_func, domain, alg_params=[]):
             EIASC_algorithm, WM_algorithm, BMM_algorithm, LBMM_algorithm, and 
             NT_algorithm
     
-    domain:
-        numpy (n,) shaped array
+    domain : numpy (n,) shaped array
         
         Indicates the universe of discourse dedicated to the IT2FS.
     
-    alg_params:
-        List
+    alg_params : List
         
         List of parameters of type reduction algorithm if it is needed.
     
-    Returns
-    ----------------------
-    Based on selected type reduction algorithm tuple (l, r) or float
+    .. rubric:: Returns
     
-    Returns Height type reduction of the input IT2FS.
+    output : Based on selected type reduction algorithm tuple (l, r) or float
+    
+        Returns Height type reduction of the input IT2FS.
     """
     intervals = []
     for it2fs in it2fs_array:
@@ -3061,19 +3051,15 @@ def ModiHe(it2fs_array, spread_array, alg_func, domain, alg_params=[]):
     """
     Modified height type reduction for an interval type 2 fuzzy set.
     
-    Parameters
-    ----------------------------------------------
+    .. rubric:: Parameters
     
-    it2fs_array:
-        List of IT2FSs
+    it2fs_array : List of IT2FSs
         
         List of final IT2FSs achieved by evaluating rule base.
     
-    spread_array:
-        List of spread values corresponding with IT2FSs in it2fs_array. 
+    spread_array : List of spread values corresponding with IT2FSs in it2fs_array. 
     
-    alg_func:
-        Function
+    alg_func: Function
         
         Type reduction algorithm to be used, which is one of these:
             
@@ -3081,21 +3067,19 @@ def ModiHe(it2fs_array, spread_array, alg_func, domain, alg_params=[]):
             EIASC_algorithm, WM_algorithm, BMM_algorithm, LBMM_algorithm, and 
             NT_algorithm
     
-    domain:
-        numpy (n,) shaped array
+    domain : numpy (n,) shaped array
         
         Indicates the universe of discourse dedicated to the IT2FS.
     
-    alg_params:
-        List
+    alg_params : List
         
         List of parameters of type reduction algorithm if it is needed.
     
-    Returns
-    ----------------------
-    Based on selected type reduction algorithm tuple (l, r) or float
+    .. rubric:: Returns
     
-    Returns Modified height type reduction of the input IT2FS.
+    output : Based on selected type reduction algorithm tuple (l, r) or float
+    
+        Returns Modified height type reduction of the input IT2FS.
     """
     intervals = []
     j = 0
@@ -3113,20 +3097,17 @@ class IT2FLS:
     
     No construction parameter is needed.
     
-    Members
-    ----------------------
-    inputs:
-        List of str
+    .. rubric:: Members
+    
+    inputs : List of str
         
         List of names of inputs as str
     
-    output:
-        List of str
+    output : List of str
         
         List of names ot outputs as str
         
-    rules:
-        List of tuples (antecedent, consequent)
+    rules : List of tuples (antecedent, consequent)
         
         List of rules which each rule is defined as a 
         tuple (antecedent, consequent)
@@ -3136,8 +3117,7 @@ class IT2FLS:
         element of the tuple must be variable name (input or output) as 
         a str and the second element must be an IT2FS. 
     
-    Functions
-    ---------------------------------------------
+    .. rubric:: Functions
     
     add_input_variable:
         
@@ -3159,8 +3139,7 @@ class IT2FLS:
         
         Evaluates the IT2FLS's output for a specified crisp input.
     
-    Examples
-    -----------------------
+    .. rubric:: Examples
     
     Assume that we are going to simulate an IT2FLS with two inputs and 
     two outputs. Each input is defined by three IT2FSs, Small, Medium, 
@@ -3203,8 +3182,7 @@ class IT2FLS:
     >>> print(crisp(tr["y2"]))
     >>> 
     
-    Notes
-    -----
+    .. rubric:: Notes
     
     While using the PyIT2FLS the user must take care of the items listed below:
         
@@ -3223,11 +3201,9 @@ class IT2FLS:
         """
         Adds new input variable name.
         
-        Parameters
-        ----------------------------------------------
+        .. rubric:: Parameters
         
-        name:
-            str
+        name : str
             
             Name of the new input variable as a str.
         """
@@ -3237,11 +3213,9 @@ class IT2FLS:
         """
         Adds new output variable name.
         
-        Parameters
-        ----------------------------------------------
+        .. rubric:: Parameters
         
-        name:
-            str
+        name : str
             
             Name of the new output variable as a str.
         """
@@ -3251,19 +3225,16 @@ class IT2FLS:
         """
         Adds new rule to the rule base of the IT2FLS.
         
-        Parameters
-        ----------------------------------------------
+        .. rubric:: Parameters
         
-        antecedent:
-            List of tuples
+        antecedent : List of tuples
             
             Antecedent is a list of tuples in which each tuple indicates 
             assignement of a variable to an IT2FS. First element of the 
             tuple must be input variable name as str, and the second 
             element of the tuple must be an IT2FS.
             
-        consequent:
-            List of tuples
+        consequent : List of tuples
             
             Consequent is a list of tuples in which each tuple indicates 
             assignement of a variable to an IT2FS. First element of the 
@@ -3289,74 +3260,70 @@ class IT2FLS:
         """
         Evaluates the IT2FLS based on list of crisp inputs given by user.
         
-        Parameters
-        ----------------------------------------------
+        .. rubric:: Parameters
         
-        inputs:
-            dictionary
+        inputs : dictionary
             
             Inputs is a dictionary in which the keys are input variable 
             names as str and the values are the list of crisp values 
             corresponded with the inputs to be evaluated.
             
-        t_norm:
-            function
+        t_norm : function
             
             Indicates the t-norm operator to be used, and should be chosen 
             between min_t_norm, product_t_norm, or other user defined 
             t-norms.
         
-        s_norm:
-            function
+        s_norm : function
             
             Indicates the s-norm operator to be used, and should be chosen 
             between max_s_norm or other user defined s-norms.
         
-        domain:
-            numpy (n,) shaped array
+        domain : numpy (n,) shaped array
             
             Indicates the universe of discourse dedicated to the IT2FS.
         
-        method="Centroid":
-            str
+        method="Centroid" : str
             
             Indicates the type reduction method name and should be one 
             of the methods listed below:
                 Centroid, CoSet, CoSum, Height, and ModiHe.
         
-        method_params=[]:
-            List
+        method_params=[] : List
             
             Parameters of the type reduction method, if needed.
         
-        algorithm="EIASC":
+        algorithm="EIASC" : str
+
             Indicates the type reduction algorithm name and should be 
             one of the algorithms listed below:
+
                 KM, EKM, WEKM, TWEKM, EIASC, WM, BMM, LBMM, and NT.
         
-        algorithm_params=[]:
-            List
+        algorithm_params=[] : List
             
             Parameters of the type reduction algorithm, if needed.
         
-        Returns
-        ----------------------
-        It depends on which method and algorithm for type reduction is 
-        chosen. If Centroid type reduction method is chosen the output 
-        is a tuple with two elements. First element is the overall IT2FS 
-        outputs of the system as a list of dictionaries with output names as keys 
-        and sets as values. The second output is outputs of the 
-        selected type reduction algorithm as a list of dictionaries with 
-        output names as keys and type reduction algorithm function output 
-        as value. For other type reduction methods the only output is a list of  
-        dictionaries of the type reduction algorithm function outputs for 
-        each output variable name as a key.
+        .. rubric:: Returns
         
-        Notes
-        -----
+        output : tuple or list
+
+            It depends on which method and algorithm for type reduction is 
+            chosen. If Centroid type reduction method is chosen the output 
+            is a tuple with two elements. First element is the overall IT2FS 
+            outputs of the system as a list of dictionaries with output names as keys 
+            and sets as values. The second output is outputs of the 
+            selected type reduction algorithm as a list of dictionaries with 
+            output names as keys and type reduction algorithm function output 
+            as value. For other type reduction methods the only output is a list of  
+            dictionaries of the type reduction algorithm function outputs for 
+            each output variable name as a key.
+        
+        .. rubric:: Notes
         
         While using the evaluate function some cares must be taken by the user 
         himself which are listed as below:
+
             * The inputs must be lay in the defined universe of discourse.
             * The type reduction method and the type reduction algorithm must be selected from the lists provided in docstrings.
         """
@@ -3507,74 +3474,71 @@ class IT2FLS:
         """
         Evaluates the IT2FLS based on crisp inputs given by user.
         
-        Parameters
-        ----------------------------------------------
+        .. rubric:: Parameters
         
-        inputs:
-            dictionary
+        inputs : dictionary
             
             Inputs is a dictionary in which the keys are input variable 
             names as str and the values are the crisp value of inputs to 
             be evaluated.
             
-        t_norm:
-            function
+        t_norm : function
             
             Indicates the t-norm operator to be used, and should be chosen 
             between min_t_norm, product_t_norm, or other user defined 
             t-norms.
         
-        s_norm:
-            function
+        s_norm : function
             
             Indicates the s-norm operator to be used, and should be chosen 
             between max_s_norm or other user defined s-norms.
         
-        domain:
-            numpy (n,) shaped array
+        domain : numpy (n,) shaped array
             
             Indicates the universe of discourse dedicated to the IT2FS.
         
-        method="Centroid":
-            str
+        method="Centroid" : str
             
             Indicates the type reduction method name and should be one 
             of the methods listed below:
+
                 Centroid, CoSet, CoSum, Height, and ModiHe.
         
-        method_params=[]:
-            List
+        method_params=[] : List
             
             Parameters of the type reduction method, if needed.
         
-        algorithm="EIASC":
+        algorithm="EIASC" : str
+
             Indicates the type reduction algorithm name and should be 
             one of the algorithms listed below:
+
                 KM, EKM, WEKM, TWEKM, EIASC, WM, BMM, LBMM, and NT.
         
-        algorithm_params=[]:
-            List
+        algorithm_params=[] : List
             
             Parameters of the type reduction algorithm, if needed.
         
-        Returns
-        ----------------------
-        It depends on which method and algorithm for type reduction is 
-        chosen. If Centroid type reduction method is chosen the output 
-        is a tuple with two elements. First element is the overall IT2FS 
-        outputs of the system as a dictionary with output names as keys 
-        and sets as values. The second output is outputs of the 
-        selected type reduction algorithm as a dictionary with 
-        output names as keys and type reduction algorithm function output 
-        as value. For other type reduction methods the only output is the 
-        dictionary of the type reduction algorithm function outputs for 
-        each output variable name as a key.
+        .. rubric:: Returns
         
-        Notes
-        -----
+        output : tuple or dict
+
+            It depends on which method and algorithm for type reduction is 
+            chosen. If Centroid type reduction method is chosen the output 
+            is a tuple with two elements. First element is the overall IT2FS 
+            outputs of the system as a dictionary with output names as keys 
+            and sets as values. The second output is outputs of the 
+            selected type reduction algorithm as a dictionary with 
+            output names as keys and type reduction algorithm function output 
+            as value. For other type reduction methods the only output is the 
+            dictionary of the type reduction algorithm function outputs for 
+            each output variable name as a key.
+        
+        .. rubric:: Notes
         
         While using the evaluate function some cares must be taken by the user 
         himself which are listed as below:
+
             * The inputs must be lay in the defined universe of discourse.
             * The type reduction method and the type reduction algorithm must be selected from the lists provided in docstrings.
         """
@@ -3698,35 +3662,29 @@ class IT2TSK:
     """
     Interval type 2 TSK fuzzy logic system.
 
-    Parameters
-    ----------------------------------------------
+    .. rubric:: Parameters
+    
     Parameters of the constructor function:
 
-    t_norm:
-        function
+    t_norm : function
 
         T-norm operator which would be used by FLS.
     
-    s_norm:
-        function
+    s_norm : function
 
         S-norm operator which would be used bu FLS.
     
-    Members
-    ----------------------
-
-    inputs:
-        List of str
+    .. rubric:: Members
+    
+    inputs : List of str
 
         List of the inputs name as str.
     
-    output:
-        List of str
+    output : List of str
         
         List of the outputs name as str.
 
-    rules:
-        List of tuples (antecedent, consequent)
+    rules : List of tuples (antecedent, consequent)
         
         List of rules which each rule is defined as a 
         tuple (antecedent, consequent)
@@ -3746,8 +3704,7 @@ class IT2TSK:
         IT2 TSK FLS with two inputs, named x1 and x2.
     
 
-    Functions
-    ---------------------------------------------
+    .. rubric:: Functions
     
     add_input_variable:
         
@@ -3769,8 +3726,7 @@ class IT2TSK:
 
         Evaluates the IT2 TSK FLS based on the crisp inputs given by the user.
 
-    Notes
-    -----
+    .. rubric:: Notes
     
     While using the IT2TSK class the user must take care of the items listed below:
         
@@ -3796,11 +3752,9 @@ class IT2TSK:
         """
         Adds new input variable name.
         
-        Parameters
-        ----------------------------------------------
+        .. rubric:: Parameters
         
-        name:
-            str
+        name : str
             
             Name of the new input variable as a str.
         """
@@ -3810,11 +3764,9 @@ class IT2TSK:
         """
         Adds new output variable name.
         
-        Parameters
-        ----------------------------------------------
+        .. rubric:: Parameters
         
-        name:
-            str
+        name : str
             
             Name of the new output variable as a str.
         """
@@ -3824,19 +3776,16 @@ class IT2TSK:
         """
         Adds new rule to the rule base of the IT2FLS.
         
-        Parameters
-        ----------------------------------------------
+        .. rubric:: Parameters
         
-        antecedent:
-            List of tuples
+        antecedent : List of tuples
             
             Antecedent is a list of tuples in which each tuple indicates 
             assignement of a variable to an IT2FS. First element of the 
             tuple must be the input variable name as str, and the second 
             element of the tuple must be an IT2FS.
             
-        consequent:
-            List of tuples
+        consequent : List of tuples
             
             Consequent is a list of tuples in which each tuple indicates 
             assignement of a variable to an output state. First element of the 
@@ -3847,8 +3796,7 @@ class IT2TSK:
             this case would be {"const":5., "x1":2., "x2":4.}. Note that this 
             is written for an IT2 TSK FLS with two inputs, named x1 and x2.
         
-        Example
-        ----------------------
+        .. rubric:: Example
         
         Assume that we are going to simulate an IT2 TSK FLS with two inputs 
         named x1 and x2. Our rule base is defined as below:
@@ -3890,19 +3838,17 @@ class IT2TSK:
         """
         Evaluates the IT2 TSK FLS based on the crisp inputs given by the user.
 
-        Parameters
-        ----------------------------------------------
-        inputs: 
-            dictionary
+        .. rubric:: Parameters
+        
+        inputs : dictionary
             
             Inputs is a dictionary, which the keys are input variable 
             names as str and the values are the crisp value of the inputs to 
             be evaluated.
 
-        Returns
-        ----------------------
-        O: 
-            dictionary
+        .. rubric:: Returns
+        
+        output : dictionary
             
             The output is a dictionary, which the keys are output variable 
             names as str and the values are the crisp output of the system.
@@ -3936,59 +3882,49 @@ class IT2Mamdani:
     """
     Interval Type 2 Mamadani Fuzzy Logic System.
     
-    Parameters
-    ----------------------------------------------
+    .. rubric:: Parameters
+    
     Parameters of the constructor function:
         
-    t_norm:
-        function
+    t_norm : function
         
         T-norm operator which would be used by FLS.
     
-    s_norm:
-        function
+    s_norm : function
         
         S-norm operator which would be used by FLS.
     
-    method="Centroid":
-        str
+    method="Centroid" : str
         
         Indicates the type reduction method name and should be one 
         of the methods listed below:
         Centroid, CoSet, CoSum, Height, and ModiHe.
     
-    method_params=[]:
-        List
+    method_params=[] : List
         
         Parameters of the type reduction method, if needed.
     
-    algorithm="EIASC":
-        str
+    algorithm="EIASC" : str
         
         Indicates the type reduction algorithm name and should be 
         one of the algorithms listed below:
         KM, EKM, WEKM, TWEKM, EIASC, WM, BMM, LBMM, and NT.
     
-    algorithm_params=[]:
-        List
+    algorithm_params=[] : List
         
         Parameters of the type reduction algorithm, if needed.
     
-    Members
-    ----------------------
+    .. rubric:: Members
     
-    inputs:
-        List of str
+    inputs : List of str
         
         List of the inputs name as str.
     
-    output:
-        List of str
+    output : List of str
         
         List of the outputs name as str.
         
-    rules:
-        List of tuples (antecedent, consequent)
+    rules : List of tuples (antecedent, consequent)
         
         List of rules which each rule is defined as a 
         tuple (antecedent, consequent)
@@ -3998,8 +3934,7 @@ class IT2Mamdani:
         First element of the tuple must be variable name (input or output) 
         as a str, and the second element must be an IT2FS. 
     
-    Functions
-    ---------------------------------------------
+    .. rubric:: Functions
     
     add_input_variable:
         
@@ -4031,8 +3966,7 @@ class IT2Mamdani:
         while constructing the class. For more information, please refer to 
         the examples.
     
-    Notes
-    -----
+    .. rubric:: Notes
     
     While using the IT2Mamdani class the user must take care of the items listed below:
         
@@ -4107,11 +4041,9 @@ class IT2Mamdani:
         """
         Adds new input variable name.
         
-        Parameters
-        ----------------------------------------------
+        .. rubric:: Parameters
         
-        name:
-            str
+        name : str
             
             Name of the new input variable as a str.
         """
@@ -4121,11 +4053,9 @@ class IT2Mamdani:
         """
         Adds new output variable name.
         
-        Parameters
-        ----------------------------------------------
+        .. rubric:: Parameters
         
-        name:
-            str
+        name : str
             
             Name of the new output variable as a str.
         """
@@ -4135,19 +4065,16 @@ class IT2Mamdani:
         """
         Adds new rule to the rule base of the IT2FLS.
         
-        Parameters
-        ----------------------------------------------
+        .. rubric:: Parameters
         
-        antecedent:
-            List of tuples
+        antecedent : List of tuples
             
             Antecedent is a list of tuples in which each tuple indicates 
             assignement of a variable to an IT2FS. First element of the 
             tuple must be input variable name as str, and the second 
             element of the tuple must be an IT2FS.
             
-        consequent:
-            List of tuples
+        consequent : List of tuples
             
             Consequent is a list of tuples in which each tuple indicates 
             assignement of a variable to an IT2FS. First element of the 

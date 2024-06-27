@@ -101,7 +101,7 @@
 <div><p>Indicates the universe of discourse dedicated to the T1FS.</p>
 </div></blockquote>
 <p>mf : Membership function</p>
-<p>params: List of parameters of the membership function</p>
+<p>params : List of parameters of the membership function</p>
 <p class="rubric">Functions</p>
 <p>Functions defined in T1FS class:</p>
 <blockquote>
@@ -292,27 +292,25 @@ is not needed. By default the parameter check_set is False.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">IT2FLS</span></span><a class="headerlink" href="#pyit2fls.IT2FLS" title="Permalink to this definition"></a></dt>
 <dd><p>Interval type 2 fuzzy logic system.</p>
 <p>No construction parameter is needed.</p>
-<section id="members">
-<h2>Members<a class="headerlink" href="#members" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>inputs:</dt><dd><p>List of str</p>
-<p>List of names of inputs as str</p>
-</dd>
-<dt>output:</dt><dd><p>List of str</p>
-<p>List of names ot outputs as str</p>
-</dd>
-<dt>rules:</dt><dd><p>List of tuples (antecedent, consequent)</p>
-<p>List of rules which each rule is defined as a 
+<p class="rubric">Members</p>
+<p>inputs : List of str</p>
+<blockquote>
+<div><p>List of names of inputs as str</p>
+</div></blockquote>
+<p>output : List of str</p>
+<blockquote>
+<div><p>List of names ot outputs as str</p>
+</div></blockquote>
+<p>rules : List of tuples (antecedent, consequent)</p>
+<blockquote>
+<div><p>List of rules which each rule is defined as a 
 tuple (antecedent, consequent)</p>
 <p>Both antacedent and consequent are lists of tuples. Each tuple 
 of this list shows assignement of a variable to an IT2FS. First 
 element of the tuple must be variable name (input or output) as 
 a str and the second element must be an IT2FS.</p>
-</dd>
-</dl>
-</section>
-<section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h2>
+</div></blockquote>
+<p class="rubric">Functions</p>
 <p>add_input_variable:</p>
 <blockquote>
 <div><p>Adds an input variable to the inputs list of the IT2FLS.</p>
@@ -333,9 +331,7 @@ a str and the second element must be an IT2FS.</p>
 <blockquote>
 <div><p>Evaluates the IT2FLS’s output for a specified crisp input.</p>
 </div></blockquote>
-</section>
-<section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
+<p class="rubric">Examples</p>
 <p>Assume that we are going to simulate an IT2FLS with two inputs and 
 two outputs. Each input is defined by three IT2FSs, Small, Medium, 
 and Large. These IT2FSs are from Gaussian type with uncertain 
@@ -379,9 +375,7 @@ would be as below:</p>
 <span class="gp">&gt;&gt;&gt; </span>
 </pre></div>
 </div>
-</section>
-<section id="notes">
-<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this heading"></a></h2>
+<p class="rubric">Notes</p>
 <p>While using the PyIT2FLS the user must take care of the items listed below:</p>
 <blockquote>
 <div><ul class="simple">
@@ -389,36 +383,34 @@ would be as below:</p>
 <li><p>The inputs and outputs defined must be compatible while adding the rules and evluating the IT2FLS.</p></li>
 </ul>
 </div></blockquote>
-</section>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="pyit2fls.IT2TSK">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">IT2TSK</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_norm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s_norm</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2TSK" title="Permalink to this definition"></a></dt>
 <dd><p>Interval type 2 TSK fuzzy logic system.</p>
-<section id="parameters">
-<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
+<p class="rubric">Parameters</p>
 <p>Parameters of the constructor function:</p>
-<dl>
-<dt>t_norm:</dt><dd><p>function</p>
-<p>T-norm operator which would be used by FLS.</p>
-</dd>
-<dt>s_norm:</dt><dd><p>function</p>
-<p>S-norm operator which would be used bu FLS.</p>
-</dd>
-</dl>
-</section>
-<section id="id1">
-<h2>Members<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>inputs:</dt><dd><p>List of str</p>
-<p>List of the inputs name as str.</p>
-</dd>
-<dt>output:</dt><dd><p>List of str</p>
-<p>List of the outputs name as str.</p>
-</dd>
-<dt>rules:</dt><dd><p>List of tuples (antecedent, consequent)</p>
-<p>List of rules which each rule is defined as a 
+<p>t_norm : function</p>
+<blockquote>
+<div><p>T-norm operator which would be used by FLS.</p>
+</div></blockquote>
+<p>s_norm : function</p>
+<blockquote>
+<div><p>S-norm operator which would be used bu FLS.</p>
+</div></blockquote>
+<p class="rubric">Members</p>
+<p>inputs : List of str</p>
+<blockquote>
+<div><p>List of the inputs name as str.</p>
+</div></blockquote>
+<p>output : List of str</p>
+<blockquote>
+<div><p>List of the outputs name as str.</p>
+</div></blockquote>
+<p>rules : List of tuples (antecedent, consequent)</p>
+<blockquote>
+<div><p>List of rules which each rule is defined as a 
 tuple (antecedent, consequent)</p>
 <p>Both antacedent and consequent are lists of tuples. Each tuple 
 of the antacedent list shows assignement of a variable to an IT2FS. 
@@ -432,11 +424,8 @@ of the rule. For example let an output polynomial be as
 2 x1 + 4 x2 + 5. Then the dictionary for this case would be 
 {“const”:5., “x1”:2., “x2”:4.}. Note that this is written for an 
 IT2 TSK FLS with two inputs, named x1 and x2.</p>
-</dd>
-</dl>
-</section>
-<section id="id2">
-<h2>Functions<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+</div></blockquote>
+<p class="rubric">Functions</p>
 <p>add_input_variable:</p>
 <blockquote>
 <div><p>Adds an input variable to the inputs list of the IT2 TSK FLS.</p>
@@ -457,9 +446,7 @@ IT2 TSK FLS with two inputs, named x1 and x2.</p>
 <blockquote>
 <div><p>Evaluates the IT2 TSK FLS based on the crisp inputs given by the user.</p>
 </div></blockquote>
-</section>
-<section id="id3">
-<h2>Notes<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<p class="rubric">Notes</p>
 <p>While using the IT2TSK class the user must take care of the items listed below:</p>
 <blockquote>
 <div><ul class="simple">
@@ -467,62 +454,61 @@ IT2 TSK FLS with two inputs, named x1 and x2.</p>
 <li><p>The inputs and outputs defined must be compatible while adding the rules and evluating the IT2FLS.</p></li>
 </ul>
 </div></blockquote>
-</section>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="pyit2fls.IT2Mamdani">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">IT2Mamdani</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_norm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s_norm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Centroid'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'EIASC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.IT2Mamdani" title="Permalink to this definition"></a></dt>
 <dd><p>Interval Type 2 Mamadani Fuzzy Logic System.</p>
-<section id="id4">
-<h2>Parameters<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<p class="rubric">Parameters</p>
 <p>Parameters of the constructor function:</p>
-<dl>
-<dt>t_norm:</dt><dd><p>function</p>
-<p>T-norm operator which would be used by FLS.</p>
-</dd>
-<dt>s_norm:</dt><dd><p>function</p>
-<p>S-norm operator which would be used by FLS.</p>
-</dd>
-<dt>method=”Centroid”:</dt><dd><p>str</p>
-<p>Indicates the type reduction method name and should be one 
+<p>t_norm : function</p>
+<blockquote>
+<div><p>T-norm operator which would be used by FLS.</p>
+</div></blockquote>
+<p>s_norm : function</p>
+<blockquote>
+<div><p>S-norm operator which would be used by FLS.</p>
+</div></blockquote>
+<p>method=”Centroid” : str</p>
+<blockquote>
+<div><p>Indicates the type reduction method name and should be one 
 of the methods listed below:
 Centroid, CoSet, CoSum, Height, and ModiHe.</p>
-</dd>
-<dt>method_params=[]:</dt><dd><p>List</p>
-<p>Parameters of the type reduction method, if needed.</p>
-</dd>
-<dt>algorithm=”EIASC”:</dt><dd><p>str</p>
-<p>Indicates the type reduction algorithm name and should be 
+</div></blockquote>
+<p>method_params=[] : List</p>
+<blockquote>
+<div><p>Parameters of the type reduction method, if needed.</p>
+</div></blockquote>
+<p>algorithm=”EIASC” : str</p>
+<blockquote>
+<div><p>Indicates the type reduction algorithm name and should be 
 one of the algorithms listed below:
 KM, EKM, WEKM, TWEKM, EIASC, WM, BMM, LBMM, and NT.</p>
-</dd>
-<dt>algorithm_params=[]:</dt><dd><p>List</p>
-<p>Parameters of the type reduction algorithm, if needed.</p>
-</dd>
-</dl>
-</section>
-<section id="id5">
-<h2>Members<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>inputs:</dt><dd><p>List of str</p>
-<p>List of the inputs name as str.</p>
-</dd>
-<dt>output:</dt><dd><p>List of str</p>
-<p>List of the outputs name as str.</p>
-</dd>
-<dt>rules:</dt><dd><p>List of tuples (antecedent, consequent)</p>
-<p>List of rules which each rule is defined as a 
+</div></blockquote>
+<p>algorithm_params=[] : List</p>
+<blockquote>
+<div><p>Parameters of the type reduction algorithm, if needed.</p>
+</div></blockquote>
+<p class="rubric">Members</p>
+<p>inputs : List of str</p>
+<blockquote>
+<div><p>List of the inputs name as str.</p>
+</div></blockquote>
+<p>output : List of str</p>
+<blockquote>
+<div><p>List of the outputs name as str.</p>
+</div></blockquote>
+<p>rules : List of tuples (antecedent, consequent)</p>
+<blockquote>
+<div><p>List of rules which each rule is defined as a 
 tuple (antecedent, consequent)</p>
 <p>Both antacedent and consequent are lists of tuples. Each tuple 
 of these lists shows assignement of a variable to an IT2FS. 
 First element of the tuple must be variable name (input or output) 
 as a str, and the second element must be an IT2FS.</p>
-</dd>
-</dl>
-</section>
-<section id="id6">
-<h2>Functions<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+</div></blockquote>
+<p class="rubric">Functions</p>
 <p>add_input_variable:</p>
 <blockquote>
 <div><p>Adds an input variable to the inputs list of the IT2 Mamdani FLS.</p>
@@ -553,9 +539,7 @@ The output of the evaluate function is depended on the method selected
 while constructing the class. For more information, please refer to 
 the examples.</p>
 </div></blockquote>
-</section>
-<section id="id7">
-<h2>Notes<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
+<p class="rubric">Notes</p>
 <p>While using the IT2Mamdani class the user must take care of the items listed below:</p>
 <blockquote>
 <div><ul class="simple">
@@ -563,7 +547,6 @@ the examples.</p>
 <li><p>The inputs and outputs defined must be compatible while adding the rules and evluating the IT2FLS.</p></li>
 </ul>
 </div></blockquote>
-</section>
 </dd></dl>
 
 </section>

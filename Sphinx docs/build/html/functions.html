@@ -404,30 +404,29 @@ the crisp outputs are calculated for all output variables.</p>
 <dt class="sig sig-object py" id="pyit2fls.meet">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">meet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">it2fs1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">it2fs2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_norm</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.meet" title="Permalink to this definition"></a></dt>
 <dd><p>Meet operator for IT2FSs.</p>
-<section id="parameters">
-<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>domain:</dt><dd><p>numpy (n,) shaped array</p>
-<p>Indicates the universe of discourse dedicated to the IT2FS.</p>
-</dd>
-<dt>it2fs1:</dt><dd><p>IT2FS</p>
-<p>First input of the meet operator.</p>
-</dd>
-<dt>it2fs2:</dt><dd><p>IT2FS</p>
-<p>Second input of the meet operator.</p>
-</dd>
-<dt>t_norm:</dt><dd><p>function</p>
-<p>The t-norm function to be used.</p>
-</dd>
-</dl>
-</section>
-<section id="returns">
-<h2>Returns<a class="headerlink" href="#returns" title="Permalink to this heading"></a></h2>
-<p>IT2FS</p>
-<p>Returns the meet of the two input IT2FSs.</p>
-</section>
-<section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
+<p class="rubric">Parameters</p>
+<p>domain : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>Indicates the universe of discourse dedicated to the IT2FS.</p>
+</div></blockquote>
+<p>it2fs1 : IT2FS</p>
+<blockquote>
+<div><p>First input of the meet operator.</p>
+</div></blockquote>
+<p>it2fs2 : IT2FS</p>
+<blockquote>
+<div><p>Second input of the meet operator.</p>
+</div></blockquote>
+<p>t_norm : function</p>
+<blockquote>
+<div><p>The t-norm function to be used.</p>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : IT2FS</p>
+<blockquote>
+<div><p>Returns the meet of the two input IT2FSs.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">domain</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">it2fs1</span> <span class="o">=</span> <span class="n">IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.33</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">it2fs2</span> <span class="o">=</span> <span class="n">IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.66</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
@@ -435,37 +434,35 @@ the crisp outputs are calculated for all output variables.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">it2fs3</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.join">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">join</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">it2fs1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">it2fs2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s_norm</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.join" title="Permalink to this definition"></a></dt>
 <dd><p>Join operator for IT2FSs.</p>
-<section id="id5">
-<h2>Parameters<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>domain:</dt><dd><p>numpy (n,) shaped array</p>
-<p>Indicates the universe of discourse dedicated to the IT2FS.</p>
-</dd>
-<dt>it2fs1:</dt><dd><p>IT2FS</p>
-<p>First input of the join operator.</p>
-</dd>
-<dt>it2fs2:</dt><dd><p>IT2FS</p>
-<p>Second input of the join operator.</p>
-</dd>
-<dt>s_norm:</dt><dd><p>function</p>
-<p>The s-norm function to be used.</p>
-</dd>
-</dl>
-</section>
-<section id="id6">
-<h2>Returns<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
-<p>IT2FS</p>
-<p>Returns the join of the two input IT2FSs.</p>
-</section>
-<section id="id7">
-<h2>Examples<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
+<p class="rubric">Parameters</p>
+<p>domain : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>Indicates the universe of discourse dedicated to the IT2FS.</p>
+</div></blockquote>
+<p>it2fs1 : IT2FS</p>
+<blockquote>
+<div><p>First input of the join operator.</p>
+</div></blockquote>
+<p>it2fs2 : IT2FS</p>
+<blockquote>
+<div><p>Second input of the join operator.</p>
+</div></blockquote>
+<p>s_norm : function</p>
+<blockquote>
+<div><p>The s-norm function to be used.</p>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : IT2FS</p>
+<blockquote>
+<div><p>Returns the join of the two input IT2FSs.</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">domain</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">it2fs1</span> <span class="o">=</span> <span class="n">IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.33</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">it2fs2</span> <span class="o">=</span> <span class="n">IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.66</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
@@ -473,177 +470,176 @@ the crisp outputs are calculated for all output variables.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">it2fs3</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.Centroid">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">Centroid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">it2fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alg_func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alg_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.Centroid" title="Permalink to this definition"></a></dt>
 <dd><p>Centroid type reduction for an interval type 2 fuzzy set.</p>
-<section id="id8">
-<h2>Parameters<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>it2fs:</dt><dd><p>IT2FS</p>
-<p>IT2FS which would be type reduced.</p>
-</dd>
-<dt>alg_func:</dt><dd><p>Function</p>
-<p>Type reduction algorithm to be used, which is one of these:</p>
+<p class="rubric">Parameters</p>
+<p>it2fs : IT2FS</p>
+<blockquote>
+<div><p>IT2FS which would be type reduced.</p>
+</div></blockquote>
+<p>alg_func : Function</p>
+<blockquote>
+<div><p>Type reduction algorithm to be used, one of the list below:</p>
 <blockquote>
 <div><p>KM_algorithm, EKM_algorithm, WEKM_algorithm, TWEKM_algorithm, 
 EIASC_algorithm, WM_algorithm, BMM_algorithm, LBMM_algorithm, and 
 NT_algorithm</p>
 </div></blockquote>
-</dd>
-<dt>domain:</dt><dd><p>numpy (n,) shaped array</p>
-<p>Indicates the universe of discourse dedicated to the IT2FS.</p>
-</dd>
-<dt>alg_params:</dt><dd><p>List</p>
-<p>List of parameters of type reduction algorithm if it is needed.</p>
-</dd>
-</dl>
-</section>
-<section id="id9">
-<h2>Returns<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h2>
-<p>Based on selected type reduction algorithm tuple (l, r) or float</p>
-<p>Returns Centroid type reduction of the input IT2FS.</p>
-</section>
+</div></blockquote>
+<p>domain : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>Indicates the universe of discourse dedicated to the IT2FS.</p>
+</div></blockquote>
+<p>alg_params : List</p>
+<blockquote>
+<div><p>List of parameters of type reduction algorithm if it is needed.</p>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : Based on selected type reduction algorithm tuple (l, r) or float</p>
+<blockquote>
+<div><p>Returns Centroid type reduction of the input IT2FS.</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.CoSet">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">CoSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">firing_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">consequent_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alg_func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alg_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.CoSet" title="Permalink to this definition"></a></dt>
 <dd><p>Center of sets type reduction.</p>
-<section id="id10">
-<h2>Parameters<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>firing_array:</dt><dd><p>numpy (m, 2) shaped array</p>
-<p>Firing strength of consequents.</p>
-</dd>
-<dt>consequent_array:</dt><dd><p>List of IT2FS</p>
-<p>List of consequents corresponding with the rules of IT2FLS</p>
-</dd>
-<dt>alg_func:</dt><dd><p>Function</p>
-<p>Type reduction algorithm to be used, which is one of these:</p>
+<p class="rubric">Parameters</p>
+<p>firing_array : numpy (m, 2) shaped array</p>
+<blockquote>
+<div><p>Firing strength of consequents.</p>
+</div></blockquote>
+<p>consequent_array : List of IT2FS</p>
+<blockquote>
+<div><p>List of consequents corresponding with the rules of IT2FLS</p>
+</div></blockquote>
+<p>alg_func : Function</p>
+<blockquote>
+<div><p>Type reduction algorithm to be used, one of the list below:</p>
 <blockquote>
 <div><p>KM_algorithm, EKM_algorithm, WEKM_algorithm, TWEKM_algorithm, 
 EIASC_algorithm, WM_algorithm, BMM_algorithm, LBMM_algorithm, and 
 NT_algorithm</p>
 </div></blockquote>
-</dd>
-<dt>domain:</dt><dd><p>numpy (n,) shaped array</p>
-<p>Indicates the universe of discourse dedicated to the IT2FS.</p>
-</dd>
-<dt>alg_params:</dt><dd><p>List</p>
-<p>List of parameters of type reduction algorithm if it is needed.</p>
-</dd>
-</dl>
-</section>
-<section id="id11">
-<h2>Returns<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h2>
-<p>Based on selected type reduction algorithm tuple (l, r) or float</p>
-<p>Returns Center of sets type reduction of the input IT2FS.</p>
-</section>
+</div></blockquote>
+<p>domain : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>Indicates the universe of discourse dedicated to the IT2FS.</p>
+</div></blockquote>
+<p>alg_params : List</p>
+<blockquote>
+<div><p>List of parameters of type reduction algorithm if it is needed.</p>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : Based on selected type reduction algorithm tuple (l, r) or float</p>
+<blockquote>
+<div><p>Returns Center of sets type reduction of the input IT2FS.</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.CoSum">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">CoSum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">it2fs_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alg_func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alg_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.CoSum" title="Permalink to this definition"></a></dt>
 <dd><p>Center of sum type reduction for an interval type 2 fuzzy set.</p>
-<section id="id12">
-<h2>Parameters<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>it2fs_array:</dt><dd><p>List of IT2FSs</p>
-<p>List of final IT2FSs achieved by evaluating rule base.</p>
-</dd>
-<dt>alg_func:</dt><dd><p>Function</p>
-<p>Type reduction algorithm to be used, which is one of these:</p>
+<p class="rubric">Parameters</p>
+<p>it2fs_array : List of IT2FSs</p>
+<blockquote>
+<div><p>List of final IT2FSs achieved by evaluating rule base.</p>
+</div></blockquote>
+<p>alg_func : Function</p>
+<blockquote>
+<div><p>Type reduction algorithm to be used, which is one of these:</p>
 <blockquote>
 <div><p>KM_algorithm, EKM_algorithm, WEKM_algorithm, TWEKM_algorithm, 
 EIASC_algorithm, WM_algorithm, BMM_algorithm, LBMM_algorithm, and 
 NT_algorithm</p>
 </div></blockquote>
-</dd>
-<dt>domain:</dt><dd><p>numpy (n,) shaped array</p>
-<p>Indicates the universe of discourse dedicated to the IT2FS.</p>
-</dd>
-<dt>alg_params:</dt><dd><p>List</p>
-<p>List of parameters of type reduction algorithm if it is needed.</p>
-</dd>
-</dl>
-</section>
-<section id="id13">
-<h2>Returns<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h2>
-<p>Based on selected type reduction algorithm tuple (l, r) or float</p>
-<p>Returns Center of sum type reduction of the input IT2FS.</p>
-</section>
+</div></blockquote>
+<p>domain : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>Indicates the universe of discourse dedicated to the IT2FS.</p>
+</div></blockquote>
+<p>alg_params : List</p>
+<blockquote>
+<div><p>List of parameters of type reduction algorithm if it is needed.</p>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : Based on selected type reduction algorithm tuple (l, r) or float</p>
+<blockquote>
+<div><p>Returns Center of sum type reduction of the input IT2FS.</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.Height">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">Height</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">it2fs_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alg_func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alg_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.Height" title="Permalink to this definition"></a></dt>
 <dd><p>Height type reduction for an interval type 2 fuzzy set.</p>
-<section id="id14">
-<h2>Parameters<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>it2fs_array:</dt><dd><p>List of IT2FSs</p>
-<p>List of final IT2FSs achieved by evaluating rule base.</p>
-</dd>
-<dt>alg_func:</dt><dd><p>Function</p>
-<p>Type reduction algorithm to be used, which is one of these:</p>
+<p class="rubric">Parameters</p>
+<p>it2fs_array : List of IT2FSs</p>
+<blockquote>
+<div><p>List of final IT2FSs achieved by evaluating rule base.</p>
+</div></blockquote>
+<p>alg_func : Function</p>
+<blockquote>
+<div><p>Type reduction algorithm to be used, which is one of these:</p>
 <blockquote>
 <div><p>KM_algorithm, EKM_algorithm, WEKM_algorithm, TWEKM_algorithm, 
 EIASC_algorithm, WM_algorithm, BMM_algorithm, LBMM_algorithm, and 
 NT_algorithm</p>
 </div></blockquote>
-</dd>
-<dt>domain:</dt><dd><p>numpy (n,) shaped array</p>
-<p>Indicates the universe of discourse dedicated to the IT2FS.</p>
-</dd>
-<dt>alg_params:</dt><dd><p>List</p>
-<p>List of parameters of type reduction algorithm if it is needed.</p>
-</dd>
-</dl>
-</section>
-<section id="id15">
-<h2>Returns<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h2>
-<p>Based on selected type reduction algorithm tuple (l, r) or float</p>
-<p>Returns Height type reduction of the input IT2FS.</p>
-</section>
+</div></blockquote>
+<p>domain : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>Indicates the universe of discourse dedicated to the IT2FS.</p>
+</div></blockquote>
+<p>alg_params : List</p>
+<blockquote>
+<div><p>List of parameters of type reduction algorithm if it is needed.</p>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : Based on selected type reduction algorithm tuple (l, r) or float</p>
+<blockquote>
+<div><p>Returns Height type reduction of the input IT2FS.</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyit2fls.ModiHe">
 <span class="sig-prename descclassname"><span class="pre">pyit2fls.</span></span><span class="sig-name descname"><span class="pre">ModiHe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">it2fs_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spread_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alg_func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alg_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyit2fls.ModiHe" title="Permalink to this definition"></a></dt>
 <dd><p>Modified height type reduction for an interval type 2 fuzzy set.</p>
-<section id="id16">
-<h2>Parameters<a class="headerlink" href="#id16" title="Permalink to this heading"></a></h2>
-<dl>
-<dt>it2fs_array:</dt><dd><p>List of IT2FSs</p>
-<p>List of final IT2FSs achieved by evaluating rule base.</p>
-</dd>
-<dt>spread_array:</dt><dd><p>List of spread values corresponding with IT2FSs in it2fs_array.</p>
-</dd>
-<dt>alg_func:</dt><dd><p>Function</p>
-<p>Type reduction algorithm to be used, which is one of these:</p>
+<p class="rubric">Parameters</p>
+<p>it2fs_array : List of IT2FSs</p>
+<blockquote>
+<div><p>List of final IT2FSs achieved by evaluating rule base.</p>
+</div></blockquote>
+<p>spread_array : List of spread values corresponding with IT2FSs in it2fs_array.</p>
+<p>alg_func: Function</p>
+<blockquote>
+<div><p>Type reduction algorithm to be used, which is one of these:</p>
 <blockquote>
 <div><p>KM_algorithm, EKM_algorithm, WEKM_algorithm, TWEKM_algorithm, 
 EIASC_algorithm, WM_algorithm, BMM_algorithm, LBMM_algorithm, and 
 NT_algorithm</p>
 </div></blockquote>
-</dd>
-<dt>domain:</dt><dd><p>numpy (n,) shaped array</p>
-<p>Indicates the universe of discourse dedicated to the IT2FS.</p>
-</dd>
-<dt>alg_params:</dt><dd><p>List</p>
-<p>List of parameters of type reduction algorithm if it is needed.</p>
-</dd>
-</dl>
-</section>
-<section id="id17">
-<h2>Returns<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h2>
-<p>Based on selected type reduction algorithm tuple (l, r) or float</p>
-<p>Returns Modified height type reduction of the input IT2FS.</p>
-</section>
+</div></blockquote>
+<p>domain : numpy (n,) shaped array</p>
+<blockquote>
+<div><p>Indicates the universe of discourse dedicated to the IT2FS.</p>
+</div></blockquote>
+<p>alg_params : List</p>
+<blockquote>
+<div><p>List of parameters of type reduction algorithm if it is needed.</p>
+</div></blockquote>
+<p class="rubric">Returns</p>
+<p>output : Based on selected type reduction algorithm tuple (l, r) or float</p>
+<blockquote>
+<div><p>Returns Modified height type reduction of the input IT2FS.</p>
+</div></blockquote>
 </dd></dl>
 
 </section>
