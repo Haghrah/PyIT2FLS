@@ -11,6 +11,7 @@ from numpy.linalg import (norm, )
 from numpy.random import (rand, )
 from scipy.optimize import (differential_evolution, minimize, )
 
+
 class gaussian_mf_learning:
 
     def d0(self, x, c, v):
@@ -18,6 +19,53 @@ class gaussian_mf_learning:
 
     def d1(self, x, c, v):
         return - 2 * ((x - c) / v ** 2) * exp(- ((x - c) / v) ** 2)
+
+
+class T1Mamdani_ML_Model:
+    """
+    P: Number of inputs
+    U: Universe of discourse of inputs as a list of 
+       tuples demonstrating lowest and highest possible 
+       values of each variable.
+    N: Number of sets describing each input
+    L: Number of rules
+    M: Number of sets describing the output
+    V: Universe of discourse of output as a tuple
+       demonstrating the lowest and highest possible 
+       values of the output variable.
+    """
+    def __init__(self, Params, P, U, N, L, M, V, mf):
+        self.Params = Params
+        self.P = P
+        self.U = U
+        self.N = N
+        self.L = L
+        self.M = M
+        self.V = V
+        self.mf = mf
+
+    def d0(self, ):
+        pass
+
+    def d1(self, ):
+        pass
+
+
+class T1Mamdani_ML:
+    """
+    """
+    def __init__(self, ):
+        pass
+
+    def error(self, ):
+        return 0.
+    
+    def fit(self, ):
+        pass
+
+    def score(self, ):
+        pass
+
 
 
 class T1TSK_ML_Model:
