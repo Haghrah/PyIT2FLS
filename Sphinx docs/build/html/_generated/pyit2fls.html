@@ -48,6 +48,11 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">PyIT2FLS</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example-1">Example 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-2">Example 2</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../classes.html">Classes</a></li>
@@ -117,6 +122,53 @@ the PyIT2FLS folder:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip3<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pyit2fls
 </pre></div>
 </div>
+</section>
+<section id="getting-started">
+<h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this heading"></a></h2>
+<p>This section provides some elementary examples for using PyIT2FLS library.
+Advanced examples are accessible from examples directory of PyIT2FLS github
+repository.</p>
+<section id="example-1">
+<h3>Example 1<a class="headerlink" href="#example-1" title="Permalink to this heading"></a></h3>
+<p>In the first example, we are going to define two trapezoidal type 1 fuzzy sets
+and then apply fuzzy AND and OR operators on them. First we define the trapezoidal fuzzy
+sets using the T1FS class and trapezoid_mf functions, plot them all together using
+T1FS_plot function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyit2fls</span> <span class="kn">import</span> <span class="p">(</span><span class="n">T1FS</span><span class="p">,</span> <span class="n">trapezoid_mf</span><span class="p">,</span> <span class="n">T1FS_plot</span><span class="p">,</span> <span class="p">)</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">linspace</span>
+
+<span class="n">domain</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">set1</span> <span class="o">=</span> <span class="n">T1FS</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">trapezoid_mf</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.25</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.75</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
+<span class="n">set2</span> <span class="o">=</span> <span class="n">T1FS</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">trapezoid_mf</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
+<span class="n">T1FS_plot</span><span class="p">(</span><span class="n">set1</span><span class="p">,</span> <span class="n">set2</span><span class="p">,</span> <span class="n">legends</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Trapezoidal Set 1&quot;</span><span class="p">,</span> <span class="s2">&quot;Trapezoidal Set 2&quot;</span><span class="p">,</span> <span class="p">])</span>
+</pre></div>
+</div>
+<p>The output of this code would be as below:</p>
+<a class="reference internal image-reference" href="../_images/Figure_1.png"><img alt="Defining two trapezoidal fuzzy sets." class="align-center" src="../_images/Figure_1.png" style="width: 400px;" /></a>
+<p>Then, we try to compute the AND of these two sets using two different T-norms:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyit2fls</span> <span class="kn">import</span> <span class="p">(</span><span class="n">min_t_norm</span><span class="p">,</span> <span class="n">product_t_norm</span><span class="p">,</span> <span class="n">T1FS_AND</span><span class="p">,</span> <span class="p">)</span>
+
+<span class="n">set3</span> <span class="o">=</span> <span class="n">T1FS_AND</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">set1</span><span class="p">,</span> <span class="n">set2</span><span class="p">,</span> <span class="n">min_t_norm</span><span class="p">)</span>
+<span class="n">set4</span> <span class="o">=</span> <span class="n">T1FS_AND</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">set1</span><span class="p">,</span> <span class="n">set2</span><span class="p">,</span> <span class="n">product_t_norm</span><span class="p">)</span>
+<span class="n">T1FS_plot</span><span class="p">(</span><span class="n">set3</span><span class="p">,</span> <span class="n">set4</span><span class="p">,</span> <span class="n">legends</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Fuzzy Set 3&quot;</span><span class="p">,</span> <span class="s2">&quot;Fuzzy Set 4&quot;</span><span class="p">,</span> <span class="p">])</span>
+</pre></div>
+</div>
+<p>The output of this code would be as below:</p>
+<a class="reference internal image-reference" href="../_images/Figure_2.png"><img alt="Calculating AND of set1 and set2." class="align-center" src="../_images/Figure_2.png" style="width: 400px;" /></a>
+<p>Finally, we try to compute the OR of these two sets using two different S-norms:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyit2fls</span> <span class="kn">import</span> <span class="p">(</span><span class="n">max_s_norm</span><span class="p">,</span> <span class="n">probabilistic_sum_s_norm</span><span class="p">,</span> <span class="n">T1FS_OR</span><span class="p">,</span> <span class="p">)</span>
+
+<span class="n">set5</span> <span class="o">=</span> <span class="n">T1FS_OR</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">set1</span><span class="p">,</span> <span class="n">set2</span><span class="p">,</span> <span class="n">max_s_norm</span><span class="p">)</span>
+<span class="n">set6</span> <span class="o">=</span> <span class="n">T1FS_OR</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">set1</span><span class="p">,</span> <span class="n">set2</span><span class="p">,</span> <span class="n">probabilistic_sum_s_norm</span><span class="p">)</span>
+<span class="n">T1FS_plot</span><span class="p">(</span><span class="n">set5</span><span class="p">,</span> <span class="n">set6</span><span class="p">,</span> <span class="n">legends</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Fuzzy Set 5&quot;</span><span class="p">,</span> <span class="s2">&quot;Fuzzy Set 6&quot;</span><span class="p">,</span> <span class="p">])</span>
+</pre></div>
+</div>
+<p>The output of this code would be as below:</p>
+<a class="reference internal image-reference" href="../_images/Figure_3.png"><img alt="Calculating OR of set1 and set2." class="align-center" src="../_images/Figure_3.png" style="width: 400px;" /></a>
+</section>
+<section id="example-2">
+<h3>Example 2<a class="headerlink" href="#example-2" title="Permalink to this heading"></a></h3>
+</section>
 </section>
 </section>
 
