@@ -23,6 +23,14 @@ MLA:
 
     Haghrah, Amir Arslan, and Sehraneh Ghaemi. "PyIT2FLS: A New Python Toolkit for Interval Type 2 Fuzzy Logic Systems." arXiv preprint arXiv:1909.10051 (2019).
 
+
+## Support My Work with Tether (USDT)
+If you find this Python library useful and would like to support its development, donations are greatly appreciated. You can send Tether (USDT) directly to the following address:
+
+    0x521c9d3ba891596baf99cef6a59a0790e15ddfbe
+
+Thank you for your contribution, which helps maintain and improve this project!
+
 ## Installation
 PyIT2FLS can be installed by unzipping the source code in a directory and using this command inside the PyIT2FLS folder:
 

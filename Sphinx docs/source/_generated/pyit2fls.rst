@@ -118,7 +118,10 @@ The output of this code would be as below:
 Example 2
 ^^^^^^^^^
 
+In the second example, we are going to define a simple type 1 TSK fuzzy system, 
+calculate its output for some inputs, and plot the control surface for it.
 
+.. code-block:: python
 
 
 

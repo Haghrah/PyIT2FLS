@@ -34,3 +34,28 @@ T1FS_plot(set5, set6, legends=["Fuzzy Set 5", "Fuzzy Set 6", ])
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
