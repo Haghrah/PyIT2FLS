@@ -48,7 +48,7 @@ Or you can use pip3:
     pip3 install --upgrade pyit2fls
 
 Support My Work with Tether (USDT)
-==================================
+----------------------------------
 If you find this Python library useful and would like to support its development, donations are greatly appreciated. You can send Tether (USDT) directly to the following address:
 
     0x521c9d3ba891596baf99cef6a59a0790e15ddfbe
