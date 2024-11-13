@@ -47,6 +47,14 @@ Or you can use pip3:
 
     pip3 install --upgrade pyit2fls
 
+Support My Work with Tether (USDT)
+==================================
+If you find this Python library useful and would like to support its development, donations are greatly appreciated. You can send Tether (USDT) directly to the following address:
+
+    0x521c9d3ba891596baf99cef6a59a0790e15ddfbe
+
+Thank you for your contribution, which helps maintain and improve this project!
+
 
 Getting started
 ---------------
@@ -119,10 +127,111 @@ Example 2
 ^^^^^^^^^
 
 In the second example, we are going to define a simple type 1 TSK fuzzy system, 
-calculate its output for some inputs, and plot the control surface for it.
+calculate its output for some inputs, and plot the control surface for it. So, 
+we first define the T1FSs representing inputs of the fuzzy system.
 
 .. code-block:: python
 
+    from pyit2fls import (T1TSK, T1FS, gaussian_mf, T1FS_plot, )
+    from numpy import (linspace, meshgrid, zeros, )
+    from mpl_toolkits import mplot3d
+    import matplotlib.pyplot as plt
+    from matplotlib import cm
+    from matplotlib.ticker import (LinearLocator, FormatStrFormatter, )
 
+    domain = linspace(-1.5, 1.5, 100)
+    t1fs1 = T1FS(domain, gaussian_mf, [-0.5, 0.5, 1.])
+    t1fs2 = T1FS(domain, gaussian_mf, [ 0.5, 0.5, 1.])
+    T1FS_plot(t1fs1, t1fs2, legends=["Gaussian Set 1", "Gaussian Set 2", ])
+
+The output of this code would be as below:
+
+.. image:: ../_static/Figure_4.png
+   :alt: Defining two fuzzy sets representing the inputs of the fuzzy system.
+   :width: 400px
+   :align: center
+
+As you see, there are two Gaussian fuzzy sets. The parameters of a Gaussian 
+membership function are mean, standard deviation, and height, respectively. Then 
+we should define the T1TSK system and its input and output variables.
+
+.. code-block:: python
+
+    myT1TSK = T1TSK()
+    myT1TSK.add_input_variable("X1")
+    myT1TSK.add_input_variable("X2")
+
+    myT1TSK.add_output_variable("Y")
+
+The next thing we should define is the outputs of the fuzzy rules. These outputs 
+must be functions of the inputs. According to our definition of myT1TSK, we have 
+two inputs. So, each output function must have to inputs. Let's assume that there 
+will be four rules.
+
+.. code-block:: python
+
+    def Y1(X1, X2):
+        return 2. * X1 + 3. * X2
+
+    def Y2(X1, X2):
+        return -1.5 * X1 + 2. * X2
+
+    def Y3(X1, X2):
+        return -2. * X1 - 1.2 * X2
+
+    def Y4(X1, X2):
+        return 5. * X1 - 2.5 * X2
+
+After defining the output functions, we will define the rules using the following rule-base:
+
+
++-----------------+----------------+-----------------+
+|                 | **X2**: t1fs1  | **X2**: t1fs2   |
++-----------------+----------------+-----------------+
+| **X1**: t1fs1   | **Y**: Y1      | **Y**: Y2       |
++-----------------+----------------+-----------------+
+| **X1**: t1fs2   | **Y**: Y3      | **Y**: Y4       |
++-----------------+----------------+-----------------+
+
+
+.. code-block:: python
+
+    myT1TSK.add_rule([("X1", t1fs1), ("X2", t1fs1)], 
+                [("Y", Y1), ])
+    myT1TSK.add_rule([("X1", t1fs1), ("X2", t1fs2)], 
+                [("Y", Y2), ])
+    myT1TSK.add_rule([("X1", t1fs2), ("X2", t1fs1)], 
+                [("Y", Y3), ])
+    myT1TSK.add_rule([("X1", t1fs2), ("X2", t1fs2)], 
+                [("Y", Y4), ])
+
+Now, it is time to evaluate the system output for different points in the univertse 
+of discourse and plot the control surface:
+
+.. code-block:: python
+
+    X1, X2 = meshgrid(domain, domain)
+    O = zeros(shape=X1.shape)
+
+    for i, x1 in zip(range(len(domain)), domain):
+        for j, x2 in zip(range(len(domain)), domain):
+            o = myT1TSK.evaluate({"X1":x1, "X2":x2}, params=(x1, x2))
+            O[i, j] = o["Y"]
+
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection="3d")
+    surf = ax.plot_surface(X1, X2, O, cmap=cm.coolwarm,
+                        linewidth=0, antialiased=False)
+    ax.zaxis.set_major_locator(LinearLocator(10))
+    ax.zaxis.set_major_formatter(FormatStrFormatter('%.02f'))
+    fig.colorbar(surf, shrink=0.5, aspect=5)
+    plt.show()
+
+Finally, the output of this code would be as below:
+
+.. image:: ../_static/Figure_5.png
+   :alt: The control surface of the final type 1 fuzzy TSK system.
+   :width: 400px
+   :align: center
 
 

@@ -48,6 +48,9 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">PyIT2FLS</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#support-my-work-with-tether-usdt">Support My Work with Tether (USDT)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting started</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#example-1">Example 1</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#example-2">Example 2</a></li>
@@ -123,6 +126,14 @@ the PyIT2FLS folder:</p>
 </pre></div>
 </div>
 </section>
+</section>
+<section id="support-my-work-with-tether-usdt">
+<h1>Support My Work with Tether (USDT)<a class="headerlink" href="#support-my-work-with-tether-usdt" title="Permalink to this heading"></a></h1>
+<p>If you find this Python library useful and would like to support its development, donations are greatly appreciated. You can send Tether (USDT) directly to the following address:</p>
+<blockquote>
+<div><p>0x521c9d3ba891596baf99cef6a59a0790e15ddfbe</p>
+</div></blockquote>
+<p>Thank you for your contribution, which helps maintain and improve this project!</p>
 <section id="getting-started">
 <h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this heading"></a></h2>
 <p>This section provides some elementary examples for using PyIT2FLS library.
@@ -168,6 +179,100 @@ T1FS_plot function:</p>
 </section>
 <section id="example-2">
 <h3>Example 2<a class="headerlink" href="#example-2" title="Permalink to this heading"></a></h3>
+<p>In the second example, we are going to define a simple type 1 TSK fuzzy system,
+calculate its output for some inputs, and plot the control surface for it. So,
+we first define the T1FSs representing inputs of the fuzzy system.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyit2fls</span> <span class="kn">import</span> <span class="p">(</span><span class="n">T1TSK</span><span class="p">,</span> <span class="n">T1FS</span><span class="p">,</span> <span class="n">gaussian_mf</span><span class="p">,</span> <span class="n">T1FS_plot</span><span class="p">,</span> <span class="p">)</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="p">(</span><span class="n">linspace</span><span class="p">,</span> <span class="n">meshgrid</span><span class="p">,</span> <span class="n">zeros</span><span class="p">,</span> <span class="p">)</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits</span> <span class="kn">import</span> <span class="n">mplot3d</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>
+<span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="p">(</span><span class="n">LinearLocator</span><span class="p">,</span> <span class="n">FormatStrFormatter</span><span class="p">,</span> <span class="p">)</span>
+
+<span class="n">domain</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">t1fs1</span> <span class="o">=</span> <span class="n">T1FS</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">gaussian_mf</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
+<span class="n">t1fs2</span> <span class="o">=</span> <span class="n">T1FS</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">gaussian_mf</span><span class="p">,</span> <span class="p">[</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
+<span class="n">T1FS_plot</span><span class="p">(</span><span class="n">t1fs1</span><span class="p">,</span> <span class="n">t1fs2</span><span class="p">,</span> <span class="n">legends</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Gaussian Set 1&quot;</span><span class="p">,</span> <span class="s2">&quot;Gaussian Set 2&quot;</span><span class="p">,</span> <span class="p">])</span>
+</pre></div>
+</div>
+<p>The output of this code would be as below:</p>
+<a class="reference internal image-reference" href="../_images/Figure_4.png"><img alt="Defining two fuzzy sets representing the inputs of the fuzzy system." class="align-center" src="../_images/Figure_4.png" style="width: 400px;" /></a>
+<p>As you see, there are two Gaussian fuzzy sets. The parameters of a Gaussian
+membership function are mean, standard deviation, and height, respectively. Then
+we should define the T1TSK system and its input and output variables.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">myT1TSK</span> <span class="o">=</span> <span class="n">T1TSK</span><span class="p">()</span>
+<span class="n">myT1TSK</span><span class="o">.</span><span class="n">add_input_variable</span><span class="p">(</span><span class="s2">&quot;X1&quot;</span><span class="p">)</span>
+<span class="n">myT1TSK</span><span class="o">.</span><span class="n">add_input_variable</span><span class="p">(</span><span class="s2">&quot;X2&quot;</span><span class="p">)</span>
+
+<span class="n">myT1TSK</span><span class="o">.</span><span class="n">add_output_variable</span><span class="p">(</span><span class="s2">&quot;Y&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The next thing we should define is the outputs of the fuzzy rules. These outputs
+must be functions of the inputs. According to our definition of myT1TSK, we have
+two inputs. So, each output function must have to inputs. Let’s assume that there
+will be four rules.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Y1</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">X1</span> <span class="o">+</span> <span class="mf">3.</span> <span class="o">*</span> <span class="n">X2</span>
+
+<span class="k">def</span> <span class="nf">Y2</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">):</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mf">1.5</span> <span class="o">*</span> <span class="n">X1</span> <span class="o">+</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">X2</span>
+
+<span class="k">def</span> <span class="nf">Y3</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">):</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mf">2.</span> <span class="o">*</span> <span class="n">X1</span> <span class="o">-</span> <span class="mf">1.2</span> <span class="o">*</span> <span class="n">X2</span>
+
+<span class="k">def</span> <span class="nf">Y4</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">5.</span> <span class="o">*</span> <span class="n">X1</span> <span class="o">-</span> <span class="mf">2.5</span> <span class="o">*</span> <span class="n">X2</span>
+</pre></div>
+</div>
+<p>After defining the output functions, we will define the rules using the following rule-base:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td></td>
+<td><p><strong>X2</strong>: t1fs1</p></td>
+<td><p><strong>X2</strong>: t1fs2</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>X1</strong>: t1fs1</p></td>
+<td><p><strong>Y</strong>: Y1</p></td>
+<td><p><strong>Y</strong>: Y2</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>X1</strong>: t1fs2</p></td>
+<td><p><strong>Y</strong>: Y3</p></td>
+<td><p><strong>Y</strong>: Y4</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">myT1TSK</span><span class="o">.</span><span class="n">add_rule</span><span class="p">([(</span><span class="s2">&quot;X1&quot;</span><span class="p">,</span> <span class="n">t1fs1</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;X2&quot;</span><span class="p">,</span> <span class="n">t1fs1</span><span class="p">)],</span>
+            <span class="p">[(</span><span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="n">Y1</span><span class="p">),</span> <span class="p">])</span>
+<span class="n">myT1TSK</span><span class="o">.</span><span class="n">add_rule</span><span class="p">([(</span><span class="s2">&quot;X1&quot;</span><span class="p">,</span> <span class="n">t1fs1</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;X2&quot;</span><span class="p">,</span> <span class="n">t1fs2</span><span class="p">)],</span>
+            <span class="p">[(</span><span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="n">Y2</span><span class="p">),</span> <span class="p">])</span>
+<span class="n">myT1TSK</span><span class="o">.</span><span class="n">add_rule</span><span class="p">([(</span><span class="s2">&quot;X1&quot;</span><span class="p">,</span> <span class="n">t1fs2</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;X2&quot;</span><span class="p">,</span> <span class="n">t1fs1</span><span class="p">)],</span>
+            <span class="p">[(</span><span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="n">Y3</span><span class="p">),</span> <span class="p">])</span>
+<span class="n">myT1TSK</span><span class="o">.</span><span class="n">add_rule</span><span class="p">([(</span><span class="s2">&quot;X1&quot;</span><span class="p">,</span> <span class="n">t1fs2</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;X2&quot;</span><span class="p">,</span> <span class="n">t1fs2</span><span class="p">)],</span>
+            <span class="p">[(</span><span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="n">Y4</span><span class="p">),</span> <span class="p">])</span>
+</pre></div>
+</div>
+<p>Now, it is time to evaluate the system output for different points in the univertse
+of discourse and plot the control surface:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X1</span><span class="p">,</span> <span class="n">X2</span> <span class="o">=</span> <span class="n">meshgrid</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">domain</span><span class="p">)</span>
+<span class="n">O</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">X1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x1</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">domain</span><span class="p">)),</span> <span class="n">domain</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">x2</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">domain</span><span class="p">)),</span> <span class="n">domain</span><span class="p">):</span>
+        <span class="n">o</span> <span class="o">=</span> <span class="n">myT1TSK</span><span class="o">.</span><span class="n">evaluate</span><span class="p">({</span><span class="s2">&quot;X1&quot;</span><span class="p">:</span><span class="n">x1</span><span class="p">,</span> <span class="s2">&quot;X2&quot;</span><span class="p">:</span><span class="n">x2</span><span class="p">},</span> <span class="n">params</span><span class="o">=</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
+        <span class="n">O</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">o</span><span class="p">[</span><span class="s2">&quot;Y&quot;</span><span class="p">]</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;3d&quot;</span><span class="p">)</span>
+<span class="n">surf</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">,</span> <span class="n">O</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span>
+                    <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">antialiased</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">zaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">LinearLocator</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">zaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">FormatStrFormatter</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%.02f</span><span class="s1">&#39;</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">surf</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Finally, the output of this code would be as below:</p>
+<a class="reference internal image-reference" href="../_images/Figure_5.png"><img alt="The control surface of the final type 1 fuzzy TSK system." class="align-center" src="../_images/Figure_5.png" style="width: 400px;" /></a>
 </section>
 </section>
 </section>
