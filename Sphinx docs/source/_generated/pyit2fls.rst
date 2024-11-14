@@ -235,3 +235,19 @@ Finally, the output of this code would be as below:
    :align: center
 
 
+
+Example 3
+^^^^^^^^^
+
+Now, let's define a simple type 1 Mamdani fuzzy system using PyIT2FLS. 
+
+
+
+
+
+
+
+
+
+
+
