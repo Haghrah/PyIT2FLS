@@ -63,8 +63,8 @@ This section provides some elementary examples for using PyIT2FLS library.
 Advanced examples are accessible from examples directory of PyIT2FLS github 
 repository. 
 
-Example 1
-^^^^^^^^^
+Example 1: Defining type 1 fuzzy sets and performing AND and OR operators on them
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In the first example, we are going to define two trapezoidal type 1 fuzzy sets 
 and then apply fuzzy AND and OR operators on them. First we define the trapezoidal fuzzy 
@@ -123,8 +123,8 @@ The output of this code would be as below:
    :align: center
 
 
-Example 2
-^^^^^^^^^
+Example 2: Defining type 1 TSK fuzzy systems
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In the second example, we are going to define a simple type 1 TSK fuzzy system, 
 calculate its output for some inputs, and plot the control surface for it. So, 
@@ -236,16 +236,104 @@ Finally, the output of this code would be as below:
 
 
 
-Example 3
-^^^^^^^^^
+Example 3: Defining type 1 Mamdani fuzzy systems
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Now, let's define a simple type 1 Mamdani fuzzy system using PyIT2FLS. 
 
+.. code-block:: python
+
+    from pyit2fls import (T1Mamdani, T1FS, gaussian_mf, T1FS_plot, )
+    from numpy import (linspace, meshgrid, zeros, )
+    from mpl_toolkits import mplot3d
+    import matplotlib.pyplot as plt
+    from matplotlib import cm
+    from matplotlib.ticker import (LinearLocator, FormatStrFormatter, )
+
+    inputDomain = linspace(-1.5, 1.5, 100)
+    t1fs1 = T1FS(inputDomain, gaussian_mf, [-0.5, 0.5, 1.])
+    t1fs2 = T1FS(inputDomain, gaussian_mf, [ 0.5, 0.5, 1.])
+    T1FS_plot(t1fs1, t1fs2, legends=["Gaussian Set 1", "Gaussian Set 2", ])
+
+.. image:: ../_static/Figure_6.png
+   :alt: Defining two fuzzy sets representing the inputs of the fuzzy system.
+   :width: 400px
+   :align: center
+
+
+.. code-block:: python
+
+    outputDomain = linspace(-10., 10., 1000)
+    t1fs3 = T1FS(outputDomain, gaussian_mf, [-7.5, 2.0, 1.])
+    t1fs4 = T1FS(outputDomain, gaussian_mf, [-2.5, 2.0, 1.])
+    t1fs5 = T1FS(outputDomain, gaussian_mf, [ 2.5, 2.0, 1.])
+    t1fs6 = T1FS(outputDomain, gaussian_mf, [ 7.5, 2.0, 1.])
+    T1FS_plot(t1fs3, t1fs4, t1fs5, t1fs6, 
+              legends=["Gaussian Set 3", "Gaussian Set 4", 
+                       "Gaussian Set 5", "Gaussian Set 6", ])
 
 
 
+.. image:: ../_static/Figure_7.png
+   :alt: Defining four fuzzy sets representing the outputs of the fuzzy system.
+   :width: 400px
+   :align: center
 
 
+.. code-block:: python
+
+    myT1Mamdani = T1Mamdani(engine="Product", defuzzification="CoG")
+    myT1Mamdani.add_input_variable("X1")
+    myT1Mamdani.add_input_variable("X2")
+
+    myT1Mamdani.add_output_variable("Y")
+
+
+
++-----------------+-------------------+--------------------+
+|                 | **X2**: t1fs1     | **X2**: t1fs2      |
++-----------------+-------------------+--------------------+
+| **X1**: t1fs1   | **Y**: t1fs3      | **Y**: t1fs4       |
++-----------------+-------------------+--------------------+
+| **X1**: t1fs2   | **Y**: t1fs5      | **Y**: t1fs6       |
++-----------------+-------------------+--------------------+
+
+
+.. code-block:: python
+
+    myT1Mamdani.add_rule([("X1", t1fs1), ("X2", t1fs1)], [("Y", t1fs3), ])
+    myT1Mamdani.add_rule([("X1", t1fs1), ("X2", t1fs2)], [("Y", t1fs4), ])
+    myT1Mamdani.add_rule([("X1", t1fs2), ("X2", t1fs1)], [("Y", t1fs5), ])
+    myT1Mamdani.add_rule([("X1", t1fs2), ("X2", t1fs2)], [("Y", t1fs6), ])
+
+
+.. code-block:: python
+
+    X1, X2 = meshgrid(inputDomain, inputDomain)
+    O = zeros(shape=X1.shape)
+
+    for i, x1 in zip(range(len(inputDomain)), inputDomain):
+        for j, x2 in zip(range(len(inputDomain)), inputDomain):
+            s, c = myT1Mamdani.evaluate({"X1":x1, "X2":x2})
+            O[i, j] = c["Y"]
+
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection="3d")
+    surf = ax.plot_surface(X1, X2, O, cmap=cm.coolwarm,
+                        linewidth=0, antialiased=False)
+    ax.zaxis.set_major_locator(LinearLocator(10))
+    ax.zaxis.set_major_formatter(FormatStrFormatter('%.02f'))
+    fig.colorbar(surf, shrink=0.5, aspect=5)
+    plt.show()
+
+
+
+Finally, the output of this code would be as below:
+
+.. image:: ../_static/Figure_8.png
+   :alt: The control surface of the final type 1 fuzzy Mamdani system.
+   :width: 400px
+   :align: center
 
 
 
