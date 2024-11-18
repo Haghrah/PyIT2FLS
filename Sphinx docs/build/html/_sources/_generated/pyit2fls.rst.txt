@@ -51,7 +51,7 @@ Support My Work with Tether (USDT)
 ----------------------------------
 If you find this Python library useful and would like to support its development, donations are greatly appreciated. You can send Tether (USDT) directly to the following address:
 
-    0x521c9d3ba891596baf99cef6a59a0790e15ddfbe
+    TN1stagYLtqq4MUKPj6Q3fqtH3GittRawE
 
 Thank you for your contribution, which helps maintain and improve this project!
 
