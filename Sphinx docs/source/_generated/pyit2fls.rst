@@ -239,7 +239,9 @@ Finally, the output of this code would be as below:
 Example 3: Defining type 1 Mamdani fuzzy systems
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Now, let's define a simple type 1 Mamdani fuzzy system using PyIT2FLS. 
+Let's define a simple type 1 Mamdani fuzzy system using PyIT2FLS, calculate 
+its output for some inputs, and plot the control surface for it. So, we first 
+define the T1FSs representing inputs of the fuzzy system.
 
 .. code-block:: python
 
@@ -255,11 +257,15 @@ Now, let's define a simple type 1 Mamdani fuzzy system using PyIT2FLS.
     t1fs2 = T1FS(inputDomain, gaussian_mf, [ 0.5, 0.5, 1.])
     T1FS_plot(t1fs1, t1fs2, legends=["Gaussian Set 1", "Gaussian Set 2", ])
 
+The output of this code would be as below:
+
 .. image:: ../_static/Figure_6.png
    :alt: Defining two fuzzy sets representing the inputs of the fuzzy system.
    :width: 400px
    :align: center
 
+As you see, there are two Gaussian fuzzy sets for describing the input variables. 
+After that, we should define the T1FSs representing outputs of the fuzzy system.
 
 .. code-block:: python
 
@@ -272,13 +278,19 @@ Now, let's define a simple type 1 Mamdani fuzzy system using PyIT2FLS.
               legends=["Gaussian Set 3", "Gaussian Set 4", 
                        "Gaussian Set 5", "Gaussian Set 6", ])
 
-
+We have defined four sets in this step. So, for all possible fuzzy rules we can 
+define a distinct output. The output T1FSs would be as following:
 
 .. image:: ../_static/Figure_7.png
    :alt: Defining four fuzzy sets representing the outputs of the fuzzy system.
    :width: 400px
    :align: center
 
+Now, it is time to define the type 1 Mamdani system and its input and output variables. 
+We can choose inference engine and defuzzification method among some famous methods (refer 
+to the documentations for more details). In our example, we will use "Product" inference 
+engine and center of gravity, "CoG", defuzzification method. Also, we name the inputs as 
+"X1" and "X2", and the output as "Y".
 
 .. code-block:: python
 
@@ -288,7 +300,8 @@ Now, let's define a simple type 1 Mamdani fuzzy system using PyIT2FLS.
 
     myT1Mamdani.add_output_variable("Y")
 
-
+After defining the T1Mamdani system, it is time to define the rule-base of the fuzzy 
+system. We use the rules represented in the following table to define the rule-base.
 
 +-----------------+-------------------+--------------------+
 |                 | **X2**: t1fs1     | **X2**: t1fs2      |
@@ -298,6 +311,7 @@ Now, let's define a simple type 1 Mamdani fuzzy system using PyIT2FLS.
 | **X1**: t1fs2   | **Y**: t1fs5      | **Y**: t1fs6       |
 +-----------------+-------------------+--------------------+
 
+The codes to add rules to the rule-base would be as following:
 
 .. code-block:: python
 
@@ -306,6 +320,8 @@ Now, let's define a simple type 1 Mamdani fuzzy system using PyIT2FLS.
     myT1Mamdani.add_rule([("X1", t1fs2), ("X2", t1fs1)], [("Y", t1fs5), ])
     myT1Mamdani.add_rule([("X1", t1fs2), ("X2", t1fs2)], [("Y", t1fs6), ])
 
+Finally, it is time to evaluate the system output for different points in the univertse 
+of discourse and plot the control surface:
 
 .. code-block:: python
 
@@ -326,9 +342,7 @@ Now, let's define a simple type 1 Mamdani fuzzy system using PyIT2FLS.
     fig.colorbar(surf, shrink=0.5, aspect=5)
     plt.show()
 
-
-
-Finally, the output of this code would be as below:
+And, the output of this code would be as below:
 
 .. image:: ../_static/Figure_8.png
    :alt: The control surface of the final type 1 fuzzy Mamdani system.
