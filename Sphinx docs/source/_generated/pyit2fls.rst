@@ -377,15 +377,44 @@ Example 5. Performing MEET and JOIN operators on IT2FSs
    :align: center
 
 
-
-
 Example 6: Defining interval type 2 TSK fuzzy systems
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. image:: ../_static/Figure_12.png
+   :alt: Defining two interval type 2 fuzzy sets.
+   :width: 400px
+   :align: center
+
+
+.. image:: ../_static/Figure_13.png
+   :alt: The control surface of the final interval type 2 fuzzy TSK system.
+   :width: 400px
+   :align: center
 
 
 Example 7: Defining interval type 2 Mamdani fuzzy systems
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. image:: ../_static/Figure_14.png
+   :alt: Defining interval type 2 fuzzy sets for input X1.
+   :width: 400px
+   :align: center
+
+.. image:: ../_static/Figure_15.png
+   :alt: Defining interval type 2 fuzzy sets for input X2.
+   :width: 400px
+   :align: center
+
+
+.. image:: ../_static/Figure_16.png
+   :alt: Defining interval type 2 fuzzy sets for the output.
+   :width: 400px
+   :align: center
+
+.. image:: ../_static/Figure_17.png
+   :alt: The control surface of the final interval type 2 fuzzy Mamdani system.
+   :width: 400px
+   :align: center
 
 
 
