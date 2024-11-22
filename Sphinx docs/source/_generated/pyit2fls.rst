@@ -350,6 +350,42 @@ And, the output of this code would be as below:
    :align: center
 
 
+Example 4: Defining interval type 2 fuzzy sets
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+The output of this code would be as below:
+
+.. image:: ../_static/Figure_9.png
+   :alt: Defining some interval type 2 fuzzy sets.
+   :width: 800px
+   :align: center
+
+
+Example 5. Performing MEET and JOIN operators on IT2FSs
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. image:: ../_static/Figure_10.png
+   :alt: Defining two interval type 2 fuzzy sets.
+   :width: 400px
+   :align: center
+
+
+.. image:: ../_static/Figure_11.png
+   :alt: MEET and JOIN of the defined two fuzzy sets.
+   :width: 400px
+   :align: center
+
+
+
+
+Example 6: Defining interval type 2 TSK fuzzy systems
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Example 7: Defining interval type 2 Mamdani fuzzy systems
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
 
 
