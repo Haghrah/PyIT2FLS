@@ -52,6 +52,7 @@ Thank you for your contribution, which helps maintain and improve this project!
 - Enhancing the documentations and publishing it over readthedocs.
 - Exception handling.
 - Supporting Generalized Type 2 Fuzzy Sets and Systems.
+- Some functions were deprecated in SciPy!
 
 ### Some notes on version 0.7.9
 - Some bugs (concerning EIASC algorithm) have been fixed in this version.

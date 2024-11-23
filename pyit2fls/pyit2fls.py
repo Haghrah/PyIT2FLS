@@ -1,10 +1,16 @@
-from numpy import exp, ones_like, zeros_like, arange, multiply, \
-     subtract, add, minimum, maximum, sign, c_, argmax, \
-     array, where, hstack, logical_not, sqrt
+from numpy import (exp, ones_like, zeros_like, arange, multiply, 
+     subtract, add, minimum, maximum, sign, c_, argmax, 
+     array, where, hstack, logical_not, sqrt, )
+
 from numpy import sum as npsum
 from numpy import abs as npabs
 from numpy import round as npround
-from scipy.integrate import trapz
+
+try:
+    from scipy.integrate import trapz
+except ImportError:
+    from scipy.integrate import trapezoid as trapz
+
 import matplotlib.pyplot as plt
 from math import isclose
 
