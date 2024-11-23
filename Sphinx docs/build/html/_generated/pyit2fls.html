@@ -374,21 +374,251 @@ of discourse and plot the control surface:</p>
 </section>
 <section id="example-4-defining-interval-type-2-fuzzy-sets">
 <h3>Example 4: Defining interval type 2 fuzzy sets<a class="headerlink" href="#example-4-defining-interval-type-2-fuzzy-sets" title="Permalink to this heading"></a></h3>
+<p>In this example, we are going to define and plot ten different and well-known types
+of interval type 2 fuzzy sets. We need some initial imports and defining the universe
+of discourse, before using the IT2FS class. This class requires five parameters for
+creating an interval type 2 fuzzy set, domain, upper membership function, parameters
+of the upper membership function, lower membership function, and parameters of the
+lower membership function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyit2fls</span> <span class="kn">import</span> <span class="p">(</span><span class="n">IT2FS</span><span class="p">,</span> <span class="n">tri_mf</span><span class="p">,</span> <span class="n">const_mf</span><span class="p">,</span> <span class="n">rtri_mf</span><span class="p">,</span> <span class="n">ltri_mf</span><span class="p">,</span>
+                    <span class="n">trapezoid_mf</span><span class="p">,</span> <span class="n">gaussian_mf</span><span class="p">,</span> <span class="n">IT2FS_Gaussian_UncertMean</span><span class="p">,</span>
+                    <span class="n">IT2FS_Gaussian_UncertStd</span><span class="p">,</span> <span class="n">R_IT2FS_Gaussian_UncertStd</span><span class="p">,</span>
+                    <span class="n">L_IT2FS_Gaussian_UncertStd</span><span class="p">,</span> <span class="n">IT2FS_plot</span><span class="p">,</span> <span class="p">)</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">linspace</span>
+
+<span class="n">domain</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1001</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now the first IT2FS we are going to define is the constant interval type 2 fuzzy
+set. It needs only the UMF and the LMF as constant membership functions. The
+constant membership function has only one parameter, its value. The check_set
+option while defining an IT2FS can be used for debuginh purposes. Sometimes there can
+be mistake in fuzzy set parameters causing LMF to have greater membership degree than
+the UMF in some points on the universe of discourse. In such a situation, if check_set
+is set zero, an exceptation will be raised.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Const</span> <span class="o">=</span> <span class="n">IT2FS</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">const_mf</span><span class="p">,</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">],</span> <span class="n">const_mf</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.9</span><span class="p">],</span> <span class="n">check_set</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The next IT2FS is triangular interval type 2 fuzzy set. It has triangular-type membership
+function for both UMF and LMF. The parameters for a triangular membership function defined
+by tri_mf are left, center, right, and height of the triangle.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Tri</span> <span class="o">=</span> <span class="n">IT2FS</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">tri_mf</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span> <span class="n">tri_mf</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span> <span class="n">check_set</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We can also define left and right triangular interval type 2 fuzzy sets using rtri_mf and
+ltri_mf functions. The required parameters for rtri_mf are right, center, and height.
+Similarly, for ltri_mf, the parameters are left, center, and height.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">RTri</span> <span class="o">=</span> <span class="n">IT2FS</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">rtri_mf</span><span class="p">,</span> <span class="p">[</span><span class="mf">1.85</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">],</span> <span class="n">rtri_mf</span><span class="p">,</span> <span class="p">[</span><span class="mf">1.75</span><span class="p">,</span> <span class="mf">1.15</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">],</span> <span class="n">check_set</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">LTri</span> <span class="o">=</span> <span class="n">IT2FS</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">ltri_mf</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">],</span> <span class="n">ltri_mf</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.85</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">],</span> <span class="n">check_set</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The next well-known interval type 2 fuzzy set is the trapezoidal. We can define it using
+trapezoidal membership function, trapezoid_mf. It has five parameters, left, left-center,
+right-center, right, and height, respectively.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Trapezoid</span> <span class="o">=</span> <span class="n">IT2FS</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span>
+                <span class="n">trapezoid_mf</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.45</span><span class="p">,</span> <span class="mf">0.85</span><span class="p">,</span> <span class="mf">1.15</span><span class="p">,</span> <span class="mf">1.55</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
+                <span class="n">trapezoid_mf</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.55</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">,</span> <span class="mf">1.45</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">],</span>
+                <span class="n">check_set</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We can also define Gaussian-type sets, i.e., general Gaussian sets, Gaussian sets with
+uncertain mean value, and Gaussian sets with uncertain standard deviation value. As a
+general form Gaussian sets can be defined using IT2FS class and gaussian_mf function.
+The parameters for gaussian_mf should be mean value, standard deviation, and height.</p>
+<p>Defining Gaussian sets with uncertain mean value and Gaussian sets with uncertain
+standard deviation value have been made easy by providing two functions
+IT2FS_Gaussian_UncertMean and IT2FS_Gaussian_UncertStd. The inputs of the
+IT2FS_Gaussian_UncertMean are domain and parameters as a list. The parameters list
+consists of mean center, mean spread, standard deviation, and height. For the function
+IT2FS_Gaussian_UncertStd, the inputs are also similar, but the parameters list consists of
+mean, standard deviation center, standard deviation spread, and height.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Gaussian</span> <span class="o">=</span> <span class="n">IT2FS</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span>
+                 <span class="n">gaussian_mf</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.25</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
+                 <span class="n">gaussian_mf</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.25</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">],</span>
+                 <span class="n">check_set</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">Gaussian_UncertMean</span> <span class="o">=</span> <span class="n">IT2FS_Gaussian_UncertMean</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
+<span class="n">Gaussian_UncertStd</span> <span class="o">=</span> <span class="n">IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.75</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>There are two other Gaussian-type fuzzy sets that are widely used in applications, which
+also PyIT2FLS provides a specific function for defining them easily, right and left-sided
+Gaussian IT2FSs with uncertain standard deviation value. The inputs of these functions,
+R_IT2FS_Gaussian_UncertStd and L_IT2FS_Gaussian_UncertStd, are domain and parameters list.
+The parameters list for both of them should be mean, standard deviation center, standard
+deviation spread, and height.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">RGaussian_UncertStd</span> <span class="o">=</span> <span class="n">R_IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="p">[</span><span class="mf">3.25</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">])</span>
+<span class="n">LGaussian_UncertStd</span> <span class="o">=</span> <span class="n">L_IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="p">[</span><span class="mf">3.75</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Finally, let’s plot all these sets using the IT2FS_plot function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">IT2FS_plot</span><span class="p">(</span><span class="n">Const</span><span class="p">,</span> <span class="n">Tri</span><span class="p">,</span> <span class="n">RTri</span><span class="p">,</span> <span class="n">LTri</span><span class="p">,</span> <span class="n">Trapezoid</span><span class="p">,</span> <span class="n">Gaussian</span><span class="p">,</span>
+        <span class="n">Gaussian_UncertMean</span><span class="p">,</span> <span class="n">Gaussian_UncertStd</span><span class="p">,</span>
+        <span class="n">RGaussian_UncertStd</span><span class="p">,</span> <span class="n">LGaussian_UncertStd</span><span class="p">,</span>
+        <span class="n">legends</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Const Set&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;Triangular Set&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;Right Triangular Set&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;Left Triangular Set&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;Trapezoid&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;Gaussian&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;G. with Uncertain Mean&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;G. with Uncertain Std&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;Right G. with Uncertain Std&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;Left G. with Uncertain Std&quot;</span><span class="p">,</span> <span class="p">])</span>
+</pre></div>
+</div>
 <p>The output of this code would be as below:</p>
 <a class="reference internal image-reference" href="../_images/Figure_9.png"><img alt="Defining some interval type 2 fuzzy sets." class="align-center" src="../_images/Figure_9.png" style="width: 800px;" /></a>
 </section>
 <section id="example-5-performing-meet-and-join-operators-on-it2fss">
 <h3>Example 5. Performing MEET and JOIN operators on IT2FSs<a class="headerlink" href="#example-5-performing-meet-and-join-operators-on-it2fss" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyit2fls</span> <span class="kn">import</span> <span class="p">(</span><span class="n">IT2FS</span><span class="p">,</span> <span class="n">R_IT2FS_Gaussian_UncertStd</span><span class="p">,</span>
+                    <span class="n">L_IT2FS_Gaussian_UncertStd</span><span class="p">,</span> <span class="n">IT2FS_plot</span><span class="p">,</span>
+                    <span class="n">hamacher_product_t_norm</span><span class="p">,</span> <span class="n">probabilistic_sum_s_norm</span><span class="p">,</span>
+                    <span class="n">meet</span><span class="p">,</span> <span class="n">join</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">linspace</span>
+
+<span class="n">domain</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1001</span><span class="p">)</span>
+
+<span class="n">RGaussian_UncertStd</span> <span class="o">=</span> <span class="n">R_IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="p">[</span><span class="mf">1.25</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">])</span>
+<span class="n">LGaussian_UncertStd</span> <span class="o">=</span> <span class="n">L_IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="p">[</span><span class="mf">1.75</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">])</span>
+
+<span class="n">MEET</span> <span class="o">=</span> <span class="n">meet</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">RGaussian_UncertStd</span><span class="p">,</span> <span class="n">LGaussian_UncertStd</span><span class="p">,</span> <span class="n">hamacher_product_t_norm</span><span class="p">)</span>
+<span class="n">JOIN</span> <span class="o">=</span> <span class="n">meet</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">RGaussian_UncertStd</span><span class="p">,</span> <span class="n">LGaussian_UncertStd</span><span class="p">,</span> <span class="n">probabilistic_sum_s_norm</span><span class="p">)</span>
+
+<span class="n">IT2FS_plot</span><span class="p">(</span><span class="n">RGaussian_UncertStd</span><span class="p">,</span> <span class="n">LGaussian_UncertStd</span><span class="p">,</span>
+        <span class="n">legends</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;IT2FS1&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;IT2FS2&quot;</span><span class="p">,</span> <span class="p">])</span>
+
+<span class="n">IT2FS_plot</span><span class="p">(</span><span class="n">MEET</span><span class="p">,</span> <span class="n">JOIN</span><span class="p">,</span>
+        <span class="n">legends</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;MEET&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;JOIN&quot;</span><span class="p">,</span> <span class="p">])</span>
+</pre></div>
+</div>
 <a class="reference internal image-reference" href="../_images/Figure_10.png"><img alt="Defining two interval type 2 fuzzy sets." class="align-center" src="../_images/Figure_10.png" style="width: 400px;" /></a>
 <a class="reference internal image-reference" href="../_images/Figure_11.png"><img alt="MEET and JOIN of the defined two fuzzy sets." class="align-center" src="../_images/Figure_11.png" style="width: 400px;" /></a>
 </section>
 <section id="example-6-defining-interval-type-2-tsk-fuzzy-systems">
 <h3>Example 6: Defining interval type 2 TSK fuzzy systems<a class="headerlink" href="#example-6-defining-interval-type-2-tsk-fuzzy-systems" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyit2fls</span> <span class="kn">import</span> <span class="p">(</span><span class="n">IT2TSK</span><span class="p">,</span> <span class="n">IT2FS_Gaussian_UncertStd</span><span class="p">,</span> <span class="n">IT2FS_plot</span><span class="p">,</span>
+                    <span class="n">product_t_norm</span><span class="p">,</span> <span class="n">max_s_norm</span><span class="p">,</span> <span class="p">)</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits</span> <span class="kn">import</span> <span class="n">mplot3d</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>
+<span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="n">LinearLocator</span><span class="p">,</span> <span class="n">FormatStrFormatter</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">linspace</span><span class="p">,</span> <span class="n">meshgrid</span><span class="p">,</span> <span class="n">zeros</span>
+
+<span class="n">domain</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="n">X1</span><span class="p">,</span> <span class="n">X2</span> <span class="o">=</span> <span class="n">meshgrid</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">domain</span><span class="p">)</span>
+
+<span class="n">IT2FS1</span> <span class="o">=</span> <span class="n">IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
+<span class="n">IT2FS2</span> <span class="o">=</span> <span class="n">IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
+<span class="n">IT2FS_plot</span><span class="p">(</span><span class="n">IT2FS1</span><span class="p">,</span> <span class="n">IT2FS2</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Sets&quot;</span><span class="p">,</span>
+            <span class="n">legends</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;IT2FS1&quot;</span><span class="p">,</span> <span class="s2">&quot;IT2FS2&quot;</span><span class="p">])</span>
+
+<span class="n">myIT2FLS</span> <span class="o">=</span> <span class="n">IT2TSK</span><span class="p">(</span><span class="n">product_t_norm</span><span class="p">,</span> <span class="n">max_s_norm</span><span class="p">)</span>
+
+<span class="n">myIT2FLS</span><span class="o">.</span><span class="n">add_input_variable</span><span class="p">(</span><span class="s2">&quot;X1&quot;</span><span class="p">)</span>
+<span class="n">myIT2FLS</span><span class="o">.</span><span class="n">add_input_variable</span><span class="p">(</span><span class="s2">&quot;X2&quot;</span><span class="p">)</span>
+<span class="n">myIT2FLS</span><span class="o">.</span><span class="n">add_output_variable</span><span class="p">(</span><span class="s2">&quot;Y&quot;</span><span class="p">)</span>
+
+<span class="n">myIT2FLS</span><span class="o">.</span><span class="n">add_rule</span><span class="p">([(</span><span class="s2">&quot;X1&quot;</span><span class="p">,</span> <span class="n">IT2FS1</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;X2&quot;</span><span class="p">,</span> <span class="n">IT2FS1</span><span class="p">)],</span>
+                <span class="p">[(</span><span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;const&quot;</span><span class="p">:</span><span class="mf">1.</span><span class="p">,</span> <span class="s2">&quot;X1&quot;</span><span class="p">:</span><span class="mf">1.</span><span class="p">,</span> <span class="s2">&quot;X2&quot;</span><span class="p">:</span><span class="mf">1.</span><span class="p">}),</span> <span class="p">])</span>
+<span class="n">myIT2FLS</span><span class="o">.</span><span class="n">add_rule</span><span class="p">([(</span><span class="s2">&quot;X1&quot;</span><span class="p">,</span> <span class="n">IT2FS1</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;X2&quot;</span><span class="p">,</span> <span class="n">IT2FS2</span><span class="p">)],</span>
+                <span class="p">[(</span><span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;const&quot;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">,</span> <span class="s2">&quot;X1&quot;</span><span class="p">:</span><span class="mf">1.5</span><span class="p">,</span> <span class="s2">&quot;X2&quot;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">}),</span> <span class="p">])</span>
+<span class="n">myIT2FLS</span><span class="o">.</span><span class="n">add_rule</span><span class="p">([(</span><span class="s2">&quot;X1&quot;</span><span class="p">,</span> <span class="n">IT2FS2</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;X2&quot;</span><span class="p">,</span> <span class="n">IT2FS1</span><span class="p">)],</span>
+                <span class="p">[(</span><span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;const&quot;</span><span class="p">:</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="s2">&quot;X1&quot;</span><span class="p">:</span><span class="mf">2.</span><span class="p">,</span> <span class="s2">&quot;X2&quot;</span><span class="p">:</span><span class="mf">0.1</span><span class="p">}),</span> <span class="p">])</span>
+<span class="n">myIT2FLS</span><span class="o">.</span><span class="n">add_rule</span><span class="p">([(</span><span class="s2">&quot;X1&quot;</span><span class="p">,</span> <span class="n">IT2FS2</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;X2&quot;</span><span class="p">,</span> <span class="n">IT2FS2</span><span class="p">)],</span>
+                <span class="p">[(</span><span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;const&quot;</span><span class="p">:</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="s2">&quot;X1&quot;</span><span class="p">:</span><span class="mf">4.</span><span class="p">,</span> <span class="s2">&quot;X2&quot;</span><span class="p">:</span><span class="o">-</span><span class="mf">0.5</span><span class="p">}),</span> <span class="p">])</span>
+
+
+<span class="n">O</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">X1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x1</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">domain</span><span class="p">)),</span> <span class="n">domain</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">x2</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">domain</span><span class="p">)),</span> <span class="n">domain</span><span class="p">):</span>
+        <span class="n">o</span> <span class="o">=</span> <span class="n">myIT2FLS</span><span class="o">.</span><span class="n">evaluate</span><span class="p">({</span><span class="s2">&quot;X1&quot;</span><span class="p">:</span><span class="n">x1</span><span class="p">,</span> <span class="s2">&quot;X2&quot;</span><span class="p">:</span><span class="n">x2</span><span class="p">})</span>
+        <span class="n">O</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">o</span><span class="p">[</span><span class="s2">&quot;Y&quot;</span><span class="p">]</span>
+
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;3d&quot;</span><span class="p">)</span>
+<span class="n">surf</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">,</span> <span class="n">O</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span>
+                    <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">antialiased</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">zaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">LinearLocator</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">zaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">FormatStrFormatter</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%.02f</span><span class="s1">&#39;</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">surf</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
 <a class="reference internal image-reference" href="../_images/Figure_12.png"><img alt="Defining two interval type 2 fuzzy sets." class="align-center" src="../_images/Figure_12.png" style="width: 400px;" /></a>
 <a class="reference internal image-reference" href="../_images/Figure_13.png"><img alt="The control surface of the final interval type 2 fuzzy TSK system." class="align-center" src="../_images/Figure_13.png" style="width: 400px;" /></a>
 </section>
 <section id="example-7-defining-interval-type-2-mamdani-fuzzy-systems">
 <h3>Example 7: Defining interval type 2 Mamdani fuzzy systems<a class="headerlink" href="#example-7-defining-interval-type-2-mamdani-fuzzy-systems" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyit2fls</span> <span class="kn">import</span> <span class="n">IT2Mamdani</span><span class="p">,</span> <span class="n">IT2FS_Gaussian_UncertStd</span><span class="p">,</span> <span class="n">IT2FS_plot</span><span class="p">,</span> \
+                    <span class="n">min_t_norm</span><span class="p">,</span> <span class="n">max_s_norm</span><span class="p">,</span> <span class="n">crisp</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">linspace</span><span class="p">,</span> <span class="n">meshgrid</span><span class="p">,</span> <span class="n">zeros</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits</span> <span class="kn">import</span> <span class="n">mplot3d</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>
+<span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="n">LinearLocator</span><span class="p">,</span> <span class="n">FormatStrFormatter</span>
+
+<span class="n">domain1</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">domain2</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">domain3</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="n">Small1</span>  <span class="o">=</span> <span class="n">IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain1</span><span class="p">,</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.025</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
+<span class="n">Small2</span>  <span class="o">=</span> <span class="n">IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain2</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.025</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
+<span class="n">Medium1</span> <span class="o">=</span> <span class="n">IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain1</span><span class="p">,</span> <span class="p">[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.025</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
+<span class="n">Medium2</span> <span class="o">=</span> <span class="n">IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain2</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.025</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
+<span class="n">Large1</span>  <span class="o">=</span> <span class="n">IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain1</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.025</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
+<span class="n">Large2</span>  <span class="o">=</span> <span class="n">IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain2</span><span class="p">,</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.025</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
+
+<span class="n">IT2FS_plot</span><span class="p">(</span><span class="n">Small1</span><span class="p">,</span> <span class="n">Medium1</span><span class="p">,</span> <span class="n">Large1</span><span class="p">,</span>
+        <span class="n">legends</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Small 1&quot;</span><span class="p">,</span> <span class="s2">&quot;Medium 1&quot;</span><span class="p">,</span> <span class="s2">&quot;large 1&quot;</span><span class="p">])</span>
+<span class="n">IT2FS_plot</span><span class="p">(</span><span class="n">Small2</span><span class="p">,</span> <span class="n">Medium2</span><span class="p">,</span> <span class="n">Large2</span><span class="p">,</span>
+        <span class="n">legends</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Smal 2l&quot;</span><span class="p">,</span> <span class="s2">&quot;Medium 2&quot;</span><span class="p">,</span> <span class="s2">&quot;large 2&quot;</span><span class="p">])</span>
+
+<span class="n">Low1</span>  <span class="o">=</span> <span class="n">IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain3</span><span class="p">,</span> <span class="p">[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.025</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
+<span class="n">High1</span> <span class="o">=</span> <span class="n">IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain3</span><span class="p">,</span> <span class="p">[</span><span class="mf">4.</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.025</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
+
+<span class="n">IT2FS_plot</span><span class="p">(</span><span class="n">Low1</span><span class="p">,</span> <span class="n">High1</span><span class="p">,</span>
+            <span class="n">legends</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Low&quot;</span><span class="p">,</span> <span class="s2">&quot;High&quot;</span><span class="p">])</span>
+
+<span class="n">myIT2FLS</span> <span class="o">=</span> <span class="n">IT2Mamdani</span><span class="p">(</span><span class="n">min_t_norm</span><span class="p">,</span> <span class="n">max_s_norm</span><span class="p">)</span>
+
+<span class="n">myIT2FLS</span><span class="o">.</span><span class="n">add_input_variable</span><span class="p">(</span><span class="s2">&quot;X1&quot;</span><span class="p">)</span>
+<span class="n">myIT2FLS</span><span class="o">.</span><span class="n">add_input_variable</span><span class="p">(</span><span class="s2">&quot;X2&quot;</span><span class="p">)</span>
+
+<span class="n">myIT2FLS</span><span class="o">.</span><span class="n">add_output_variable</span><span class="p">(</span><span class="s2">&quot;Y&quot;</span><span class="p">)</span>
+
+<span class="n">myIT2FLS</span><span class="o">.</span><span class="n">add_rule</span><span class="p">([(</span><span class="s2">&quot;X1&quot;</span><span class="p">,</span> <span class="n">Small1</span><span class="p">),</span>  <span class="p">(</span><span class="s2">&quot;X2&quot;</span><span class="p">,</span> <span class="n">Small2</span><span class="p">)],</span>  <span class="p">[(</span><span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="n">Low1</span><span class="p">),</span>  <span class="p">])</span>
+<span class="n">myIT2FLS</span><span class="o">.</span><span class="n">add_rule</span><span class="p">([(</span><span class="s2">&quot;X1&quot;</span><span class="p">,</span> <span class="n">Small1</span><span class="p">),</span>  <span class="p">(</span><span class="s2">&quot;X2&quot;</span><span class="p">,</span> <span class="n">Medium2</span><span class="p">)],</span> <span class="p">[(</span><span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="n">Low1</span><span class="p">),</span>  <span class="p">])</span>
+<span class="n">myIT2FLS</span><span class="o">.</span><span class="n">add_rule</span><span class="p">([(</span><span class="s2">&quot;X1&quot;</span><span class="p">,</span> <span class="n">Small1</span><span class="p">),</span>  <span class="p">(</span><span class="s2">&quot;X2&quot;</span><span class="p">,</span> <span class="n">Large2</span><span class="p">)],</span>  <span class="p">[(</span><span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="n">Low1</span><span class="p">),</span>  <span class="p">])</span>
+<span class="n">myIT2FLS</span><span class="o">.</span><span class="n">add_rule</span><span class="p">([(</span><span class="s2">&quot;X1&quot;</span><span class="p">,</span> <span class="n">Medium1</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;X2&quot;</span><span class="p">,</span> <span class="n">Small2</span><span class="p">)],</span>  <span class="p">[(</span><span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="n">Low1</span><span class="p">),</span>  <span class="p">])</span>
+<span class="n">myIT2FLS</span><span class="o">.</span><span class="n">add_rule</span><span class="p">([(</span><span class="s2">&quot;X1&quot;</span><span class="p">,</span> <span class="n">Medium1</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;X2&quot;</span><span class="p">,</span> <span class="n">Medium2</span><span class="p">)],</span> <span class="p">[(</span><span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="n">Low1</span><span class="p">),</span>  <span class="p">])</span>
+<span class="n">myIT2FLS</span><span class="o">.</span><span class="n">add_rule</span><span class="p">([(</span><span class="s2">&quot;X1&quot;</span><span class="p">,</span> <span class="n">Medium1</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;X2&quot;</span><span class="p">,</span> <span class="n">Large2</span><span class="p">)],</span>  <span class="p">[(</span><span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="n">High1</span><span class="p">),</span> <span class="p">])</span>
+<span class="n">myIT2FLS</span><span class="o">.</span><span class="n">add_rule</span><span class="p">([(</span><span class="s2">&quot;X1&quot;</span><span class="p">,</span> <span class="n">Large1</span><span class="p">),</span>  <span class="p">(</span><span class="s2">&quot;X2&quot;</span><span class="p">,</span> <span class="n">Small2</span><span class="p">)],</span>  <span class="p">[(</span><span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="n">High1</span><span class="p">),</span> <span class="p">])</span>
+<span class="n">myIT2FLS</span><span class="o">.</span><span class="n">add_rule</span><span class="p">([(</span><span class="s2">&quot;X1&quot;</span><span class="p">,</span> <span class="n">Large1</span><span class="p">),</span>  <span class="p">(</span><span class="s2">&quot;X2&quot;</span><span class="p">,</span> <span class="n">Medium2</span><span class="p">)],</span> <span class="p">[(</span><span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="n">High1</span><span class="p">),</span> <span class="p">])</span>
+<span class="n">myIT2FLS</span><span class="o">.</span><span class="n">add_rule</span><span class="p">([(</span><span class="s2">&quot;X1&quot;</span><span class="p">,</span> <span class="n">Large1</span><span class="p">),</span>  <span class="p">(</span><span class="s2">&quot;X2&quot;</span><span class="p">,</span> <span class="n">Large2</span><span class="p">)],</span>  <span class="p">[(</span><span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="n">High1</span><span class="p">),</span> <span class="p">])</span>
+
+<span class="n">X1</span><span class="p">,</span> <span class="n">X2</span> <span class="o">=</span> <span class="n">meshgrid</span><span class="p">(</span><span class="n">domain1</span><span class="p">,</span> <span class="n">domain2</span><span class="p">)</span>
+<span class="n">Z1</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">domain1</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">domain2</span><span class="p">)))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x1</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">domain1</span><span class="p">)),</span> <span class="n">domain1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">x2</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">domain2</span><span class="p">)),</span> <span class="n">domain2</span><span class="p">):</span>
+        <span class="n">it2out</span><span class="p">,</span> <span class="n">tr</span> <span class="o">=</span> <span class="n">myIT2FLS</span><span class="o">.</span><span class="n">evaluate</span><span class="p">({</span><span class="s2">&quot;X1&quot;</span><span class="p">:</span><span class="n">x1</span><span class="p">,</span> <span class="s2">&quot;X2&quot;</span><span class="p">:</span><span class="n">x2</span><span class="p">})</span>
+        <span class="n">Z1</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">crisp</span><span class="p">(</span><span class="n">tr</span><span class="p">[</span><span class="s2">&quot;Y&quot;</span><span class="p">])</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;3d&quot;</span><span class="p">)</span>
+<span class="n">surf</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">,</span> <span class="n">Z1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span>
+                    <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">antialiased</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">zaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">LinearLocator</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">zaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">FormatStrFormatter</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%.02f</span><span class="s1">&#39;</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">surf</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
 <a class="reference internal image-reference" href="../_images/Figure_14.png"><img alt="Defining interval type 2 fuzzy sets for input X1." class="align-center" src="../_images/Figure_14.png" style="width: 400px;" /></a>
 <a class="reference internal image-reference" href="../_images/Figure_15.png"><img alt="Defining interval type 2 fuzzy sets for input X2." class="align-center" src="../_images/Figure_15.png" style="width: 400px;" /></a>
 <a class="reference internal image-reference" href="../_images/Figure_16.png"><img alt="Defining interval type 2 fuzzy sets for the output." class="align-center" src="../_images/Figure_16.png" style="width: 400px;" /></a>

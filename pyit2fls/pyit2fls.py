@@ -806,7 +806,7 @@ def T1FS_plot(*sets, title=None, legends=None, filename=None,
     
     .. rubric:: Parameters
     
-    *sets : Multiple number of T1FSs which would be plotted.
+    \*sets : Multiple number of T1FSs which would be plotted.
     
     title : str
         
@@ -1794,7 +1794,7 @@ def IT2FS_plot(*sets, title=None, legends=None, filename=None,
     
     .. rubric:: Parameters
     
-    *sets:
+    \*sets:
 
         Multiple number of IT2FSs which will be plotted.
     

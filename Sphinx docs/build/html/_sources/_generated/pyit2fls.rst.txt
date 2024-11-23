@@ -353,6 +353,114 @@ And, the output of this code would be as below:
 Example 4: Defining interval type 2 fuzzy sets
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+In this example, we are going to define and plot ten different and well-known types 
+of interval type 2 fuzzy sets. We need some initial imports and defining the universe 
+of discourse, before using the IT2FS class. This class requires five parameters for 
+creating an interval type 2 fuzzy set, domain, upper membership function, parameters 
+of the upper membership function, lower membership function, and parameters of the 
+lower membership function.
+
+.. code-block:: python
+
+    from pyit2fls import (IT2FS, tri_mf, const_mf, rtri_mf, ltri_mf, 
+                        trapezoid_mf, gaussian_mf, IT2FS_Gaussian_UncertMean, 
+                        IT2FS_Gaussian_UncertStd, R_IT2FS_Gaussian_UncertStd, 
+                        L_IT2FS_Gaussian_UncertStd, IT2FS_plot, )
+    from numpy import linspace
+
+    domain = linspace(0, 4, 1001)
+
+Now the first IT2FS we are going to define is the constant interval type 2 fuzzy 
+set. It needs only the UMF and the LMF as constant membership functions. The 
+constant membership function has only one parameter, its value. The check_set 
+option while defining an IT2FS can be used for debuginh purposes. Sometimes there can 
+be mistake in fuzzy set parameters causing LMF to have greater membership degree than 
+the UMF in some points on the universe of discourse. In such a situation, if check_set 
+is set zero, an exceptation will be raised.
+
+.. code-block:: python
+
+    Const = IT2FS(domain, const_mf, [1.0], const_mf, [0.9], check_set=True)
+
+The next IT2FS is triangular interval type 2 fuzzy set. It has triangular-type membership 
+function for both UMF and LMF. The parameters for a triangular membership function defined 
+by tri_mf are left, center, right, and height of the triangle.
+
+.. code-block:: python
+
+    Tri = IT2FS(domain, tri_mf, [0.7, 1.0, 1.3, 0.3], tri_mf, [0.8, 1.0, 1.2, 0.2], check_set=True)
+
+We can also define left and right triangular interval type 2 fuzzy sets using rtri_mf and 
+ltri_mf functions. The required parameters for rtri_mf are right, center, and height. 
+Similarly, for ltri_mf, the parameters are left, center, and height.
+
+.. code-block:: python
+
+    RTri = IT2FS(domain, rtri_mf, [1.85, 1.25, 0.8], rtri_mf, [1.75, 1.15, 0.8], check_set=True)
+    LTri = IT2FS(domain, ltri_mf, [0.15, 0.75, 0.7], ltri_mf, [0.25, 0.85, 0.7], check_set=True)
+
+The next well-known interval type 2 fuzzy set is the trapezoidal. We can define it using 
+trapezoidal membership function, trapezoid_mf. It has five parameters, left, left-center, 
+right-center, right, and height, respectively.
+
+.. code-block:: python
+
+    Trapezoid = IT2FS(domain, 
+                    trapezoid_mf, [0.45, 0.85, 1.15, 1.55, 0.5], 
+                    trapezoid_mf, [0.55, 0.95, 1.05, 1.45, 0.45], 
+                    check_set=True)
+
+We can also define Gaussian-type sets, i.e., general Gaussian sets, Gaussian sets with 
+uncertain mean value, and Gaussian sets with uncertain standard deviation value. As a 
+general form Gaussian sets can be defined using IT2FS class and gaussian_mf function. 
+The parameters for gaussian_mf should be mean value, standard deviation, and height. 
+
+Defining Gaussian sets with uncertain mean value and Gaussian sets with uncertain 
+standard deviation value have been made easy by providing two functions 
+IT2FS_Gaussian_UncertMean and IT2FS_Gaussian_UncertStd. The inputs of the 
+IT2FS_Gaussian_UncertMean are domain and parameters as a list. The parameters list 
+consists of mean center, mean spread, standard deviation, and height. For the function 
+IT2FS_Gaussian_UncertStd, the inputs are also similar, but the parameters list consists of 
+mean, standard deviation center, standard deviation spread, and height.
+
+.. code-block:: python
+
+    Gaussian = IT2FS(domain, 
+                     gaussian_mf, [2.25, 0.1, 0.5], 
+                     gaussian_mf, [2.25, 0.05, 0.4], 
+                     check_set=True)
+    Gaussian_UncertMean = IT2FS_Gaussian_UncertMean(domain, [2.5, 0.1, 0.1, 0.5])
+    Gaussian_UncertStd = IT2FS_Gaussian_UncertStd(domain, [2.75, 0.1, 0.05, 0.5])
+
+There are two other Gaussian-type fuzzy sets that are widely used in applications, which 
+also PyIT2FLS provides a specific function for defining them easily, right and left-sided 
+Gaussian IT2FSs with uncertain standard deviation value. The inputs of these functions, 
+R_IT2FS_Gaussian_UncertStd and L_IT2FS_Gaussian_UncertStd, are domain and parameters list. 
+The parameters list for both of them should be mean, standard deviation center, standard 
+deviation spread, and height.
+
+.. code-block:: python
+
+    RGaussian_UncertStd = R_IT2FS_Gaussian_UncertStd(domain, [3.25, 0.2, 0.05, 0.6])
+    LGaussian_UncertStd = L_IT2FS_Gaussian_UncertStd(domain, [3.75, 0.2, 0.05, 0.6])
+
+Finally, let's plot all these sets using the IT2FS_plot function:
+
+.. code-block:: python
+
+    IT2FS_plot(Const, Tri, RTri, LTri, Trapezoid, Gaussian,
+            Gaussian_UncertMean, Gaussian_UncertStd, 
+            RGaussian_UncertStd, LGaussian_UncertStd, 
+            legends = ["Const Set", 
+                        "Triangular Set", 
+                        "Right Triangular Set", 
+                        "Left Triangular Set", 
+                        "Trapezoid", 
+                        "Gaussian", 
+                        "G. with Uncertain Mean", 
+                        "G. with Uncertain Std", 
+                        "Right G. with Uncertain Std", 
+                        "Left G. with Uncertain Std", ])
 
 The output of this code would be as below:
 
@@ -364,6 +472,31 @@ The output of this code would be as below:
 
 Example 5. Performing MEET and JOIN operators on IT2FSs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+    from pyit2fls import (IT2FS, R_IT2FS_Gaussian_UncertStd, 
+                        L_IT2FS_Gaussian_UncertStd, IT2FS_plot, 
+                        hamacher_product_t_norm, probabilistic_sum_s_norm, 
+                        meet, join)
+    from numpy import linspace
+
+    domain = linspace(1, 2, 1001)
+
+    RGaussian_UncertStd = R_IT2FS_Gaussian_UncertStd(domain, [1.25, 0.2, 0.05, 0.6])
+    LGaussian_UncertStd = L_IT2FS_Gaussian_UncertStd(domain, [1.75, 0.2, 0.05, 0.6])
+
+    MEET = meet(domain, RGaussian_UncertStd, LGaussian_UncertStd, hamacher_product_t_norm)
+    JOIN = meet(domain, RGaussian_UncertStd, LGaussian_UncertStd, probabilistic_sum_s_norm)
+
+    IT2FS_plot(RGaussian_UncertStd, LGaussian_UncertStd, 
+            legends=["IT2FS1", 
+                        "IT2FS2", ])
+
+    IT2FS_plot(MEET, JOIN, 
+            legends=["MEET", 
+                        "JOIN", ])
+
 
 .. image:: ../_static/Figure_10.png
    :alt: Defining two interval type 2 fuzzy sets.
@@ -380,6 +513,59 @@ Example 5. Performing MEET and JOIN operators on IT2FSs
 Example 6: Defining interval type 2 TSK fuzzy systems
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. code-block:: python
+
+    from pyit2fls import (IT2TSK, IT2FS_Gaussian_UncertStd, IT2FS_plot, 
+                        product_t_norm, max_s_norm, )
+    from mpl_toolkits import mplot3d
+    import matplotlib.pyplot as plt
+    from matplotlib import cm
+    from matplotlib.ticker import LinearLocator, FormatStrFormatter
+    from numpy import linspace, meshgrid, zeros
+
+    domain = linspace(0., 1., 100)
+
+    X1, X2 = meshgrid(domain, domain)
+
+    IT2FS1 = IT2FS_Gaussian_UncertStd(domain, [0, 0.2, 0.05, 1.])
+    IT2FS2 = IT2FS_Gaussian_UncertStd(domain, [1., 0.2, 0.05, 1.])
+    IT2FS_plot(IT2FS1, IT2FS2, title="Sets", 
+                legends=["IT2FS1", "IT2FS2"])
+
+    myIT2FLS = IT2TSK(product_t_norm, max_s_norm)
+
+    myIT2FLS.add_input_variable("X1")
+    myIT2FLS.add_input_variable("X2")
+    myIT2FLS.add_output_variable("Y")
+
+    myIT2FLS.add_rule([("X1", IT2FS1), ("X2", IT2FS1)], 
+                    [("Y", {"const":1., "X1":1., "X2":1.}), ])
+    myIT2FLS.add_rule([("X1", IT2FS1), ("X2", IT2FS2)], 
+                    [("Y", {"const":0.5, "X1":1.5, "X2":0.5}), ])
+    myIT2FLS.add_rule([("X1", IT2FS2), ("X2", IT2FS1)], 
+                    [("Y", {"const":-0.2, "X1":2., "X2":0.1}), ])
+    myIT2FLS.add_rule([("X1", IT2FS2), ("X2", IT2FS2)], 
+                    [("Y", {"const":-1., "X1":4., "X2":-0.5}), ])
+
+
+    O = zeros(shape=X1.shape)
+
+    for i, x1 in zip(range(len(domain)), domain):
+        for j, x2 in zip(range(len(domain)), domain):
+            o = myIT2FLS.evaluate({"X1":x1, "X2":x2})
+            O[i, j] = o["Y"]
+
+
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection="3d")
+    surf = ax.plot_surface(X1, X2, O, cmap=cm.coolwarm,
+                        linewidth=0, antialiased=False)
+    ax.zaxis.set_major_locator(LinearLocator(10))
+    ax.zaxis.set_major_formatter(FormatStrFormatter('%.02f'))
+    fig.colorbar(surf, shrink=0.5, aspect=5)
+    plt.show()
+
+
 .. image:: ../_static/Figure_12.png
    :alt: Defining two interval type 2 fuzzy sets.
    :width: 400px
@@ -394,6 +580,73 @@ Example 6: Defining interval type 2 TSK fuzzy systems
 
 Example 7: Defining interval type 2 Mamdani fuzzy systems
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+    from pyit2fls import IT2Mamdani, IT2FS_Gaussian_UncertStd, IT2FS_plot, \
+                        min_t_norm, max_s_norm, crisp
+    from numpy import linspace, meshgrid, zeros
+    from mpl_toolkits import mplot3d
+    import matplotlib.pyplot as plt
+    from matplotlib import cm
+    from matplotlib.ticker import LinearLocator, FormatStrFormatter
+
+    domain1 = linspace(1., 2., 100)
+    domain2 = linspace(2., 3., 100)
+    domain3 = linspace(3., 4., 100)
+
+    Small1  = IT2FS_Gaussian_UncertStd(domain1, [1.0, 0.2, 0.025, 1.])
+    Small2  = IT2FS_Gaussian_UncertStd(domain2, [2.0, 0.3, 0.025, 1.])
+    Medium1 = IT2FS_Gaussian_UncertStd(domain1, [1.5, 0.2, 0.025, 1.])
+    Medium2 = IT2FS_Gaussian_UncertStd(domain2, [2.5, 0.3, 0.025, 1.])
+    Large1  = IT2FS_Gaussian_UncertStd(domain1, [2.0, 0.2, 0.025, 1.])
+    Large2  = IT2FS_Gaussian_UncertStd(domain2, [3.0, 0.3, 0.025, 1.])
+
+    IT2FS_plot(Small1, Medium1, Large1, 
+            legends=["Small 1", "Medium 1", "large 1"])
+    IT2FS_plot(Small2, Medium2, Large2,
+            legends=["Smal 2l", "Medium 2", "large 2"])
+
+    Low1  = IT2FS_Gaussian_UncertStd(domain3, [3., 0.3, 0.025, 1.])
+    High1 = IT2FS_Gaussian_UncertStd(domain3, [4., 0.3, 0.025, 1.])
+
+    IT2FS_plot(Low1, High1, 
+                legends=["Low", "High"])
+
+    myIT2FLS = IT2Mamdani(min_t_norm, max_s_norm)
+
+    myIT2FLS.add_input_variable("X1")
+    myIT2FLS.add_input_variable("X2")
+
+    myIT2FLS.add_output_variable("Y")
+
+    myIT2FLS.add_rule([("X1", Small1),  ("X2", Small2)],  [("Y", Low1),  ])
+    myIT2FLS.add_rule([("X1", Small1),  ("X2", Medium2)], [("Y", Low1),  ])
+    myIT2FLS.add_rule([("X1", Small1),  ("X2", Large2)],  [("Y", Low1),  ])
+    myIT2FLS.add_rule([("X1", Medium1), ("X2", Small2)],  [("Y", Low1),  ])
+    myIT2FLS.add_rule([("X1", Medium1), ("X2", Medium2)], [("Y", Low1),  ])
+    myIT2FLS.add_rule([("X1", Medium1), ("X2", Large2)],  [("Y", High1), ])
+    myIT2FLS.add_rule([("X1", Large1),  ("X2", Small2)],  [("Y", High1), ])
+    myIT2FLS.add_rule([("X1", Large1),  ("X2", Medium2)], [("Y", High1), ])
+    myIT2FLS.add_rule([("X1", Large1),  ("X2", Large2)],  [("Y", High1), ])
+
+    X1, X2 = meshgrid(domain1, domain2)
+    Z1 = zeros(shape=(len(domain1), len(domain2)))
+    for i, x1 in zip(range(len(domain1)), domain1):
+        for j, x2 in zip(range(len(domain2)), domain2):
+            it2out, tr = myIT2FLS.evaluate({"X1":x1, "X2":x2})
+            Z1[i, j] = crisp(tr["Y"])
+
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection="3d")
+    surf = ax.plot_surface(X1, X2, Z1, cmap=cm.coolwarm,
+                        linewidth=0, antialiased=False)
+    ax.zaxis.set_major_locator(LinearLocator(10))
+    ax.zaxis.set_major_formatter(FormatStrFormatter('%.02f'))
+    fig.colorbar(surf, shrink=0.5, aspect=5)
+    plt.show()
+
+
 
 .. image:: ../_static/Figure_14.png
    :alt: Defining interval type 2 fuzzy sets for input X1.
