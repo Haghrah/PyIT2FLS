@@ -75,7 +75,7 @@ Example 1: Defining Type 1 Fuzzy Sets and Performing AND/OR Operators on Them
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In this example, we define two trapezoidal Type 1 fuzzy sets and apply fuzzy AND and OR 
-operators on them. First, we create the trapezoidal fuzzy sets using the *T1FS class* and 
+operators on them. First, we create the trapezoidal fuzzy sets using the *T1FS* class and 
 the *trapezoid_mf* function. Then, we plot the fuzzy sets together using the *T1FS_plot* 
 function:
 
