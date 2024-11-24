@@ -47,10 +47,14 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">PyIT2FLS</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#from-source">From Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-pip">Using pip</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#support-my-work-with-tether-usdt">Support My Work with Tether (USDT)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting started</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#example-1-defining-type-1-fuzzy-sets-and-performing-and-and-or-operators-on-them">Example 1: Defining type 1 fuzzy sets and performing AND and OR operators on them</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-1-defining-type-1-fuzzy-sets-and-performing-and-or-operators-on-them">Example 1: Defining type 1 fuzzy sets and performing AND/OR operators on them</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#example-2-defining-type-1-tsk-fuzzy-systems">Example 2: Defining type 1 TSK fuzzy systems</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#example-3-defining-type-1-mamdani-fuzzy-systems">Example 3: Defining type 1 Mamdani fuzzy systems</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#example-4-defining-interval-type-2-fuzzy-sets">Example 4: Defining interval type 2 fuzzy sets</a></li>
@@ -95,12 +99,11 @@
              
   <section id="module-pyit2fls">
 <span id="pyit2fls"></span><h1>PyIT2FLS<a class="headerlink" href="#module-pyit2fls" title="Permalink to this heading"></a></h1>
-<p>PyIT2FLS is a NumPy and SciPy-based toolkit for Type 1
-and Interval Type 2 Fuzzy Logic Systems.</p>
-<p>PyIT2FLS is published under MIT license. If you are using
-the developed toolkit, please cite preprint of our paper
-PyIT2FLS: A New Python Toolkit for Interval Type 2 Fuzzy
-Logic Systems.</p>
+<p><strong>PyIT2FLS</strong> is a NumPy- and SciPy-based toolkit designed for working with Type 1 and
+Interval Type 2 Fuzzy Logic Systems.</p>
+<p>The toolkit is distributed under the MIT License. If you use PyIT2FLS in your work,
+please cite the preprint of our paper, PyIT2FLS: A New Python Toolkit for Interval
+Type 2 Fuzzy Logic Systems.</p>
 <p>BibTeX:</p>
 <div class="highlight-Bibtex notranslate"><div class="highlight"><pre><span></span><span class="nc">@misc</span><span class="p">{</span><span class="nl">haghrah2019pyit2fls</span><span class="p">,</span>
 <span class="w">    </span><span class="na">title</span><span class="p">=</span><span class="s">{PyIT2FLS: A New Python Toolkit for Interval Type 2 Fuzzy Logic Systems}</span><span class="p">,</span>
@@ -118,36 +121,44 @@ Logic Systems.</p>
 </div>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
-<p>PyIT2FLS can be installed by unzipping the source
-code in a directory and using this command inside
-the PyIT2FLS folder:</p>
+<p>PyIT2FLS can be installed using one of the following methods:</p>
+<section id="from-source">
+<h3>From Source<a class="headerlink" href="#from-source" title="Permalink to this heading"></a></h3>
+<p>Download and unzip the source code into a directory. Then,
+navigate to the PyIT2FLS folder and run the following command:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip3<span class="w"> </span>install<span class="w"> </span>.
 </pre></div>
 </div>
-<p>Or you can use pip3:</p>
+</section>
+<section id="using-pip">
+<h3>Using pip<a class="headerlink" href="#using-pip" title="Permalink to this heading"></a></h3>
+<p>Alternatively, you can install or upgrade PyIT2FLS directly from PyPI using:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip3<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pyit2fls
 </pre></div>
 </div>
 </section>
+</section>
 <section id="support-my-work-with-tether-usdt">
 <h2>Support My Work with Tether (USDT)<a class="headerlink" href="#support-my-work-with-tether-usdt" title="Permalink to this heading"></a></h2>
-<p>If you find this Python library useful and would like to support its development, donations are greatly appreciated. You can send Tether (USDT) directly to the following address:</p>
+<p>If you find this Python library helpful and wish to support its ongoing development,
+your donations are greatly appreciated. You can contribute Tether (USDT) to the following
+wallet address:</p>
 <blockquote>
 <div><p>TN1stagYLtqq4MUKPj6Q3fqtH3GittRawE</p>
 </div></blockquote>
-<p>Thank you for your contribution, which helps maintain and improve this project!</p>
+<p>Thank you for your generosity—it directly helps maintain and enhance this project!</p>
 </section>
 <section id="getting-started">
 <h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this heading"></a></h2>
-<p>This section provides some elementary examples for using PyIT2FLS library.
-Advanced examples are accessible from examples directory of PyIT2FLS github
+<p>This section introduces basic examples of how to use the PyIT2FLS library. For more
+advanced use cases, please refer to the examples directory in the PyIT2FLS github
 repository.</p>
-<section id="example-1-defining-type-1-fuzzy-sets-and-performing-and-and-or-operators-on-them">
-<h3>Example 1: Defining type 1 fuzzy sets and performing AND and OR operators on them<a class="headerlink" href="#example-1-defining-type-1-fuzzy-sets-and-performing-and-and-or-operators-on-them" title="Permalink to this heading"></a></h3>
-<p>In the first example, we are going to define two trapezoidal type 1 fuzzy sets
-and then apply fuzzy AND and OR operators on them. First we define the trapezoidal fuzzy
-sets using the T1FS class and trapezoid_mf functions, plot them all together using
-T1FS_plot function:</p>
+<section id="example-1-defining-type-1-fuzzy-sets-and-performing-and-or-operators-on-them">
+<h3>Example 1: Defining type 1 fuzzy sets and performing AND/OR operators on them<a class="headerlink" href="#example-1-defining-type-1-fuzzy-sets-and-performing-and-or-operators-on-them" title="Permalink to this heading"></a></h3>
+<p>In this example, we define two trapezoidal Type 1 fuzzy sets and apply fuzzy AND and OR
+operators on them. First, we create the trapezoidal fuzzy sets using the <em>T1FS class</em> and
+the <em>trapezoid_mf</em> function. Then, we plot the fuzzy sets together using the <em>T1FS_plot</em>
+function:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyit2fls</span> <span class="kn">import</span> <span class="p">(</span><span class="n">T1FS</span><span class="p">,</span> <span class="n">trapezoid_mf</span><span class="p">,</span> <span class="n">T1FS_plot</span><span class="p">,</span> <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">linspace</span>
 
@@ -157,9 +168,9 @@ T1FS_plot function:</p>
 <span class="n">T1FS_plot</span><span class="p">(</span><span class="n">set1</span><span class="p">,</span> <span class="n">set2</span><span class="p">,</span> <span class="n">legends</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Trapezoidal Set 1&quot;</span><span class="p">,</span> <span class="s2">&quot;Trapezoidal Set 2&quot;</span><span class="p">,</span> <span class="p">])</span>
 </pre></div>
 </div>
-<p>The output of this code would be as below:</p>
+<p>The output of this code is shown below:</p>
 <a class="reference internal image-reference" href="../_images/Figure_1.png"><img alt="Defining two trapezoidal fuzzy sets." class="align-center" src="../_images/Figure_1.png" style="width: 400px;" /></a>
-<p>Then, we try to compute the AND of these two sets using two different T-norms:</p>
+<p>Next, we compute the AND of these two sets using two different T-norms:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyit2fls</span> <span class="kn">import</span> <span class="p">(</span><span class="n">min_t_norm</span><span class="p">,</span> <span class="n">product_t_norm</span><span class="p">,</span> <span class="n">T1FS_AND</span><span class="p">,</span> <span class="p">)</span>
 
 <span class="n">set3</span> <span class="o">=</span> <span class="n">T1FS_AND</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">set1</span><span class="p">,</span> <span class="n">set2</span><span class="p">,</span> <span class="n">min_t_norm</span><span class="p">)</span>
@@ -167,9 +178,9 @@ T1FS_plot function:</p>
 <span class="n">T1FS_plot</span><span class="p">(</span><span class="n">set3</span><span class="p">,</span> <span class="n">set4</span><span class="p">,</span> <span class="n">legends</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Fuzzy Set 3&quot;</span><span class="p">,</span> <span class="s2">&quot;Fuzzy Set 4&quot;</span><span class="p">,</span> <span class="p">])</span>
 </pre></div>
 </div>
-<p>The output of this code would be as below:</p>
+<p>The output of this code is shown below:</p>
 <a class="reference internal image-reference" href="../_images/Figure_2.png"><img alt="Calculating AND of set1 and set2." class="align-center" src="../_images/Figure_2.png" style="width: 400px;" /></a>
-<p>Finally, we try to compute the OR of these two sets using two different S-norms:</p>
+<p>Finally, we compute the OR of these two sets using two different S-norms:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyit2fls</span> <span class="kn">import</span> <span class="p">(</span><span class="n">max_s_norm</span><span class="p">,</span> <span class="n">probabilistic_sum_s_norm</span><span class="p">,</span> <span class="n">T1FS_OR</span><span class="p">,</span> <span class="p">)</span>
 
 <span class="n">set5</span> <span class="o">=</span> <span class="n">T1FS_OR</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">set1</span><span class="p">,</span> <span class="n">set2</span><span class="p">,</span> <span class="n">max_s_norm</span><span class="p">)</span>
@@ -177,14 +188,14 @@ T1FS_plot function:</p>
 <span class="n">T1FS_plot</span><span class="p">(</span><span class="n">set5</span><span class="p">,</span> <span class="n">set6</span><span class="p">,</span> <span class="n">legends</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Fuzzy Set 5&quot;</span><span class="p">,</span> <span class="s2">&quot;Fuzzy Set 6&quot;</span><span class="p">,</span> <span class="p">])</span>
 </pre></div>
 </div>
-<p>The output of this code would be as below:</p>
+<p>The output of this code is shown below:</p>
 <a class="reference internal image-reference" href="../_images/Figure_3.png"><img alt="Calculating OR of set1 and set2." class="align-center" src="../_images/Figure_3.png" style="width: 400px;" /></a>
 </section>
 <section id="example-2-defining-type-1-tsk-fuzzy-systems">
 <h3>Example 2: Defining type 1 TSK fuzzy systems<a class="headerlink" href="#example-2-defining-type-1-tsk-fuzzy-systems" title="Permalink to this heading"></a></h3>
-<p>In the second example, we are going to define a simple type 1 TSK fuzzy system,
-calculate its output for some inputs, and plot the control surface for it. So,
-we first define the T1FSs representing inputs of the fuzzy system.</p>
+<p>In this example, we define a simple Type 1 TSK fuzzy system, calculate its output
+for specific inputs, and plot its control surface. First, we define the <em>T1FS</em> objects
+representing the inputs of the fuzzy system.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyit2fls</span> <span class="kn">import</span> <span class="p">(</span><span class="n">T1TSK</span><span class="p">,</span> <span class="n">T1FS</span><span class="p">,</span> <span class="n">gaussian_mf</span><span class="p">,</span> <span class="n">T1FS_plot</span><span class="p">,</span> <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="p">(</span><span class="n">linspace</span><span class="p">,</span> <span class="n">meshgrid</span><span class="p">,</span> <span class="n">zeros</span><span class="p">,</span> <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">mpl_toolkits</span> <span class="kn">import</span> <span class="n">mplot3d</span>
@@ -198,11 +209,11 @@ we first define the T1FSs representing inputs of the fuzzy system.</p>
 <span class="n">T1FS_plot</span><span class="p">(</span><span class="n">t1fs1</span><span class="p">,</span> <span class="n">t1fs2</span><span class="p">,</span> <span class="n">legends</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Gaussian Set 1&quot;</span><span class="p">,</span> <span class="s2">&quot;Gaussian Set 2&quot;</span><span class="p">,</span> <span class="p">])</span>
 </pre></div>
 </div>
-<p>The output of this code would be as below:</p>
+<p>The output of this code is shown below:</p>
 <a class="reference internal image-reference" href="../_images/Figure_4.png"><img alt="Defining two fuzzy sets representing the inputs of the fuzzy system." class="align-center" src="../_images/Figure_4.png" style="width: 400px;" /></a>
-<p>As you see, there are two Gaussian fuzzy sets. The parameters of a Gaussian
-membership function are mean, standard deviation, and height, respectively. Then
-we should define the T1TSK system and its input and output variables.</p>
+<p>As shown, there are two Gaussian fuzzy sets. The parameters of a Gaussian membership
+function are the mean, standard deviation, and height, respectively. Next, we define
+the <em>T1TSK</em> system along with its input and output variables.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">myT1TSK</span> <span class="o">=</span> <span class="n">T1TSK</span><span class="p">()</span>
 <span class="n">myT1TSK</span><span class="o">.</span><span class="n">add_input_variable</span><span class="p">(</span><span class="s2">&quot;X1&quot;</span><span class="p">)</span>
 <span class="n">myT1TSK</span><span class="o">.</span><span class="n">add_input_variable</span><span class="p">(</span><span class="s2">&quot;X2&quot;</span><span class="p">)</span>
@@ -210,10 +221,9 @@ we should define the T1TSK system and its input and output variables.</p>
 <span class="n">myT1TSK</span><span class="o">.</span><span class="n">add_output_variable</span><span class="p">(</span><span class="s2">&quot;Y&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The next thing we should define is the outputs of the fuzzy rules. These outputs
-must be functions of the inputs. According to our definition of myT1TSK, we have
-two inputs. So, each output function must have to inputs. Let’s assume that there
-will be four rules.</p>
+<p>Next, we define the outputs of the fuzzy rules. These outputs must be functions of
+the inputs. Since our myT1TSK system has two inputs, each output function must also
+depend on two inputs. Let’s assume the system includes four rules.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Y1</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">):</span>
     <span class="k">return</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">X1</span> <span class="o">+</span> <span class="mf">3.</span> <span class="o">*</span> <span class="n">X2</span>
 
@@ -227,7 +237,7 @@ will be four rules.</p>
     <span class="k">return</span> <span class="mf">5.</span> <span class="o">*</span> <span class="n">X1</span> <span class="o">-</span> <span class="mf">2.5</span> <span class="o">*</span> <span class="n">X2</span>
 </pre></div>
 </div>
-<p>After defining the output functions, we will define the rules using the following rule-base:</p>
+<p>After defining the output functions, we define the rules using the following rule base:</p>
 <table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td></td>
@@ -254,8 +264,8 @@ will be four rules.</p>
             <span class="p">[(</span><span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="n">Y4</span><span class="p">),</span> <span class="p">])</span>
 </pre></div>
 </div>
-<p>Now, it is time to evaluate the system output for different points in the univertse
-of discourse and plot the control surface:</p>
+<p>Now, it is time to evaluate the system’s output for various points in the universe of
+discourse and plot the control surface:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X1</span><span class="p">,</span> <span class="n">X2</span> <span class="o">=</span> <span class="n">meshgrid</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">domain</span><span class="p">)</span>
 <span class="n">O</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">X1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
@@ -274,7 +284,7 @@ of discourse and plot the control surface:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Finally, the output of this code would be as below:</p>
+<p>Finally, the output of this code is shown below:</p>
 <a class="reference internal image-reference" href="../_images/Figure_5.png"><img alt="The control surface of the final type 1 fuzzy TSK system." class="align-center" src="../_images/Figure_5.png" style="width: 400px;" /></a>
 </section>
 <section id="example-3-defining-type-1-mamdani-fuzzy-systems">
@@ -471,10 +481,12 @@ deviation spread, and height.</p>
 </section>
 <section id="example-5-performing-meet-and-join-operators-on-it2fss">
 <h3>Example 5. Performing MEET and JOIN operators on IT2FSs<a class="headerlink" href="#example-5-performing-meet-and-join-operators-on-it2fss" title="Permalink to this heading"></a></h3>
+<p>In this example, we will define two IT2FSs and then calculate their MEET and
+JOIN.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyit2fls</span> <span class="kn">import</span> <span class="p">(</span><span class="n">IT2FS</span><span class="p">,</span> <span class="n">R_IT2FS_Gaussian_UncertStd</span><span class="p">,</span>
                     <span class="n">L_IT2FS_Gaussian_UncertStd</span><span class="p">,</span> <span class="n">IT2FS_plot</span><span class="p">,</span>
                     <span class="n">hamacher_product_t_norm</span><span class="p">,</span> <span class="n">probabilistic_sum_s_norm</span><span class="p">,</span>
-                    <span class="n">meet</span><span class="p">,</span> <span class="n">join</span><span class="p">)</span>
+                    <span class="n">meet</span><span class="p">,</span> <span class="n">join</span><span class="p">,</span> <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">linspace</span>
 
 <span class="n">domain</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1001</span><span class="p">)</span>
@@ -482,23 +494,35 @@ deviation spread, and height.</p>
 <span class="n">RGaussian_UncertStd</span> <span class="o">=</span> <span class="n">R_IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="p">[</span><span class="mf">1.25</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">])</span>
 <span class="n">LGaussian_UncertStd</span> <span class="o">=</span> <span class="n">L_IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="p">[</span><span class="mf">1.75</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">])</span>
 
-<span class="n">MEET</span> <span class="o">=</span> <span class="n">meet</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">RGaussian_UncertStd</span><span class="p">,</span> <span class="n">LGaussian_UncertStd</span><span class="p">,</span> <span class="n">hamacher_product_t_norm</span><span class="p">)</span>
-<span class="n">JOIN</span> <span class="o">=</span> <span class="n">meet</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">RGaussian_UncertStd</span><span class="p">,</span> <span class="n">LGaussian_UncertStd</span><span class="p">,</span> <span class="n">probabilistic_sum_s_norm</span><span class="p">)</span>
-
 <span class="n">IT2FS_plot</span><span class="p">(</span><span class="n">RGaussian_UncertStd</span><span class="p">,</span> <span class="n">LGaussian_UncertStd</span><span class="p">,</span>
-        <span class="n">legends</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;IT2FS1&quot;</span><span class="p">,</span>
+           <span class="n">legends</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;IT2FS1&quot;</span><span class="p">,</span>
                     <span class="s2">&quot;IT2FS2&quot;</span><span class="p">,</span> <span class="p">])</span>
-
+</pre></div>
+</div>
+<p>As you see, we defined a right and a left Gaussian interval type 2 fuzzy set with
+uncertain standard deviation value. The output plot of the fuzzy sets would be as following:</p>
+<a class="reference internal image-reference" href="../_images/Figure_10.png"><img alt="Defining two interval type 2 fuzzy sets." class="align-center" src="../_images/Figure_10.png" style="width: 400px;" /></a>
+<p>Now we will calculate the MEET and JOIN using two functions <em>meet</em> and <em>join</em>. The first
+three inputs of these functions are same, domain, first IT2FS, and second IT2FS. But the 4th
+input for <em>meet</em> should be a T-norm, and for <em>join</em> should be a S-norm.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">MEET</span> <span class="o">=</span> <span class="n">meet</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">RGaussian_UncertStd</span><span class="p">,</span> <span class="n">LGaussian_UncertStd</span><span class="p">,</span> <span class="n">hamacher_product_t_norm</span><span class="p">)</span>
+<span class="n">JOIN</span> <span class="o">=</span> <span class="n">meet</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">RGaussian_UncertStd</span><span class="p">,</span> <span class="n">LGaussian_UncertStd</span><span class="p">,</span> <span class="n">probabilistic_sum_s_norm</span><span class="p">)</span>
 <span class="n">IT2FS_plot</span><span class="p">(</span><span class="n">MEET</span><span class="p">,</span> <span class="n">JOIN</span><span class="p">,</span>
-        <span class="n">legends</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;MEET&quot;</span><span class="p">,</span>
+           <span class="n">legends</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;MEET&quot;</span><span class="p">,</span>
                     <span class="s2">&quot;JOIN&quot;</span><span class="p">,</span> <span class="p">])</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../_images/Figure_10.png"><img alt="Defining two interval type 2 fuzzy sets." class="align-center" src="../_images/Figure_10.png" style="width: 400px;" /></a>
+<p>Using the Hamacher product T-norm and probabilistic sum S-norm, the achieved output sets
+would be as following:</p>
 <a class="reference internal image-reference" href="../_images/Figure_11.png"><img alt="MEET and JOIN of the defined two fuzzy sets." class="align-center" src="../_images/Figure_11.png" style="width: 400px;" /></a>
 </section>
 <section id="example-6-defining-interval-type-2-tsk-fuzzy-systems">
 <h3>Example 6: Defining interval type 2 TSK fuzzy systems<a class="headerlink" href="#example-6-defining-interval-type-2-tsk-fuzzy-systems" title="Permalink to this heading"></a></h3>
+<p>In this example, we will define a simple interval type 2 TSK fuzzy system with two
+inputs and an output. There will be two IT2FSs for describing the inputs variables’
+universe of discourse. Also, there will be four different outputs corresponded with
+four different rules in the rule-base of the system. First, we define the fuzzy sets
+as following:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyit2fls</span> <span class="kn">import</span> <span class="p">(</span><span class="n">IT2TSK</span><span class="p">,</span> <span class="n">IT2FS_Gaussian_UncertStd</span><span class="p">,</span> <span class="n">IT2FS_plot</span><span class="p">,</span>
                     <span class="n">product_t_norm</span><span class="p">,</span> <span class="n">max_s_norm</span><span class="p">,</span> <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">mpl_toolkits</span> <span class="kn">import</span> <span class="n">mplot3d</span>
@@ -515,8 +539,27 @@ deviation spread, and height.</p>
 <span class="n">IT2FS2</span> <span class="o">=</span> <span class="n">IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
 <span class="n">IT2FS_plot</span><span class="p">(</span><span class="n">IT2FS1</span><span class="p">,</span> <span class="n">IT2FS2</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Sets&quot;</span><span class="p">,</span>
             <span class="n">legends</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;IT2FS1&quot;</span><span class="p">,</span> <span class="s2">&quot;IT2FS2&quot;</span><span class="p">])</span>
-
-<span class="n">myIT2FLS</span> <span class="o">=</span> <span class="n">IT2TSK</span><span class="p">(</span><span class="n">product_t_norm</span><span class="p">,</span> <span class="n">max_s_norm</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The following figure represents the defined fuzzy sets:</p>
+<a class="reference internal image-reference" href="../_images/Figure_12.png"><img alt="Defining two interval type 2 fuzzy sets." class="align-center" src="../_images/Figure_12.png" style="width: 400px;" /></a>
+<p>Next, we will define the system using IT2TSK class. The constructor of this class accepts
+two inputs, T-norm and S-norm to be used. We need to define the names of input and output
+variables by functions <em>add_input_variable</em> and <em>add_output_variable</em> for further use. Also,
+the rules of the system will be added by the <em>add_rule</em> function which requires two inputs,
+antecedent, and consequent as list of tuples.</p>
+<p>Antecedent is a list of tuples in which each
+tuple indicates assignement of a variable to an IT2FS. First element of the tuple must be
+the input variable name as str, and the second element of the tuple must be an IT2FS.</p>
+<p>Consequent is a list of tuples in which each tuple indicates assignement of a variable to
+an output state. First element of the tuple must be output vriable name as str, and the
+second element of the tuple must be a dictionary. This dictionary shows the output polynomial
+in the case of the rule. For example let an output polynomial be as 2 x1 + 4 x2 + 5. Then
+the dictionary for this case would be {“const”:5., “x1”:2., “x2”:4.}. Note that this is
+written for an IT2 TSK FLS with two inputs, named x1 and x2.</p>
+<p>The following piece of code represents how to define the IT2TSK, define input and output
+variables, and add the rules to the rule base of the system.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">myIT2FLS</span> <span class="o">=</span> <span class="n">IT2TSK</span><span class="p">(</span><span class="n">product_t_norm</span><span class="p">,</span> <span class="n">max_s_norm</span><span class="p">)</span>
 
 <span class="n">myIT2FLS</span><span class="o">.</span><span class="n">add_input_variable</span><span class="p">(</span><span class="s2">&quot;X1&quot;</span><span class="p">)</span>
 <span class="n">myIT2FLS</span><span class="o">.</span><span class="n">add_input_variable</span><span class="p">(</span><span class="s2">&quot;X2&quot;</span><span class="p">)</span>
@@ -530,9 +573,11 @@ deviation spread, and height.</p>
                 <span class="p">[(</span><span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;const&quot;</span><span class="p">:</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="s2">&quot;X1&quot;</span><span class="p">:</span><span class="mf">2.</span><span class="p">,</span> <span class="s2">&quot;X2&quot;</span><span class="p">:</span><span class="mf">0.1</span><span class="p">}),</span> <span class="p">])</span>
 <span class="n">myIT2FLS</span><span class="o">.</span><span class="n">add_rule</span><span class="p">([(</span><span class="s2">&quot;X1&quot;</span><span class="p">,</span> <span class="n">IT2FS2</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;X2&quot;</span><span class="p">,</span> <span class="n">IT2FS2</span><span class="p">)],</span>
                 <span class="p">[(</span><span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;const&quot;</span><span class="p">:</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="s2">&quot;X1&quot;</span><span class="p">:</span><span class="mf">4.</span><span class="p">,</span> <span class="s2">&quot;X2&quot;</span><span class="p">:</span><span class="o">-</span><span class="mf">0.5</span><span class="p">}),</span> <span class="p">])</span>
-
-
-<span class="n">O</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">X1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now, let’s evaluate the system output for different points in the universe of discourse for
+achieving the output surface of the system and plotting it.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">O</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">X1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x1</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">domain</span><span class="p">)),</span> <span class="n">domain</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">x2</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">domain</span><span class="p">)),</span> <span class="n">domain</span><span class="p">):</span>
@@ -550,11 +595,16 @@ deviation spread, and height.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../_images/Figure_12.png"><img alt="Defining two interval type 2 fuzzy sets." class="align-center" src="../_images/Figure_12.png" style="width: 400px;" /></a>
+<p>Finally, the output surface of the system would be as following:</p>
 <a class="reference internal image-reference" href="../_images/Figure_13.png"><img alt="The control surface of the final interval type 2 fuzzy TSK system." class="align-center" src="../_images/Figure_13.png" style="width: 400px;" /></a>
 </section>
 <section id="example-7-defining-interval-type-2-mamdani-fuzzy-systems">
 <h3>Example 7: Defining interval type 2 Mamdani fuzzy systems<a class="headerlink" href="#example-7-defining-interval-type-2-mamdani-fuzzy-systems" title="Permalink to this heading"></a></h3>
+<p>In the 7th example, we are after creating an interval type 2 Mamdani fuzzy system using
+the <em>IT2Mamdani</em> class. In this example, our system has two inputs and an output. There
+are three IT2FSs for describing each input variable in the dedicated universe of discourse.
+Also, the output of the system is described using two IT2FSs in its own universe of
+discourse. First, we define the input sets as following:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyit2fls</span> <span class="kn">import</span> <span class="n">IT2Mamdani</span><span class="p">,</span> <span class="n">IT2FS_Gaussian_UncertStd</span><span class="p">,</span> <span class="n">IT2FS_plot</span><span class="p">,</span> \
                     <span class="n">min_t_norm</span><span class="p">,</span> <span class="n">max_s_norm</span><span class="p">,</span> <span class="n">crisp</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">linspace</span><span class="p">,</span> <span class="n">meshgrid</span><span class="p">,</span> <span class="n">zeros</span>
@@ -578,14 +628,34 @@ deviation spread, and height.</p>
         <span class="n">legends</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Small 1&quot;</span><span class="p">,</span> <span class="s2">&quot;Medium 1&quot;</span><span class="p">,</span> <span class="s2">&quot;large 1&quot;</span><span class="p">])</span>
 <span class="n">IT2FS_plot</span><span class="p">(</span><span class="n">Small2</span><span class="p">,</span> <span class="n">Medium2</span><span class="p">,</span> <span class="n">Large2</span><span class="p">,</span>
         <span class="n">legends</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Smal 2l&quot;</span><span class="p">,</span> <span class="s2">&quot;Medium 2&quot;</span><span class="p">,</span> <span class="s2">&quot;large 2&quot;</span><span class="p">])</span>
-
-<span class="n">Low1</span>  <span class="o">=</span> <span class="n">IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain3</span><span class="p">,</span> <span class="p">[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.025</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Based on this code, the IT2FSs describing the first input variable would be as:</p>
+<a class="reference internal image-reference" href="../_images/Figure_14.png"><img alt="Defining interval type 2 fuzzy sets for input X1." class="align-center" src="../_images/Figure_14.png" style="width: 400px;" /></a>
+<p>and the fuzzy sets for second input variable would be as:</p>
+<a class="reference internal image-reference" href="../_images/Figure_15.png"><img alt="Defining interval type 2 fuzzy sets for input X2." class="align-center" src="../_images/Figure_15.png" style="width: 400px;" /></a>
+<p>Next, we define the output sets as following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Low1</span>  <span class="o">=</span> <span class="n">IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain3</span><span class="p">,</span> <span class="p">[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.025</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
 <span class="n">High1</span> <span class="o">=</span> <span class="n">IT2FS_Gaussian_UncertStd</span><span class="p">(</span><span class="n">domain3</span><span class="p">,</span> <span class="p">[</span><span class="mf">4.</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.025</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
 
 <span class="n">IT2FS_plot</span><span class="p">(</span><span class="n">Low1</span><span class="p">,</span> <span class="n">High1</span><span class="p">,</span>
             <span class="n">legends</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Low&quot;</span><span class="p">,</span> <span class="s2">&quot;High&quot;</span><span class="p">])</span>
-
-<span class="n">myIT2FLS</span> <span class="o">=</span> <span class="n">IT2Mamdani</span><span class="p">(</span><span class="n">min_t_norm</span><span class="p">,</span> <span class="n">max_s_norm</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Which are represented as following:</p>
+<a class="reference internal image-reference" href="../_images/Figure_16.png"><img alt="Defining interval type 2 fuzzy sets for the output." class="align-center" src="../_images/Figure_16.png" style="width: 400px;" /></a>
+<p>After defining the required IT2FSs, it is time to define our fuzzy system using the
+<em>IT2Mamdani</em> class. <em>IT2Mamdani</em> requires a T-norm and a S-norm as constructor function
+parameters. The names of input and output should be predefined using <em>add_input_variable</em>
+and <em>add_output_variable</em> functions. After defining the input and output variables, the
+rule-base of the system can be defined using the <em>add_rule</em> function. Similar to <em>IT2TSK</em>,
+<em>add_rule</em> for <em>IT2Mamdani</em> accepts two inputs, antecedent and consequent.</p>
+<p>Antecedent is a list of tuples in which each tuple indicates assignement of a variable to
+an IT2FS. First element of the tuple must be input variable name as str, and the second
+element of the tuple must be an IT2FS. Consequent is a list of tuples in which each tuple
+indicates assignement of a variable to an IT2FS. First element of the tuple must be output
+variable name as str, and the second element of the tuple must be an IT2FS.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">myIT2FLS</span> <span class="o">=</span> <span class="n">IT2Mamdani</span><span class="p">(</span><span class="n">min_t_norm</span><span class="p">,</span> <span class="n">max_s_norm</span><span class="p">)</span>
 
 <span class="n">myIT2FLS</span><span class="o">.</span><span class="n">add_input_variable</span><span class="p">(</span><span class="s2">&quot;X1&quot;</span><span class="p">)</span>
 <span class="n">myIT2FLS</span><span class="o">.</span><span class="n">add_input_variable</span><span class="p">(</span><span class="s2">&quot;X2&quot;</span><span class="p">)</span>
@@ -601,8 +671,11 @@ deviation spread, and height.</p>
 <span class="n">myIT2FLS</span><span class="o">.</span><span class="n">add_rule</span><span class="p">([(</span><span class="s2">&quot;X1&quot;</span><span class="p">,</span> <span class="n">Large1</span><span class="p">),</span>  <span class="p">(</span><span class="s2">&quot;X2&quot;</span><span class="p">,</span> <span class="n">Small2</span><span class="p">)],</span>  <span class="p">[(</span><span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="n">High1</span><span class="p">),</span> <span class="p">])</span>
 <span class="n">myIT2FLS</span><span class="o">.</span><span class="n">add_rule</span><span class="p">([(</span><span class="s2">&quot;X1&quot;</span><span class="p">,</span> <span class="n">Large1</span><span class="p">),</span>  <span class="p">(</span><span class="s2">&quot;X2&quot;</span><span class="p">,</span> <span class="n">Medium2</span><span class="p">)],</span> <span class="p">[(</span><span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="n">High1</span><span class="p">),</span> <span class="p">])</span>
 <span class="n">myIT2FLS</span><span class="o">.</span><span class="n">add_rule</span><span class="p">([(</span><span class="s2">&quot;X1&quot;</span><span class="p">,</span> <span class="n">Large1</span><span class="p">),</span>  <span class="p">(</span><span class="s2">&quot;X2&quot;</span><span class="p">,</span> <span class="n">Large2</span><span class="p">)],</span>  <span class="p">[(</span><span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="n">High1</span><span class="p">),</span> <span class="p">])</span>
-
-<span class="n">X1</span><span class="p">,</span> <span class="n">X2</span> <span class="o">=</span> <span class="n">meshgrid</span><span class="p">(</span><span class="n">domain1</span><span class="p">,</span> <span class="n">domain2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After defining out fuzzy system, it is time to evaluate it over the universe of discourse
+and plot the output surface.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X1</span><span class="p">,</span> <span class="n">X2</span> <span class="o">=</span> <span class="n">meshgrid</span><span class="p">(</span><span class="n">domain1</span><span class="p">,</span> <span class="n">domain2</span><span class="p">)</span>
 <span class="n">Z1</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">domain1</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">domain2</span><span class="p">)))</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x1</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">domain1</span><span class="p">)),</span> <span class="n">domain1</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">x2</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">domain2</span><span class="p">)),</span> <span class="n">domain2</span><span class="p">):</span>
@@ -619,9 +692,7 @@ deviation spread, and height.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../_images/Figure_14.png"><img alt="Defining interval type 2 fuzzy sets for input X1." class="align-center" src="../_images/Figure_14.png" style="width: 400px;" /></a>
-<a class="reference internal image-reference" href="../_images/Figure_15.png"><img alt="Defining interval type 2 fuzzy sets for input X2." class="align-center" src="../_images/Figure_15.png" style="width: 400px;" /></a>
-<a class="reference internal image-reference" href="../_images/Figure_16.png"><img alt="Defining interval type 2 fuzzy sets for the output." class="align-center" src="../_images/Figure_16.png" style="width: 400px;" /></a>
+<p>The output surface of the system would be as following:</p>
 <a class="reference internal image-reference" href="../_images/Figure_17.png"><img alt="The control surface of the final interval type 2 fuzzy Mamdani system." class="align-center" src="../_images/Figure_17.png" style="width: 400px;" /></a>
 </section>
 </section>
