@@ -64,15 +64,15 @@ wallet address:
 Thank you for your generosity—it directly helps maintain and enhance this project!
 
 
-Getting started
+Getting Started
 ---------------
 
 This section introduces basic examples of how to use the PyIT2FLS library. For more 
 advanced use cases, please refer to the examples directory in the PyIT2FLS github 
 repository. 
 
-Example 1: Defining type 1 fuzzy sets and performing AND/OR operators on them
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Example 1: Defining Type 1 Fuzzy Sets and Performing AND/OR Operators on Them
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In this example, we define two trapezoidal Type 1 fuzzy sets and apply fuzzy AND and OR 
 operators on them. First, we create the trapezoidal fuzzy sets using the *T1FS class* and 
@@ -131,7 +131,7 @@ The output of this code is shown below:
    :align: center
 
 
-Example 2: Defining type 1 TSK fuzzy systems
+Example 2: Defining Type 1 TSK Fuzzy Systems
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In this example, we define a simple Type 1 TSK fuzzy system, calculate its output 
@@ -242,12 +242,12 @@ Finally, the output of this code is shown below:
 
 
 
-Example 3: Defining type 1 Mamdani fuzzy systems
+Example 3: Defining Type 1 Mamdani Fuzzy Systems
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Let's define a simple type 1 Mamdani fuzzy system using PyIT2FLS, calculate 
-its output for some inputs, and plot the control surface for it. So, we first 
-define the T1FSs representing inputs of the fuzzy system.
+In this example, we define a simple Type 1 Mamdani fuzzy system using PyIT2FLS. We calculate 
+its output for specific inputs and plot the corresponding control surface. First, we define 
+the *T1FS* objects representing the inputs of the fuzzy system.
 
 .. code-block:: python
 
@@ -263,15 +263,15 @@ define the T1FSs representing inputs of the fuzzy system.
     t1fs2 = T1FS(inputDomain, gaussian_mf, [ 0.5, 0.5, 1.])
     T1FS_plot(t1fs1, t1fs2, legends=["Gaussian Set 1", "Gaussian Set 2", ])
 
-The output of this code would be as below:
+The output of this code is shown below:
 
 .. image:: ../_static/Figure_6.png
    :alt: Defining two fuzzy sets representing the inputs of the fuzzy system.
    :width: 400px
    :align: center
 
-As you see, there are two Gaussian fuzzy sets for describing the input variables. 
-After that, we should define the T1FSs representing outputs of the fuzzy system.
+As shown, there are two Gaussian fuzzy sets describing the input variables. Next, 
+we define the *T1FS* objects representing the outputs of the fuzzy system.
 
 .. code-block:: python
 
@@ -284,19 +284,19 @@ After that, we should define the T1FSs representing outputs of the fuzzy system.
               legends=["Gaussian Set 3", "Gaussian Set 4", 
                        "Gaussian Set 5", "Gaussian Set 6", ])
 
-We have defined four sets in this step. So, for all possible fuzzy rules we can 
-define a distinct output. The output T1FSs would be as following:
+In this step, we define four sets. For all possible fuzzy rules, we can assign a 
+distinct output. The output *T1FS* objects are as follows:
 
 .. image:: ../_static/Figure_7.png
    :alt: Defining four fuzzy sets representing the outputs of the fuzzy system.
    :width: 400px
    :align: center
 
-Now, it is time to define the type 1 Mamdani system and its input and output variables. 
-We can choose inference engine and defuzzification method among some famous methods (refer 
-to the documentations for more details). In our example, we will use "Product" inference 
-engine and center of gravity, "CoG", defuzzification method. Also, we name the inputs as 
-"X1" and "X2", and the output as "Y".
+Now, it is time to define the Type 1 Mamdani system along with its input and output 
+variables. The inference engine and defuzzification method can be chosen from several 
+well-known options (refer to the documentation for more details). In this example, we 
+use the "Product" inference engine and the center of gravity ("CoG") defuzzification 
+method. Additionally, we name the inputs "X1" and "X2" and the output "Y."
 
 .. code-block:: python
 
@@ -306,8 +306,9 @@ engine and center of gravity, "CoG", defuzzification method. Also, we name the i
 
     myT1Mamdani.add_output_variable("Y")
 
-After defining the T1Mamdani system, it is time to define the rule-base of the fuzzy 
-system. We use the rules represented in the following table to define the rule-base.
+After defining the *T1Mamdani* system, the next step is to define the rule base for the 
+fuzzy system. The rules shown in the following table will be used to construct the rule 
+base.
 
 +-----------------+-------------------+--------------------+
 |                 | **X2**: t1fs1     | **X2**: t1fs2      |
@@ -317,7 +318,7 @@ system. We use the rules represented in the following table to define the rule-b
 | **X1**: t1fs2   | **Y**: t1fs5      | **Y**: t1fs6       |
 +-----------------+-------------------+--------------------+
 
-The codes to add rules to the rule-base would be as following:
+The code to add rules to the rule base is as follows:
 
 .. code-block:: python
 
@@ -326,7 +327,7 @@ The codes to add rules to the rule-base would be as following:
     myT1Mamdani.add_rule([("X1", t1fs2), ("X2", t1fs1)], [("Y", t1fs5), ])
     myT1Mamdani.add_rule([("X1", t1fs2), ("X2", t1fs2)], [("Y", t1fs6), ])
 
-Finally, it is time to evaluate the system output for different points in the univertse 
+Finally, it is time to evaluate the system's output for various points in the universe 
 of discourse and plot the control surface:
 
 .. code-block:: python
@@ -348,7 +349,7 @@ of discourse and plot the control surface:
     fig.colorbar(surf, shrink=0.5, aspect=5)
     plt.show()
 
-And, the output of this code would be as below:
+And the output of this code is shown below:
 
 .. image:: ../_static/Figure_8.png
    :alt: The control surface of the final type 1 fuzzy Mamdani system.
@@ -356,15 +357,20 @@ And, the output of this code would be as below:
    :align: center
 
 
-Example 4: Defining interval type 2 fuzzy sets
+Example 4: Defining Interval Type 2 Fuzzy Sets
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In this example, we are going to define and plot ten different and well-known types 
-of interval type 2 fuzzy sets. We need some initial imports and defining the universe 
-of discourse, before using the IT2FS class. This class requires five parameters for 
-creating an interval type 2 fuzzy set, domain, upper membership function, parameters 
-of the upper membership function, lower membership function, and parameters of the 
-lower membership function.
+In this example, we define and plot ten well-known types of interval Type 2 fuzzy sets. 
+Before using the IT2FS class, we perform some initial imports and define the universe 
+of discourse.
+
+The IT2FS class requires five parameters to create an interval Type 2 fuzzy set:
+
+1. **Domain**: The universe of discourse.
+2. **Upper membership function**: A function defining the upper bound.
+3. **Parameters of the upper membership function**: The parameters required by the upper membership function.
+4. **Lower membership function**: A function defining the lower bound.
+5. **Parameters of the lower membership function**: The parameters required by the lower membership function.
 
 .. code-block:: python
 
@@ -376,38 +382,40 @@ lower membership function.
 
     domain = linspace(0, 4, 1001)
 
-Now the first IT2FS we are going to define is the constant interval type 2 fuzzy 
-set. It needs only the UMF and the LMF as constant membership functions. The 
-constant membership function has only one parameter, its value. The check_set 
-option while defining an IT2FS can be used for debuginh purposes. Sometimes there can 
-be mistake in fuzzy set parameters causing LMF to have greater membership degree than 
-the UMF in some points on the universe of discourse. In such a situation, if check_set 
-is set zero, an exceptation will be raised.
+The first *IT2FS* we define is the constant interval Type 2 fuzzy set. This set requires 
+only the UMF and LMF as constant membership functions. The constant membership function 
+has a single parameter: its value.
+
+The *check_set* option, when defining an *IT2FS*, can be used for debugging purposes. 
+Sometimes, errors in the fuzzy set parameters can cause the LMF to have a greater 
+membership degree than the UMF at certain points in the universe of discourse. If 
+*check_set* is set to *True*, an exception will be raised in such cases.
 
 .. code-block:: python
 
     Const = IT2FS(domain, const_mf, [1.0], const_mf, [0.9], check_set=True)
 
-The next IT2FS is triangular interval type 2 fuzzy set. It has triangular-type membership 
-function for both UMF and LMF. The parameters for a triangular membership function defined 
-by tri_mf are left, center, right, and height of the triangle.
+The next *IT2FS* is the triangular interval Type 2 fuzzy set. It uses triangular membership 
+functions for both the UMF and LMF. The parameters for a triangular membership function, 
+defined by *tri_mf*, include the left, center, and right points, as well as the height of 
+the triangle.
 
 .. code-block:: python
 
     Tri = IT2FS(domain, tri_mf, [0.7, 1.0, 1.3, 0.3], tri_mf, [0.8, 1.0, 1.2, 0.2], check_set=True)
 
-We can also define left and right triangular interval type 2 fuzzy sets using rtri_mf and 
-ltri_mf functions. The required parameters for rtri_mf are right, center, and height. 
-Similarly, for ltri_mf, the parameters are left, center, and height.
+We can also define left and right triangular interval Type 2 fuzzy sets using the *rtri_mf* 
+and *ltri_mf* functions. The parameters required for *rtri_mf* are the right, center, and height. 
+Similarly, for *ltri_mf*, the parameters are the left, center, and height.
 
 .. code-block:: python
 
     RTri = IT2FS(domain, rtri_mf, [1.85, 1.25, 0.8], rtri_mf, [1.75, 1.15, 0.8], check_set=True)
     LTri = IT2FS(domain, ltri_mf, [0.15, 0.75, 0.7], ltri_mf, [0.25, 0.85, 0.7], check_set=True)
 
-The next well-known interval type 2 fuzzy set is the trapezoidal. We can define it using 
-trapezoidal membership function, trapezoid_mf. It has five parameters, left, left-center, 
-right-center, right, and height, respectively.
+The next well-known interval Type 2 fuzzy set is the trapezoidal set. We can define it 
+using the trapezoidal membership function, *trapezoid_mf*. It has five parameters: left, 
+left-center, right-center, right, and height.
 
 .. code-block:: python
 
@@ -416,18 +424,19 @@ right-center, right, and height, respectively.
                     trapezoid_mf, [0.55, 0.95, 1.05, 1.45, 0.45], 
                     check_set=True)
 
-We can also define Gaussian-type sets, i.e., general Gaussian sets, Gaussian sets with 
-uncertain mean value, and Gaussian sets with uncertain standard deviation value. As a 
-general form Gaussian sets can be defined using IT2FS class and gaussian_mf function. 
-The parameters for gaussian_mf should be mean value, standard deviation, and height. 
+We can also define Gaussian-type sets, including general Gaussian sets, Gaussian sets 
+with uncertain mean values, and Gaussian sets with uncertain standard deviation values. 
+As a general form, Gaussian sets can be defined using the *IT2FS* class and the 
+*gaussian_mf* function. The parameters for *gaussian_mf* are the mean value, standard 
+deviation, and height.
 
-Defining Gaussian sets with uncertain mean value and Gaussian sets with uncertain 
-standard deviation value have been made easy by providing two functions 
-IT2FS_Gaussian_UncertMean and IT2FS_Gaussian_UncertStd. The inputs of the 
-IT2FS_Gaussian_UncertMean are domain and parameters as a list. The parameters list 
-consists of mean center, mean spread, standard deviation, and height. For the function 
-IT2FS_Gaussian_UncertStd, the inputs are also similar, but the parameters list consists of 
-mean, standard deviation center, standard deviation spread, and height.
+Defining Gaussian sets with uncertain mean values and Gaussian sets with uncertain 
+standard deviation values is simplified by the functions *IT2FS_Gaussian_UncertMean* and 
+*IT2FS_Gaussian_UncertStd*. The inputs to *IT2FS_Gaussian_UncertMean* are the domain 
+and a list of parameters, which include the mean center, mean spread, standard 
+deviation, and height. For *IT2FS_Gaussian_UncertStd*, the inputs are similar, but 
+the parameters list consists of the mean, standard deviation center, standard deviation 
+spread, and height.
 
 .. code-block:: python
 
@@ -438,19 +447,22 @@ mean, standard deviation center, standard deviation spread, and height.
     Gaussian_UncertMean = IT2FS_Gaussian_UncertMean(domain, [2.5, 0.1, 0.1, 0.5])
     Gaussian_UncertStd = IT2FS_Gaussian_UncertStd(domain, [2.75, 0.1, 0.05, 0.5])
 
-There are two other Gaussian-type fuzzy sets that are widely used in applications, which 
-also PyIT2FLS provides a specific function for defining them easily, right and left-sided 
-Gaussian IT2FSs with uncertain standard deviation value. The inputs of these functions, 
-R_IT2FS_Gaussian_UncertStd and L_IT2FS_Gaussian_UncertStd, are domain and parameters list. 
-The parameters list for both of them should be mean, standard deviation center, standard 
-deviation spread, and height.
+There are two other widely used Gaussian-type fuzzy sets in applications, for which 
+PyIT2FLS provides specific functions to define them easily: right-sided and left-sided 
+Gaussian interval Type 2 fuzzy sets with uncertain standard deviation values. The 
+functions for defining these sets are *R_IT2FS_Gaussian_UncertStd* and 
+*L_IT2FS_Gaussian_UncertStd*.
+
+The inputs to these functions are the domain and a parameters list. The parameters 
+list for both functions should include the mean, standard deviation center, 
+standard deviation spread, and height.
 
 .. code-block:: python
 
     RGaussian_UncertStd = R_IT2FS_Gaussian_UncertStd(domain, [3.25, 0.2, 0.05, 0.6])
     LGaussian_UncertStd = L_IT2FS_Gaussian_UncertStd(domain, [3.75, 0.2, 0.05, 0.6])
 
-Finally, let's plot all these sets using the IT2FS_plot function:
+Finally, let's plot all of these sets using the *IT2FS_plot* function:
 
 .. code-block:: python
 
@@ -468,7 +480,7 @@ Finally, let's plot all these sets using the IT2FS_plot function:
                         "Right G. with Uncertain Std", 
                         "Left G. with Uncertain Std", ])
 
-The output of this code would be as below:
+The output of this code is shown below:
 
 .. image:: ../_static/Figure_9.png
    :alt: Defining some interval type 2 fuzzy sets.
@@ -476,11 +488,10 @@ The output of this code would be as below:
    :align: center
 
 
-Example 5. Performing MEET and JOIN operators on IT2FSs
+Example 5. Performing MEET and JOIN Operators on IT2FSs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In this example, we will define two IT2FSs and then calculate their MEET and 
-JOIN.
+In this example, we define two *IT2FS* s and then calculate their MEET and JOIN operators.
 
 .. code-block:: python
 
@@ -499,17 +510,19 @@ JOIN.
                legends=["IT2FS1", 
                         "IT2FS2", ])
 
-As you see, we defined a right and a left Gaussian interval type 2 fuzzy set with 
-uncertain standard deviation value. The output plot of the fuzzy sets would be as following:
+As can be seen, we defined a right and a left Gaussian interval Type 2 fuzzy set 
+with uncertain standard deviation values. The output plot of these fuzzy sets 
+is shown below:
 
 .. image:: ../_static/Figure_10.png
    :alt: Defining two interval type 2 fuzzy sets.
    :width: 400px
    :align: center
 
-Now we will calculate the MEET and JOIN using two functions *meet* and *join*. The first 
-three inputs of these functions are same, domain, first IT2FS, and second IT2FS. But the 4th 
-input for *meet* should be a T-norm, and for *join* should be a S-norm.
+Now, we will calculate the MEET and JOIN using the two functions *meet* and *join*. The 
+first three inputs for both functions are the same: the domain, the first *IT2FS*, and 
+the second *IT2FS*. However, the fourth input for meet should be a T-norm, while for 
+join, it should be an S-norm.
 
 .. code-block:: python
 
@@ -519,8 +532,8 @@ input for *meet* should be a T-norm, and for *join* should be a S-norm.
                legends=["MEET", 
                         "JOIN", ])
 
-Using the Hamacher product T-norm and probabilistic sum S-norm, the achieved output sets 
-would be as following:
+Using the Hamacher product T-norm and the probabilistic sum S-norm, the resulting output 
+sets are shown below:
 
 .. image:: ../_static/Figure_11.png
    :alt: MEET and JOIN of the defined two fuzzy sets.
@@ -528,14 +541,13 @@ would be as following:
    :align: center
 
 
-Example 6: Defining interval type 2 TSK fuzzy systems
+Example 6: Defining Interval Type 2 TSK Fuzzy Systems
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In this example, we will define a simple interval type 2 TSK fuzzy system with two 
-inputs and an output. There will be two IT2FSs for describing the inputs variables' 
-universe of discourse. Also, there will be four different outputs corresponded with 
-four different rules in the rule-base of the system. First, we define the fuzzy sets 
-as following:
+In this example, we define a simple interval Type 2 TSK fuzzy system with two inputs 
+and one output. Two *IT2FS* s will describe the input variables' universe of discourse, 
+and there will be four different outputs corresponding to four rules in the system's 
+rule-base. First, we define the fuzzy sets as follows:
 
 .. code-block:: python
 
@@ -556,32 +568,33 @@ as following:
     IT2FS_plot(IT2FS1, IT2FS2, title="Sets", 
                 legends=["IT2FS1", "IT2FS2"])
 
-The following figure represents the defined fuzzy sets:
+The following figure illustrates the defined fuzzy sets:
 
 .. image:: ../_static/Figure_12.png
    :alt: Defining two interval type 2 fuzzy sets.
    :width: 400px
    :align: center
 
-Next, we will define the system using IT2TSK class. The constructor of this class accepts 
-two inputs, T-norm and S-norm to be used. We need to define the names of input and output 
-variables by functions *add_input_variable* and *add_output_variable* for further use. Also, 
-the rules of the system will be added by the *add_rule* function which requires two inputs, 
-antecedent, and consequent as list of tuples. 
+Next, we define the system using the *IT2TSK* class. The constructor of this class 
+accepts two inputs: the T-norm and the S-norm to be used. We then define the names of 
+the input and output variables using the *add_input_variable* and *add_output_variable* 
+functions for later use. The rules of the system are added with the *add_rule* function, 
+which requires two inputs: the antecedent and the consequent, both of which are 
+lists of tuples.
 
-Antecedent is a list of tuples in which each 
-tuple indicates assignement of a variable to an IT2FS. First element of the tuple must be 
-the input variable name as str, and the second element of the tuple must be an IT2FS. 
+ Antecedent is a list of tuples where each tuple assigns a variable to an *IT2FS*. The 
+ first element of each tuple must be the input variable name (as a string), and the 
+ second element must be an *IT2FS*.
 
-Consequent is a list of tuples in which each tuple indicates assignement of a variable to 
-an output state. First element of the tuple must be output vriable name as str, and the 
-second element of the tuple must be a dictionary. This dictionary shows the output polynomial 
-in the case of the rule. For example let an output polynomial be as 2 x1 + 4 x2 + 5. Then 
-the dictionary for this case would be {“const”:5., “x1”:2., “x2”:4.}. Note that this is 
-written for an IT2 TSK FLS with two inputs, named x1 and x2.
+Consequent is a list of tuples where each tuple assigns a variable to an output state. 
+The first element of each tuple must be the output variable name (as a string), and 
+the second element must be a dictionary. This dictionary represents the output 
+polynomial for the rule. For example, if the output polynomial is 2*X1 + 4*X2 + 5, 
+the corresponding dictionary would be {"const": 5., "X1": 2., "X2": 4.}. Note that 
+this example is for an IT2 TSK FLS with two inputs, named X1 and X2.
 
-The following piece of code represents how to define the IT2TSK, define input and output 
-variables, and add the rules to the rule base of the system.
+The following code demonstrates how to define the *IT2TSK*, define input and output 
+variables, and add rules to the rule base of the system.
 
 .. code-block:: python
 
@@ -600,8 +613,8 @@ variables, and add the rules to the rule base of the system.
     myIT2FLS.add_rule([("X1", IT2FS2), ("X2", IT2FS2)], 
                     [("Y", {"const":-1., "X1":4., "X2":-0.5}), ])
 
-Now, let's evaluate the system output for different points in the universe of discourse for 
-achieving the output surface of the system and plotting it.
+Now, let's evaluate the system's output for different points in the universe of 
+discourse to obtain the output surface of the system and plot it.
 
 .. code-block:: python
 
@@ -622,7 +635,7 @@ achieving the output surface of the system and plotting it.
     fig.colorbar(surf, shrink=0.5, aspect=5)
     plt.show()
 
-Finally, the output surface of the system would be as following:
+Finally, the output surface of the system is shown below:
 
 .. image:: ../_static/Figure_13.png
    :alt: The control surface of the final interval type 2 fuzzy TSK system.
@@ -630,14 +643,14 @@ Finally, the output surface of the system would be as following:
    :align: center
 
 
-Example 7: Defining interval type 2 Mamdani fuzzy systems
+Example 7: Defining Interval Type 2 Mamdani Fuzzy Systems
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In the 7th example, we are after creating an interval type 2 Mamdani fuzzy system using 
-the *IT2Mamdani* class. In this example, our system has two inputs and an output. There 
-are three IT2FSs for describing each input variable in the dedicated universe of discourse. 
-Also, the output of the system is described using two IT2FSs in its own universe of 
-discourse. First, we define the input sets as following:
+In this seventh example, we will create an interval Type 2 Mamdani fuzzy system using 
+the *IT2Mamdani* class. The system has two inputs and one output. Each input variable 
+is described by three *IT2FS*s in its dedicated universe of discourse. The output of 
+the system is described using two *IT2FS* s in its own universe of discourse. First, 
+we define the input sets as follows:
 
 .. code-block:: python
 
@@ -665,21 +678,21 @@ discourse. First, we define the input sets as following:
     IT2FS_plot(Small2, Medium2, Large2,
             legends=["Smal 2l", "Medium 2", "large 2"])
 
-Based on this code, the IT2FSs describing the first input variable would be as:
+Based on this code, the *IT2FS* s describing the first input variable are as follows:
 
 .. image:: ../_static/Figure_14.png
    :alt: Defining interval type 2 fuzzy sets for input X1.
    :width: 400px
    :align: center
 
-and the fuzzy sets for second input variable would be as:
+and the fuzzy sets for the second input variable are as follows:
 
 .. image:: ../_static/Figure_15.png
    :alt: Defining interval type 2 fuzzy sets for input X2.
    :width: 400px
    :align: center
 
-Next, we define the output sets as following:
+Next, we define the output sets as follows:
 
 .. code-block:: python
 
@@ -689,25 +702,29 @@ Next, we define the output sets as following:
     IT2FS_plot(Low1, High1, 
                 legends=["Low", "High"])
 
-Which are represented as following:
+Which are represented below:
 
 .. image:: ../_static/Figure_16.png
    :alt: Defining interval type 2 fuzzy sets for the output.
    :width: 400px
    :align: center
 
-After defining the required IT2FSs, it is time to define our fuzzy system using the 
-*IT2Mamdani* class. *IT2Mamdani* requires a T-norm and a S-norm as constructor function 
-parameters. The names of input and output should be predefined using *add_input_variable* 
-and *add_output_variable* functions. After defining the input and output variables, the 
-rule-base of the system can be defined using the *add_rule* function. Similar to *IT2TSK*, 
-*add_rule* for *IT2Mamdani* accepts two inputs, antecedent and consequent. 
+Here’s a refined version of your text:
 
-Antecedent is a list of tuples in which each tuple indicates assignement of a variable to 
-an IT2FS. First element of the tuple must be input variable name as str, and the second 
-element of the tuple must be an IT2FS. Consequent is a list of tuples in which each tuple 
-indicates assignement of a variable to an IT2FS. First element of the tuple must be output 
-variable name as str, and the second element of the tuple must be an IT2FS.
+After defining the required *IT2FS*s, it's time to define the fuzzy system using the 
+*IT2Mamdani* class. The *IT2Mamdani* class requires a T-norm and an S-norm as constructor 
+parameters. The names of the input and output variables should be predefined using 
+the *add_input_variable* and *add_output_variable* functions.
+
+Once the input and output variables are defined, the rule base of the system can 
+be established using the *add_rule* function. Similar to *IT2TSK*, the *add_rule* 
+function for *IT2Mamdani* accepts two inputs: antecedent and consequent.
+Antecedent is a list of tuples, where each tuple represents the assignment of a 
+variable to an *IT2FS*. The first element of the tuple must be the input variable 
+name as a string, and the second element must be an *IT2FS*.
+Consequent is a list of tuples, where each tuple represents the assignment of a 
+variable to an *IT2FS*. The first element of the tuple must be the output variable 
+name as a string, and the second element must be an *IT2FS*.
 
 .. code-block:: python
 
@@ -728,8 +745,8 @@ variable name as str, and the second element of the tuple must be an IT2FS.
     myIT2FLS.add_rule([("X1", Large1),  ("X2", Medium2)], [("Y", High1), ])
     myIT2FLS.add_rule([("X1", Large1),  ("X2", Large2)],  [("Y", High1), ])
 
-After defining out fuzzy system, it is time to evaluate it over the universe of discourse 
-and plot the output surface.
+After defining our fuzzy system, it's time to evaluate it over the universe of 
+discourse and plot the output surface.
 
 .. code-block:: python
 
@@ -749,7 +766,7 @@ and plot the output surface.
     fig.colorbar(surf, shrink=0.5, aspect=5)
     plt.show()
 
-The output surface of the system would be as following:
+The output surface of the system is as follows:
 
 .. image:: ../_static/Figure_17.png
    :alt: The control surface of the final interval type 2 fuzzy Mamdani system.
