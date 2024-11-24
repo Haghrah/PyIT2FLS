@@ -582,9 +582,9 @@ functions for later use. The rules of the system are added with the *add_rule* f
 which requires two inputs: the antecedent and the consequent, both of which are 
 lists of tuples.
 
- Antecedent is a list of tuples where each tuple assigns a variable to an *IT2FS*. The 
- first element of each tuple must be the input variable name (as a string), and the 
- second element must be an *IT2FS*.
+Antecedent is a list of tuples where each tuple assigns a variable to an *IT2FS*. The 
+first element of each tuple must be the input variable name (as a string), and the 
+second element must be an *IT2FS*.
 
 Consequent is a list of tuples where each tuple assigns a variable to an output state. 
 The first element of each tuple must be the output variable name (as a string), and 
