@@ -36,7 +36,7 @@ The output plots of this example are represented as below.
 
 |  **_SMALL_**, **_MEDIUM_**, and **_LARGE_** sets  | Meet of **_SMALL_** and **_MEDIUM_** | Join of **_MEDIUM_** and **_LARGE_** |
 |:---------------------:|:-----------:|:------------------:|
-| <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/2.1.png" width="150">               | <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/2.2.png" width="150"> | <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/2.3.png" width="150"> |
+| <img src="https://github.com/Haghrah/PyIT2FLS/blob/master/markdown%20docs/images/2.1.png" width="150">               | <img src="https://github.com/Haghrah/PyIT2FLS/blob/master/markdown%20docs/images/2.2.png" width="150"> | <img src="https://github.com/Haghrah/PyIT2FLS/blob/master/markdown%20docs/images/2.3.png" width="150"> |
 
 
 

@@ -176,7 +176,7 @@ IT2FS_plot(N, Z, P,
 
 The sets would be as below:
 
-<center><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/InvPenSets.png" width="400"/></center>
+<center><img src="https://github.com/Haghrah/PyIT2FLS/blob/master/markdown%20docs/images/InvPenSets.png" width="400"/></center>
 
 The IT2FSs are ready now, so we can define our rule base as below, using the function **_add_rule_**:
 
@@ -323,6 +323,6 @@ if __name__ == "__main__":
 
 The output of the simulation is demonstrated in the figures below. The first figure is state space variables of the system and the second figure is the generated fuzzy control signal over time.
 
-<center><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/InvPenSt.png" width="400"/></center>
+<center><img src="https://github.com/Haghrah/PyIT2FLS/blob/master/markdown%20docs/images/InvPenSt.png" width="400"/></center>
 
-<center><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/InvPenCon.png" width="400"/></center>
+<center><img src="https://github.com/Haghrah/PyIT2FLS/blob/master/markdown%20docs/images/InvPenCon.png" width="400"/></center>
