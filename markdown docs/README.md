@@ -3,7 +3,7 @@
 # PyIT2FLS
 Some extra explanations and examples about the PyIT2FLS are provided on the pages below:
 
-1. [General description about the PyIT2FLS.](https://haghrah.github.io/PyIT2FLS/overview.html)
+1. [General description about the PyIT2FLS.](https://github.com/Haghrah/PyIT2FLS/blob/master/markdown%20docs/overview.md)
 2. [Defining different Type 1 Fuzzy Sets.](https://haghrah.github.io/PyIT2FLS/defT1FS.html)
 3. [Defining different Interval Type 2 Fuzzy Sets.](https://haghrah.github.io/PyIT2FLS/defIT2FS.html)
 4. [T-norms ans s-norms.](https://haghrah.github.io/PyIT2FLS/Xnorm.html)
