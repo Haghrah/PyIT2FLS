@@ -154,7 +154,7 @@ mySet.plot(filename="mySet")
 
 As it is said before, five parameters are needed for defining a trapezoidal membership function. The first four parameters indicate the left end, left center, right center, and right end of the trapezoidal membership function. The last parameter is the height of the membership function which must lay in the interval [0, 1]. Also, four parameters are needed for defining a triangular membership function. The last one as usual is the height of the membership function, and the first three parameters are the left end, center, and right end of the triangular membership function. The output plot for given parameters and defined universe of discourse would be as below:
 
-<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/1.1.png" width="300"/></p>
+<p align="center"><img src="https://github.com/Haghrah/PyIT2FLS/blob/master/markdown%20docs/images/1.1.png" width="300"/></p>
 
 In the second example we are going to define three Gaussian IT2FSs with uncertain standard deviation values, and plot them all together.
 
@@ -171,7 +171,7 @@ IT2FS_plot(Small, Medium, Large, legends=["Small", "Medium", "large"])
 
 The output plot for this example is represented as below:
 
-<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/1.2.png" width="300"/></p>
+<p align="center"><img src="https://github.com/Haghrah/PyIT2FLS/blob/master/markdown%20docs/images/1.2.png" width="300"/></p>
 
 #### Defining a new membership function
 In this example we are going to define a new membership function and use it in defining an IT2FS. Let's assume that we are going to define the generalized bell shaped membership function, which has the formula below:
@@ -193,7 +193,7 @@ mySet.plot()
 
 The output plot for this example is represented as below:
 
-<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/docs/images/1.3.png" width="300"/></p>
+<p align="center"><img src="https://github.com/Haghrah/PyIT2FLS/blob/master/markdown%20docs/images/1.3.png" width="300"/></p>
 
 
 
