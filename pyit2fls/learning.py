@@ -6,10 +6,84 @@ Created on Sat Mar 30 01:39:58 2024
 @author: arslan
 """
 
-from numpy import (reshape, exp, array, zeros_like, asarray, )
+from numpy import (reshape, exp, array, zeros, zeros_like, asarray, )
 from numpy.linalg import (norm, )
 from numpy.random import (rand, )
 from scipy.optimize import (differential_evolution, minimize, )
+
+
+class PSO:
+    
+    def __init__(self, N, M, func, bounds, args=()):
+        self.func = func
+        self.args = args
+        self.N  = N
+        self.M  = M
+        self.bounds = bounds
+        self.X  = self.bounds[0] + (self.bounds[1] - self.bounds[0]) * rand(self.N, self.M)
+        self.V  = 4.0 * (self.bounds[1] - self.bounds[0]) * (rand(self.N, self.M) - 0.5)
+        self.Xb = self.X.copy()
+        self.Fb = zeros(shape=(self.N, ))
+        
+        self.Fb[0] = self.func(self.X[0, :], *self.args)
+        
+        self.xb = self.X[0, :].copy()
+        self.fb = self.Fb[0]
+        
+        self.iterNum = 0
+        
+        for i in range(1, self.N):
+            self.Fb[i] = self.func(self.X[i, :], *self.args)
+                
+            if self.Fb[i] < self.fb:
+                self.fb = self.Fb[i]
+                self.xb = self.X[i, :].copy()
+        
+        # self.saveData()
+                
+    
+    def saveData(self):
+        dataFile = open(str(self.iterNum) + ".txt", "w")
+        for i in range(self.N):
+            for j in range(self.M):
+                dataFile.write(str(self.X[i, j]) + "\n")
+            
+            for j in range(self.M):
+                dataFile.write(str(self.V[i, j]) + "\n")
+            
+            for j in range(self.M):
+                dataFile.write(str(self.Xb[i, j]) + "\n")
+            
+            dataFile.write(str(self.Fb[i]) + "\n")
+        
+        for j in range(self.M):
+            dataFile.write(str(self.xb[j]) + "\n")
+        
+        dataFile.write(str(self.fb) + "\n")
+        
+        dataFile.close()
+    
+    
+    def iterate(self, omega=0.3, phi_p=0.3, phi_g=2.1):
+        self.iterNum += 1
+        r_p = rand(self.N, self.M)
+        r_g = rand(self.N, self.M)
+        self.V = omega * self.V + \
+                 phi_p * r_p * (self.Xb - self.X) + \
+                 phi_g * r_g * (self.xb - self.X)
+        self.X = self.X + self.V
+        
+        for i in range(self.N):
+            tmp = self.func(self.X[i, :], *self.args)
+                
+            if tmp < self.Fb[i]:
+                self.Xb[i, :] = self.X[i, :].copy()
+                self.Fb[i] = tmp
+                if tmp < self.fb:
+                    self.xb = self.X[i, :].copy()
+                    self.fb = tmp
+        
+        # self.saveData()
 
 
 class gaussian_mf_learning:
@@ -129,10 +203,11 @@ class T1TSK_ML_Model:
 
 class T1TSK_ML:
 
-    def __init__(self, TSKN, TSKM, Bounds=None, algorithm="DE"):
+    def __init__(self, TSKN, TSKM, Bounds=None, algorithm="DE", algorithm_params=[]):
         self.TSKN = TSKN
         self.TSKM = TSKM
         self.algorithm = algorithm
+        self.algorithm_params = algorithm_params
         self.paramNum = TSKM * (2 * TSKN + 1)
         self.params = rand(self.paramNum, )
         self.Bounds = [Bounds, ] * self.paramNum
@@ -150,23 +225,32 @@ class T1TSK_ML:
 
     def fit(self, X, y):
         if self.algorithm == "DE":
-            result = differential_evolution(self.error, bounds=self.Bounds, 
-                                            args=(X, y), disp=True)
+            self.params = differential_evolution(self.error, bounds=self.Bounds, 
+                                            args=(X, y), disp=True).x
         elif self.algorithm == "Nelder-Mead":
-            result = minimize(self.error, self.params, args=(X, y), 
+            self.params = minimize(self.error, self.params, args=(X, y), 
                               method=self.algorithm, bounds=self.Bounds, 
-                              options={"disp":True, })
+                              options={"disp":True, }).x
         elif self.algorithm == "Powell":
-            result = minimize(self.error, self.params, args=(X, y), 
+            self.params = minimize(self.error, self.params, args=(X, y), 
                               method=self.algorithm, bounds=self.Bounds, 
-                              options={"disp":True, })
+                              options={"disp":True, }).x
         elif self.algorithm == "CG":
-            result = minimize(self.error, self.params, args=(X, y), 
+            self.params = minimize(self.error, self.params, args=(X, y), 
                               method=self.algorithm, 
-                              options={"disp":True, })
+                              options={"disp":True, }).x
+        elif self.algorithm == "PSO":
+            myPSO = PSO(self.algorithm_params[0], self.paramNum, self.error, 
+                        self.Bounds[0], args=(X, y, ))
+            for i in range(self.algorithm_params[1]):
+                myPSO.iterate(self.algorithm_params[2], 
+                              self.algorithm_params[3], 
+                              self.algorithm_params[4])
+                print("Iteration ", i+1, ".", myPSO.fb)
+            self.params = myPSO.xb
         else:
             raise ValueError(self.algorithm + " algorithm is not supported!")
-        self.params = result.x
+        
         self.model = T1TSK_ML_Model(self.params, self.TSKN, self.TSKM, 
                                     [[self.mf, ] * self.TSKN, ] * self.TSKM)
         return self.error(self.params, X, y)
