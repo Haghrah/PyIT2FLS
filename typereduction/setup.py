@@ -12,5 +12,6 @@ setup(name='typereduction',
       author_email='arslan.haghrah@gmail.com',
       license='MIT',
       packages=['typereduction'],
+      zip_safe=False,
       )
 
