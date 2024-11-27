@@ -1,4 +1,4 @@
-from pyit2fls import (T1TSK_ML, )
+from pyit2fls import (T1Mamdani_ML, T1FS_plot, )
 from numpy import (linspace, array, abs, pi, sin, cos, meshgrid, zeros_like, )
 from scipy.optimize import (Bounds, )
 import matplotlib.pyplot as plt
@@ -15,16 +15,18 @@ for x1 in X1:
         y.append(sin(x1) + cos(x2))
 X = array(X)
 
-myTSK = T1TSK_ML(2, 16, (-4., 4.), algorithm="PSO", 
-                 algorithm_params=[20, 200, 0.3, 0.3, 2.4])
-print(myTSK.fit(X, y))
+M = 2
+N = 4
+myMamdani = T1Mamdani_ML(M, N, (-4., 4.), algorithm="GA", 
+                         algorithm_params=[50, 200, 100, 100, ])
+print(myMamdani.fit(X, y))
 
 x1, x2 = meshgrid(X1, X2)
 y1 = sin(x1) + cos(x2)
 y2 = zeros_like(y1)
 for i in range(10):
     for j in range(10):
-        y2[i, j] = myTSK.score(array([X1[j], X2[i], ]))
+        y2[i, j] = myMamdani.score(array([X1[j], X2[i], ]))
 
 fig = plt.figure()
 ax = fig.add_subplot(111, projection="3d")
@@ -44,15 +46,23 @@ plt.show()
 
 fig = plt.figure()
 ax = fig.add_subplot(111, projection="3d")
-error_surface = ax.plot_surface(x1, x2, abs(y2 - y1), cmap="Greens", alpha=0.3)
+error_surface = ax.plot_surface(x1, x2, abs(y2 - y1), cmap="Greens", alpha=0.8)
 fig.colorbar(error_surface, ax=ax, shrink=0.5, aspect=10, 
              label="Error Magnitude")
 ax.plot_surface(x1, x2, y1, cmap="Blues", alpha=0.7)
 ax.set_title("3D Surface Plot")
 plt.show()
 
-
-
+achievedSystem = myMamdani.get_T1Mamdani()
+for r, rule in zip(range(N), achievedSystem.rules):
+    sets = []
+    labels = []
+    for i in range(M):
+        sets.append(rule[0][i][1])
+        labels.append(f"X{i}")
+    sets.append(rule[1][0][1])
+    labels.append("Y")
+    T1FS_plot(*sets, title="Rule {r}", legends=labels)
 
 
 
