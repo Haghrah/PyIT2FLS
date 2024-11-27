@@ -286,14 +286,14 @@ class T1Mamdani_ML(T1Fuzzy_ML):
             for j in range(self.N):
                 domain = linspace(self.model.p[i][j][0] - 5. * self.model.p[i][j][1], # 5 x std before mean
                                   self.model.p[i][j][0] + 5. * self.model.p[i][j][1], # 5 x std after mean
-                                  10. * self.model.p[i][j][1] * 100) # 100 points for each unit
+                                  int(10. * self.model.p[i][j][1] * 100)) # 100 points for each unit
                 antecedent.append(("X" + str(i + 1), 
                                    T1FS(domain, gaussian_mf, 
                                         params=[self.model.p[i][j][0], self.model.p[i][j][1], 1., ])))
 
             domain = linspace(self.model.q[i] - 5. * std, # 5 x std before mean
                               self.model.q[i] + 5. * std, # 5 x std after mean
-                              10. * std * 100.) # 100 points for each unit
+                              int(10. * std * 100.)) # 100 points for each unit
             consequent = [("Y", 
                            T1FS(domain, gaussian_mf, 
                                 params=[self.model.q[i], std, 1., ]), ), 
@@ -320,7 +320,7 @@ class T1TSK_ML(T1Fuzzy_ML):
             for j in range(self.N):
                 domain = linspace(self.model.p[i][j][0] - 5. * self.model.p[i][j][1], # 5 x std before mean
                                   self.model.p[i][j][0] + 5. * self.model.p[i][j][1], # 5 x std after mean
-                                  10. * self.model.p[i][j][1] * 100) # 100 points for each unit
+                                  int(10. * self.model.p[i][j][1] * 100)) # 100 points for each unit
                 antecedent.append(("X" + str(i + 1), 
                                    T1FS(domain, gaussian_mf, 
                                         params=[self.model.p[i][j][0], self.model.p[i][j][1], 1., ])))
