@@ -141,6 +141,10 @@ class T1Fuzzy_ML_Model:
     """
     def __init__(self, P, N, M, mf, c=1.0):
         self.p = reshape(P[:-M], (M, N, 2, ))
+        for i in range(M):
+            for j in range(N):
+                self.p[i][j][1] = abs(self.p[i][j][1])
+
         self.q = P[-M:]
         self.N = N
         self.M = M
@@ -248,8 +252,8 @@ class T1Fuzzy_ML:
         else:
             raise ValueError(self.algorithm + " algorithm is not supported!")
         
-        self.model = T1Fuzzy_ML_Model(self.params, self.TSKN, self.TSKM, 
-                                      [[self.mf, ] * self.TSKN, ] * self.TSKM)
+        self.model = T1Fuzzy_ML_Model(self.params, self.N, self.M, 
+                                      [[self.mf, ] * self.N, ] * self.M)
         return self.error(self.params, X, y)
 
     def score(self, X):
