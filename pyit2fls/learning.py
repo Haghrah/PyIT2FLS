@@ -99,8 +99,8 @@ class GA:
         b = rand(self.M)
         return (a * parent1.solution + b * parent2.solution) / (a + b)
     
-    def iterate(self, mutation_num, crossover_num):
-        parent_list = self.tournament_selection(2 * crossover_num, 1)
+    def iterate(self, mutation_num, crossover_num, tp):
+        parent_list = self.tournament_selection(2 * crossover_num, 1.0)
         
         for i, j in zip(parent_list[::2], parent_list[1::2]):
             child_solution = self.crossover(self.population[i], self.population[j])
@@ -111,7 +111,7 @@ class GA:
                 self.population[j].solution = child_solution.copy()
                 self.population[j].fitness = self.func(child_solution, *self.args)
 
-        parent_list = self.tournament_selection(mutation_num, 0.1)
+        parent_list = self.tournament_selection(mutation_num, tp)
         for i in parent_list:
             mutated_solution = self.mutate(self.population[i])
             if self.func(mutated_solution, *self.args) < self.population[i].fitness:
@@ -246,7 +246,8 @@ class T1Fuzzy_ML:
                       self.Bounds[0], args=(X, y, ))
             for i in range(self.algorithm_params[1]):
                 myGA.iterate(self.algorithm_params[2], 
-                              self.algorithm_params[3], )
+                             self.algorithm_params[3], 
+                             self.algorithm_params[4], )
                 print("Iteration ", i+1, ".", myGA.population[0].fitness)
             self.params = myGA.population[0].solution
         else:
@@ -325,7 +326,7 @@ class T1TSK_ML(T1Fuzzy_ML):
                                    T1FS(domain, gaussian_mf, 
                                         params=[self.model.p[i][j][0], self.model.p[i][j][1], 1., ])))
 
-            consequent = [("Y", lambda **X: self.model.q[i]), 
+            consequent = [("Y", lambda *X: self.model.q[i]), 
                          ]
             generated_T1TSK.add_rule(antecedent, consequent)
 

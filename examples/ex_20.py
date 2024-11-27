@@ -18,7 +18,7 @@ X = array(X)
 M = 2
 N = 4
 myMamdani = T1Mamdani_ML(M, N, (-4., 4.), algorithm="GA", 
-                         algorithm_params=[50, 200, 100, 100, ])
+                         algorithm_params=[200, 200, 100, 100, 0.05])
 print(myMamdani.fit(X, y))
 
 x1, x2 = meshgrid(X1, X2)
@@ -62,7 +62,7 @@ for r, rule in zip(range(N), achievedSystem.rules):
         labels.append(f"X{i}")
     sets.append(rule[1][0][1])
     labels.append("Y")
-    T1FS_plot(*sets, title="Rule {r}", legends=labels)
+    T1FS_plot(*sets, title=f"Rule {r+1}", legends=labels)
 
 
 
