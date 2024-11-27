@@ -44,8 +44,8 @@ navigate to the PyIT2FLS folder and run the following command:
 
     pip3 install .
 
-Using pip
-^^^^^^^^^
+Using PyPI
+^^^^^^^^^^
 
 Alternatively, you can install or upgrade PyIT2FLS directly from PyPI using:
 

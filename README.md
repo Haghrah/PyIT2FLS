@@ -29,7 +29,7 @@ PyIT2FLS can be installed by unzipping the source code in a directory and using 
 
     (sudo) pip3 install .
 
-Or you can use pip3:
+Or you can install from PyPI:
 
     (sudo) pip3 install --upgrade pyit2fls
 
