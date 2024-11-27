@@ -6,10 +6,11 @@ Created on Sat Mar 30 01:39:58 2024
 @author: arslan
 """
 
-from numpy import (reshape, exp, array, zeros, zeros_like, asarray, )
+from numpy import (reshape, exp, array, zeros, zeros_like, asarray, linspace, )
 from numpy.linalg import (norm, )
 from numpy.random import (rand, randint, )
 from scipy.optimize import (differential_evolution, minimize, )
+from pyit2fls import (T1FS, gaussian_mf, T1Mamdani, T1TSK, )
 
 
 class PSO:
@@ -59,11 +60,13 @@ class PSO:
                     self.xb = self.X[i, :].copy()
                     self.fb = tmp
 
+
 class solution:
     
     def __init__(self, M, func, bounds, args=()):
         self.solution = bounds[0] + (bounds[1] - bounds[0]) * rand(M, )
         self.fitness = func(self.solution, *args)
+
 
 class GA:
     
@@ -118,6 +121,7 @@ class GA:
         self.population = sorted(self.population, key=lambda solution:solution.fitness)
         self.iterNum += 1
 
+
 class gaussian_mf_learning:
 
     def d0(self, x, c, v):
@@ -126,63 +130,20 @@ class gaussian_mf_learning:
     def d1(self, x, c, v):
         return - 2 * ((x - c) / v ** 2) * exp(- ((x - c) / v) ** 2)
 
-class T1Mamdani_ML_Model:
+
+class T1Fuzzy_ML_Model:
     """
-    P: Number of inputs
-    U: Universe of discourse of inputs as a list of 
-       tuples demonstrating lowest and highest possible 
-       values of each variable.
-    N: Number of sets describing each input
-    L: Number of rules
-    M: Number of sets describing the output
-    V: Universe of discourse of output as a tuple
-       demonstrating the lowest and highest possible 
-       values of the output variable.
-    """
-    def __init__(self, Params, P, U, N, L, M, V, mf):
-        self.Params = Params
-        self.P = P
-        self.U = U
-        self.N = N
-        self.L = L
-        self.M = M
-        self.V = V
-        self.mf = mf
-
-    def d0(self, ):
-        pass
-
-    def d1(self, ):
-        pass
-
-class T1Mamdani_ML:
-    """
-    """
-    def __init__(self, ):
-        pass
-
-    def error(self, ):
-        return 0.
-    
-    def fit(self, ):
-        pass
-
-    def score(self, ):
-        pass
-
-class T1TSK_ML_Model:
-    """
-    TSKN: Number of inputs
-    TSKM: Number of rules
-    P: Model parameters (a vector of size TSKM * (2 * TSKN + 1))
+    N: Number of inputs
+    M: Number of rules
+    P: Model parameters (a vector of size M * (2 * N + 1))
     mf: List of membership functions for each input in each rule
     c: Output scaling factor
     """
-    def __init__(self, P, TSKN, TSKM, mf, c=1.0):
-        self.p = reshape(P[:-TSKM], (TSKM, TSKN, 2, ))
-        self.q = P[-TSKM:]
-        self.N = TSKN
-        self.M = TSKM
+    def __init__(self, P, N, M, mf, c=1.0):
+        self.p = reshape(P[:-M], (M, N, 2, ))
+        self.q = P[-M:]
+        self.N = N
+        self.M = M
         self.mf = mf
         self.c = c
     
@@ -228,23 +189,24 @@ class T1TSK_ML_Model:
         
         return (s3 * s2 - s1 * s4) / s2 ** 2
 
-class T1TSK_ML:
 
-    def __init__(self, TSKN, TSKM, Bounds=None, algorithm="DE", algorithm_params=[]):
-        self.TSKN = TSKN
-        self.TSKM = TSKM
+class T1Fuzzy_ML:
+
+    def __init__(self, N, M, Bounds=None, algorithm="DE", algorithm_params=[]):
+        self.N = N
+        self.M = M
         self.algorithm = algorithm
         self.algorithm_params = algorithm_params
-        self.paramNum = TSKM * (2 * TSKN + 1)
+        self.paramNum = M * (2 * N + 1)
         self.params = rand(self.paramNum, )
         self.Bounds = [Bounds, ] * self.paramNum
         self.mf = gaussian_mf_learning()
-        self.model = T1TSK_ML_Model(self.params, self.TSKN, self.TSKM, 
-                                    [[self.mf, ] * self.TSKN, ] * self.TSKM)
+        self.model = T1Fuzzy_ML_Model(self.params, self.N, self.M, 
+                                      [[self.mf, ] * self.N, ] * self.M)
 
     def error(self, P, X, y):
-        model = T1TSK_ML_Model(P, self.TSKN, self.TSKM, 
-                               [[self.mf, ] * self.TSKN, ] * self.TSKM)
+        model = T1Fuzzy_ML_Model(P, self.N, self.M, 
+                                 [[self.mf, ] * self.N, ] * self.M)
         o = zeros_like(y)
         for i, x in zip(range(len(y)), X):
             o[i] = model.d0(x)
@@ -286,8 +248,8 @@ class T1TSK_ML:
         else:
             raise ValueError(self.algorithm + " algorithm is not supported!")
         
-        self.model = T1TSK_ML_Model(self.params, self.TSKN, self.TSKM, 
-                                    [[self.mf, ] * self.TSKN, ] * self.TSKM)
+        self.model = T1Fuzzy_ML_Model(self.params, self.TSKN, self.TSKM, 
+                                      [[self.mf, ] * self.TSKN, ] * self.TSKM)
         return self.error(self.params, X, y)
 
     def score(self, X):
@@ -301,6 +263,70 @@ class T1TSK_ML:
             return array(o)
         else:
             raise ValueError("Input must be a 1D or 2D NumPy array!")
+
+
+class T1Mamdani_ML(T1Fuzzy_ML):
+    
+    def __init__(self, N, M, Bounds=None, algorithm="DE", algorithm_params=[]):
+        super().__init__(N, M, Bounds, algorithm, algorithm_params)
+    
+    def get_T1Mamdani(self, std=1., ):
+        generated_T1Mamdani = T1Mamdani()
+
+        for i in range(self.N):
+            generated_T1Mamdani.add_input_variable("X" + str(i + 1))
+        generated_T1Mamdani.add_output_variable("Y")
+
+        for i in range(self.M):
+            antecedent = []
+            for j in range(self.N):
+                domain = linspace(self.model.p[i][j][0] - 5. * self.model.p[i][j][1], # 5 x std before mean
+                                  self.model.p[i][j][0] + 5. * self.model.p[i][j][1], # 5 x std after mean
+                                  10. * self.model.p[i][j][1] * 100) # 100 points for each unit
+                antecedent.append(("X" + str(i + 1), 
+                                   T1FS(domain, gaussian_mf, 
+                                        params=[self.model.p[i][j][0], self.model.p[i][j][1], 1., ])))
+
+            domain = linspace(self.model.q[i] - 5. * std, # 5 x std before mean
+                              self.model.q[i] + 5. * std, # 5 x std after mean
+                              10. * std * 100.) # 100 points for each unit
+            consequent = [("Y", 
+                           T1FS(domain, gaussian_mf, 
+                                params=[self.model.q[i], std, 1., ]), ), 
+                         ]
+            generated_T1Mamdani.add_rule(antecedent, consequent)
+
+        return generated_T1Mamdani
+
+
+class T1TSK_ML(T1Fuzzy_ML):
+    
+    def __init__(self, N, M, Bounds=None, algorithm="DE", algorithm_params=[]):
+        super().__init__(N, M, Bounds, algorithm, algorithm_params)
+
+    def get_T1TSK(self, std=1., ):
+        generated_T1TSK = T1TSK()
+
+        for i in range(self.N):
+            generated_T1TSK.add_input_variable("X" + str(i + 1))
+        generated_T1TSK.add_output_variable("Y")
+
+        for i in range(self.M):
+            antecedent = []
+            for j in range(self.N):
+                domain = linspace(self.model.p[i][j][0] - 5. * self.model.p[i][j][1], # 5 x std before mean
+                                  self.model.p[i][j][0] + 5. * self.model.p[i][j][1], # 5 x std after mean
+                                  10. * self.model.p[i][j][1] * 100) # 100 points for each unit
+                antecedent.append(("X" + str(i + 1), 
+                                   T1FS(domain, gaussian_mf, 
+                                        params=[self.model.p[i][j][0], self.model.p[i][j][1], 1., ])))
+
+            consequent = [("Y", lambda **X: self.model.q[i]), 
+                         ]
+            generated_T1TSK.add_rule(antecedent, consequent)
+
+        return generated_T1TSK
+
 
 
 

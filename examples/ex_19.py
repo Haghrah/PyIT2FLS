@@ -17,7 +17,7 @@ X = array(X)
 
 # myTSK = T1TSK_ML(2, 16, (-4., 4.), algorithm="PSO", 
 #                  algorithm_params=[20, 200, 0.3, 0.3, 2.4])
-myTSK = T1TSK_ML(2, 32, (-4., 4.), algorithm="GA", 
+myTSK = T1TSK_ML(2, 4, (-4., 4.), algorithm="GA", 
                  algorithm_params=[100, 200, 100, 100, ])
 print(myTSK.fit(X, y))
 
