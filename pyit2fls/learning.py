@@ -8,7 +8,7 @@ Created on Sat Mar 30 01:39:58 2024
 
 from numpy import (reshape, exp, array, zeros, zeros_like, asarray, )
 from numpy.linalg import (norm, )
-from numpy.random import (rand, )
+from numpy.random import (rand, randint, )
 from scipy.optimize import (differential_evolution, minimize, )
 
 
@@ -38,30 +38,6 @@ class PSO:
             if self.Fb[i] < self.fb:
                 self.fb = self.Fb[i]
                 self.xb = self.X[i, :].copy()
-        
-        # self.saveData()
-                
-    
-    def saveData(self):
-        dataFile = open(str(self.iterNum) + ".txt", "w")
-        for i in range(self.N):
-            for j in range(self.M):
-                dataFile.write(str(self.X[i, j]) + "\n")
-            
-            for j in range(self.M):
-                dataFile.write(str(self.V[i, j]) + "\n")
-            
-            for j in range(self.M):
-                dataFile.write(str(self.Xb[i, j]) + "\n")
-            
-            dataFile.write(str(self.Fb[i]) + "\n")
-        
-        for j in range(self.M):
-            dataFile.write(str(self.xb[j]) + "\n")
-        
-        dataFile.write(str(self.fb) + "\n")
-        
-        dataFile.close()
     
     
     def iterate(self, omega=0.3, phi_p=0.3, phi_g=2.1):
@@ -82,9 +58,65 @@ class PSO:
                 if tmp < self.fb:
                     self.xb = self.X[i, :].copy()
                     self.fb = tmp
-        
-        # self.saveData()
 
+class solution:
+    
+    def __init__(self, M, func, bounds, args=()):
+        self.solution = bounds[0] + (bounds[1] - bounds[0]) * rand(M, )
+        self.fitness = func(self.solution, *args)
+
+class GA:
+    
+    def __init__(self, N, M, func, bounds, args=()):
+        self.func = func
+        self.args = args
+        self.N  = N
+        self.M  = M
+        self.bounds = bounds
+        self.population = []
+        for i in range(self.N):
+            self.population.append(solution(self.M, self.func, self.bounds, args))
+
+        self.population = sorted(self.population, key=lambda solution:solution.fitness)
+        self.iterNum = 0
+    
+    
+    def tournament_selection(self, num, tp):
+        high = int(self.N * tp)
+        return [i1 if self.population[i1].fitness < self.population[i2].fitness else i2 
+                for i1, i2 in zip(randint(high, size=num), randint(high, size=num))]
+    
+    
+    def mutate(self, individual):
+        transfer_vector = (rand(self.M) -0.5) / (self.iterNum + 1.)
+        return individual.solution.copy() + transfer_vector
+    
+    def crossover(self, parent1, parent2):
+        a = rand(self.M)
+        b = rand(self.M)
+        return (a * parent1.solution + b * parent2.solution) / (a + b)
+    
+    def iterate(self, mutation_num, crossover_num):
+        parent_list = self.tournament_selection(2 * crossover_num, 1)
+        
+        for i, j in zip(parent_list[::2], parent_list[1::2]):
+            child_solution = self.crossover(self.population[i], self.population[j])
+            if self.func(child_solution, *self.args) < self.population[i].fitness:
+                self.population[i].solution = child_solution.copy()
+                self.population[i].fitness = self.func(child_solution, *self.args)
+            elif self.func(child_solution, *self.args) < self.population[j].fitness:
+                self.population[j].solution = child_solution.copy()
+                self.population[j].fitness = self.func(child_solution, *self.args)
+
+        parent_list = self.tournament_selection(mutation_num, 0.1)
+        for i in parent_list:
+            mutated_solution = self.mutate(self.population[i])
+            if self.func(mutated_solution, *self.args) < self.population[i].fitness:
+                self.population[i].solution = mutated_solution.copy()
+                self.population[i].fitness = self.func(mutated_solution, *self.args)
+        
+        self.population = sorted(self.population, key=lambda solution:solution.fitness)
+        self.iterNum += 1
 
 class gaussian_mf_learning:
 
@@ -93,7 +125,6 @@ class gaussian_mf_learning:
 
     def d1(self, x, c, v):
         return - 2 * ((x - c) / v ** 2) * exp(- ((x - c) / v) ** 2)
-
 
 class T1Mamdani_ML_Model:
     """
@@ -124,7 +155,6 @@ class T1Mamdani_ML_Model:
     def d1(self, ):
         pass
 
-
 class T1Mamdani_ML:
     """
     """
@@ -139,8 +169,6 @@ class T1Mamdani_ML:
 
     def score(self, ):
         pass
-
-
 
 class T1TSK_ML_Model:
     """
@@ -200,7 +228,6 @@ class T1TSK_ML_Model:
         
         return (s3 * s2 - s1 * s4) / s2 ** 2
 
-
 class T1TSK_ML:
 
     def __init__(self, TSKN, TSKM, Bounds=None, algorithm="DE", algorithm_params=[]):
@@ -248,6 +275,14 @@ class T1TSK_ML:
                               self.algorithm_params[4])
                 print("Iteration ", i+1, ".", myPSO.fb)
             self.params = myPSO.xb
+        elif self.algorithm == "GA":
+            myGA = GA(self.algorithm_params[0], self.paramNum, self.error, 
+                      self.Bounds[0], args=(X, y, ))
+            for i in range(self.algorithm_params[1]):
+                myGA.iterate(self.algorithm_params[2], 
+                              self.algorithm_params[3], )
+                print("Iteration ", i+1, ".", myGA.population[0].fitness)
+            self.params = myGA.population[0].solution
         else:
             raise ValueError(self.algorithm + " algorithm is not supported!")
         
