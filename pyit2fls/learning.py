@@ -12,7 +12,7 @@ from numpy.random import (rand, randint, )
 from scipy.optimize import (differential_evolution, minimize, )
 from pyit2fls import (T1FS, gaussian_mf, T1Mamdani, T1TSK, 
                       IT2FS_Gaussian_UncertMean, IT2FS_Gaussian_UncertStd, 
-                      IT2Mamdani, IT2TSK, )
+                      IT2Mamdani, IT2TSK, product_t_norm, max_s_norm, )
 
 
 class PSO:
@@ -335,6 +335,12 @@ class T1TSK_ML(T1Fuzzy_ML):
         return generated_T1TSK
 
 
+class T1TSK_SI_Model:
+
+    def __init__(self, ):
+        pass
+
+
 class T1TSK_SI:
 
     def __init__(self, ):
@@ -347,16 +353,121 @@ class T1TSK_SI:
 class T2TSK_ML_Model:
 
     def __init__(self, P, N, M, it2fs, c=1.0):
-        pass
+        self.p = reshape(P[:-M], (M, N, 3, ))
+        for i in range(M):
+            for j in range(N):
+                self.p[i][j][1] = abs(self.p[i][j][1])
+                self.p[i][j][2] = abs(self.p[i][j][2])
+        self.q = P[-M:]
 
-    def __call__(self, ):
-        pass
+        self.model = IT2TSK(product_t_norm, max_s_norm)
+        for i in range(N):
+            self.model.add_input_variable(f"X{i + 1}")
+        self.model.add_output_variable("Y")
+
+        self.it2fs = it2fs
+        self.c = c
+        
+        for i in range(M):
+            antecedent = []
+            consequent = [("Y", {"const":self.q[i], })]
+            for j in range(N):
+                if type(it2fs) == IT2FS_Gaussian_UncertMean:
+                    std = self.p[i][j][2]
+                elif type(it2fs) == IT2FS_Gaussian_UncertStd:
+                    std = self.p[i][j][1]
+                else:
+                    raise ValueError("You can use only IT2FS_Gaussian_UncertMean or IT2FS_Gaussian_UncertStd!")
+                
+                domain = linspace(self.p[i][j][0] - 5. * std, # 5 x std before mean
+                                  self.p[i][j][0] + 5. * std, # 5 x std after mean
+                                  int(10. * std * 100)) # 100 points for each unit
+                antecedent.append(("X" + str(i + 1), 
+                                   it2fs(domain, params=[self.p[i][j][0], 
+                                                         self.p[i][j][1], 
+                                                         self.p[i][j][2], 
+                                                         1.0]), ), )
+                consequent[f"X{j + 1}": 0.]
+            self.model.add_rule(antecedent, consequent)
+
+    def __call__(self, X):
+        _X = {f"X{i + 1}":X[i] for i in range(self.N)}
+        return self.model.evaluate(_X)["Y"]
 
 
 class T2TSK_ML:
 
-    def __init__(self, ):
-        pass
+    def __init__(self, N, M, it2fs, Bounds=None, algorithm="DE", algorithm_params=[], c=1.0):
+        self.N = N
+        self.M = M
+        self.it2fs = it2fs
+        self.Bounds = Bounds
+        self.algorithm = algorithm
+        self.algorithm_params = algorithm_params
+        self.c = c
+        self.paramNum = M * (3 * N + 1)
+        self.params = rand(self.paramNum, )
+        self.Bounds = [Bounds, ] * self.paramNum
+        self.model = T2TSK_ML_Model(self.params, self.N, self.M, self.it2fs, self.c)
+
+    def error(self, P, X, y):
+        model = T2TSK_ML_Model(P, self.N, self.M, self.it2fs, self.c)
+        o = zeros_like(y)
+        for i, x in zip(range(len(y)), X):
+            o[i] = model(x)
+        return norm(y - o)
+
+    def fit(self, X, y):
+        if self.algorithm == "DE":
+            self.params = differential_evolution(self.error, bounds=self.Bounds, 
+                                            args=(X, y), disp=True).x
+        elif self.algorithm == "Nelder-Mead":
+            self.params = minimize(self.error, self.params, args=(X, y), 
+                              method=self.algorithm, bounds=self.Bounds, 
+                              options={"disp":True, }).x
+        elif self.algorithm == "Powell":
+            self.params = minimize(self.error, self.params, args=(X, y), 
+                              method=self.algorithm, bounds=self.Bounds, 
+                              options={"disp":True, }).x
+        elif self.algorithm == "CG":
+            self.params = minimize(self.error, self.params, args=(X, y), 
+                              method=self.algorithm, 
+                              options={"disp":True, }).x
+        elif self.algorithm == "PSO":
+            myPSO = PSO(self.algorithm_params[0], self.paramNum, self.error, 
+                        self.Bounds[0], args=(X, y, ))
+            for i in range(self.algorithm_params[1]):
+                myPSO.iterate(self.algorithm_params[2], 
+                              self.algorithm_params[3], 
+                              self.algorithm_params[4])
+                print("Iteration ", i+1, ".", myPSO.fb)
+            self.params = myPSO.xb
+        elif self.algorithm == "GA":
+            myGA = GA(self.algorithm_params[0], self.paramNum, self.error, 
+                      self.Bounds[0], args=(X, y, ))
+            for i in range(self.algorithm_params[1]):
+                myGA.iterate(self.algorithm_params[2], 
+                             self.algorithm_params[3], 
+                             self.algorithm_params[4], )
+                print("Iteration ", i+1, ".", myGA.population[0].fitness)
+            self.params = myGA.population[0].solution
+        else:
+            raise ValueError(self.algorithm + " algorithm is not supported!")
+        
+        self.model = T2TSK_ML_Model(self.params, self.N, self.M, self.it2fs, self.c)
+        return self.error(self.params, X, y)
+
+    def score(self, X):
+        X = asarray(X)
+        if X.ndim == 1:
+            return self.model(X)
+        elif X.ndim == 2:
+            o = []
+            for x in X:
+                o.append(self.model(x))
+            return array(o)
+        else:
+            raise ValueError("Input must be a 1D or 2D NumPy array!")
 
 
 class T2Mamdani_ML_Model:
@@ -369,6 +480,12 @@ class T2Mamdani_ML_Model:
 
 
 class T2Mamdani_ML:
+
+    def __init__(self, ):
+        pass
+
+
+class T2TSK_SI_Model:
 
     def __init__(self, ):
         pass
