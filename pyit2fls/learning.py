@@ -353,6 +353,8 @@ class T1TSK_SI:
 class T2TSK_ML_Model:
 
     def __init__(self, P, N, M, it2fs, c=1.0):
+        self.N = N
+        self.M = M
         self.p = reshape(P[:-M], (M, N, 3, ))
         for i in range(M):
             for j in range(N):
@@ -370,11 +372,11 @@ class T2TSK_ML_Model:
         
         for i in range(M):
             antecedent = []
-            consequent = [("Y", {"const":self.q[i], })]
+            consequentDict = {"const":self.q[i], }
             for j in range(N):
-                if type(it2fs) == IT2FS_Gaussian_UncertMean:
+                if it2fs == IT2FS_Gaussian_UncertMean:
                     std = self.p[i][j][2]
-                elif type(it2fs) == IT2FS_Gaussian_UncertStd:
+                elif it2fs == IT2FS_Gaussian_UncertStd:
                     std = self.p[i][j][1]
                 else:
                     raise ValueError("You can use only IT2FS_Gaussian_UncertMean or IT2FS_Gaussian_UncertStd!")
@@ -382,12 +384,14 @@ class T2TSK_ML_Model:
                 domain = linspace(self.p[i][j][0] - 5. * std, # 5 x std before mean
                                   self.p[i][j][0] + 5. * std, # 5 x std after mean
                                   int(10. * std * 100)) # 100 points for each unit
-                antecedent.append(("X" + str(i + 1), 
+                antecedent.append((f"X{j + 1}", 
                                    it2fs(domain, params=[self.p[i][j][0], 
                                                          self.p[i][j][1], 
                                                          self.p[i][j][2], 
                                                          1.0]), ), )
-                consequent[f"X{j + 1}": 0.]
+                consequentDict[f"X{j + 1}"] = 0.
+            
+            consequent = [("Y", consequentDict)]
             self.model.add_rule(antecedent, consequent)
 
     def __call__(self, X):

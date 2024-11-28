@@ -15,9 +15,9 @@ for x1 in X1:
         y.append(sin(x1) + cos(x2))
 X = array(X)
 
-M = 2
-N = 4
-myMamdani = T1Mamdani_ML(M, N, (-4., 4.), algorithm="GA", 
+N = 2
+M = 4
+myMamdani = T1Mamdani_ML(N, M, (-4., 4.), algorithm="GA", 
                          algorithm_params=[200, 200, 100, 100, 0.05])
 print(myMamdani.fit(X, y))
 
@@ -48,7 +48,7 @@ fig = plt.figure()
 ax = fig.add_subplot(111, projection="3d")
 error_surface = ax.plot_surface(x1, x2, abs(y2 - y1), cmap="Greens", alpha=0.8)
 fig.colorbar(error_surface, ax=ax, shrink=0.5, aspect=10, 
-             label="Error Magnitude")
+             label="Error")
 ax.plot_surface(x1, x2, y1, cmap="Blues", alpha=0.7)
 ax.set_title("3D Surface Plot")
 plt.show()
