@@ -10,7 +10,9 @@ from numpy import (reshape, exp, array, zeros, zeros_like, asarray, linspace, )
 from numpy.linalg import (norm, )
 from numpy.random import (rand, randint, )
 from scipy.optimize import (differential_evolution, minimize, )
-from pyit2fls import (T1FS, gaussian_mf, T1Mamdani, T1TSK, )
+from pyit2fls import (T1FS, gaussian_mf, T1Mamdani, T1TSK, 
+                      IT2FS_Gaussian_UncertMean, IT2FS_Gaussian_UncertStd, 
+                      IT2Mamdani, IT2TSK, )
 
 
 class PSO:
@@ -333,14 +335,52 @@ class T1TSK_ML(T1Fuzzy_ML):
         return generated_T1TSK
 
 
+class T1TSK_SI:
+
+    def __init__(self, ):
+        pass
+
+    def __call__(self, ):
+        pass
 
 
+class T2TSK_ML_Model:
+
+    def __init__(self, P, N, M, it2fs, c=1.0):
+        pass
+
+    def __call__(self, ):
+        pass
 
 
+class T2TSK_ML:
+
+    def __init__(self, ):
+        pass
 
 
+class T2Mamdani_ML_Model:
+
+    def __init__(self, P, N, M, it2fs, c=1.0):
+        pass
+
+    def __call__(self, ):
+        pass
 
 
+class T2Mamdani_ML:
+
+    def __init__(self, ):
+        pass
+
+
+class T2TSK_SI:
+
+    def __init__(self, ):
+        pass
+
+    def __call__(self, ):
+        pass
 
 
 
