@@ -28,7 +28,10 @@ class PSO:
         self.Xb = self.X.copy()
         self.Fb = zeros(shape=(self.N, ))
         
-        self.Fb[0] = self.func(self.X[0, :], *self.args)
+        try:
+            self.Fb[0] = self.func(self.X[0, :], *self.args)
+        except IndexError:
+            self.Fb[0] = float("inf")
         
         self.xb = self.X[0, :].copy()
         self.fb = self.Fb[0]
@@ -36,7 +39,10 @@ class PSO:
         self.iterNum = 0
         
         for i in range(1, self.N):
-            self.Fb[i] = self.func(self.X[i, :], *self.args)
+            try:
+                self.Fb[i] = self.func(self.X[i, :], *self.args)
+            except:
+                self.Fb[i] = float("inf")
                 
             if self.Fb[i] < self.fb:
                 self.fb = self.Fb[i]
@@ -53,21 +59,26 @@ class PSO:
         self.X = self.X + self.V
         
         for i in range(self.N):
-            tmp = self.func(self.X[i, :], *self.args)
-                
+            try:
+                tmp = self.func(self.X[i, :], *self.args)
+            except IndexError:
+                continue
             if tmp < self.Fb[i]:
                 self.Xb[i, :] = self.X[i, :].copy()
                 self.Fb[i] = tmp
                 if tmp < self.fb:
                     self.xb = self.X[i, :].copy()
                     self.fb = tmp
-
+            
 
 class solution:
     
     def __init__(self, M, func, bounds, args=()):
         self.solution = bounds[0] + (bounds[1] - bounds[0]) * rand(M, )
-        self.fitness = func(self.solution, *args)
+        try:
+            self.fitness = func(self.solution, *args)
+        except IndexError:
+            self.fitness = float("inf")
 
 
 class GA:
@@ -103,22 +114,28 @@ class GA:
     
     def iterate(self, mutation_num, crossover_num, tp):
         parent_list = self.tournament_selection(2 * crossover_num, 1.0)
-        
         for i, j in zip(parent_list[::2], parent_list[1::2]):
             child_solution = self.crossover(self.population[i], self.population[j])
-            if self.func(child_solution, *self.args) < self.population[i].fitness:
+            try:
+                tmp = self.func(child_solution, *self.args)
+            except IndexError:
+                continue
+            if tmp < self.population[i].fitness:
                 self.population[i].solution = child_solution.copy()
-                self.population[i].fitness = self.func(child_solution, *self.args)
-            elif self.func(child_solution, *self.args) < self.population[j].fitness:
+                self.population[i].fitness = tmp
+            elif tmp < self.population[j].fitness:
                 self.population[j].solution = child_solution.copy()
-                self.population[j].fitness = self.func(child_solution, *self.args)
-
+                self.population[j].fitness = tmp
         parent_list = self.tournament_selection(mutation_num, tp)
         for i in parent_list:
             mutated_solution = self.mutate(self.population[i])
-            if self.func(mutated_solution, *self.args) < self.population[i].fitness:
+            try:
+                tmp = self.func(mutated_solution, *self.args)
+            except:
+                continue
+            if tmp < self.population[i].fitness:
                 self.population[i].solution = mutated_solution.copy()
-                self.population[i].fitness = self.func(mutated_solution, *self.args)
+                self.population[i].fitness = tmp
         
         self.population = sorted(self.population, key=lambda solution:solution.fitness)
         self.iterNum += 1
@@ -335,16 +352,137 @@ class T1TSK_ML(T1Fuzzy_ML):
         return generated_T1TSK
 
 
-class T1TSK_SI_Model:
+class __Linear__:
 
-    def __init__(self, ):
-        pass
+    def __init__(self, p, N, M, P):
+        self.p = p
+        self.N = N
+        self.M = M
+        self.P = P
+        self.A = reshape(p[:N * N], shape=(N, N, ))
+        self.B = reshape(p[N * N:N * N + N * M], shape=(N, M, ))
+        self.C = reshape(p[N * N + N * M:], shape=(P, N, ))
+    
+    def __add__(self, other):
+        try:
+            return __Linear__(self.p + other.p, self.N, self.M, self.P)
+        except:
+            raise ValueError("Size inconsistency!")
+
+    def __sub__(self, other):
+        try:
+            return __Linear__(self.p - other.p, self.N, self.M, self.P)
+        except:
+            raise ValueError("Size inconsistency!")
+    
+    def __neg__(self, other):
+        try:
+            return __Linear__(-self.p, self.N, self.M, self.P)
+        except:
+            raise ValueError("There is an error!")
+
+    def __mul__(self, other):
+        try:
+            return __Linear__(other * self.p, self.N, self.M, self.P)
+        except:
+            raise ValueError("There is an error!")
+
+
+class T1TSK_SI_Model:
+    """
+    N: Number of states
+    M: Number of system inputs
+    P: Number of outputs
+    R: Number of rules
+    params: Model parameters a vector of size R * 2 * N + R * (N * N + N * M + P * N))
+    mf: List of membership functions for each input in each rule
+    c: Output scaling factor
+    """
+    def __init__(self, params, N, M, P, R, mf, c=1.0):
+        self.p = params[- R * (N * N + N * M + P * N):]
+        for i in range(R):
+            for j in range(N):
+                self.p[i][j][1] = abs(self.p[i][j][1])
+
+        self.q = params[:R * (N * N + N * M + P * N)]
+        self.N = N
+        self.M = M
+        self.P = P
+        self.R = R
+        self.mf = mf
+        self.c = c
+    
+    def d0(self, d0x):
+        s = 1.
+        d = 0.
+        n = 0.
+        for l in range(self.R):
+            s = 1.
+            for i in range(self.N):
+                s *= self.mf[l][i].d0(d0x[i], self.p[l][i][0], self.p[l][i][1])
+            n += self.q[l] * s
+            d += s
+        return self.c * n / d
+    
+    def d1(self, d0x, d1x):
+        s1 = 0.
+        s2 = 0.
+        s3 = 0.
+        s4 = 0.
+        
+        for l in range(self.R):
+            s5 = 1.
+            for i in range(self.N):
+                s5 *= self.mf[l][i].d0(d0x[i], self.p[l][i][0], self.p[l][i][1])
+            s1 += self.q[l] * s5
+            s2 += s5
+        
+        for j in range(self.N):
+            s7 = 0.
+            s8 = 0.
+            for l in range(self.R):
+                s6 = 1.
+                for i in range(self.N):
+                    if i != j:
+                        s6 *= self.mf[l][i].d0(d0x[i], self.p[l][i][0], self.p[l][i][1])
+                
+                s7 += self.q[l] * self.mf[l][j].d1(d0x[j], self.p[l][j][0], self.p[l][j][1]) * s6
+                s8 += self.mf[l][j].d1(d0x[j], self.p[l][j][0], self.p[l][j][1]) * s6
+            
+            s3 += d1x[j] * s7
+            s4 += d1x[j] * s8
+        
+        return (s3 * s2 - s1 * s4) / s2 ** 2
+
 
 
 class T1TSK_SI:
 
-    def __init__(self, ):
-        pass
+    def __init__(self, N, M, P, R, Bounds=None, algorithm="DE", algorithm_params=[]):
+        """
+        N: Number of state variables
+        M: Number of system inputs
+        P: Number of system outputs
+        R: Number of rules
+        """
+        self.N = N
+        self.M = M
+        self.P = P
+        self.R = R
+        self.paramNum = R * (2 * N + (N * N + N * M + P * N))
+        self.params = rand(self.paramNum, )
+        self.Bounds = [Bounds, ] * self.paramNum
+        self.mf = gaussian_mf_learning()
+    
+
+    def error(self, params, X, y):
+        model = T1TSK_SI_Model(params, self.N, self.M, self.P, self.R, self.mf, self.c)
+        o = zeros_like(y)
+        for i, x in zip(range(len(y)), X):
+            tmp = model.d0(x)
+            # Should system be simulated?!
+        return norm(y - o)
+
 
     def __call__(self, ):
         pass
