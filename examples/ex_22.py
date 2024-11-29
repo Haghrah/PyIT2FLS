@@ -16,9 +16,9 @@ for x1 in X1:
 X = array(X)
 
 N = 2
-M = 4
+M = 3
 myIT2Mamdani = IT2Mamdani_ML(N, M, IT2FS_Gaussian_UncertStd, (-4., 4.), 
-                             algorithm="PSO", algorithm_params=[50, 100, 0.3, 0.3, 2.4])
+                             algorithm="PSO", algorithm_params=[200, 200, 0.3, 0.3, 2.4])
 print(myIT2Mamdani.fit(X, y))
 
 x1, x2 = meshgrid(X1, X2)
