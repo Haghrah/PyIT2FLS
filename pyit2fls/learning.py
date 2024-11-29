@@ -383,7 +383,7 @@ class IT2TSK_ML_Model:
                 
                 domain = linspace(self.p[i][j][0] - 5. * std, # 5 x std before mean
                                   self.p[i][j][0] + 5. * std, # 5 x std after mean
-                                  int(10. * std * 100)) # 100 points for each unit
+                                  int(10. * std * 10)) # 10 points for each unit
                 antecedent.append((f"X{j + 1}", 
                                    it2fs(domain, params=[self.p[i][j][0], 
                                                          self.p[i][j][1], 
@@ -510,7 +510,7 @@ class IT2Mamdani_ML_Model:
                 
                 domain = linspace(self.p[i][j][0] - 5. * std, # 5 x std before mean
                                   self.p[i][j][0] + 5. * std, # 5 x std after mean
-                                  int(10. * std * 100)) # 100 points for each unit
+                                  int(10. * std * 10)) # 10 points for each unit
                 antecedent.append((f"X{j + 1}", 
                                    it2fs(domain, params=[self.p[i][j][0], 
                                                          self.p[i][j][1], 
@@ -525,7 +525,7 @@ class IT2Mamdani_ML_Model:
             
             domain = linspace(self.q[i][0] - 5. * std, # 5 x std before mean
                               self.q[i][0] + 5. * std, # 5 x std after mean
-                              int(10. * std * 100)) # 100 points for each unit
+                              int(10. * std * 10)) # 10 points for each unit
 
             consequent = [("Y", it2fs(domain, params=[self.p[i][j][0], 
                                                       self.p[i][j][1], 

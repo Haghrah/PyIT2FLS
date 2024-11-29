@@ -46,13 +46,13 @@ Thank you for your contribution, which helps maintain and improve this project!
 ### Features coming up in the next version
 - Supporting machine learning models based on fuzzy systems.
     - T1TSK (Almost done!)
-    - T1Mamdani
-    - IT2TSK
-    - IT2Mamdani
-- Enhancing the documentations and publishing it over readthedocs.
+    - T1Mamdani (Almost done!)
+    - IT2TSK (Almost done!)
+    - IT2Mamdani (Almost done!)
+- Enhancing the documentations and publishing it over readthedocs. (Almost done!)
 - Exception handling.
 - Supporting Generalized Type 2 Fuzzy Sets and Systems.
-- Some functions were deprecated in SciPy!
+- Some functions were deprecated in SciPy! (Almost done!)
 
 ### Some notes on version 0.7.9
 - Some bugs (concerning EIASC algorithm) have been fixed in this version.

@@ -17,16 +17,16 @@ X = array(X)
 
 N = 2
 M = 4
-myIT2TSK = IT2Mamdani_ML(N, M, IT2FS_Gaussian_UncertStd, (-4., 4.), 
-                         algorithm="GA", algorithm_params=[200, 200, 100, 100, 0.05])
-print(myIT2TSK.fit(X, y))
+myIT2Mamdani = IT2Mamdani_ML(N, M, IT2FS_Gaussian_UncertStd, (-4., 4.), 
+                             algorithm="PSO", algorithm_params=[50, 100, 0.3, 0.3, 2.4])
+print(myIT2Mamdani.fit(X, y))
 
 x1, x2 = meshgrid(X1, X2)
 y1 = sin(x1) + cos(x2)
 y2 = zeros_like(y1)
 for i in range(10):
     for j in range(10):
-        y2[i, j] = myIT2TSK.score(array([X1[j], X2[i], ]))
+        y2[i, j] = myIT2Mamdani.score(array([X1[j], X2[i], ]))
 
 fig = plt.figure()
 ax = fig.add_subplot(111, projection="3d")
