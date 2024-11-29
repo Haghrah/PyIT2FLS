@@ -1,4 +1,4 @@
-from pyit2fls import (T2TSK_ML, T1FS_plot, IT2FS_Gaussian_UncertMean, )
+from pyit2fls import (IT2TSK_ML, IT2FS_Gaussian_UncertMean, )
 from numpy import (linspace, array, abs, pi, sin, cos, meshgrid, zeros_like, )
 from scipy.optimize import (Bounds, )
 import matplotlib.pyplot as plt
@@ -17,7 +17,7 @@ X = array(X)
 
 N = 2
 M = 4
-myIT2TSK = T2TSK_ML(N, M, IT2FS_Gaussian_UncertMean, (-4., 4.), 
+myIT2TSK = IT2TSK_ML(N, M, IT2FS_Gaussian_UncertMean, (-4., 4.), 
                      algorithm="GA", algorithm_params=[200, 200, 100, 100, 0.05])
 print(myIT2TSK.fit(X, y))
 
