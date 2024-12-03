@@ -1,1 +1,2 @@
+include typereduction/makefile
 include typereduction/typereduction.c
