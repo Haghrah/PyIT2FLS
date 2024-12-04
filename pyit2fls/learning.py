@@ -435,9 +435,10 @@ class T1_TS_Model:
     """
     
     """
-    def __init__(self, params, systemList, R, N, M, P):
-        self.p = params
-        self.q = systemList
+    def __init__(self, mfList, mfParamsList, systemList, R, N, M, P):
+        self.mfList = mfList
+        self.mfParamsList = mfParamsList
+        self.systemList = systemList
         self.mf = [[gaussian_mf_learning(), ] * N, ] * R
         self.R = R
         self.N = N
@@ -454,8 +455,8 @@ class T1_TS_Model:
         for l in range(self.R):
             s = 1.
             for i in range(self.N):
-                s *= self.mf[l][i].d0(d0x[i], self.p[l][i][0], self.p[l][i][1])
-            n += self.q[l] * s
+                s *= self.mfList[l][i](d0x[i], self.mfParamsList[l][i])
+            n += self.systemList[l] * s
             d += s
         return n / d
     
