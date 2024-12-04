@@ -10,14 +10,14 @@ from matplotlib.pyplot import figure, plot, legend, grid, show, xlabel, \
                               ylabel, savefig
 from pyit2fls import IT2FS_Gaussian_UncertStd, IT2FLS, \
                      min_t_norm, product_t_norm, max_s_norm, IT2FS_plot
-from numpy import linspace, array, trapz, where
+from numpy import linspace, array, trapezoid, where
 from numpy import abs as npabs
 from numpy import max as npmax
 from ddeintlib import ddeint
 
 # %%
 def ITAE(a, b, t):
-    return trapz(t * npabs(a - b), t)
+    return trapezoid(t * npabs(a - b), t)
 
 def os(y):
     return npabs(npmax(y) - y[-1])

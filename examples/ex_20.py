@@ -54,10 +54,10 @@ ax.set_title("3D Surface Plot")
 plt.show()
 
 achievedSystem = myMamdani.get_T1Mamdani()
-for r, rule in zip(range(N), achievedSystem.rules):
+for r, rule in zip(range(M), achievedSystem.rules):
     sets = []
     labels = []
-    for i in range(M):
+    for i in range(N):
         sets.append(rule[0][i][1])
         labels.append(f"X{i}")
     sets.append(rule[1][0][1])

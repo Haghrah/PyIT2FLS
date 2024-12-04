@@ -14,7 +14,7 @@ from pyit2fls import (IT2FS_Gaussian_UncertStd, IT2FS_LGaussian_UncertStd,
 from numpy import (random, linspace, array, zeros, shape, sort, 
                    maximum, minimum, )
 from scipy.optimize import (differential_evolution, minimize, basinhopping, )
-from PyPSO import PyPSO
+from PyIT2FLSPSO import PyPSO
 
 class Classifier:
     

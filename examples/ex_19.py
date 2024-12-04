@@ -56,10 +56,10 @@ plt.show()
 
 
 achievedSystem = myTSK.get_T1TSK()
-for r, rule in zip(range(N), achievedSystem.rules):
+for r, rule in zip(range(M), achievedSystem.rules):
     sets = []
     labels = []
-    for i in range(M):
+    for i in range(N):
         sets.append(rule[0][i][1])
         labels.append(f"X{i}")
     T1FS_plot(*sets, title=f"Rule {r+1}", legends=labels)

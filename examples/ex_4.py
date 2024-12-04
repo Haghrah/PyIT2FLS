@@ -8,7 +8,7 @@ Created on Sat May 18 13:13:55 2019
 import numpy as np
 import matplotlib.pyplot as plt
 from pyit2fls import IT2FS_Gaussian_UncertStd, IT2FLS, min_t_norm, max_s_norm
-import PyPSO
+import PyIT2FLSPSO
 from time import time
 
 def mackey_glass(tav, n, beta, gamma, step):
@@ -108,7 +108,7 @@ def solution_generator():
 def velocity_generator():
     return 0.25 * np.random.rand(12 * 3)
 
-mySolver = PyPSO.PyPSO(cost_func, 50, 75, solution_generator, velocity_generator)
+mySolver = PyIT2FLSPSO.PyPSO(cost_func, 100, 100, solution_generator, velocity_generator)
 t = time()
 conv = mySolver.solve()
 print(time() - t)

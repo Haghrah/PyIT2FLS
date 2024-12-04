@@ -105,7 +105,7 @@ for i, x1 in zip(range(len(domain1)), domain1):
         Z1[i, j], Z2[i, j] = crisp(tr["y1"]), crisp(tr["y2"])
 
 fig = plt.figure()
-ax = fig.gca(projection="3d")
+ax = fig.add_subplot(111, projection="3d")
 surf = ax.plot_surface(X1, X2, Z1, cmap=cm.coolwarm,
                        linewidth=0, antialiased=False)
 ax.zaxis.set_major_locator(LinearLocator(10))
@@ -114,7 +114,7 @@ fig.colorbar(surf, shrink=0.5, aspect=5)
 plt.show()
 
 fig = plt.figure()
-ax = fig.gca(projection="3d")
+ax = fig.add_subplot(111, projection="3d")
 surf = ax.plot_surface(X1, X2, Z2, cmap=cm.coolwarm,
                        linewidth=0, antialiased=False)
 ax.zaxis.set_major_locator(LinearLocator(10))
