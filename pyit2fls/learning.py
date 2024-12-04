@@ -6,7 +6,8 @@ Created on Sat Mar 30 01:39:58 2024
 @author: arslan
 """
 
-from numpy import (reshape, exp, array, zeros, zeros_like, asarray, linspace, )
+from numpy import (reshape, exp, array, zeros, zeros_like, asarray, linspace, 
+                   concatenate, )
 from numpy.linalg import (norm, )
 from numpy.random import (rand, randint, )
 from scipy.optimize import (differential_evolution, minimize, )
@@ -352,140 +353,120 @@ class T1TSK_ML(T1Fuzzy_ML):
         return generated_T1TSK
 
 
-class __Linear__:
+class Linear_System:
 
-    def __init__(self, p, N, M, P):
-        self.p = p
-        self.N = N
-        self.M = M
-        self.P = P
-        self.A = reshape(p[:N * N], shape=(N, N, ))
-        self.B = reshape(p[N * N:N * N + N * M], shape=(N, M, ))
-        self.C = reshape(p[N * N + N * M:], shape=(P, N, ))
+    def __init__(self, A, B, C, D):
+        self.A = A
+        self.B = B
+        self.C = C
+        self.D = D
     
+    def __repr__(self, ):
+        return f"Linear system with\nA: {str(self.A)}\nB: {str(self.B)}\nC: {str(self.C)}\nD: {str(self.D)}"
+    
+    def __str__(self, ):
+        return f"Linear system with\nA: {str(self.A)}\nB: {str(self.B)}\nC: {str(self.C)}\nD: {str(self.D)}"
+
+    def __call__(self, t, X, U):
+        X = X.reshape((-1, 1))
+        U_ = U(t, X)
+        return (self.A @ X + self.B @ U_).flatten()
+    
+    def Y(self, t, X, U):
+        U_ = U(t, X)
+        return self.C @ X + self.D @ U_
+
     def __add__(self, other):
         try:
-            return __Linear__(self.p + other.p, self.N, self.M, self.P)
+            return Linear_System(self.A + other.A, self.B + other.B, self.C + other.C, self.D + other.D)
         except:
             raise ValueError("Size inconsistency!")
 
     def __sub__(self, other):
         try:
-            return __Linear__(self.p - other.p, self.N, self.M, self.P)
+            return Linear_System(self.A - other.A, self.B - other.B, self.C - other.C, self.D - other.D)
         except:
             raise ValueError("Size inconsistency!")
     
     def __neg__(self, other):
         try:
-            return __Linear__(-self.p, self.N, self.M, self.P)
+            return Linear_System(-self.A, -self.B, -self.C, -self.D)
         except:
             raise ValueError("There is an error!")
 
     def __mul__(self, other):
         try:
-            return __Linear__(other * self.p, self.N, self.M, self.P)
+            return Linear_System(other * self.A, other * self.B, other * self.C, other * self.D)
+        except:
+            raise ValueError("There is an error!")
+    
+    def __truediv__(self, other):
+        try:
+            return Linear_System(self.A / other, self.B / other, self.C / other, self.D / other)
+        except:
+            raise ValueError("There is an error!")
+    
+    def __isub__(self, other):
+        try:
+            return Linear_System(self.A - other.A, self.B - other.B, self.C - other.C, self.D - other.D)
+        except:
+            raise ValueError("Size inconsistency!")
+
+    def __iadd__(self, other):
+        try:
+            return Linear_System(self.A + other.A, self.B + other.B, self.C + other.C, self.D + other.D)
+        except:
+            raise ValueError("Size inconsistency!")
+
+    def __imul__(self, other):
+        try:
+            return Linear_System(other * self.A, other * self.B, other * self.C, other * self.D)
+        except:
+            raise ValueError("There is an error!")
+
+    def __idiv__(self, other):
+        try:
+            return Linear_System(self.A / other, self.B / other, self.C / other, self.D / other)
         except:
             raise ValueError("There is an error!")
 
 
-class T1TSK_SI_Model:
+class T1_TS_Model:
     """
-    N: Number of states
-    M: Number of system inputs
-    P: Number of outputs
-    R: Number of rules
-    params: Model parameters a vector of size R * 2 * N + R * (N * N + N * M + P * N))
-    mf: List of membership functions for each input in each rule
-    c: Output scaling factor
+    
     """
-    def __init__(self, params, N, M, P, R, mf, c=1.0):
-        self.p = params[- R * (N * N + N * M + P * N):]
-        for i in range(R):
-            for j in range(N):
-                self.p[i][j][1] = abs(self.p[i][j][1])
-
-        self.q = params[:R * (N * N + N * M + P * N)]
+    def __init__(self, params, systemList, R, N, M, P):
+        self.p = params
+        self.q = systemList
+        self.mf = [[gaussian_mf_learning(), ] * N, ] * R
+        self.R = R
         self.N = N
         self.M = M
         self.P = P
-        self.R = R
-        self.mf = mf
-        self.c = c
     
     def d0(self, d0x):
         s = 1.
         d = 0.
-        n = 0.
+        n = Linear_System(zeros((self.N, self.N)), 
+                          zeros((self.N, self.M)), 
+                          zeros((self.P, self.N)), 
+                          zeros((self.P, self.P)), )
         for l in range(self.R):
             s = 1.
             for i in range(self.N):
                 s *= self.mf[l][i].d0(d0x[i], self.p[l][i][0], self.p[l][i][1])
             n += self.q[l] * s
             d += s
-        return self.c * n / d
+        return n / d
     
-    def d1(self, d0x, d1x):
-        s1 = 0.
-        s2 = 0.
-        s3 = 0.
-        s4 = 0.
-        
-        for l in range(self.R):
-            s5 = 1.
-            for i in range(self.N):
-                s5 *= self.mf[l][i].d0(d0x[i], self.p[l][i][0], self.p[l][i][1])
-            s1 += self.q[l] * s5
-            s2 += s5
-        
-        for j in range(self.N):
-            s7 = 0.
-            s8 = 0.
-            for l in range(self.R):
-                s6 = 1.
-                for i in range(self.N):
-                    if i != j:
-                        s6 *= self.mf[l][i].d0(d0x[i], self.p[l][i][0], self.p[l][i][1])
-                
-                s7 += self.q[l] * self.mf[l][j].d1(d0x[j], self.p[l][j][0], self.p[l][j][1]) * s6
-                s8 += self.mf[l][j].d1(d0x[j], self.p[l][j][0], self.p[l][j][1]) * s6
-            
-            s3 += d1x[j] * s7
-            s4 += d1x[j] * s8
-        
-        return (s3 * s2 - s1 * s4) / s2 ** 2
+    def __call__(self, t, X, U):
+        ts = self.d0(X)
+        return ts(t, X, U)
 
+    def Y(self, t, X, U):
+        ts = self.d0(X)
+        return ts.Y(t, X, U)
 
-
-class T1TSK_SI:
-
-    def __init__(self, N, M, P, R, Bounds=None, algorithm="DE", algorithm_params=[]):
-        """
-        N: Number of state variables
-        M: Number of system inputs
-        P: Number of system outputs
-        R: Number of rules
-        """
-        self.N = N
-        self.M = M
-        self.P = P
-        self.R = R
-        self.paramNum = R * (2 * N + (N * N + N * M + P * N))
-        self.params = rand(self.paramNum, )
-        self.Bounds = [Bounds, ] * self.paramNum
-        self.mf = gaussian_mf_learning()
-    
-
-    def error(self, params, X, y):
-        model = T1TSK_SI_Model(params, self.N, self.M, self.P, self.R, self.mf, self.c)
-        o = zeros_like(y)
-        for i, x in zip(range(len(y)), X):
-            tmp = model.d0(x)
-            # Should system be simulated?!
-        return norm(y - o)
-
-
-    def __call__(self, ):
-        pass
 
 
 class IT2TSK_ML_Model:
@@ -678,7 +659,6 @@ class IT2Mamdani_ML_Model:
         return crisp(tr["Y"])
 
 
-
 class IT2Mamdani_ML:
 
     def __init__(self, N, M, it2fs, Bounds=None, algorithm="DE", algorithm_params=[], c=1.0):
@@ -757,13 +737,13 @@ class IT2Mamdani_ML:
             raise ValueError("Input must be a 1D or 2D NumPy array!")
 
 
-class IT2TSK_SI_Model:
+class IT2_TS_Model:
 
     def __init__(self, ):
         pass
 
 
-class IT2TSK_SI:
+class IT2_TS:
 
     def __init__(self, ):
         pass
