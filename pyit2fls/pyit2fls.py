@@ -720,6 +720,8 @@ class T1FS:
 
             plot : Plots the T1FS.
 
+            defuzzify : Defuzzifies the set.
+
             negation operator - : Returns the negated T1FS.
         
         .. rubric:: Examples
@@ -835,6 +837,7 @@ class T1FS:
             plt.title(title)
         plt.xlabel(xlabel)
         plt.ylabel(ylabel)
+        plt.ylim((-0.05, 1.05))
         plt.grid(grid)
         if filename is not None:
             plt.savefig(filename + "." + ext, format=ext, dpi=300, bbox_inches="tight")
@@ -924,6 +927,7 @@ def T1FS_plot(*sets, title=None, legends=None, filename=None,
         plt.title(title)
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
+    plt.ylim((-0.05, 1.05))
     plt.grid(grid)
     if filename is not None:
         plt.savefig(filename + "." + ext, format=ext, dpi=300, bbox_inches="tight")
@@ -1592,6 +1596,7 @@ class IT2FS:
         plt.grid(grid)
         plt.xlabel(xlabel)
         plt.ylabel(ylabel)
+        plt.ylim((-0.05, 1.05))
         if filename is not None:
             plt.savefig(filename + "." + ext, format=ext, dpi=300, bbox_inches="tight")
         plt.show()
@@ -1922,6 +1927,7 @@ def IT2FS_plot(*sets, title=None, legends=None, filename=None,
         plt.title(title)
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
+    plt.ylim((-0.05, 1.05))
     plt.grid(grid)
     if filename is not None:
         plt.savefig(filename + "." + ext, format=ext, dpi=300, bbox_inches="tight")
@@ -2084,7 +2090,7 @@ def min_t_norm(a, *others):
     return result
 
 
-def product_t_norm(a, others):
+def product_t_norm(a, *others):
     """
     Product t-norm function.
     
@@ -2112,7 +2118,7 @@ def product_t_norm(a, others):
     return result
 
 
-def lukasiewicz_t_norm(a, others):
+def lukasiewicz_t_norm(a, *others):
     """
     Lukasiewicz t-norm function.
     
@@ -2309,7 +2315,7 @@ def bounded_sum_s_norm(a, *others):
     return result
 
 
-def drastic_s_norm(a, others):
+def drastic_s_norm(a, *others):
     """
     Drastic s-norm function.
 
@@ -2437,6 +2443,49 @@ def meet(domain, it2fs1, it2fs2, t_norm):
     return it2fs
 
 
+def MEET(domain, t_norm, it2fs, *others):
+    """
+    Meet operator for IT2FSs.
+    
+    .. rubric:: Parameters
+    
+    domain : numpy (n,) shaped array
+        
+        Indicates the universe of discourse dedicated to the IT2FS.
+    
+    t_norm : function
+        
+        The t-norm function to be used.
+
+    it2fs : IT2FS
+        
+        An interval type 2 fuzzy set as the first input of the meet operator.
+        
+    others : IT2FS
+        
+        Other interval type 2 fuzzy sets.
+    
+    
+    .. rubric:: Returns
+    
+    output : IT2FS
+    
+        Returns the meet of the input IT2FSs.
+    
+    .. rubric:: Examples
+    
+    >>> domain = linspace(0., 1., 100)
+    >>> it2fs1 = IT2FS_Gaussian_UncertStd(domain, [0.33, 0.2, 0.05, 1.])
+    >>> it2fs2 = IT2FS_Gaussian_UncertStd(domain, [0.66, 0.2, 0.05, 1.])
+    >>> it2fs3 = MEET(domain, min_t_norm, it2fs1, it2fs2)
+    >>> it2fs3.plot()
+    """
+    result = it2fs
+    for other in others:
+        result = meet(domain, result, other, t_norm)
+    return result
+
+
 def join(domain, it2fs1, it2fs2, s_norm):
     """
     Join operator for IT2FSs.
@@ -2479,6 +2528,49 @@ def join(domain, it2fs1, it2fs2, s_norm):
                                    it2fs2.lmf(x, it2fs2.lmf_params))
     it2fs = IT2FS(domain, umf, [], lmf, [])
     return it2fs
+
+
+def JOIN(domain, s_norm, it2fs, *others):
+    """
+    Join operator for IT2FSs.
+    
+    .. rubric:: Parameters
+    
+    domain : numpy (n,) shaped array
+        
+        Indicates the universe of discourse dedicated to the IT2FS.
+    
+    s_norm : function
+        
+        The s-norm function to be used.
+
+    it2fs : IT2FS
+        
+        An interval type 2 fuzzy set as the first input of the meet operator.
+        
+    others : IT2FS
+        
+        Other interval type 2 fuzzy sets.
+    
+    
+    .. rubric:: Returns
+    
+    output : IT2FS
+    
+        Returns the join of the input IT2FSs.
+    
+    .. rubric:: Examples
+    
+    >>> domain = linspace(0., 1., 100)
+    >>> it2fs1 = IT2FS_Gaussian_UncertStd(domain, [0.33, 0.2, 0.05, 1.])
+    >>> it2fs2 = IT2FS_Gaussian_UncertStd(domain, [0.66, 0.2, 0.05, 1.])
+    >>> it2fs3 = JOIN(domain, max_s_norm, it2fs1, it2fs2)
+    >>> it2fs3.plot()
+    """
+    result = it2fs
+    for other in others:
+        result = join(domain, result, other, s_norm)
+    return result
 
 
 def trim(intervals):
@@ -4013,6 +4105,7 @@ class IT2TSK:
             o = self.algorithm(intervals)
             O[output] = crisp(o)
         return O
+
 
 class IT2Mamdani:
     """
