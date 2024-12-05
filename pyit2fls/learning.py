@@ -469,7 +469,6 @@ class T1_TS_Model:
         return ts.Y(t, X, U)
 
 
-
 class IT2TSK_ML_Model:
 
     def __init__(self, P, N, M, it2fs, c=1.0):
@@ -744,13 +743,6 @@ class IT2_TS_Model:
         pass
 
 
-class IT2_TS:
-
-    def __init__(self, ):
-        pass
-
-    def __call__(self, ):
-        pass
 
 
 

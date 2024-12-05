@@ -174,10 +174,11 @@ def rtri_mf(x, params):
     .. rubric:: Examples
 
     >>> x = linspace(0, 1, 201)
-    >>> membership_value = ltri_mf(x, [0.5, 0.2, 1])
+    >>> membership_value = rtri_mf(x, [0.5, 0.2, 1])
     """
     return minimum(1, maximum(0, (params[2] * (x <= params[1]) + \
                ((params[2] * ((params[0] - x) / (params[0] - params[1]))) * (x > params[1]))) ))
+
 
 def ltri_mf(x, params):
     """
@@ -205,7 +206,7 @@ def ltri_mf(x, params):
     .. rubric:: Examples
     
     >>> x = linspace(0, 1, 201)
-    >>> membership_value = rtri_mf(x, [0.3, 0.5, 1])
+    >>> membership_value = ltri_mf(x, [0.3, 0.5, 1])
     """
     return minimum(1, maximum(0, ((params[2] * (x - params[0]) / (params[1] - params[0])) * (x <= params[1]) + \
                (params[2] * (x > params[1])) )))
@@ -274,6 +275,68 @@ def gaussian_mf(x, params):
     >>> membership_value = gaussian_mf(x, [0.5, 0.05, 1])
     """
     return params[2] * exp(-(((params[0] - x) ** 2) / (2 * params[1] ** 2)))
+
+
+def rgaussian_mf(x, params):
+    """
+    Right Gaussian membership function.
+    
+    .. rubric:: Parameters
+    
+    x : numpy (n,) shaped array
+        
+        The array-like input x indicates the points from the universe of discourse
+        at which the membership function will be evaluated.
+    
+    params : list 
+        
+        Additional parameters for the membership function. The center,
+        standard deviation, and height of the Right Gaussian membership function
+        are indicated by params[0], params[1], and params[2], respectively.
+    
+    .. rubric:: Returns
+    
+    output : ndarray
+        
+        Returns membership values corresponding to the input.
+    
+    .. rubric:: Examples
+    
+    >>> x = linspace(0, 1, 201)
+    >>> membership_value = rgaussian_mf(x, [0.5, 0.05, 1])
+    """
+    return (params[2] * exp(-(((params[0] - x) ** 2) / (2 * params[1] ** 2)))) * (x >= params[0])
+
+
+def lgaussian_mf(x, params):
+    """
+    Left Gaussian membership function.
+    
+    .. rubric:: Parameters
+    
+    x : numpy (n,) shaped array
+        
+        The array-like input x indicates the points from the universe of discourse
+        at which the membership function will be evaluated.
+    
+    params : list 
+        
+        Additional parameters for the membership function. The center,
+        standard deviation, and height of the Left Gaussian membership function
+        are indicated by params[0], params[1], and params[2], respectively.
+    
+    .. rubric:: Returns
+    
+    output : ndarray
+        
+        Returns membership values corresponding to the input.
+    
+    .. rubric:: Examples
+    
+    >>> x = linspace(0, 1, 201)
+    >>> membership_value = lgaussian_mf(x, [0.5, 0.05, 1])
+    """
+    return (params[2] * exp(-(((params[0] - x) ** 2) / (2 * params[1] ** 2)))) * (x <= params[0])
 
 
 def gauss_uncert_mean_umf(x, params):
@@ -438,6 +501,7 @@ def rgauss_uncert_std_umf(x, params):
     """
     return (x < params[0]) * params[3] + gauss_uncert_std_umf(x, params) * (x >= params[0])
 
+
 def rgauss_uncert_std_lmf(x, params):
     """
     Right Gaussian with uncertain standard deviation LMF.
@@ -468,6 +532,7 @@ def rgauss_uncert_std_lmf(x, params):
     >>> membership_value = rgauss_uncert_std_lmf(x, [0.5, 0.2, 0.5, 1])
     """
     return (x < params[0]) * params[3] + gauss_uncert_std_lmf(x, params) * (x >= params[0])
+
 
 def lgauss_uncert_std_umf(x, params):
     """
@@ -500,6 +565,7 @@ def lgauss_uncert_std_umf(x, params):
     >>> membership_value = lgauss_uncert_std_umf(x, [0.5, 0.2, 0.5, 1])
     """
     return (x > params[0]) * params[3] + gauss_uncert_std_umf(x, params) * (x <= params[0])
+
 
 def lgauss_uncert_std_lmf(x, params):
     """
@@ -565,6 +631,7 @@ def elliptic_mf(x, params):
     x = x * to_evaluate + (params[0] + params[1]) * logical_not(to_evaluate)
     return params[3] * (1 - abs((x - params[0]) / params[1]) ** params[2]) ** (1. / params[2])
 
+
 def semi_elliptic_mf(x, params):
     """
     Semi-elliptic membership function.
@@ -596,6 +663,7 @@ def semi_elliptic_mf(x, params):
     to_evaluate = ((x <= params[0] + params[1]) * (params[0] - params[1] <= x))
     x = x * to_evaluate + (params[0] + params[1]) * logical_not(to_evaluate)
     return params[2] * npround(sqrt(abs(1 - ((params[0] - x) ** 2) / (params[1] ** 2))), decimals=6)
+
 
 def gbell_mf(x, params):
     """
@@ -861,6 +929,7 @@ def T1FS_plot(*sets, title=None, legends=None, filename=None,
         plt.savefig(filename + "." + ext, format=ext, dpi=300, bbox_inches="tight")
     plt.show()
 
+
 def T1FS_AND(domain, t1fs1, t1fs2, t_norm):
     """
     AND operator for T1FSs.
@@ -899,6 +968,7 @@ def T1FS_AND(domain, t1fs1, t1fs2, t_norm):
     """
     mf = lambda x, params: t_norm(t1fs1.mf(x, t1fs1.params), t1fs2.mf(x, t1fs2.params))
     return T1FS(domain, mf)
+
 
 def T1FS_OR(domain, t1fs1, t1fs2, s_norm):
     """
@@ -1602,6 +1672,7 @@ def IT2FS_Elliptic(domain, params, check_set=False):
                  elliptic_mf, [params[0], params[1], params[2], params[4]], 
                  elliptic_mf, [params[0], params[1], params[3], params[4]], check_set=check_set)
 
+
 def IT2FS_Semi_Elliptic(domain, params, check_set=False):
     """
     Creates a semi-elliptic IT2FS.
@@ -1745,7 +1816,9 @@ def IT2FS_RGaussian_UncertStd(domain, params, check_set=False):
                   rgauss_uncert_std_lmf, 
                   [params[0], stdl, stdr, params[3]], check_set=check_set)
 
+
 R_IT2FS_Gaussian_UncertStd = IT2FS_RGaussian_UncertStd
+
 
 def IT2FS_LGaussian_UncertStd(domain, params, check_set=False):
     """
@@ -1786,6 +1859,7 @@ def IT2FS_LGaussian_UncertStd(domain, params, check_set=False):
 
 
 L_IT2FS_Gaussian_UncertStd = IT2FS_LGaussian_UncertStd
+
 
 def IT2FS_plot(*sets, title=None, legends=None, filename=None, 
                ext="pdf", grid=True, xlabel="Domain", ylabel="Membership degree"):
@@ -1853,6 +1927,7 @@ def IT2FS_plot(*sets, title=None, legends=None, filename=None,
         plt.savefig(filename + "." + ext, format=ext, dpi=300, bbox_inches="tight")
     plt.show()
 
+
 def TR_plot(domain, tr, title=None, legend=None, filename=None, 
             ext="pdf", grid=True, xlabel="Domain", ylabel="Membership degree"):
     """
@@ -1918,6 +1993,7 @@ def TR_plot(domain, tr, title=None, legend=None, filename=None,
         plt.savefig(filename + "." + ext, format=ext, dpi=300, bbox_inches="tight")
     plt.show()
 
+
 def crisp(tr):
     """
     Calculates the crisp number obtained from type reduced IT2FS.
@@ -1940,6 +2016,7 @@ def crisp(tr):
     >>> print(crisp(tr1))
     """
     return (tr[0] + tr[1]) / 2
+
 
 def crisp_list(trs, o=None):
     """
@@ -1978,7 +2055,8 @@ def crisp_list(trs, o=None):
             output.append(crisp(tr[o]))
         return output
 
-def min_t_norm(a, b):
+
+def min_t_norm(a, *others):
     """
     Minimum t-norm function.
     
@@ -1986,13 +2064,13 @@ def min_t_norm(a, b):
     
     a : numpy (n,) shaped array
     
-    b : numpy (n,) shaped array
+    others : numpy (n,) shaped arrays
     
     .. rubric:: Returns
     
     output : numpy (n,) shaped array
 
-        Returns minimum t-norm of a and b.
+        Returns minimum t-norm of a and other inputs.
     
     .. rubric:: Examples
     
@@ -2000,10 +2078,13 @@ def min_t_norm(a, b):
     >>> b = random.random(10,)
     >>> c = min_t_norm(a, b)
     """
-    return minimum(a, b)
+    result = a
+    for other in others:
+        result = minimum(result, other)
+    return result
 
 
-def product_t_norm(a, b):
+def product_t_norm(a, others):
     """
     Product t-norm function.
     
@@ -2011,13 +2092,13 @@ def product_t_norm(a, b):
     
     a : numpy (n,) shaped array
     
-    b : numpy (n,) shaped array
+    others : numpy (n,) shaped arrays
     
     .. rubric:: Returns
 
     output : numpy (n,) shaped array
     
-        Returns product t-norm of a and b.
+        Returns product t-norm of a and other inputs.
     
     .. rubric:: Examples
     
@@ -2025,9 +2106,13 @@ def product_t_norm(a, b):
     >>> b = random.random(10,)
     >>> c = product_t_norm(a, b)
     """
-    return multiply(a, b)
+    result = a
+    for other in others:
+        result = multiply(result, other)
+    return result
 
-def lukasiewicz_t_norm(a, b):
+
+def lukasiewicz_t_norm(a, others):
     """
     Lukasiewicz t-norm function.
     
@@ -2035,13 +2120,13 @@ def lukasiewicz_t_norm(a, b):
     
     a : numpy (n,) shaped array
     
-    b : numpy (n,) shaped array
+    others : numpy (n,) shaped arrays
     
     .. rubric:: Returns
 
     output : numpy (n,) shaped array
     
-        Returns Lukasiewicz t-norm of a and b.
+        Returns Lukasiewicz t-norm of a and other inputs.
     
     .. rubric:: Examples
     
@@ -2049,9 +2134,13 @@ def lukasiewicz_t_norm(a, b):
     >>> b = random.random(10,)
     >>> c = lukasiewicz_t_norm(a, b)
     """
-    return maximum(0, a + b - 1)
+    result = a
+    for other in others:
+        result = maximum(0, result + other - 1)
+    return result
 
-def drastic_t_norm(a, b):
+
+def drastic_t_norm(a, *others):
     """
     Drastic t-norm function.
     
@@ -2059,13 +2148,13 @@ def drastic_t_norm(a, b):
     
     a : numpy (n,) shaped array
     
-    b : numpy (n,) shaped array
+    others : numpy (n,) shaped arrays
     
     .. rubric:: Returns
 
     output : numpy (n,) shaped array
     
-        Returns drastic t-norm of a and b.
+        Returns drastic t-norm of a and other inputs.
     
     .. rubric:: Examples
     
@@ -2073,9 +2162,13 @@ def drastic_t_norm(a, b):
     >>> b = random.random(10,)
     >>> c = drastic_t_norm(a, b)
     """
-    return b * (a == 1) + a * (b == 1)
+    result = a
+    for other in others:
+        result = other * (result == 1) + result * (other == 1)
+    return result
 
-def nilpotent_minimum_t_norm(a, b):
+
+def nilpotent_minimum_t_norm(a, *others):
     """
     Nilpotent minimum t-norm function.
     
@@ -2083,13 +2176,13 @@ def nilpotent_minimum_t_norm(a, b):
     
     a : numpy (n,) shaped array
     
-    b : numpy (n,) shaped array
+    others : numpy (n,) shaped array
     
     .. rubric:: Returns
 
     output : numpy (n,) shaped array
     
-        Returns nilpotent minimum t-norm of a and b.
+        Returns nilpotent minimum t-norm of a and other inputs.
     
     .. rubric:: Examples
     
@@ -2097,9 +2190,13 @@ def nilpotent_minimum_t_norm(a, b):
     >>> b = random.random(10,)
     >>> c = nilpotent_minimum_t_norm(a, b)
     """
-    return minimum(a, b) * (a + b > 1)
+    result = a
+    for other in others:
+        result = minimum(result, other) * (result + other > 1)
+    return result
 
-def hamacher_product_t_norm(a, b):
+
+def hamacher_product_t_norm(a, *others):
     """
     Hamacher product t-norm function.
     
@@ -2107,13 +2204,13 @@ def hamacher_product_t_norm(a, b):
     
     a : numpy (n,) shaped array
     
-    b : numpy (n,) shaped array
+    others : numpy (n,) shaped arrays
     
     .. rubric:: Returns
 
     output : numpy (n,) shaped array
     
-        Returns hamacher product t-norm of a and b.
+        Returns hamacher product t-norm of a and other inputs.
     
     .. rubric:: Examples
     
@@ -2121,9 +2218,14 @@ def hamacher_product_t_norm(a, b):
     >>> b = random.random(10,)
     >>> c = hamacher_product_t_norm(a, b)
     """
-    return ((a * b) / (a + b - a * b)) * logical_not((a == 0) * (b == 0))
+    result = a
+    for other in others:
+        result = ((result * other) / (result + other - result * other)) * \
+            logical_not((result == 0) * (other == 0))
+    return result
 
-def max_s_norm(a, b):
+
+def max_s_norm(a, *others):
     """
     Maximum s-norm function.
     
@@ -2131,13 +2233,13 @@ def max_s_norm(a, b):
     
     a : numpy (n,) shaped array
     
-    b : numpy (n,) shaped array
+    others : numpy (n,) shaped arrays
     
     .. rubric:: Returns
 
     output : numpy (n,) shaped array
     
-        Returns maximum s-norm of a and b.
+        Returns maximum s-norm of a and other inputs.
     
     .. rubric:: Examples
     
@@ -2145,9 +2247,13 @@ def max_s_norm(a, b):
     >>> b = random.random(10,)
     >>> c = max_s_norm(a, b)
     """
-    return maximum(a, b)
+    result = a
+    for other in others:
+        result = maximum(result, other)
+    return result
 
-def probabilistic_sum_s_norm(a, b):
+
+def probabilistic_sum_s_norm(a, *others):
     """
     Probabilistic sum s-norm function.
 
@@ -2155,13 +2261,13 @@ def probabilistic_sum_s_norm(a, b):
     
     a : numpy (n,) shaped array
 
-    b : numpy (n,) shaped array
+    others : numpy (n,) shaped arrays
 
     .. rubric:: Returns
 
     output : numpy (n,) shaped array
     
-        Returns probabilistic sum s-norm of a and b.
+        Returns probabilistic sum s-norm of a and other inputs.
 
     .. rubric:: Examples
     
@@ -2169,9 +2275,13 @@ def probabilistic_sum_s_norm(a, b):
     >>> b = random.random(10,)
     >>> c = probabilistic_sum_s_norm(a, b)
     """
-    return a + b - a * b
+    result = a
+    for other in others:
+        result = result + other - result * other
+    return result
 
-def bounded_sum_s_norm(a, b):
+
+def bounded_sum_s_norm(a, *others):
     """
     Bounded sum s-norm function.
 
@@ -2179,13 +2289,13 @@ def bounded_sum_s_norm(a, b):
     
     a : numpy (n,) shaped array
 
-    b : numpy (n,) shaped array
+    others : numpy (n,) shaped arrays
 
     .. rubric:: Returns
 
     output : numpy (n,) shaped array
     
-        Returns bounded sum s-norm of a and b.
+        Returns bounded sum s-norm of a and other inputs.
 
     .. rubric:: Examples
     
@@ -2193,9 +2303,13 @@ def bounded_sum_s_norm(a, b):
     >>> b = random.random(10,)
     >>> c = bounded_sum_s_norm(a, b)
     """
-    return minimum(a + b, 1)
+    result = a
+    for other in others:
+        result = minimum(result + other, 1)
+    return result
 
-def drastic_s_norm(a, b):
+
+def drastic_s_norm(a, others):
     """
     Drastic s-norm function.
 
@@ -2203,13 +2317,13 @@ def drastic_s_norm(a, b):
     
     a : numpy (n,) shaped array
 
-    b : numpy (n,) shaped array
+    others : numpy (n,) shaped arrays
 
     .. rubric:: Returns
 
     output : numpy (n,) shaped array
     
-        Returns drastic s-norm of a and b.
+        Returns drastic s-norm of a and other inputs.
 
     .. rubric:: Examples
     
@@ -2217,9 +2331,13 @@ def drastic_s_norm(a, b):
     >>> b = random.random(10,)
     >>> c = drastic_s_norm(a, b)
     """
-    return b * (a == 0) + a * (b == 0) + 1. * (a != 0.) * (b != 0.)
+    result = a
+    for other in others:
+        result = other * (result == 0) + result * (other == 0) + 1. * (result != 0.) * (other != 0.)
+    return result
 
-def nilpotent_maximum_s_norm(a, b):
+
+def nilpotent_maximum_s_norm(a, *others):
     """
     Nilpotent maximum s-norm function.
 
@@ -2227,13 +2345,13 @@ def nilpotent_maximum_s_norm(a, b):
     
     a : numpy (n,) shaped array
 
-    b : numpy (n,) shaped array
+    others : numpy (n,) shaped arrays
 
     .. rubric:: Returns
 
     output : numpy (n,) shaped array
     
-        Returns nilpotent maximum s-norm of a and b
+        Returns nilpotent maximum s-norm of a and others.
 
     .. rubric:: Examples
     
@@ -2241,9 +2359,13 @@ def nilpotent_maximum_s_norm(a, b):
     >>> b = random.random(10,)
     >>> c = nilpotent_maximum_s_norm(a, b)
     """
-    return maximum(a, b) * (a + b < 1) + 1. * (a + b >= 1)
+    result = a
+    for other in others:
+        result = maximum(result, other) * (result + other < 1) + 1. * (result + other >= 1)
+    return result
 
-def einstein_sum_s_norm(a, b):
+
+def einstein_sum_s_norm(a, *others):
     """
     Einstein sum s-norm function.
 
@@ -2251,13 +2373,13 @@ def einstein_sum_s_norm(a, b):
     
     a : numpy (n,) shaped array
 
-    b : numpy (n,) shaped array
+    others : numpy (n,) shaped arrays
 
     .. rubric:: Returns
 
     output : numpy (n,) shaped array
     
-        Returns einstein sum s-norm of a and b
+        Returns einstein sum s-norm of a and other inputs.
 
     .. rubric:: Examples
     
@@ -2265,7 +2387,11 @@ def einstein_sum_s_norm(a, b):
     >>> b = random.random(10,)
     >>> c = einstein_sum_s_norm(a, b)
     """
-    return (a + b) / (1 + a * b)
+    result = a
+    for other in others:
+        result = (result + other) / (1 + result * other)
+    return result
+
 
 def meet(domain, it2fs1, it2fs2, t_norm):
     """
@@ -2354,6 +2480,7 @@ def join(domain, it2fs1, it2fs2, s_norm):
     it2fs = IT2FS(domain, umf, [], lmf, [])
     return it2fs
 
+
 def trim(intervals):
     v = intervals[:, 3]
     i, = where(v > 0)
@@ -2372,6 +2499,7 @@ def trim(intervals):
             min2 = i[0]
             max2 = i[-1] + 1
         return intervals[min(min1, min2):max(max1, max2), :]
+
 
 def KM_algorithm(intervals, params=[]):  # intervals = [[a1, b1, c1, d1], [a2, b2, c2, d2], ...]
     """
