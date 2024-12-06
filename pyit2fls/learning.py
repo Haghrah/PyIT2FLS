@@ -216,8 +216,8 @@ class T1Fuzzy_ML_Model:
 
 class T1Fuzzy_ML:
     """
-    A general type fuzzy model for learning from data. T1Mamdani_ML and T1TSK_ML classes are build up based 
-    on this class and they only help to provide a linguistic interpretation of the results by the T1Fuzzy_ML 
+    A general type fuzzy model for learning from data. *T1Mamdani_ML* and *T1TSK_ML* classes are build up based 
+    on this class and they only help to provide a linguistic interpretation of the results by the *T1Fuzzy_ML* 
     class.
 
     .. rubric:: Parameters
