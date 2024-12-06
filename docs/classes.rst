@@ -155,18 +155,48 @@ T1Fuzzy_ML
 .. autofunction:: pyit2fls.T1Fuzzy_ML.score
 
 
+T1Mamdani_ML
+------------
+.. autoclass:: pyit2fls.T1Mamdani_ML
 
 
+T1TSK_ML
+--------
+.. autoclass:: pyit2fls.T1TSK_ML
 
 
+Linear_System
+-------------
+.. autoclass:: pyit2fls.Linear_System
 
 
+T1_TS_Model
+-----------
+.. autoclass:: pyit2fls.T1_TS_Model
 
 
+IT2TSK_ML_Model
+---------------
+.. autoclass:: pyit2fls.IT2TSK_ML_Model
 
 
+IT2TSK_ML
+---------
+.. autoclass:: pyit2fls.IT2TSK_ML
 
 
+IT2Mamdani_ML_Model
+-------------------
+.. autoclass:: pyit2fls.IT2Mamdani_ML_Model
 
+
+IT2Mamdani_ML
+-------------
+.. autoclass:: pyit2fls.IT2Mamdani_ML
+
+
+IT2_TS_Model
+------------
+.. autoclass:: pyit2fls.IT2_TS_Model
 
 
