@@ -215,7 +215,45 @@ class T1Fuzzy_ML_Model:
 
 
 class T1Fuzzy_ML:
+    """
+    A general type fuzzy model for learning from data. T1Mamdani_ML and T1TSK_ML classes are build up based 
+    on this class and they only help to provide a linguistic interpretation of the results by the T1Fuzzy_ML 
+    class.
 
+    .. rubric:: Parameters
+    
+    Parameters of the constructor function:
+
+    N : int
+
+        The inputs number of the model.
+    
+    M : int
+
+        The rules number of the model.
+    
+    Bounds : tuple of float
+
+        The upper and lower bounds of the parameters of the model.
+    
+    algorithm : str
+
+        The algorithm to be used for determining the model parameters. It should be one of the 
+        strings "DE", "Nelder-Mead", "Powell", "CG", "PSO", and "GA". More optimization 
+        techniques will be gradually added. The first four algorithms, which are based on scipy, 
+        are not computationally efficient. So, we have provided e,bedded GA and PSO algorithms 
+        for calculating model parameters by optimizing an error function.
+
+    algorithm_params : list of numbers
+
+        The parameters of the selected algorithm. Only GA and PSO algorithms need algorithm_params 
+        to be set. For the GA, this list must contain five numbers: population size, number of 
+        iterations, number of mutations in each iteration, number of combinations in each iteration, 
+        and top percent of the population which mutation is only applyed on them; a floating point 
+        number in range (0, 1). For the PSO algorithm, the list must also contain five numbers: 
+        population size, number of iterations, :math:`\omega`, :math:`\phi`, and :math:`\phi_{g}`.
+
+    """
     def __init__(self, N, M, Bounds=None, algorithm="DE", algorithm_params=[]):
         self.N = N
         self.M = M

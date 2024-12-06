@@ -25,7 +25,8 @@ html_static_path = ['_static']
 
 html_title = 'PyIT2FLS'
 
-extensions = ['sphinx.ext.autodoc', ]
+extensions = ['sphinx.ext.autodoc', 
+              'sphinx.ext.mathjax', ]
 
 import os
 import sys

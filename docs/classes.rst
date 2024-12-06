@@ -144,7 +144,9 @@ IT2Mamdani
 .. autofunction:: pyit2fls.IT2Mamdani.__Mamdani_ModiHe
 
 
-
+T1Fuzzy_ML
+----------
+.. autoclass:: pyit2fls.T1Fuzzy_ML
 
 
 
