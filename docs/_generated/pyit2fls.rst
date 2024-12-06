@@ -467,18 +467,20 @@ Finally, let's plot all of these sets using the *IT2FS_plot* function:
 .. code-block:: python
 
     IT2FS_plot(Const, Tri, RTri, LTri, Trapezoid, Gaussian,
-            Gaussian_UncertMean, Gaussian_UncertStd, 
-            RGaussian_UncertStd, LGaussian_UncertStd, 
-            legends = ["Const Set", 
-                        "Triangular Set", 
-                        "Right Triangular Set", 
-                        "Left Triangular Set", 
-                        "Trapezoid", 
-                        "Gaussian", 
-                        "G. with Uncertain Mean", 
-                        "G. with Uncertain Std", 
-                        "Right G. with Uncertain Std", 
-                        "Left G. with Uncertain Std", ])
+               Gaussian_UncertMean, Gaussian_UncertStd, 
+               RGaussian_UncertStd, LGaussian_UncertStd, 
+               legends = ["Const Set", 
+                          "Triangular Set", 
+                          "Right Triangular Set", 
+                          "Left Triangular Set", 
+                          "Trapezoid", 
+                          "Gaussian", 
+                          "G. with Uncertain Mean", 
+                          "G. with Uncertain Std", 
+                          "Right G. with Uncertain Std", 
+                          "Left G. with Uncertain Std", ], 
+               legendloc="upper right", bbox_to_anchor=(1.55, 1), 
+               filename="Figure_9", ext="png"))
 
 The output of this code is shown below:
 

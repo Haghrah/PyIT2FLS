@@ -43,7 +43,9 @@ IT2FS_plot(Const, Tri, RTri, LTri, Trapezoid, Gaussian,
                       "G. with Uncertain Mean", 
                       "G. with Uncertain Std", 
                       "Right G. with Uncertain Std", 
-                      "Left G. with Uncertain Std", ])
+                      "Left G. with Uncertain Std", ], 
+           legendloc="upper right", bbox_to_anchor=(1.55, 1), 
+           filename="Figure_9", ext="png")
 
 
 

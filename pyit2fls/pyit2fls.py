@@ -786,8 +786,10 @@ class T1FS:
         else:
             raise ValueError("The method" + method + " is not implemented yet!")
 
-    def plot(self, title=None, legend_text=None, filename=None, 
-             ext="pdf", grid=True, xlabel="Domain", ylabel="Membership degree"):
+    def plot(self, title=None, legends=None, filename=None, 
+             ext="pdf", grid=True, xlabel="Domain", 
+             ylabel="Membership degree", legendloc="best", 
+               bbox_to_anchor=None, alpha=0.5, ):
         """
         Plots the T1FS.
         
@@ -830,15 +832,24 @@ class T1FS:
         >>> mySet.plot(filename="mySet")
         """
         plt.figure()
-        plt.plot(self.domain, self.mf(self.domain, self.params))
-        if legend_text is not None:
-            plt.legend([legend_text])
+        plt.plot(self.domain, self.mf(self.domain, self.params), alpha=alpha)
+        if legends is not None:
+            if bbox_to_anchor is None:
+                plt.legend(legends, loc=legendloc)
+            else:
+                plt.legend(legends, loc=legendloc, bbox_to_anchor=bbox_to_anchor)
+    
         if title is not None:
             plt.title(title)
         plt.xlabel(xlabel)
         plt.ylabel(ylabel)
         plt.ylim((-0.05, 1.05))
-        plt.grid(grid)
+        
+        if grid == True:
+            plt.grid(which="major", linestyle="-", linewidth=0.75, color="gray", alpha=0.7)
+            plt.minorticks_on() 
+            plt.grid(which="minor", linestyle=":", linewidth=0.5, color="lightgray", alpha=0.7)
+
         if filename is not None:
             plt.savefig(filename + "." + ext, format=ext, dpi=300, bbox_inches="tight")
         plt.show()
@@ -871,7 +882,9 @@ def T1_Emphasize(t1fs, m=2.):
 
 
 def T1FS_plot(*sets, title=None, legends=None, filename=None, 
-              ext="pdf", grid=True, xlabel="Domain", ylabel="Membership degree"):
+              ext="pdf", grid=True, xlabel="Domain", 
+              ylabel="Membership degree", legendloc="best", 
+               bbox_to_anchor=None, alpha=0.5, ):
     """
     Plots multiple T1FSs together in the same figure.
     
@@ -920,15 +933,25 @@ def T1FS_plot(*sets, title=None, legends=None, filename=None,
     """
     plt.figure()
     for t1fs in sets:
-        plt.plot(t1fs.domain, t1fs.mf(t1fs.domain, t1fs.params))
+        plt.plot(t1fs.domain, t1fs.mf(t1fs.domain, t1fs.params), alpha=alpha)
+    
     if legends is not None:
-        plt.legend(legends)
+        if bbox_to_anchor is None:
+            plt.legend(legends, loc=legendloc)
+        else:
+            plt.legend(legends, loc=legendloc, bbox_to_anchor=bbox_to_anchor)
+    
     if title is not None:
         plt.title(title)
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
     plt.ylim((-0.05, 1.05))
-    plt.grid(grid)
+
+    if grid == True:
+        plt.grid(which="major", linestyle="-", linewidth=0.75, color="gray", alpha=0.7)
+        plt.minorticks_on() 
+        plt.grid(which="minor", linestyle=":", linewidth=0.5, color="lightgray", alpha=0.7)
+
     if filename is not None:
         plt.savefig(filename + "." + ext, format=ext, dpi=300, bbox_inches="tight")
     plt.show()
@@ -1539,8 +1562,10 @@ class IT2FS:
         """
         return IT2FS(self.domain, umf=self.umf, umf_params=self.umf_params, lmf=self.lmf, lmf_params=self.lmf_params)
 
-    def plot(self, title=None, legend_text=None, filename=None, 
-             ext="pdf", grid=True, xlabel="Domain", ylabel="Membership degree"):
+    def plot(self, title=None, legends=None, filename=None, 
+             ext="pdf", grid=True, xlabel="Domain", 
+             ylabel="Membership degree", legendloc="best", 
+             bbox_to_anchor=None, alpha=0.5, ):
         """
         Plots the IT2FS.
         
@@ -1586,14 +1611,22 @@ class IT2FS:
         >>> mySet.plot(filename="mySet")
         """
         plt.figure()
-        plt.fill_between(self.domain, self.upper, self.lower)
-        if legend_text is not None:
-            plt.legend([legend_text])
+        plt.fill_between(self.domain, self.upper, self.lower, alpha=alpha)
+        if legends is not None:
+            if bbox_to_anchor is None:
+                plt.legend(legends, loc=legendloc)
+            else:
+                plt.legend(legends, loc=legendloc, bbox_to_anchor=bbox_to_anchor)
+
         if title is not None:
             plt.title(title)
-        plt.plot(self.domain, self.upper, color="black")
-        plt.plot(self.domain, self.lower, color="black")
-        plt.grid(grid)
+        plt.plot(self.domain, self.upper, color="black", alpha=alpha)
+        plt.plot(self.domain, self.lower, color="black", alpha=alpha)
+        if grid == True:
+            plt.grid(which="major", linestyle="-", linewidth=0.75, color="gray", alpha=0.7)
+            plt.minorticks_on() 
+            plt.grid(which="minor", linestyle=":", linewidth=0.5, color="lightgray", alpha=0.7)
+    
         plt.xlabel(xlabel)
         plt.ylabel(ylabel)
         plt.ylim((-0.05, 1.05))
@@ -1867,7 +1900,9 @@ L_IT2FS_Gaussian_UncertStd = IT2FS_LGaussian_UncertStd
 
 
 def IT2FS_plot(*sets, title=None, legends=None, filename=None, 
-               ext="pdf", grid=True, xlabel="Domain", ylabel="Membership degree"):
+               ext="pdf", grid=True, xlabel="Domain", 
+               ylabel="Membership degree", legendloc="best", 
+               bbox_to_anchor=None, alpha=0.5, ):
     """
     Plots multiple IT2FSs together in the same figure.
     
@@ -1917,18 +1952,26 @@ def IT2FS_plot(*sets, title=None, legends=None, filename=None,
     """
     plt.figure()
     for it2fs in sets:
-        plt.fill_between(it2fs.domain, it2fs.upper, it2fs.lower, alpha=0.5)
+        plt.fill_between(it2fs.domain, it2fs.upper, it2fs.lower, alpha=alpha)
     if legends is not None:
-        plt.legend(legends)
+        if bbox_to_anchor is None:
+            plt.legend(legends, loc=legendloc)
+        else:
+            plt.legend(legends, loc=legendloc, bbox_to_anchor=bbox_to_anchor)
+
     for it2fs in sets:
-        plt.plot(it2fs.domain, it2fs.lower, color="black")
-        plt.plot(it2fs.domain, it2fs.upper, color="black")
+        plt.plot(it2fs.domain, it2fs.lower, color="black", alpha=alpha)
+        plt.plot(it2fs.domain, it2fs.upper, color="black", alpha=alpha)
     if title is not None:
         plt.title(title)
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
     plt.ylim((-0.05, 1.05))
-    plt.grid(grid)
+    if grid == True:
+        plt.grid(which="major", linestyle="-", linewidth=0.75, color="gray", alpha=0.7)
+        plt.minorticks_on() 
+        plt.grid(which="minor", linestyle=":", linewidth=0.5, color="lightgray", alpha=0.7)
+    
     if filename is not None:
         plt.savefig(filename + "." + ext, format=ext, dpi=300, bbox_inches="tight")
     plt.show()
