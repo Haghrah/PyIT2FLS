@@ -184,19 +184,37 @@ IT2TSK_ML
 ---------
 .. autoclass:: pyit2fls.IT2TSK_ML
 
+.. autofunction:: pyit2fls.IT2TSK_ML.error
+
+.. autofunction:: pyit2fls.IT2TSK_ML.fit
+
+.. autofunction:: pyit2fls.IT2TSK_ML.score
+
 
 IT2Mamdani_ML_Model
 -------------------
 .. autoclass:: pyit2fls.IT2Mamdani_ML_Model
+
+.. autofunction:: pyit2fls.IT2Mamdani_ML_Model.__call__
 
 
 IT2Mamdani_ML
 -------------
 .. autoclass:: pyit2fls.IT2Mamdani_ML
 
+.. autofunction:: pyit2fls.IT2Mamdani_ML.error
+
+.. autofunction:: pyit2fls.IT2Mamdani_ML.fit
+
+.. autofunction:: pyit2fls.IT2Mamdani_ML.score
+
 
 IT2_TS_Model
 ------------
 .. autoclass:: pyit2fls.IT2_TS_Model
 
+.. autofunction:: pyit2fls.IT2_TS_Model.d0
 
+.. autofunction:: pyit2fls.IT2_TS_Model.__call__
+
+.. autofunction:: pyit2fls.IT2_TS_Model.Y
