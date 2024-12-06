@@ -64,11 +64,12 @@ myTakagiSugeno = T1_TS_Model(mfList, mfParamsList,
                               4, 2, 1, 1)
 
 def U(t, X):
-    return array([[0.1 * X[0] + 0.1 * X[1] ], ])
+    return array([[5.8 * X[0] + 18.5 * X[1] ], ])
 
-X0 = 4. * (rand(2) - 0.5)
+# X0 = 4. * (rand(2) - 0.5)
+X0 = array([-1., 2., ])
 dt = 0.001
-T  = 100.
+T  = 10.
 t  = linspace(0., T, int(T / dt))
 X  = solve_ivp(myTakagiSugeno, [0., T], X0, args=(U, ), 
                method="RK45", t_eval=t, dense_output=True).y
