@@ -119,8 +119,6 @@ IT2Mamdani
 ----------
 .. autoclass:: pyit2fls.IT2Mamdani
 
-.. autofunction:: pyit2fls.IT2Mamdani.__repr__
-
 .. autofunction:: pyit2fls.IT2Mamdani.add_input_variable
 
 .. autofunction:: pyit2fls.IT2Mamdani.add_output_variable
@@ -128,6 +126,8 @@ IT2Mamdani
 .. autofunction:: pyit2fls.IT2Mamdani.add_rule
 
 .. autofunction:: pyit2fls.IT2Mamdani.copy
+
+.. autofunction:: pyit2fls.IT2Mamdani.__repr__
 
 .. autofunction:: pyit2fls.IT2Mamdani.__meet
 
@@ -148,7 +148,11 @@ T1Fuzzy_ML
 ----------
 .. autoclass:: pyit2fls.T1Fuzzy_ML
 
+.. autofunction:: pyit2fls.T1Fuzzy_ML.error
 
+.. autofunction:: pyit2fls.T1Fuzzy_ML.fit
+
+.. autofunction:: pyit2fls.T1Fuzzy_ML.score
 
 
 

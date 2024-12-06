@@ -238,20 +238,30 @@ class T1Fuzzy_ML:
     
     algorithm : str
 
-        The algorithm to be used for determining the model parameters. It should be one of the 
-        strings "DE", "Nelder-Mead", "Powell", "CG", "PSO", and "GA". More optimization 
+        Indicates the algorithm to be used for determining the model parameters. It should be one 
+        of the strings "DE", "Nelder-Mead", "Powell", "CG", "PSO", and "GA". More optimization 
         techniques will be gradually added. The first four algorithms, which are based on scipy, 
-        are not computationally efficient. So, we have provided e,bedded GA and PSO algorithms 
+        are not computationally efficient. So, we have provided embedded GA and PSO algorithms 
         for calculating model parameters by optimizing an error function.
 
     algorithm_params : list of numbers
 
-        The parameters of the selected algorithm. Only GA and PSO algorithms need algorithm_params 
+        The parameters of the selected algorithm. Only GA and PSO algorithms need *algorithm_params* 
         to be set. For the GA, this list must contain five numbers: population size, number of 
         iterations, number of mutations in each iteration, number of combinations in each iteration, 
         and top percent of the population which mutation is only applyed on them; a floating point 
         number in range (0, 1). For the PSO algorithm, the list must also contain five numbers: 
         population size, number of iterations, :math:`\omega`, :math:`\phi`, and :math:`\phi_{g}`.
+    
+    .. rubric:: Functions
+
+    Functions defined in T1Fuzzy_ML class:
+
+        error : The error function utilized for parameter optimization of the model.
+
+        fit : Fits the model based on the given input output data.
+
+        score : Evaluates the model for desired input data.
 
     """
     def __init__(self, N, M, Bounds=None, algorithm="DE", algorithm_params=[]):
@@ -267,6 +277,24 @@ class T1Fuzzy_ML:
                                       [[self.mf, ] * self.N, ] * self.M)
 
     def error(self, P, X, y):
+        """
+        The error function for optimizing the model parameters.
+
+        .. rubric:: Parameters
+
+        P : list of float or numpy (n,) shaped array
+
+            P provides the list of parameters which the model error would be evaluated 
+            based on it.
+
+        X : list of 1D numpy array or 2D numpy array
+
+            X is the set of data which the model error would be evaluated for them.
+        
+        y : list of float or numpy (n,) shaped array
+
+            y is the set of desired outputs which the model error would be evaluated based on them.
+        """
         model = T1Fuzzy_ML_Model(P, self.N, self.M, 
                                  [[self.mf, ] * self.N, ] * self.M)
         o = zeros_like(y)
@@ -275,6 +303,20 @@ class T1Fuzzy_ML:
         return norm(y - o)
 
     def fit(self, X, y):
+        """
+        Function for finding the best set of parameters fitting the pair of input and output data.
+
+        .. rubric:: Parameters
+
+        X : 
+
+            X is the set of data which the model error would be evaluated for them.
+
+        y : 
+
+            y is the set of desired outputs which the model error would be evaluated based on them.
+
+        """
         if self.algorithm == "DE":
             self.params = differential_evolution(self.error, bounds=self.Bounds, 
                                             args=(X, y), disp=True).x
@@ -316,6 +358,16 @@ class T1Fuzzy_ML:
         return self.error(self.params, X, y)
 
     def score(self, X):
+        """
+        Function for evaluating the model output for desired set of inputs.
+
+        .. rubric:: Parameters
+
+        X : 
+        
+            X is the set of data which the model would be evaluated for them.
+
+        """
         X = asarray(X)
         if X.ndim == 1:
             return self.model.d0(X)
