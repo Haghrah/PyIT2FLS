@@ -439,14 +439,12 @@ class T1_TS_Model:
         self.mfList = mfList
         self.mfParamsList = mfParamsList
         self.systemList = systemList
-        self.mf = [[gaussian_mf_learning(), ] * N, ] * R
         self.R = R
         self.N = N
         self.M = M
         self.P = P
     
     def d0(self, d0x):
-        s = 1.
         d = 0.
         n = Linear_System(zeros((self.N, self.N)), 
                           zeros((self.N, self.M)), 
@@ -738,9 +736,43 @@ class IT2Mamdani_ML:
 
 
 class IT2_TS_Model:
+    """
+    
+    """
+    def __init__(self, lmfList, lmfParamsList, umfList, umfParamsList, systemList, R, N, M, P):
+        self.lmfList = lmfList
+        self.lmfParamsList = lmfParamsList
+        self.umfList = umfList
+        self.umfParamsList = umfParamsList
+        self.systemList = systemList
+        self.R = R
+        self.N = N
+        self.M = M
+        self.P = P
+    
+    def d0(self, d0x):
+        d = 0.
+        n = Linear_System(zeros((self.N, self.N)), 
+                          zeros((self.N, self.M)), 
+                          zeros((self.P, self.N)), 
+                          zeros((self.P, self.P)), )
+        for l in range(self.R):
+            s1 = 1. # LMF
+            s2 = 1. # UMF
+            for i in range(self.N):
+                s1 *= self.lmfList[l][i](d0x[i], self.lmfParamsList[l][i])
+                s2 *= self.umfList[l][i](d0x[i], self.umfParamsList[l][i])
+            n += self.systemList[l] * (s1 + s2)
+            d += s1 + s2
+        return n / d
 
-    def __init__(self, ):
-        pass
+    def __call__(self, t, X, U):
+        ts = self.d0(X)
+        return ts(t, X, U)
+
+    def Y(self, t, X, U):
+        ts = self.d0(X)
+        return ts.Y(t, X, U)
 
 
 
