@@ -18,7 +18,7 @@ X = array(X)
 N = 2
 M = 4
 myMamdani = T1Mamdani_ML(N, M, (-4., 4.), algorithm="GA", 
-                         algorithm_params=[200, 200, 100, 100, 0.05])
+                         algorithm_params=[200, 200, 100, 100, 0.1])
 print(myMamdani.fit(X, y))
 
 x1, x2 = meshgrid(X1, X2)

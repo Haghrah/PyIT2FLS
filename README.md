@@ -204,9 +204,7 @@ So, please update your PyIT2FLS to the latest version.
 
 * [Ex18](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_18.py): 
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/18_1.png" width="400"> 
-
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/18_2.png" width="400"> 
+<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/18_1.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/18_2.png" width="200"> 
 
 <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/18_3.png" width="400"> 
 
