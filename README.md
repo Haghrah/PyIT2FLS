@@ -232,11 +232,12 @@ So, please update your PyIT2FLS to the latest version.
 
 * [Ex22](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_22.py): 
 
-
+<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/22_1.png" width="200"> 
 
 * [Ex23](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_23.py): 
 
-
+<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/23_1.png" width="200"> 
 
 * [Ex24](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_24.py): 
 
+<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/24_1.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/24_2.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/24_3.png" width="200"> 
