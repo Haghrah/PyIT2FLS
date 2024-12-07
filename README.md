@@ -186,7 +186,11 @@ So, please update your PyIT2FLS to the latest version.
 
 * [Ex14](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_14.py): MIMO Type 1 TSK Fuzzy Logic System.
 
+<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/14_1.png" width="200">
 
+<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/14_2.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/14_3.png" width="200">
+
+<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/14_4.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/14_5.png" width="200">
 
 * [Ex15](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_15.py): Using emphasize function for type 1 and interval type 2 fuzzy sets.
 
