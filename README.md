@@ -44,15 +44,26 @@ Thank you for your contribution, which helps maintain and improve this project!
 ## Versions
 
 ### Features coming up in the next version
-- Supporting machine learning models based on fuzzy systems.
-    - T1TSK (Almost done!)
-    - T1Mamdani (Almost done!)
-    - IT2TSK (Almost done!)
-    - IT2Mamdani (Almost done!)
-- Enhancing the documentations and publishing it over readthedocs. (Almost done!)
-- Exception handling.
 - Supporting Generalized Type 2 Fuzzy Sets and Systems.
-- Some functions were deprecated in SciPy! (Almost done!)
+
+### Some notes on version 0.8.0
+- Starting initial support of machine learning models based on fuzzy systems. Based on 
+  optimization for execution time or linguistic interpretability of the results, these 
+  models may have different computational efficiency. 
+    - Type 1 TSK Model
+    - Type 1 Mamdani Model
+    - Interval Type 2 TSK Model
+    - Interval Type 2 Mamdani Model
+- Starting initial support of Takagi-Sugeno model, widely used in dynamic systems control.
+    - Type 1 Takagi-Sugeno System
+    - Interval Type 2 Takagi-Sugeno Model
+- Documentations have been enhanced and published over [readthedocs](https://pyit2fls.readthedocs.io/en/latest/). 
+  More enhancement are on the way with more tutorials and examples.
+- Some functions were deprecated in SciPy, NumPy, and Matplotlib. There is updates 
+  concerning this issue.
+- More exception handling have been done in the new version of the PyIT2FLS, but not 
+  completed, yet.
+
 
 ### Some notes on version 0.7.9
 - Some bugs (concerning EIASC algorithm) have been fixed in this version.
