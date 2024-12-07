@@ -100,12 +100,12 @@ def cost_func(x):
 
 
 def solution_generator():
-    return 1.5 * np.random.rand(12 * 3)
+    return 3.5 * (np.random.rand(12 * 3) - 0.5)
 
 def velocity_generator():
-    return 2.5 * np.random.rand(12 * 3)
+    return 6.0 * (np.random.rand(12 * 3) - 0.5)
 
-mySolver = PyIT2FLSPSO.PyPSO(cost_func, 100, 100, solution_generator, velocity_generator)
+mySolver = PyIT2FLSPSO.PyPSO(cost_func, 200, 100, solution_generator, velocity_generator)
 t = time()
 conv = mySolver.solve()
 print(time() - t)

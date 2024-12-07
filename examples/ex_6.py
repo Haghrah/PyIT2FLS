@@ -6,10 +6,10 @@ Created on Wed Mar 11 13:09:12 2020
 @author: arslan
 """
 
-from pyit2fls import IT2FS, tri_mf, const_mf, rtri_mf, ltri_mf, \
-    trapezoid_mf, gaussian_mf, IT2FS_Gaussian_UncertMean, \
-    IT2FS_Gaussian_UncertStd, R_IT2FS_Gaussian_UncertStd, \
-    L_IT2FS_Gaussian_UncertStd, IT2FS_plot
+from pyit2fls import (IT2FS, tri_mf, const_mf, rtri_mf, ltri_mf, 
+    trapezoid_mf, gaussian_mf, IT2FS_Gaussian_UncertMean, 
+    IT2FS_Gaussian_UncertStd, R_IT2FS_Gaussian_UncertStd, 
+    L_IT2FS_Gaussian_UncertStd, IT2FS_plot)
 from numpy import linspace
 
 domain = linspace(0, 1, 1001)

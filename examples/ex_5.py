@@ -6,26 +6,24 @@ Created on Thu Jun 20 20:19:08 2019
 @author: arslan
 """
 
-from matplotlib.pyplot import figure, plot, legend, grid, show, xlabel, \
-                              ylabel, savefig
-from pyit2fls import IT2FS_Gaussian_UncertStd, IT2Mamdani, \
-                     min_t_norm, product_t_norm, max_s_norm, IT2FS_plot
-from numpy import linspace, array, trapezoid, where
-from numpy import abs as npabs
-from numpy import max as npmax
+import matplotlib.pyplot as plt
+from pyit2fls import (IT2FS_Gaussian_UncertStd, IT2Mamdani, 
+                     min_t_norm, product_t_norm, max_s_norm, IT2FS_plot, )
+from numpy import (linspace, array, where, abs, max, )
+from scipy.integrate import (trapezoid, )
 from ddeintlib import ddeint
 
 # %%
 def ITAE(a, b, t):
-    return trapezoid(t * npabs(a - b), t)
+    return trapezoid(t * abs(a - b), t)
 
 def os(y):
-    return npabs(npmax(y) - y[-1])
+    return abs(max(y) - y[-1])
 
 def ts(y, t):
     ss = y[-1]
     tol = 0.02 * ss
-    yy = npabs(y - ss)[::-1]
+    yy = abs(y - ss)[::-1]
     return t[t.size - where(yy>tol)[0][0]]
 
 # %%
@@ -176,19 +174,19 @@ y_it2fpid_NT = ddeint(model_fuzzy, [g1, g2], tt,
 
 ref = array([u(t) for t in tt])
 
-figure()
-plot(tt, ref, label="Reference")
-plot(tt, y_it2fpid_KM[:,0], label="KM", linewidth=1.)
-plot(tt, y_it2fpid_EIASC[:,0], label="EIASC", linewidth=1.)
-plot(tt, y_it2fpid_WM[:,0], label="WM", linewidth=1.)
-plot(tt, y_it2fpid_BMM[:,0], label="BMM", linewidth=1.)
-plot(tt, y_it2fpid_NT[:,0], label="NT", linewidth=1.)
-legend()
-xlabel("Time (s)")
-ylabel("System response")
-grid(True)
-savefig("delay_pid_case1_comp.pdf", format="pdf", dpi=300, bbox_inches="tight")
-show()
+plt.figure()
+plt.plot(tt, ref, label="Reference")
+plt.plot(tt, y_it2fpid_KM[:,0], label="KM", linewidth=1.)
+plt.plot(tt, y_it2fpid_EIASC[:,0], label="EIASC", linewidth=1.)
+plt.plot(tt, y_it2fpid_WM[:,0], label="WM", linewidth=1.)
+plt.plot(tt, y_it2fpid_BMM[:,0], label="BMM", linewidth=1.)
+plt.plot(tt, y_it2fpid_NT[:,0], label="NT", linewidth=1.)
+plt.legend()
+plt.xlabel("Time (s)")
+plt.ylabel("System response")
+plt.grid(True)
+plt.savefig("delay_pid_case1_comp.pdf", format="pdf", dpi=300, bbox_inches="tight")
+plt.show()
 
 
 
