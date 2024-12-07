@@ -214,7 +214,13 @@ So, please update your PyIT2FLS to the latest version.
 
 * [Ex19](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_19.py): 
 
+<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/19_1.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/19_2.png" width="200"> 
 
+<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/19_3.png" width="400"> 
+
+<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/19_4.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/19_5.png" width="200"> 
+
+<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/19_6.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/19_7.png" width="200"> 
 
 * [Ex20](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_20.py): 
 
