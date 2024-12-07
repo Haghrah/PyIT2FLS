@@ -651,11 +651,60 @@ class Linear_System:
 
 class T1_TS_Model:
     """
-    A class for creating type 1 Takagi-Sugeno models.
+    A class for creating type 1 Takagi-Sugeno models. Unlike the *T1TSK* class, 
+    which is a general purpose implementation, T1_TS_Model have been developed 
+    to be faster but less general. It needs more low-level configurations while 
+    dealing with it directly.
 
     .. rubric:: Parameters
 
+    Parameters of the constructor function:
+
+    mfList : list of list of membership functions
+
+        Membership functions describing each input of the TS system in each rule of 
+        the rule base.
+
+    mfParamsList : list of list of list of floats
+
+        List of parameters corresponded with mmbership functions describing each input 
+        of the TS system in each rule of the rule base.
+
+    systemList : list of Linear_System
+
+        List of antecedent of each rule as a linear system.
+
+    R : int
+
+        Number of the rules in the rule base of the system.
+
+    N : int
+
+        Number of the state variables of the systtem.
+
+    M : int
+
+        Number of the inputs of the system.
+
+    P : int
+
+        Number of the outputs of the system.
     
+    .. rubric:: Functions
+
+    d0 : 
+        
+        .
+    
+    __call__ : 
+        
+        .
+    
+    Y : 
+        
+        .
+
+
     """
     def __init__(self, mfList, mfParamsList, systemList, R, N, M, P):
         self.mfList = mfList
