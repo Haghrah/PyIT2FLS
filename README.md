@@ -115,54 +115,54 @@ So, please update your PyIT2FLS to the latest version.
 
 * [Ex1](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_1.py): Defining an Interval Type 2 Fuzzy Set (IT2FS).
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/1_1.png" width="200">
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/1_1.png" width="200"></p>
 
 * [Ex2](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_2.py): Using join and meet operators and plotting the outputs.
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/2_1.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/2_2.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/2_3.png" width="200">
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/2_1.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/2_2.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/2_3.png" width="200"></p>
 
 * [Ex3](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_3.py): Defining a simple (MIMO) IT2Mamdani.
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/3_1.png" width="200">
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/3_1.png" width="200"></p>
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/3_2.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/3_3.png" width="200">
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/3_2.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/3_3.png" width="200"></p>
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/3_4.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/3_5.png" width="200">
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/3_4.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/3_5.png" width="200"></p>
 
 * [Ex4](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_4.py): Prediction of the Mackey-Glass chaotic time series with PSO-based parameter tuning.
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/4_2.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/4_4.png" width="200">
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/4_2.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/4_4.png" width="200"></p>
 
 * [Ex5](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_5.py): Designing Interval Type 2 Fuzzy PID (IT2FPID) controller for a time-delay linear system.
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/5_1.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/5_2.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/5_3.png" width="200"> 
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/5_1.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/5_2.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/5_3.png" width="200"></p>
 
 * [Ex6](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_6.py): Creating and plotting some different types of interval type two fuzzy sets.
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/6_1.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/6_2.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/6_3.png" width="200"> 
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/6_1.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/6_2.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/6_3.png" width="200"></p>
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/6_4.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/6_5.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/6_6.png" width="200"> 
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/6_4.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/6_5.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/6_6.png" width="200"></p>
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/6_7.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/6_8.png" width="200">
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/6_7.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/6_8.png" width="200"></p>
 
 
 * [Ex7](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_7.py): Defining a simple multi-input multi-output IT2 TSK FLS.
 
 * [Ex8](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_8.py): Defining a multi-input multi-output IT2 TSK FLS and plotting the resulting 3D output planes.
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/8_1.png" width="600"> 
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/8_1.png" width="600"></p>
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/8_2.png" width="600"> 
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/8_2.png" width="600"></p>
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/8_3.png" width="300"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/8_4.png" width="300"> 
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/8_3.png" width="300"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/8_4.png" width="300"></p>
 
 * [Ex9](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_9.py): Defining a multi-input multi-output IT2FLS with different domains for each of input and output variables, and plotting the output surfaces of the system.
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/9_1.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/9_2.png" width="200"> 
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/9_1.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/9_2.png" width="200"></p>
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/9_3.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/9_4.png" width="200"> 
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/9_3.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/9_4.png" width="200"></p>
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/9_5.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/9_6.png" width="200"> 
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/9_5.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/9_6.png" width="200"></p>
 
 * [Ex10](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_10.py): Generating random rule-bases.
 
@@ -170,33 +170,33 @@ So, please update your PyIT2FLS to the latest version.
 
 * [Ex11](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_11.py): Using six different t-norms with meet operator.
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/11_1.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/11_2.png" width="200"> 
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/11_1.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/11_2.png" width="200"></p>
 
 * [Ex12](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_12.py): Using six different s-norms with join operator.
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/12_1.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/12_2.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/12_3.png" width="200"> 
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/12_1.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/12_2.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/12_3.png" width="200"></p>
 
 * [Ex13](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_13.py): MIMO Type 1 Mamdani Fuzzy Logic System.
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/13_1.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/13_2.png" width="200">
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/13_1.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/13_2.png" width="200"></p>
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/13_3.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/13_4.png" width="200">
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/13_3.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/13_4.png" width="200"></p>
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/13_5.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/13_6.png" width="200">
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/13_5.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/13_6.png" width="200"></p>
 
 * [Ex14](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_14.py): MIMO Type 1 TSK Fuzzy Logic System.
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/14_1.png" width="600">
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/14_1.png" width="600"></p>
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/14_2.png" width="600"> 
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/14_2.png" width="600"></p>
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/14_3.png" width="300">
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/14_3.png" width="300"></p>
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/14_4.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/14_5.png" width="200">
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/14_4.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/14_5.png" width="200"></p>
 
 * [Ex15](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_15.py): Using emphasize function for type 1 and interval type 2 fuzzy sets.
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/15_1.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/15_2.png" width="200">
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/15_1.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/15_2.png" width="200"></p>
 
 * [Ex16](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_16.py): Example concerning fuzzy matrices.
 
@@ -204,23 +204,23 @@ So, please update your PyIT2FLS to the latest version.
 
 * [Ex18](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_18.py): 
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/18_1.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/18_2.png" width="200"> 
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/18_1.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/18_2.png" width="200"></p>
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/18_3.png" width="400"> 
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/18_3.png" width="400"></p>
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/18_4.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/18_5.png" width="200"> 
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/18_4.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/18_5.png" width="200"></p>
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/18_6.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/18_7.png" width="200"> 
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/18_6.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/18_7.png" width="200"></p>
 
 * [Ex19](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_19.py): 
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/19_1.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/19_2.png" width="200"> 
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/19_1.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/19_2.png" width="200"></p>
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/19_3.png" width="400"> 
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/19_3.png" width="400"></p>
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/19_4.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/19_5.png" width="200"> 
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/19_4.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/19_5.png" width="200"></p>
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/19_6.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/19_7.png" width="200"> 
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/19_6.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/19_7.png" width="200"></p>
 
 * [Ex20](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_20.py): 
 
@@ -232,12 +232,12 @@ So, please update your PyIT2FLS to the latest version.
 
 * [Ex22](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_22.py): 
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/22_1.png" width="200"> 
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/22_1.png" width="200"></p>
 
 * [Ex23](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_23.py): 
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/23_1.png" width="200"> 
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/23_1.png" width="200"></p>
 
 * [Ex24](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_24.py): 
 
-<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/24_1.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/24_2.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/24_3.png" width="200"> 
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/24_1.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/24_2.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/24_3.png" width="200"></p>
