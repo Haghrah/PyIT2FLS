@@ -123,7 +123,11 @@ So, please update your PyIT2FLS to the latest version.
 
 * [Ex3](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_3.py): Defining a simple (MIMO) IT2Mamdani.
 
+<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/3_1.png" width="200">
 
+<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/3_2.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/3_3.png" width="200">
+
+<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/3_4.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/3_5.png" width="200">
 
 * [Ex4](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_4.py): Prediction of the Mackey-Glass chaotic time series with PSO-based parameter tuning.
 
