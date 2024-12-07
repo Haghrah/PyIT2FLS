@@ -31,10 +31,17 @@ M4 = join(domain, A4, A5, drastic_s_norm)
 M5 = join(domain, A5, A6, nilpotent_maximum_s_norm)
 M6 = join(domain, A6, A7, einstein_sum_s_norm)
 
-IT2FS_plot(M1, M2, M3, M4, M5, M6, 
-           legends=["Maximum (1, 2)", "Probabilistic Sum (2, 3)", 
-                    "Bounded Sum (3, 4)", "Drastic (4, 5)", 
-                    "Nilpotent Maximum (5, 6)", "Einstein Sum (6, 7)"])
+IT2FS_plot(M1, M3, M5, 
+           legends=["Maximum (1, 2)", 
+                    "Bounded Sum (3, 4)",
+                    "Nilpotent Maximum (5, 6)", ], )
+
+IT2FS_plot(M2, M4, M6, 
+           legends=["Probabilistic Sum (2, 3)", 
+                    "Drastic (4, 5)", 
+                    "Einstein Sum (6, 7)"], )
+
+
 
 
 
