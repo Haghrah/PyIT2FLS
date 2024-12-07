@@ -64,6 +64,11 @@ Thank you for your contribution, which helps maintain and improve this project!
 - More exception handling have been done in the new version of the PyIT2FLS, but not 
   completed, yet.
 
+**While we strive for quality and reliability, no software is perfect. If you encounter any issues or have suggestions, we warmly welcome your feedback.**
+
+**Your input is invaluable and helps us continue improving PyIT2FLS for the community. Please report any bugs or share your thoughts via opening a new issue.**
+
+**Thank you for your support and for being part of our journey to make PyIT2FLS even better!**
 
 ### Some notes on version 0.7.9
 - Some bugs (concerning EIASC algorithm) have been fixed in this version.
@@ -105,14 +110,6 @@ Thank you for your contribution, which helps maintain and improve this project!
 - Some bugs have been fixed in this version especially in type reduction algorithms. I would like to say thanks to Dr. K.B Badri Narayanan for reporting the errors.
 - Some new IT2FSs have been added to the toolkit.
 - In previous versions, the height of the IT2FS_Gaussian_UncertStd and IT2FS_Gaussian_UncertMean IT2FSs was fixed to 1, by default. But in the new version, user must give the height value in the parameters list as the last element.
-
-## Docstrings
-Further information about the functions and classes in the PyIT2FLS are accessible by docstrings. After importing a function or class, they can be seen by calling the help function. For example:
-
-```python
->>> from pyit2fls import IT2FS_Gaussian_UncertStd
->>> help(IT2FS_Gaussian_UncertStd)
-```
 
 ## Examples
 There are some examples provided along with the toolkit which are as below:
