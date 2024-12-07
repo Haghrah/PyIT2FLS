@@ -119,7 +119,7 @@ So, please update your PyIT2FLS to the latest version.
 
 * [Ex2](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_2.py): Using join and meet operators and plotting the outputs.
 
-
+<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/2_1.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/2_2.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/2_3.png" width="200">
 
 * [Ex3](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_3.py): Defining a simple (MIMO) IT2Mamdani.
 
