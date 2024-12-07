@@ -508,57 +508,141 @@ class Linear_System:
         return f"Linear system with\nA: {str(self.A)}\nB: {str(self.B)}\nC: {str(self.C)}\nD: {str(self.D)}"
 
     def __add__(self, other):
+        """
+        Simple element-wise addition for all system matrics to form a new linear system. 
+
+        .. rubric:: Parameters
+
+        other : Linear_System
+
+            The other linear system to be added.
+        """
         try:
             return Linear_System(self.A + other.A, self.B + other.B, self.C + other.C, self.D + other.D)
         except:
             raise TypeError("Size inconsistency!")
 
     def __sub__(self, other):
+        """
+        Simple element-wise subtraction for all system matrics to form a new linear system. 
+
+        .. rubric:: Parameters
+
+        other : Linear_System
+
+            The other linear system to be subtracted.
+        """
         try:
             return Linear_System(self.A - other.A, self.B - other.B, self.C - other.C, self.D - other.D)
         except:
             raise TypeError("Size inconsistency!")
     
-    def __neg__(self, other):
+    def __neg__(self, ):
+        """
+        Simple element-wise negation for all system matrics to form a new linear system. 
+        """
         return Linear_System(-self.A, -self.B, -self.C, -self.D)
 
     def __mul__(self, other):
+        """
+        Simple element-wise multiplication for all system matrics to form a new linear system. 
+
+        .. rubric:: Parameters
+
+        other : int or float
+
+            The number to be multiplicated.
+        """
         if isinstance(other, (int, float, )):
             return Linear_System(other * self.A, other * self.B, other * self.C, other * self.D)
         else:
             raise TypeError("Unsupported operand type for *!")
     
     def __rmul__(self, other):
+        """
+        Simple element-wise right-side multiplication for all system matrics to form a new linear system. 
+
+        .. rubric:: Parameters
+
+        other : int or float
+
+            The number to be multiplicated.
+        """
         if isinstance(other, (int, float, )):
             return Linear_System(other * self.A, other * self.B, other * self.C, other * self.D)
         else:
             raise TypeError("Unsupported operand type for *!")
     
     def __truediv__(self, other):
+        """
+        Simple element-wise true division for all system matrics to form a new linear system. 
+
+        .. rubric:: Parameters
+
+        other : int or float
+
+            The number to be used in division.
+        """
         if isinstance(other, (int, float, )):
             return Linear_System(self.A / other, self.B / other, self.C / other, self.D / other)
         else:
             raise TypeError("Unsupported operand type for /!")
     
     def __isub__(self, other):
+        """
+        Simple element-wise subtraction for all system matrics to form a new linear system. 
+
+        .. rubric:: Parameters
+
+        other : Linear_System
+
+            The other linear system to be subtracted.
+        """
         try:
             return Linear_System(self.A - other.A, self.B - other.B, self.C - other.C, self.D - other.D)
         except:
             raise TypeError("Size inconsistency!")
 
     def __iadd__(self, other):
+        """
+        Simple element-wise addition for all system matrics to form a new linear system. 
+
+        .. rubric:: Parameters
+
+        other : Linear_System
+
+            The other linear system to be added.
+        """
         try:
             return Linear_System(self.A + other.A, self.B + other.B, self.C + other.C, self.D + other.D)
         except:
             raise TypeError("Size inconsistency!")
 
     def __imul__(self, other):
+        """
+        Simple element-wise multiplication for all system matrics to form a new linear system. 
+
+        .. rubric:: Parameters
+
+        other : int or float
+
+            The number to be multiplicated.
+        """
         if isinstance(other, (int, float, )):
             return Linear_System(other * self.A, other * self.B, other * self.C, other * self.D)
         else:
             raise TypeError("Unsupported operand type for *!")
 
     def __idiv__(self, other):
+        """
+        Simple element-wise division for all system matrics to form a new linear system. 
+
+        .. rubric:: Parameters
+
+        other : int or float
+
+            The number to be used in division.
+        """
         if isinstance(other, (int, float, )):
             return Linear_System(self.A / other, self.B / other, self.C / other, self.D / other)
         else:
