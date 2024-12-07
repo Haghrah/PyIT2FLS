@@ -6,48 +6,48 @@ Created on Fri Nov 27 22:25:30 2020
 @author: arslan
 """
 
-from numpy import linspace, meshgrid, zeros
-from pyit2fls import T1FS, T1Mamdani, T1FS_plot, gaussian_mf
+from numpy import (linspace, meshgrid, zeros, )
+from pyit2fls import (T1FS, T1Mamdani, T1FS_plot, gaussian_mf, )
 from mpl_toolkits import mplot3d
 import matplotlib.pyplot as plt
 from matplotlib import cm
-from matplotlib.ticker import LinearLocator, FormatStrFormatter
+from matplotlib.ticker import (LinearLocator, FormatStrFormatter, )
 
 # Defining the domain of the input variable x1.
-domain1 = linspace(1., 2., 101)
+domain1 = linspace(1., 2., 201)
 
 # Defining the domain of the input variable x2.
-domain2 = linspace(2., 3., 101)
+domain2 = linspace(2., 3., 201)
 
 # Defining the domain of the output variable y1.
-domain3 = linspace(3., 4., 101)
+domain3 = linspace(3., 4., 201)
 
 # Defining the domain of the output variable y2.
-domain4 = linspace(4., 5., 101)
+domain4 = linspace(4., 5., 201)
 
-SMALL1  = T1FS(domain1, gaussian_mf, [1.0, 0.15, 1.])
-MEDIUM1 = T1FS(domain1, gaussian_mf, [1.5, 0.15, 1.])
-LARGE1  = T1FS(domain1, gaussian_mf, [2.0, 0.15, 1.])
+SMALL1  = T1FS(domain1, gaussian_mf, [1.0, 0.3, 1.])
+MEDIUM1 = T1FS(domain1, gaussian_mf, [1.5, 0.2, 1.])
+LARGE1  = T1FS(domain1, gaussian_mf, [2.0, 0.5, 1.])
 
-# T1FS_plot(SMALL1, MEDIUM1, LARGE1, legends=["Small", "Medium", "Large"])
+T1FS_plot(SMALL1, MEDIUM1, LARGE1, legends=["Small", "Medium", "Large"])
 
-SMALL2  = T1FS(domain2, gaussian_mf, [2.0, 0.15, 1.])
-MEDIUM2 = T1FS(domain2, gaussian_mf, [2.5, 0.15, 1.])
-LARGE2  = T1FS(domain2, gaussian_mf, [3.0, 0.15, 1.])
+SMALL2  = T1FS(domain2, gaussian_mf, [2.0, 0.5, 1.])
+MEDIUM2 = T1FS(domain2, gaussian_mf, [2.5, 0.2, 1.])
+LARGE2  = T1FS(domain2, gaussian_mf, [3.0, 0.3, 1.])
 
-# T1FS_plot(SMALL2, MEDIUM2, LARGE2, legends=["Small", "Medium", "Large"])
+T1FS_plot(SMALL2, MEDIUM2, LARGE2, legends=["Small", "Medium", "Large"])
 
-LOW1 = T1FS(domain3, gaussian_mf, [3.0, 0.1, 1.])
-HIGH1 = T1FS(domain3, gaussian_mf, [4.0, 0.1, 1.])
+LOW1 = T1FS(domain3, gaussian_mf, [3.0, 0.3, 1.])
+HIGH1 = T1FS(domain3, gaussian_mf, [4.0, 0.6, 1.])
 
-# T1FS_plot(LOW1, HIGH1, legends=["Low", "High"])
+T1FS_plot(LOW1, HIGH1, legends=["Low", "High"])
 
-LOW2 = T1FS(domain4, gaussian_mf, [4.0, 0.1, 1.])
-HIGH2 = T1FS(domain4, gaussian_mf, [5.0, 0.1, 1.])
+LOW2 = T1FS(domain4, gaussian_mf, [4.0, 0.6, 1.])
+HIGH2 = T1FS(domain4, gaussian_mf, [5.0, 0.3, 1.])
 
-# T1FS_plot(LOW2, HIGH2, legends=["Low", "High"])
+T1FS_plot(LOW2, HIGH2, legends=["Low", "High"])
 
-SYS = T1Mamdani(engine="Minimum", defuzzification="CoG")
+SYS = T1Mamdani(engine="Product", defuzzification="CoG")
 SYS.add_input_variable("x1")
 SYS.add_input_variable("x2")
 SYS.add_output_variable("y1")
@@ -55,12 +55,12 @@ SYS.add_output_variable("y2")
 
 SYS.add_rule([("x1", SMALL1), ("x2", SMALL2)], [("y1", LOW1), ("y2", LOW2)])
 SYS.add_rule([("x1", SMALL1), ("x2", MEDIUM2)], [("y1", LOW1), ("y2", HIGH2)])
-SYS.add_rule([("x1", SMALL1), ("x2", LARGE2)], [("y1", LOW1), ("y2", HIGH2)])
-SYS.add_rule([("x1", MEDIUM1), ("x2", SMALL2)], [("y1", LOW1), ("y2", LOW2)])
+SYS.add_rule([("x1", SMALL1), ("x2", LARGE2)], [("y1", LOW1), ("y2", LOW2)])
+SYS.add_rule([("x1", MEDIUM1), ("x2", SMALL2)], [("y1", HIGH1), ("y2", LOW2)])
 SYS.add_rule([("x1", MEDIUM1), ("x2", MEDIUM2)], [("y1", LOW1), ("y2", HIGH2)])
-SYS.add_rule([("x1", MEDIUM1), ("x2", LARGE2)], [("y1", HIGH1), ("y2", HIGH2)])
-SYS.add_rule([("x1", LARGE1), ("x2", SMALL2)], [("y1", HIGH1), ("y2", LOW2)])
-SYS.add_rule([("x1", LARGE1), ("x2", MEDIUM2)], [("y1", HIGH1), ("y2", HIGH2)])
+SYS.add_rule([("x1", MEDIUM1), ("x2", LARGE2)], [("y1", HIGH1), ("y2", LOW2)])
+SYS.add_rule([("x1", LARGE1), ("x2", SMALL2)], [("y1", HIGH1), ("y2", HIGH2)])
+SYS.add_rule([("x1", LARGE1), ("x2", MEDIUM2)], [("y1", LOW1), ("y2", LOW2)])
 SYS.add_rule([("x1", LARGE1), ("x2", LARGE2)], [("y1", HIGH1), ("y2", HIGH2)])
 
 X1, X2 = meshgrid(domain1, domain2)

@@ -178,7 +178,11 @@ So, please update your PyIT2FLS to the latest version.
 
 * [Ex13](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_13.py): MIMO Type 1 Mamdani Fuzzy Logic System.
 
+<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/13_1.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/13_2.png" width="200">
 
+<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/13_3.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/13_4.png" width="200">
+
+<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/13_5.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/13_6.png" width="200">
 
 * [Ex14](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_14.py): MIMO Type 1 TSK Fuzzy Logic System.
 
