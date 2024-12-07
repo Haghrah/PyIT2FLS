@@ -21,7 +21,11 @@ Functions
 
 .. autofunction:: pyit2fls.meet
 
+.. autofunction:: pyit2fls.Meet
+
 .. autofunction:: pyit2fls.join
+
+.. autofunction:: pyit2fls.Join
 
 .. autofunction:: pyit2fls.Centroid
 

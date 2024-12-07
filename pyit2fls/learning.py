@@ -651,6 +651,10 @@ class Linear_System:
 
 class T1_TS_Model:
     """
+    A class for creating type 1 Takagi-Sugeno models.
+
+    .. rubric:: Parameters
+
     
     """
     def __init__(self, mfList, mfParamsList, systemList, R, N, M, P):
