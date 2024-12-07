@@ -59,7 +59,7 @@ Thank you for your contribution, which helps maintain and improve this project!
     - Interval Type 2 Takagi-Sugeno Model
 - Documentations have been enhanced and published over [readthedocs](https://pyit2fls.readthedocs.io/en/latest/). 
   More enhancement are on the way with more tutorials and examples.
-- Some functions were deprecated in SciPy, NumPy, and Matplotlib. There is updates 
+- Some functions were deprecated in SciPy, NumPy, and Matplotlib. There are updates 
   concerning this issue.
 - More exception handling have been done in the new version of the PyIT2FLS, but not 
   completed, yet.
