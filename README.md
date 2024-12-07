@@ -63,6 +63,7 @@ Thank you for your contribution, which helps maintain and improve this project!
   concerning this issue.
 - More exception handling have been done in the new version of the PyIT2FLS, but not 
   completed, yet.
+- Minor enhancements have been made in plotting functions.
 
 While we strive for quality and reliability, no software is perfect. If you encounter any issues or have suggestions, we warmly welcome your feedback. Your input is invaluable and helps us continue improving PyIT2FLS for the community. Please report any bugs or share your thoughts via opening a new issue. Thank you for your support and for being part of our journey to make PyIT2FLS even better!
 
