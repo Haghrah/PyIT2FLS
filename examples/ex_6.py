@@ -34,26 +34,26 @@ Trapezoid = IT2FS(domain,
                   trapezoid_mf, [0.2, 0.4, 0.6, 0.8, 0.8], 
                   check_set=True)
 
-Trapezoid.plot(legend_text="Trapezoid IT2FS")
+Trapezoid.plot(legends="Trapezoid IT2FS")
 
 Gaussian = IT2FS(domain, 
                  gaussian_mf, [0.5, 0.1, 1.0], 
                  gaussian_mf, [0.5, 0.05, 0.8], 
                  check_set=True)
 
-Gaussian.plot(legend_text="Gaussian IT2FS")
+Gaussian.plot(legends="Gaussian IT2FS")
 
 Gaussian_UncertMean = IT2FS_Gaussian_UncertMean(domain, [0.5, 0.1, 0.1, 1.])
-Gaussian_UncertMean.plot(legend_text="Gaussian IT2FS with Uncertain Mean")
+Gaussian_UncertMean.plot(legends="Gaussian IT2FS with Uncertain Mean")
 
 Gaussian_UncertStd = IT2FS_Gaussian_UncertStd(domain, [0.5, 0.1, 0.05, 0.75])
-Gaussian_UncertStd.plot(legend_text="Gaussian IT2FS with Uncertain Std")
+Gaussian_UncertStd.plot(legends="Gaussian IT2FS with Uncertain Std")
 
 RGaussian_UncertStd = R_IT2FS_Gaussian_UncertStd(domain, [0.5, 0.1, 0.05, 0.8])
-RGaussian_UncertStd.plot(legend_text="Right Gaussian IT2FS with Uncertain Std")
+RGaussian_UncertStd.plot(legends="Right Gaussian IT2FS with Uncertain Std")
 
 LGaussian_UncertStd = L_IT2FS_Gaussian_UncertStd(domain, [0.5, 0.1, 0.05, 0.8])
-LGaussian_UncertStd.plot(legend_text="Left Gaussian IT2FS with Uncertain Std")
+LGaussian_UncertStd.plot(legends="Left Gaussian IT2FS with Uncertain Std")
 
 
 
