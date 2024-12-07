@@ -194,15 +194,11 @@ So, please update your PyIT2FLS to the latest version.
 
 * [Ex15](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_15.py): Using emphasize function for type 1 and interval type 2 fuzzy sets.
 
-
+<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/15_1.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/15_2.png" width="200">
 
 * [Ex16](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_16.py): Example concerning fuzzy matrices.
 
-
-
 * [Ex17](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_17.py): Defining random rules and random sets for IT2F classifier with three inputs and one output (Based on the request of one of the users).
-
-
 
 * [Ex18](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_18.py): 
 
