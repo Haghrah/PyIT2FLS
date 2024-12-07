@@ -509,7 +509,7 @@ class Linear_System:
 
     def __add__(self, other):
         """
-        Simple element-wise addition for all system matrics to form a new linear system. 
+        Simple element-wise addition for all system matrices to form a new linear system. 
 
         .. rubric:: Parameters
 
@@ -524,7 +524,7 @@ class Linear_System:
 
     def __sub__(self, other):
         """
-        Simple element-wise subtraction for all system matrics to form a new linear system. 
+        Simple element-wise subtraction for all system matrices to form a new linear system. 
 
         .. rubric:: Parameters
 
@@ -539,13 +539,13 @@ class Linear_System:
     
     def __neg__(self, ):
         """
-        Simple element-wise negation for all system matrics to form a new linear system. 
+        Simple element-wise negation for all system matrices to form a new linear system. 
         """
         return Linear_System(-self.A, -self.B, -self.C, -self.D)
 
     def __mul__(self, other):
         """
-        Simple element-wise multiplication for all system matrics to form a new linear system. 
+        Simple element-wise multiplication for all system matrices to form a new linear system. 
 
         .. rubric:: Parameters
 
@@ -560,7 +560,7 @@ class Linear_System:
     
     def __rmul__(self, other):
         """
-        Simple element-wise right-side multiplication for all system matrics to form a new linear system. 
+        Simple element-wise right-side multiplication for all system matrices to form a new linear system. 
 
         .. rubric:: Parameters
 
@@ -575,7 +575,7 @@ class Linear_System:
     
     def __truediv__(self, other):
         """
-        Simple element-wise true division for all system matrics to form a new linear system. 
+        Simple element-wise true division for all system matrices to form a new linear system. 
 
         .. rubric:: Parameters
 
@@ -590,7 +590,7 @@ class Linear_System:
     
     def __isub__(self, other):
         """
-        Simple element-wise subtraction for all system matrics to form a new linear system. 
+        Simple element-wise subtraction for all system matrices to form a new linear system. 
 
         .. rubric:: Parameters
 
@@ -605,7 +605,7 @@ class Linear_System:
 
     def __iadd__(self, other):
         """
-        Simple element-wise addition for all system matrics to form a new linear system. 
+        Simple element-wise addition for all system matrices to form a new linear system. 
 
         .. rubric:: Parameters
 
@@ -620,7 +620,7 @@ class Linear_System:
 
     def __imul__(self, other):
         """
-        Simple element-wise multiplication for all system matrics to form a new linear system. 
+        Simple element-wise multiplication for all system matrices to form a new linear system. 
 
         .. rubric:: Parameters
 
@@ -635,7 +635,7 @@ class Linear_System:
 
     def __idiv__(self, other):
         """
-        Simple element-wise division for all system matrics to form a new linear system. 
+        Simple element-wise division for all system matrices to form a new linear system. 
 
         .. rubric:: Parameters
 
