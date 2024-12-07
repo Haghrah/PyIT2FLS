@@ -131,7 +131,7 @@ So, please update your PyIT2FLS to the latest version.
 
 * [Ex4](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_4.py): Prediction of the Mackey-Glass chaotic time series with PSO-based parameter tuning.
 
-
+<img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/4_2.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/4_4.png" width="200">
 
 * [Ex5](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_5.py): Designing Interval Type 2 Fuzzy PID (IT2FPID) controller for a time-delay linear system.
 
