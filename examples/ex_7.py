@@ -6,19 +6,17 @@ Created on Fri Jun 19 13:22:01 2020
 @author: arslan
 """
 
-from pyit2fls import IT2TSK, IT2FS_Gaussian_UncertStd, IT2FS_plot, \
-                     product_t_norm, max_s_norm
+from pyit2fls import (IT2TSK, IT2FS_Gaussian_UncertStd, IT2FS_plot, \
+                     product_t_norm, max_s_norm, )
 
 from numpy import linspace
 from time import time
 
 domain = linspace(0., 1., 100)
 
-Small = IT2FS_Gaussian_UncertStd(domain, [0, 0.15, 0.1, 1.])
-Medium = IT2FS_Gaussian_UncertStd(domain, [0.5, 0.15, 0.1, 1.])
-Large = IT2FS_Gaussian_UncertStd(domain, [1., 0.15, 0.1, 1.])
-IT2FS_plot(Small, Medium, Large, title="Sets", 
-           legends=["Small", "Medium", "Large"])
+Small = IT2FS_Gaussian_UncertStd(domain, [0, 0.15, 0.05, 1.])
+Medium = IT2FS_Gaussian_UncertStd(domain, [0.5, 0.15, 0.05, 1.])
+Large = IT2FS_Gaussian_UncertStd(domain, [1., 0.15, 0.05, 1.])
 
 myIT2FLS = IT2TSK(product_t_norm, max_s_norm)
 

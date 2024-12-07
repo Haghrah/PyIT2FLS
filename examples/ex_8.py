@@ -7,12 +7,12 @@ Created on Thu Jul  2 11:35:28 2020
 """
 
 
-from pyit2fls import IT2TSK, IT2FS_Gaussian_UncertStd, IT2FS_plot, \
-                     product_t_norm, max_s_norm
+from pyit2fls import (IT2TSK, IT2FS_Gaussian_UncertStd, IT2FS_plot, \
+                     product_t_norm, max_s_norm, )
 from mpl_toolkits import mplot3d
 import matplotlib.pyplot as plt
 from matplotlib import cm
-from matplotlib.ticker import LinearLocator, FormatStrFormatter
+from matplotlib.ticker import (LinearLocator, FormatStrFormatter, )
 from numpy import linspace, meshgrid, zeros
 from time import time
 
