@@ -6,7 +6,7 @@ Created on Sat Jul 25 00:11:49 2020
 @author: arslan
 """
 
-from pyit2fls import Mamdani, IT2FS_Gaussian_UncertStd, IT2FS_plot, \
+from pyit2fls import IT2Mamdani, IT2FS_Gaussian_UncertStd, IT2FS_plot, \
                      min_t_norm, max_s_norm, crisp
 from numpy import linspace, meshgrid, zeros
 from mpl_toolkits import mplot3d
@@ -73,7 +73,7 @@ IT2FS_plot(Low2, High2,
             legends=["Low", "High"])
 
 # Defining the mamdani interval type 2 fuzzy logic system
-myIT2FLS = Mamdani(min_t_norm, max_s_norm)
+myIT2FLS = IT2Mamdani(min_t_norm, max_s_norm)
 
 # Adding the input variables to the myIT2FLS
 myIT2FLS.add_input_variable("x1")

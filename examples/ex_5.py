@@ -8,7 +8,7 @@ Created on Thu Jun 20 20:19:08 2019
 
 from matplotlib.pyplot import figure, plot, legend, grid, show, xlabel, \
                               ylabel, savefig
-from pyit2fls import IT2FS_Gaussian_UncertStd, IT2FLS, \
+from pyit2fls import IT2FS_Gaussian_UncertStd, IT2Mamdani, \
                      min_t_norm, product_t_norm, max_s_norm, IT2FS_plot
 from numpy import linspace, array, trapezoid, where
 from numpy import abs as npabs
@@ -54,52 +54,51 @@ IT2FS_plot(NB, NM, ZZ, PM, PB, legends=["Negative Big", "Negative Medium",
                                        "Zero", "Positive Medium", 
                                        "Positive Big"], filename="delay_pid_output_sets")
 
-it2fls = IT2FLS()
-it2fls.add_input_variable("I1")  # E
-it2fls.add_input_variable("I2")  # dot E
-it2fls.add_output_variable("O")
+def fuzzySystem(algorithm, algorithm_params=[]):
+    it2fls = IT2Mamdani(min_t_norm, max_s_norm, method="Centroid", 
+                        algorithm=algorithm, algorithm_params=algorithm_params)
+    it2fls.add_input_variable("I1")  # E
+    it2fls.add_input_variable("I2")  # dot E
+    it2fls.add_output_variable("O")
+    
+    it2fls.add_rule([("I1", N), ("I2", N)], [("O", NB)])
+    it2fls.add_rule([("I1", N), ("I2", Z)], [("O", NM)])
+    it2fls.add_rule([("I1", N), ("I2", P)], [("O", ZZ)])
+    it2fls.add_rule([("I1", Z), ("I2", N)], [("O", NM)])
+    it2fls.add_rule([("I1", Z), ("I2", Z)], [("O", ZZ)])
+    it2fls.add_rule([("I1", Z), ("I2", P)], [("O", NM)])
+    it2fls.add_rule([("I1", P), ("I2", N)], [("O", ZZ)])
+    it2fls.add_rule([("I1", P), ("I2", Z)], [("O", PM)])
+    it2fls.add_rule([("I1", P), ("I2", P)], [("O", PB)])
+    return it2fls
 
-it2fls.add_rule([("I1", N), ("I2", N)], [("O", NB)])
-it2fls.add_rule([("I1", N), ("I2", Z)], [("O", NM)])
-it2fls.add_rule([("I1", N), ("I2", P)], [("O", ZZ)])
-it2fls.add_rule([("I1", Z), ("I2", N)], [("O", NM)])
-it2fls.add_rule([("I1", Z), ("I2", Z)], [("O", ZZ)])
-it2fls.add_rule([("I1", Z), ("I2", P)], [("O", NM)])
-it2fls.add_rule([("I1", P), ("I2", N)], [("O", ZZ)])
-it2fls.add_rule([("I1", P), ("I2", Z)], [("O", PM)])
-it2fls.add_rule([("I1", P), ("I2", P)], [("O", PB)])
+it2fpid_KM = fuzzySystem("KM")
+it2fpid_EIASC = fuzzySystem("EIASC")
+it2fpid_WM = fuzzySystem("WM")
+it2fpid_BMM = fuzzySystem("BMM", algorithm_params=(0.5, 0.5))
+it2fpid_NT = fuzzySystem("NT")
 
 def eval_IT2FPID_KM(i1, i2):
-    c, TR = it2fls.evaluate({"I1":i1, "I2":i2},
-                        min_t_norm, max_s_norm, domain, method="Centroid", 
-                        algorithm="EKM")
+    c, TR = it2fpid_KM.evaluate({"I1":i1, "I2":i2})
     o = TR["O"]
     return (o[0] + o[1]) / 2
 
 def eval_IT2FPID_EIASC(i1, i2):
-    c, TR = it2fls.evaluate({"I1":i1, "I2":i2},
-                        min_t_norm, max_s_norm, domain, method="Centroid", 
-                        algorithm="EIASC")
+    c, TR = it2fpid_EIASC.evaluate({"I1":i1, "I2":i2})
     o = TR["O"]
     return (o[0] + o[1]) / 2
 
 def eval_IT2FPID_WM(i1, i2):
-    c, TR = it2fls.evaluate({"I1":i1, "I2":i2},
-                        min_t_norm, max_s_norm, domain, method="Centroid", 
-                        algorithm="WM")
+    c, TR = it2fpid_WM.evaluate({"I1":i1, "I2":i2})
     o = TR["O"]
     return (o[0] + o[1]) / 2
 
 def eval_IT2FPID_BMM(i1, i2):
-    c, y = it2fls.evaluate({"I1":i1, "I2":i2},
-                        min_t_norm, max_s_norm, domain, method="Centroid", 
-                        algorithm="BMM", algorithm_params=(0.5, 0.5))
+    c, y = it2fpid_BMM.evaluate({"I1":i1, "I2":i2})
     return y["O"]
 
 def eval_IT2FPID_NT(i1, i2):
-    c, y = it2fls.evaluate({"I1":i1, "I2":i2},
-                        min_t_norm, max_s_norm, domain, method="Centroid", 
-                        algorithm="NT")
+    c, y = it2fpid_NT.evaluate({"I1":i1, "I2":i2})
     return y["O"]
 
 # %% Overall system
@@ -113,15 +112,22 @@ def model_fuzzy(Y, t, K, T, L, Ka, Kb, Ke, Kd, eval_func):
     epsilon = 0.001
     
     y2 = Y[1](t)
-    y1d = Y[0](t - L)
-    y2d = Y[1](t - L)
-    e1 = u(t - L) - y1d
-    de1 = u_dot(t - L) - y2d
+    
+    e1 = u(t - L) - Y[0](t - L)
+    de1 = u_dot(t - L) - Y[1](t - L)
     xd1 = eval_func(min(max(Ke * e1, -1), 1), min(max(Kd * de1, -1), 1))
+    
+    
     e2 = u(t - L - epsilon) - Y[0](t - L - epsilon)
     de2 = u_dot(t - L - epsilon) - Y[1](t - L - epsilon)
     xd2 = eval_func(min(max(Ke * e2, -1), 1), min(max(Kd * de2, -1), 1))
+    
+    
+    
     dxd = (xd1 - xd2) / epsilon
+    
+    
+    
     return array([y2, (-1./T) * y2 + (K * Ka / T) * dxd + (K * Kb / T) * xd1])
 
 g1 = lambda t : 0
@@ -129,9 +135,9 @@ g2 = lambda t : 0
 
 # %%
 # Nominal
-#K = 1.
-#T = 1.
-#L = 0.2
+# K = 1.
+# T = 1.
+# L = 0.2
 
 # Perturbed 1.
 K = 1.3

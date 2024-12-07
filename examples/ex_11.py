@@ -6,7 +6,7 @@ Created on Sun Sep 13 10:24:56 2020
 @author: arslan
 """
 
-from pyit2fls import Mamdani, IT2FS_Gaussian_UncertStd, IT2FS_plot, \
+from pyit2fls import IT2Mamdani, IT2FS_Gaussian_UncertStd, IT2FS_plot, \
                      product_t_norm, max_s_norm, crisp
 from numpy import linspace, random, sin, cos, array
 
@@ -35,7 +35,7 @@ Y2Medium = IT2FS_Gaussian_UncertStd(domainY2, [0.5, 0.2, 0.1, 1.])
 Y2Large = IT2FS_Gaussian_UncertStd(domainY2, [1., 0.2, 0.1, 1.])
 # IT2FS_plot(Y2Small, Y2Medium, Y2Large)
 
-myIT2FLS = Mamdani(product_t_norm, max_s_norm, method="CoSet")
+myIT2FLS = IT2Mamdani(product_t_norm, max_s_norm, method="CoSet")
 myIT2FLS.add_input_variable("x1")
 myIT2FLS.add_input_variable("x2")
 myIT2FLS.add_output_variable("y1")

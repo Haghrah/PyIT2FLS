@@ -6,7 +6,7 @@ Created on Fri Jun 19 13:22:01 2020
 @author: arslan
 """
 
-from pyit2fls import TSK, IT2FS_Gaussian_UncertStd, IT2FS_plot, \
+from pyit2fls import IT2TSK, IT2FS_Gaussian_UncertStd, IT2FS_plot, \
                      product_t_norm, max_s_norm
 
 from numpy import linspace
@@ -20,7 +20,7 @@ Large = IT2FS_Gaussian_UncertStd(domain, [1., 0.15, 0.1, 1.])
 IT2FS_plot(Small, Medium, Large, title="Sets", 
            legends=["Small", "Medium", "Large"])
 
-myIT2FLS = TSK(product_t_norm, max_s_norm)
+myIT2FLS = IT2TSK(product_t_norm, max_s_norm)
 
 myIT2FLS.add_input_variable("x1")
 myIT2FLS.add_input_variable("x2")

@@ -7,7 +7,7 @@ Created on Sat May 18 13:13:55 2019
 """
 import numpy as np
 import matplotlib.pyplot as plt
-from pyit2fls import IT2FS_Gaussian_UncertStd, IT2FLS, min_t_norm, max_s_norm
+from pyit2fls import (IT2FS_Gaussian_UncertStd, IT2Mamdani, min_t_norm, max_s_norm, )
 import PyIT2FLSPSO
 from time import time
 
@@ -34,7 +34,8 @@ LearningSet = []
 for i in range(200, 200 + L):
     LearningSet.append([[mg[i], mg[i - 1], mg[i - 2]], mg[i + 1]])
 
-it2fls = IT2FLS()
+it2fls = IT2Mamdani(t_norm=min_t_norm, s_norm=max_s_norm,
+                    method="Height", algorithm="EIASC")
 it2fls.add_input_variable("A")
 it2fls.add_input_variable("B")
 it2fls.add_input_variable("C")
@@ -65,9 +66,7 @@ def calculate(x, i):
     it2fls.rules[1] = ([("A", A2), ("B", B2), ("C", C2)], [("O", O2)])
     it2fls.rules[2] = ([("A", A3), ("B", B3), ("C", C3)], [("O", O3)])
     
-    tr = it2fls.evaluate({"A":i[0], "B":i[1], "C":i[2]}, 
-                        min_t_norm, max_s_norm, domain, method="Height", 
-                        algorithm="EIASC")
+    tr = it2fls.evaluate({"A":i[0], "B":i[1], "C":i[2]})
     o = tr["O"]
     return (o[0] + o[1]) / 2
 
@@ -94,9 +93,7 @@ def cost_func(x):
     
     err = 0
     for L in LearningSet:
-        tr = it2fls.evaluate({"A":L[0][0], "B":L[0][1], "C":L[0][2]}, 
-                            min_t_norm, max_s_norm, domain, method="Height", 
-                            algorithm="EIASC")
+        tr = it2fls.evaluate({"A":L[0][0], "B":L[0][1], "C":L[0][2]})
         o = tr["O"]
         err += ((o[0] + o[1]) / 2 - L[1]) ** 2
     return err / len(LearningSet)
@@ -106,7 +103,7 @@ def solution_generator():
     return 1.5 * np.random.rand(12 * 3)
 
 def velocity_generator():
-    return 0.25 * np.random.rand(12 * 3)
+    return 2.5 * np.random.rand(12 * 3)
 
 mySolver = PyIT2FLSPSO.PyPSO(cost_func, 100, 100, solution_generator, velocity_generator)
 t = time()

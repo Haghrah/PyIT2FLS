@@ -7,7 +7,7 @@ Created on Thu Jul  2 11:35:28 2020
 """
 
 
-from pyit2fls import TSK, IT2FS_Gaussian_UncertStd, IT2FS_plot, \
+from pyit2fls import IT2TSK, IT2FS_Gaussian_UncertStd, IT2FS_plot, \
                      product_t_norm, max_s_norm
 from mpl_toolkits import mplot3d
 import matplotlib.pyplot as plt
@@ -64,7 +64,7 @@ Big = IT2FS_Gaussian_UncertStd(domain, [1., 0.15, 0.1, 1.])
 # IT2FS_plot(Small, Big, title="Sets", 
 #            legends=["Small", "Big"])
 
-myIT2FLS = TSK(product_t_norm, max_s_norm)
+myIT2FLS = IT2TSK(product_t_norm, max_s_norm)
 
 myIT2FLS.add_input_variable("x1")
 myIT2FLS.add_input_variable("x2")
