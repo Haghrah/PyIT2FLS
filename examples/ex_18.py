@@ -18,7 +18,7 @@ X = array(X)
 N = 2
 M = 4
 myTSK = T1TSK_ML(N, M, (-4., 4.), algorithm="PSO", 
-                 algorithm_params=[200, 200, 0.3, 0.3, 2.4])
+                 algorithm_params=[200, 200, 0.3, 0.3, 1.8])
 print(myTSK.fit(X, y))
 
 x1, x2 = meshgrid(X1, X2)
