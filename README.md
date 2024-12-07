@@ -47,9 +47,7 @@ Thank you for your contribution, which helps maintain and improve this project!
 - Supporting Generalized Type 2 Fuzzy Sets and Systems.
 
 ### Some notes on version 0.8.0
-- Starting initial support of machine learning models based on fuzzy systems. Based on 
-  optimization for execution time or linguistic interpretability of the results, these 
-  models may have different computational efficiencies. 
+- Starting initial support of machine learning models based on fuzzy systems. Based on optimization for execution time or linguistic interpretability of the results, these models may have different computational efficiencies. 
     - Type 1 TSK Model
     - Type 1 Mamdani Model
     - Interval Type 2 TSK Model
@@ -57,12 +55,9 @@ Thank you for your contribution, which helps maintain and improve this project!
 - Starting initial support of Takagi-Sugeno models, widely used in dynamic systems control:
     - Type 1 Takagi-Sugeno System
     - Interval Type 2 Takagi-Sugeno System
-- Documentations have been enhanced and published over [readthedocs](https://pyit2fls.readthedocs.io/en/latest/). 
-  More enhancements are on the way with more tutorials and examples.
-- Some functions were deprecated in SciPy, NumPy, and Matplotlib. There are updates 
-  concerning this issue.
-- More exception handling have been done in the new version of the PyIT2FLS, but not 
-  completed, yet.
+- Documentations have been enhanced and published over [readthedocs](https://pyit2fls.readthedocs.io/en/latest/). More enhancements are on the way with more tutorials and examples.
+- Some functions were deprecated in SciPy, NumPy, and Matplotlib. There are updates concerning this issue.
+- More exception handling have been done in the new version of the PyIT2FLS, but not completed, yet.
 - Minor enhancements have been made in plotting functions.
 
 While we strive for quality and reliability, no software is perfect. If you encounter any issues or have suggestions, we warmly welcome your feedback. Your input is invaluable and helps us continue improving PyIT2FLS for the community. Please report any bugs or share your thoughts via opening a new issue. Thank you for your support and for being part of our journey to make PyIT2FLS even better!
