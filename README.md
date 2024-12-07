@@ -224,11 +224,11 @@ So, please update your PyIT2FLS to the latest version.
 
 * [Ex20](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_20.py): 
 
-
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/20_3.png" width="400"></p>
 
 * [Ex21](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_21.py): 
 
-
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/21_3.png" width="400"></p>
 
 * [Ex22](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_22.py): 
 
