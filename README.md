@@ -27,11 +27,11 @@ MLA:
 ## Installation
 PyIT2FLS can be installed by unzipping the source code in a directory and using this command inside the PyIT2FLS folder:
 
-    (sudo) pip3 install .
+    pip3 install .
 
 Or you can install from PyPI:
 
-    (sudo) pip3 install --upgrade pyit2fls
+    pip3 install --upgrade pyit2fls
 
 ## Support My Work with Tether (USDT)
 If you find this Python library useful and would like to support its development, donations are greatly appreciated. You can send Tether (USDT) directly to the following address:

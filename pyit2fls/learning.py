@@ -444,81 +444,125 @@ class T1TSK_ML(T1Fuzzy_ML):
 
 
 class Linear_System:
-
+    """
+    A class for representing linear systems.
+    """
     def __init__(self, A, B, C, D):
         self.A = A
         self.B = B
         self.C = C
         self.D = D
     
+    def __call__(self, t, X, U):
+        """
+        Call self as a function.
+
+        .. rubric:: Parameters
+    
+        Parameters of the function:
+
+        t : float
+
+            The time variable.
+
+        X : numpy (n,) shaped array
+
+            The system states at time t.
+
+        U : function of t and X
+
+            A function for calculating the system input(s) at time t and state X.
+        """
+        X = X.reshape((-1, 1))
+        U_ = U(t, X)
+        return (self.A @ X + self.B @ U_).flatten()
+    
+    def Y(self, t, X, U):
+        """
+        A function for calculating the system output based on the current time, systemstates, and system input(s).
+
+        .. rubric:: Parameters
+    
+        Parameters of the function:
+
+        t : float
+
+            The time variable.
+
+        X : numpy (n,) shaped array
+
+            The system states at time t.
+
+        U : function of t and X
+
+            A function for calculating the system input(s) at time t and state X.
+        """
+        X = X.reshape((-1, 1))
+        U_ = U(t, X)
+        return (self.C @ X + self.D @ U_).flatten()
+
     def __repr__(self, ):
         return f"Linear system with\nA: {str(self.A)}\nB: {str(self.B)}\nC: {str(self.C)}\nD: {str(self.D)}"
     
     def __str__(self, ):
         return f"Linear system with\nA: {str(self.A)}\nB: {str(self.B)}\nC: {str(self.C)}\nD: {str(self.D)}"
 
-    def __call__(self, t, X, U):
-        X = X.reshape((-1, 1))
-        U_ = U(t, X)
-        return (self.A @ X + self.B @ U_).flatten()
-    
-    def Y(self, t, X, U):
-        U_ = U(t, X)
-        return self.C @ X + self.D @ U_
-
     def __add__(self, other):
         try:
             return Linear_System(self.A + other.A, self.B + other.B, self.C + other.C, self.D + other.D)
         except:
-            raise ValueError("Size inconsistency!")
+            raise TypeError("Size inconsistency!")
 
     def __sub__(self, other):
         try:
             return Linear_System(self.A - other.A, self.B - other.B, self.C - other.C, self.D - other.D)
         except:
-            raise ValueError("Size inconsistency!")
+            raise TypeError("Size inconsistency!")
     
     def __neg__(self, other):
-        try:
-            return Linear_System(-self.A, -self.B, -self.C, -self.D)
-        except:
-            raise ValueError("There is an error!")
+        return Linear_System(-self.A, -self.B, -self.C, -self.D)
 
     def __mul__(self, other):
-        try:
+        if isinstance(other, (int, float, )):
             return Linear_System(other * self.A, other * self.B, other * self.C, other * self.D)
-        except:
-            raise ValueError("There is an error!")
+        else:
+            raise TypeError("Unsupported operand type for *!")
+    
+    def __rmul__(self, other):
+        if isinstance(other, (int, float, )):
+            return Linear_System(other * self.A, other * self.B, other * self.C, other * self.D)
+        else:
+            raise TypeError("Unsupported operand type for *!")
     
     def __truediv__(self, other):
-        try:
+        if isinstance(other, (int, float, )):
             return Linear_System(self.A / other, self.B / other, self.C / other, self.D / other)
-        except:
-            raise ValueError("There is an error!")
+        else:
+            raise TypeError("Unsupported operand type for /!")
     
     def __isub__(self, other):
         try:
             return Linear_System(self.A - other.A, self.B - other.B, self.C - other.C, self.D - other.D)
         except:
-            raise ValueError("Size inconsistency!")
+            raise TypeError("Size inconsistency!")
 
     def __iadd__(self, other):
         try:
             return Linear_System(self.A + other.A, self.B + other.B, self.C + other.C, self.D + other.D)
         except:
-            raise ValueError("Size inconsistency!")
+            raise TypeError("Size inconsistency!")
 
     def __imul__(self, other):
-        try:
+        if isinstance(other, (int, float, )):
             return Linear_System(other * self.A, other * self.B, other * self.C, other * self.D)
-        except:
-            raise ValueError("There is an error!")
+        else:
+            raise TypeError("Unsupported operand type for *!")
 
     def __idiv__(self, other):
-        try:
+        if isinstance(other, (int, float, )):
             return Linear_System(self.A / other, self.B / other, self.C / other, self.D / other)
-        except:
-            raise ValueError("There is an error!")
+        else:
+            raise TypeError("Unsupported operand type for /!")
 
 
 class T1_TS_Model:
