@@ -202,7 +202,7 @@ So, please update your PyIT2FLS to the latest version.
 
 * [Ex17](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_17.py): Defining random rules and random sets for IT2F classifier with three inputs and one output (Based on the request of one of the users).
 
-* [Ex18](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_18.py): 
+* [Ex18](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_18.py): Fitting a 3D surface using type 1 TSK model and PSO algorithm.
 
 <p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/18_1.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/18_2.png" width="200"></p>
 
@@ -212,7 +212,7 @@ So, please update your PyIT2FLS to the latest version.
 
 <p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/18_6.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/18_7.png" width="200"></p>
 
-* [Ex19](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_19.py): 
+* [Ex19](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_19.py): Fitting a 3D surface using type 1 Mamdani model and GA algorithm.
 
 <p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/19_1.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/19_2.png" width="200"></p>
 
@@ -222,22 +222,22 @@ So, please update your PyIT2FLS to the latest version.
 
 <p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/19_6.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/19_7.png" width="200"></p>
 
-* [Ex20](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_20.py): 
+* [Ex20](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_20.py): Fitting a 3D surface using interval type 2 TSK model and GA algorithm.
 
 <p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/20_3.png" width="400"></p>
 
-* [Ex21](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_21.py): 
+* [Ex21](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_21.py): Fitting a 3D surface using interval type 2 Mamdani model and PSO algorithm.
 
 <p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/21_3.png" width="400"></p>
 
-* [Ex22](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_22.py): 
+* [Ex22](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_22.py): Using type 1 Takagi-Sugeno model for approximating a nonlinear system.
 
 <p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/22_1.png" width="200"></p>
 
-* [Ex23](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_23.py): 
+* [Ex23](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_23.py): Using interval type 2 Takagi-Sugeno model for approximating a nonlinear system.
 
 <p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/23_1.png" width="200"></p>
 
-* [Ex24](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_24.py): 
+* [Ex24](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_24.py): Example for new *MEET* and *JOIN* functions accepting many *IT2FS* s as input.
 
 <p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/24_1.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/24_2.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/24_3.png" width="200"></p>
