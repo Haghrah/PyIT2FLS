@@ -32,17 +32,15 @@ for i in range(10):
 fig = plt.figure()
 ax = fig.add_subplot(111, projection="3d")
 original = ax.plot_surface(x1, x2, y1, cmap="viridis", vmin=y1.min(), vmax=y1.max())
-fig.colorbar(original, ax=ax, shrink=0.5, aspect=10, 
-             label="Original Plane")
-ax.set_title("3D Surface Plot")
+fig.colorbar(original, ax=ax, shrink=0.5, aspect=10, )
+ax.set_title("Original function")
 plt.show()
 
 fig = plt.figure()
 ax = fig.add_subplot(111, projection="3d")
 fitted = ax.plot_surface(x1, x2, y2, cmap="viridis", vmin=y1.min(), vmax=y1.max())
-fig.colorbar(fitted, ax=ax, shrink=0.5, aspect=10, 
-             label="Fitted Plane")
-ax.set_title("3D Surface Plot")
+fig.colorbar(fitted, ax=ax, shrink=0.5, aspect=10, )
+ax.set_title("Fitted function")
 plt.show()
 
 fig = plt.figure()
