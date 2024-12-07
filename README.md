@@ -49,7 +49,7 @@ Thank you for your contribution, which helps maintain and improve this project!
 ### Some notes on version 0.8.0
 - Starting initial support of machine learning models based on fuzzy systems. Based on 
   optimization for execution time or linguistic interpretability of the results, these 
-  models may have different computational efficiency. 
+  models may have different computational efficiencies. 
     - Type 1 TSK Model
     - Type 1 Mamdani Model
     - Interval Type 2 TSK Model
