@@ -1,126 +1,132 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Sat Jul 25 00:11:49 2020
+Created on Sun Sep 13 10:24:56 2020
 
 @author: arslan
 """
 
 from pyit2fls import IT2Mamdani, IT2FS_Gaussian_UncertStd, IT2FS_plot, \
-                     min_t_norm, max_s_norm, crisp
-from numpy import linspace, meshgrid, zeros
-from mpl_toolkits import mplot3d
-import matplotlib.pyplot as plt
-from matplotlib import cm
-from matplotlib.ticker import LinearLocator, FormatStrFormatter
+                     product_t_norm, max_s_norm, crisp
+from numpy import linspace, random, sin, cos, array
 
-# Defining the domain of the input variable x1.
-domain1 = linspace(1., 2., 100)
+domainX1 = linspace(-1., 1., 101)
+domainX2 = linspace(-1., 1., 101)
+domainY1 = linspace(-0.5, 1.5, 101)
+domainY2 = linspace(-0.5, 1.5, 101)
 
-# Defining the domain of the input variable x2.
-domain2 = linspace(2., 3., 100)
+X1Small = IT2FS_Gaussian_UncertStd(domainX1, [-1., 0.2, 0.1, 1.])
+X1Medium = IT2FS_Gaussian_UncertStd(domainX1, [0., 0.2, 0.1, 1.])
+X1Large = IT2FS_Gaussian_UncertStd(domainX1, [1., 0.2, 0.1, 1.])
+# IT2FS_plot(X1Small, X1Medium, X1Large)
 
-# Defining the domain of the output variable y1.
-domain3 = linspace(3., 4., 100)
+X2Small = IT2FS_Gaussian_UncertStd(domainX2, [-1., 0.2, 0.1, 1.])
+X2Medium = IT2FS_Gaussian_UncertStd(domainX2, [0., 0.2, 0.1, 1.])
+X2Large = IT2FS_Gaussian_UncertStd(domainX2, [1., 0.2, 0.1, 1.])
+# IT2FS_plot(X2Small, X2Medium, X2Large)
 
-# Defining the domain of the output variable y2.
-domain4 = linspace(4., 5., 100)
+Y1Small = IT2FS_Gaussian_UncertStd(domainY1, [-0.5, 0.2, 0.1, 1.])
+Y1Medium = IT2FS_Gaussian_UncertStd(domainY1, [0.5, 0.2, 0.1, 1.])
+Y1Large = IT2FS_Gaussian_UncertStd(domainY1, [1.5, 0.2, 0.1, 1.])
+# IT2FS_plot(Y1Small, Y1Medium, Y1Large)
 
-# Defining the Small set for the input variable x1.
-Small1 = IT2FS_Gaussian_UncertStd(domain1, [1., 0.15, 0.05, 1.])
+Y2Small = IT2FS_Gaussian_UncertStd(domainY2, [-0.5, 0.2, 0.1, 1.])
+Y2Medium = IT2FS_Gaussian_UncertStd(domainY2, [0.5, 0.2, 0.1, 1.])
+Y2Large = IT2FS_Gaussian_UncertStd(domainY2, [1., 0.2, 0.1, 1.])
+# IT2FS_plot(Y2Small, Y2Medium, Y2Large)
 
-# Defining the Small set for the input variable x2.
-Small2 = IT2FS_Gaussian_UncertStd(domain2, [2., 0.15, 0.05, 1.])
-
-# Defining the Medium set for the input variable x1.
-Medium1 = IT2FS_Gaussian_UncertStd(domain1, [1.5, 0.15, 0.05, 1.])
-
-# Defining the Medium set for the input variable x2.
-Medium2 = IT2FS_Gaussian_UncertStd(domain2, [2.5, 0.15, 0.05, 1.])
-
-# Defining the Large set for the input variable x1.
-Large1 = IT2FS_Gaussian_UncertStd(domain1, [2., 0.15, 0.05, 1.])
-
-# Defining the Large set for the input variable x1.
-Large2 = IT2FS_Gaussian_UncertStd(domain2, [3., 0.15, 0.05, 1.])
-
-# Plotting the sets defined for the input variable x1.
-IT2FS_plot(Small1, Medium1, Large1, 
-            legends=["Small", "Medium", "large"])
-
-# Plotting the sets defined for the input variable x1.
-IT2FS_plot(Small2, Medium2, Large2,
-            legends=["Small", "Medium", "large"])
-
-# Defining the Low set for the output variable y1
-Low1 = IT2FS_Gaussian_UncertStd(domain3, [3., 0.1, 0.05, 1.])
-
-# Defining the Low set for the output variable y2
-Low2 = IT2FS_Gaussian_UncertStd(domain4, [4., 0.1, 0.05, 1.])
-
-# Defining the High set for the output variable y1
-High1 = IT2FS_Gaussian_UncertStd(domain3, [4., 0.1, 0.05, 1.])
-
-# Defining the High set for the output variable y2
-High2 = IT2FS_Gaussian_UncertStd(domain4, [5., 0.1, 0.05, 1.])
-
-# Plotting the sets defined for the output variable y1.
-IT2FS_plot(Low1, High1, 
-            legends=["Low", "High"])
-
-# Plotting the sets defined for the output variable y2.
-IT2FS_plot(Low2, High2, 
-            legends=["Low", "High"])
-
-# Defining the mamdani interval type 2 fuzzy logic system
-myIT2FLS = IT2Mamdani(min_t_norm, max_s_norm)
-
-# Adding the input variables to the myIT2FLS
+myIT2FLS = IT2Mamdani(product_t_norm, max_s_norm, method="CoSet")
 myIT2FLS.add_input_variable("x1")
 myIT2FLS.add_input_variable("x2")
-
-# Adding the output variables to the myIT2FLS
 myIT2FLS.add_output_variable("y1")
 myIT2FLS.add_output_variable("y2")
 
-# Defining the rule base of the MyIT2FLS
-myIT2FLS.add_rule([("x1", Small1), ("x2", Small2)], [("y1", Low1), ("y2", Low2)])
-myIT2FLS.add_rule([("x1", Small1), ("x2", Medium2)], [("y1", Low1), ("y2", High2)])
-myIT2FLS.add_rule([("x1", Small1), ("x2", Large2)], [("y1", Low1), ("y2", High2)])
-myIT2FLS.add_rule([("x1", Medium1), ("x2", Small2)], [("y1", Low1), ("y2", Low2)])
-myIT2FLS.add_rule([("x1", Medium1), ("x2", Medium2)], [("y1", Low1), ("y2", High2)])
-myIT2FLS.add_rule([("x1", Medium1), ("x2", Large2)], [("y1", High1), ("y2", High2)])
-myIT2FLS.add_rule([("x1", Large1), ("x2", Small2)], [("y1", High1), ("y2", Low2)])
-myIT2FLS.add_rule([("x1", Large1), ("x2", Medium2)], [("y1", High1), ("y2", High2)])
-myIT2FLS.add_rule([("x1", Large1), ("x2", Large2)], [("y1", High1), ("y2", High2)])
+nX1 = 3
+X1Sets = [X1Small, X1Medium, X1Large]
+nX2 = 3
+X2Sets = [X2Small, X2Medium, X2Large]
+nY1 = 3
+Y1Sets = [Y1Small, Y1Medium, Y1Large]
+nY2 = 3
+Y2Sets = [Y2Small, Y2Medium, Y2Large]
 
-# Evaluating the outputs of the myIT2FLS for the points in the input domain, 
-# and plotting the output surfaces.
-X1, X2 = meshgrid(domain1, domain2)
-Z1 = zeros(shape=(len(domain1), len(domain2)))
-Z2 = zeros(shape=(len(domain1), len(domain2)))
-for i, x1 in zip(range(len(domain1)), domain1):
-    for j, x2 in zip(range(len(domain2)), domain2):
-        it2out, tr = myIT2FLS.evaluate({"x1":x1, "x2":x2})
-        Z1[i, j], Z2[i, j] = crisp(tr["y1"]), crisp(tr["y2"])
+def generateRuleBase():
+    Rules = []
+    for i in range(9):
+        rule = [i // nX1, i % nX2, 
+                random.randint(nY1), random.randint(nY2)]
+        Rules.append(rule)
+    return Rules
 
-fig = plt.figure()
-ax = fig.add_subplot(111, projection="3d")
-surf = ax.plot_surface(X1, X2, Z1, cmap=cm.coolwarm,
-                       linewidth=0, antialiased=False)
-ax.zaxis.set_major_locator(LinearLocator(10))
-ax.zaxis.set_major_formatter(FormatStrFormatter('%.02f'))
-fig.colorbar(surf, shrink=0.5, aspect=5)
-plt.show()
 
-fig = plt.figure()
-ax = fig.add_subplot(111, projection="3d")
-surf = ax.plot_surface(X1, X2, Z2, cmap=cm.coolwarm,
-                       linewidth=0, antialiased=False)
-ax.zaxis.set_major_locator(LinearLocator(10))
-ax.zaxis.set_major_formatter(FormatStrFormatter('%.02f'))
-fig.colorbar(surf, shrink=0.5, aspect=5)
-plt.show()
+tt = 2 * (random.rand(20) - 0.5)
+Data = array([sin(tt), 
+              cos(tt), 
+              sin(tt) + cos(tt), 
+              cos(tt) - sin(tt)])
+
+def error(R, D):
+    # R: Rules
+    # D: Data
+    err = 0.
+    myIT2FLS.rules = []
+    for rule in R:
+        myIT2FLS.add_rule([("x1", X1Sets[rule[0]]), ("x2", X2Sets[rule[1]])], 
+                          [("y1", Y1Sets[rule[2]]), ("y2", Y2Sets[rule[3]])])
+    for i in range(D.shape[1]):
+        tr = myIT2FLS.evaluate({"x1":D[0, i], "x2":D[1, i]})
+        err += (crisp(tr["y1"]) - D[2, i]) ** 2 + (crisp(tr["y2"]) - D[3, i]) ** 2
+    return err
+    
+if __name__ == "__main__":
+    myRules = [[0, 0, 0, 1], 
+              [0, 1, 0, 2], 
+              [0, 2, 1, 2], 
+              [1, 0, 0, 0], 
+              [1, 1, 1, 1], 
+              [1, 2, 2, 2], 
+              [2, 0, 1, 0], 
+              [2, 1, 2, 0], 
+              [2, 2, 2, 1]]
+    minErr = float("inf")
+    minRules = []
+    for i in range(100):
+        rule = generateRuleBase()
+        err = error(rule, Data)
+        if err < minErr:
+            minErr = err
+            minRules = rule
+        print(str(i) + ".", err)
+    
+    print("Best generated rule base:")
+    print(minRules)
+    print("Minimum error:", minErr)
+    
+    print("Rule base defined by expert:")
+    print(myRules)
+    print("Error:", error(myRules, Data))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,75 +1,147 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Fri Nov 27 22:25:30 2020
+Created on Sat Nov 28 10:32:55 2020
 
 @author: arslan
 """
 
-from numpy import linspace, meshgrid, zeros
-from pyit2fls import T1FS, T1Mamdani, T1FS_plot, gaussian_mf
+
+from pyit2fls import T1FS, gaussian_mf, T1FS_plot, T1TSK
 from mpl_toolkits import mplot3d
 import matplotlib.pyplot as plt
 from matplotlib import cm
 from matplotlib.ticker import LinearLocator, FormatStrFormatter
+from numpy import linspace, meshgrid, zeros
+from time import time
 
-# Defining the domain of the input variable x1.
-domain1 = linspace(1., 2., 101)
+#%%
+# The universe of discourse for all input variables are same -> [0, 1)
+domain = linspace(0., 1., 100)
 
-# Defining the domain of the input variable x2.
-domain2 = linspace(2., 3., 101)
 
-# Defining the domain of the output variable y1.
-domain3 = linspace(3., 4., 101)
+#%%
+# The fuzzy system will be evaluated in the [0, 1) x [0, 1) space. 
+X1, X2 = meshgrid(domain, domain)
 
-# Defining the domain of the output variable y2.
-domain4 = linspace(4., 5., 101)
 
-SMALL1  = T1FS(domain1, gaussian_mf, [1.0, 0.15, 1.])
-MEDIUM1 = T1FS(domain1, gaussian_mf, [1.5, 0.15, 1.])
-LARGE1  = T1FS(domain1, gaussian_mf, [2.0, 0.15, 1.])
+# %%
+# Eight functions are defined, that are used in consequence
+# part of the rules in the fuzzy rule-base.
+def y11(x1, x2):
+    return x1 + x2 + 1.
 
-# T1FS_plot(SMALL1, MEDIUM1, LARGE1, legends=["Small", "Medium", "Large"])
+def y12(x1, x2):
+    return 2. * x1 - x2 + 1.
 
-SMALL2  = T1FS(domain2, gaussian_mf, [2.0, 0.15, 1.])
-MEDIUM2 = T1FS(domain2, gaussian_mf, [2.5, 0.15, 1.])
-LARGE2  = T1FS(domain2, gaussian_mf, [3.0, 0.15, 1.])
+def y21(x1, x2):
+    return 1.5 * x1 + 0.5 * x2 + 0.5
 
-# T1FS_plot(SMALL2, MEDIUM2, LARGE2, legends=["Small", "Medium", "Large"])
+def y22(x1, x2):
+    return 1.5 * x1 - 0.5 * x2 + 0.5
 
-LOW1 = T1FS(domain3, gaussian_mf, [3.0, 0.1, 1.])
-HIGH1 = T1FS(domain3, gaussian_mf, [4.0, 0.1, 1.])
+def y31(x1, x2):
+    return 2. * x1 + 0.1 * x2 - 0.2
 
-# T1FS_plot(LOW1, HIGH1, legends=["Low", "High"])
+def y32(x1, x2):
+    return 0.5 * x1 + 0.1 * x2 + 0.
 
-LOW2 = T1FS(domain4, gaussian_mf, [4.0, 0.1, 1.])
-HIGH2 = T1FS(domain4, gaussian_mf, [5.0, 0.1, 1.])
+def y41(x1, x2):
+    return 4. * x1 - 0.5 * x2 - 1.
 
-# T1FS_plot(LOW2, HIGH2, legends=["Low", "High"])
+def y42(x1, x2):
+    return -0.5 * x1 + x2 - 0.5
 
-SYS = T1Mamdani(engine="Minimum", defuzzification="CoG")
+
+# %%
+# Defined surfaces for being used in consequence part of rules are 
+# evaluated and plotted here:
+Y11 = y11(X1, X2)
+Y12 = y12(X1, X2)
+Y21 = y21(X1, X2)
+Y22 = y22(X1, X2)
+Y31 = y31(X1, X2)
+Y32 = y32(X1, X2)
+Y41 = y41(X1, X2)
+Y42 = y42(X1, X2)
+
+fig = plt.figure(figsize=plt.figaspect(0.25))
+ax = fig.add_subplot(1, 4, 1, projection="3d")
+surf = ax.plot_surface(X1, X2, Y11, cmap=cm.coolwarm,
+                       linewidth=0, antialiased=False)
+ax = fig.add_subplot(1, 4, 2, projection="3d")
+surf = ax.plot_surface(X1, X2, Y21, cmap=cm.coolwarm,
+                       linewidth=0, antialiased=False)
+ax = fig.add_subplot(1, 4, 3, projection="3d")
+surf = ax.plot_surface(X1, X2, Y31, cmap=cm.coolwarm,
+                       linewidth=0, antialiased=False)
+ax = fig.add_subplot(1, 4, 4, projection="3d")
+surf = ax.plot_surface(X1, X2, Y41, cmap=cm.coolwarm,
+                       linewidth=0, antialiased=False)
+plt.show()
+
+fig = plt.figure(figsize=plt.figaspect(0.25))
+ax = fig.add_subplot(1, 4, 1, projection="3d")
+surf = ax.plot_surface(X1, X2, Y12, cmap=cm.coolwarm,
+                       linewidth=0, antialiased=False)
+ax = fig.add_subplot(1, 4, 2, projection="3d")
+surf = ax.plot_surface(X1, X2, Y22, cmap=cm.coolwarm,
+                       linewidth=0, antialiased=False)
+ax = fig.add_subplot(1, 4, 3, projection="3d")
+surf = ax.plot_surface(X1, X2, Y32, cmap=cm.coolwarm,
+                       linewidth=0, antialiased=False)
+ax = fig.add_subplot(1, 4, 4, projection="3d")
+surf = ax.plot_surface(X1, X2, Y42, cmap=cm.coolwarm,
+                       linewidth=0, antialiased=False)
+plt.show()
+
+
+# %%
+# The fuzzy sets representing the universe of discourse of the 
+# fuzzy system are defined and plotted here:
+Small = T1FS(domain, gaussian_mf, [0, 0.15, 1.])
+Big = T1FS(domain, gaussian_mf, [1., 0.15, 1.])
+
+T1FS_plot(Small, Big, title="Sets", 
+          legends=["Small", "Big"])
+
+# The fuzzy system is created using the T1TSK class:
+SYS = T1TSK()
+
+# Input and output variables are defined and added to the fuzzy system.
 SYS.add_input_variable("x1")
 SYS.add_input_variable("x2")
 SYS.add_output_variable("y1")
 SYS.add_output_variable("y2")
 
-SYS.add_rule([("x1", SMALL1), ("x2", SMALL2)], [("y1", LOW1), ("y2", LOW2)])
-SYS.add_rule([("x1", SMALL1), ("x2", MEDIUM2)], [("y1", LOW1), ("y2", HIGH2)])
-SYS.add_rule([("x1", SMALL1), ("x2", LARGE2)], [("y1", LOW1), ("y2", HIGH2)])
-SYS.add_rule([("x1", MEDIUM1), ("x2", SMALL2)], [("y1", LOW1), ("y2", LOW2)])
-SYS.add_rule([("x1", MEDIUM1), ("x2", MEDIUM2)], [("y1", LOW1), ("y2", HIGH2)])
-SYS.add_rule([("x1", MEDIUM1), ("x2", LARGE2)], [("y1", HIGH1), ("y2", HIGH2)])
-SYS.add_rule([("x1", LARGE1), ("x2", SMALL2)], [("y1", HIGH1), ("y2", LOW2)])
-SYS.add_rule([("x1", LARGE1), ("x2", MEDIUM2)], [("y1", HIGH1), ("y2", HIGH2)])
-SYS.add_rule([("x1", LARGE1), ("x2", LARGE2)], [("y1", HIGH1), ("y2", HIGH2)])
+# Rule-base of the fuzzy system is defined here:
+# The previously defined functions (yij) are used here.
+SYS.add_rule([("x1", Small), ("x2", Small)], 
+             [("y1", y11), 
+              ("y2", y12)])
+SYS.add_rule([("x1", Small), ("x2", Big)], 
+             [("y1", y21), 
+              ("y2", y22)])
+SYS.add_rule([("x1", Big), ("x2", Small)], 
+             [("y1", y31), 
+              ("y2", y32)])
+SYS.add_rule([("x1", Big), ("x2", Big)], 
+             [("y1", y41), 
+              ("y2", y42)])
 
-X1, X2 = meshgrid(domain1, domain2)
-Z1 = zeros(shape=(len(domain1), len(domain2)))
-Z2 = zeros(shape=(len(domain1), len(domain2)))
-for i, x1 in zip(range(len(domain1)), domain1):
-    for j, x2 in zip(range(len(domain2)), domain2):
-        s, c = SYS.evaluate({"x1":x1, "x2":x2})
-        Z1[i, j], Z2[i, j] = c["y1"], c["y2"]
+
+# %%
+# The output planes of the fuzzy system are evaluated and plotted here:
+Z1 = zeros(shape=X1.shape)
+Z2 = zeros(shape=X1.shape)
+
+for i, x1 in zip(range(len(domain)), domain):
+    for j, x2 in zip(range(len(domain)), domain):
+        # The params input of the evaluate function indicates the inputs of
+        # the functions given in the consequence part of the rules.
+        z = SYS.evaluate({"x1":x1, "x2":x2}, params=(x1, x2))
+        Z1[i, j], Z2[i, j] = z["y1"], z["y2"]
+
 
 fig = plt.figure()
 ax = fig.add_subplot(111, projection="3d")
@@ -88,5 +160,13 @@ ax.zaxis.set_major_locator(LinearLocator(10))
 ax.zaxis.set_major_formatter(FormatStrFormatter('%.02f'))
 fig.colorbar(surf, shrink=0.5, aspect=5)
 plt.show()
+
+
+
+
+
+
+
+
 
 

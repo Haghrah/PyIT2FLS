@@ -119,25 +119,24 @@ So, please update your PyIT2FLS to the latest version.
 * [Ex4](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_4.py): Prediction of the Mackey-Glass chaotic time series with PSO-based parameter tuning.
 * [Ex5](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_5.py): Designing Interval Type 2 Fuzzy PID (IT2FPID) controller for a time-delay linear system.
 * [Ex6](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_6.py): Creating and plotting ten types of interval type two fuzzy sets.
-* [Ex7](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_7.py): Similar to Ex3 but implemented using the new Mamdani class.
-* [Ex8](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_8.py): Defining a simple multi-input multi-output IT2 TSK FLS.
-* [Ex9](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_9.py): Defining a multi-input multi-output IT2 TSK FLS and plotting the 3D resulting output planes.
-* [Ex10](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_10.py): Defining a multi-input multi-output IT2FLS with different domains for each of input and output variables, and plotting the output surfaces of the system.
-* [Ex11](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_11.py): Generating random rule-bases.
-* [Ex12](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_12.py): Using six different t-norms with meet operator.
-* [Ex13](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_13.py): Using six different s-norms with join operator.
-* [Ex14](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_14.py): MIMO Type 1 Mamdani Fuzzy Logic System.
-* [Ex15](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_15.py): MIMO Type 1 TSK Fuzzy Logic System.
-* [Ex16](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_16.py): Using emphasize function for type 1 and interval type 2 fuzzy sets.
-* [Ex17](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_17.py): Example concerning fuzzy matrices.
-* [Ex18](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_18.py): Defining random rules and random sets for IT2F classifier with three inputs and one output (Based on the request of one of the users).
+* [Ex7](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_7.py): Defining a simple multi-input multi-output IT2 TSK FLS.
+* [Ex8](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_8.py): Defining a multi-input multi-output IT2 TSK FLS and plotting the 3D resulting output planes.
+* [Ex9](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_9.py): Defining a multi-input multi-output IT2FLS with different domains for each of input and output variables, and plotting the output surfaces of the system.
+* [Ex10](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_10.py): Generating random rule-bases.
+* [Ex11](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_11.py): Using six different t-norms with meet operator.
+* [Ex12](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_12.py): Using six different s-norms with join operator.
+* [Ex13](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_13.py): MIMO Type 1 Mamdani Fuzzy Logic System.
+* [Ex14](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_14.py): MIMO Type 1 TSK Fuzzy Logic System.
+* [Ex15](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_15.py): Using emphasize function for type 1 and interval type 2 fuzzy sets.
+* [Ex16](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_16.py): Example concerning fuzzy matrices.
+* [Ex17](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_17.py): Defining random rules and random sets for IT2F classifier with three inputs and one output (Based on the request of one of the users).
+* [Ex18](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_18.py): 
 * [Ex19](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_19.py): 
 * [Ex20](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_20.py): 
 * [Ex21](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_21.py): 
 * [Ex22](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_22.py): 
 * [Ex23](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_23.py): 
 * [Ex24](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_24.py): 
-* [Ex25](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_25.py): 
 
 
 ### Some output plots
