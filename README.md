@@ -1,7 +1,7 @@
 PyIT2FLS
 ========
 
-<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/PyIT2FLS_icon.png" width="256"/></p>
+<p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/PyIT2FLS_icon.png" width="384"/></p>
 
 NumPy and SciPy based toolkit for Type 1 and Interval Type 2 Fuzzy Logic Systems.
 
