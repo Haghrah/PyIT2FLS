@@ -54,9 +54,9 @@ Thank you for your contribution, which helps maintain and improve this project!
     - Type 1 Mamdani Model
     - Interval Type 2 TSK Model
     - Interval Type 2 Mamdani Model
-- Starting initial support of Takagi-Sugeno model, widely used in dynamic systems control.
+- Starting initial support of Takagi-Sugeno models, widely used in dynamic systems control:
     - Type 1 Takagi-Sugeno System
-    - Interval Type 2 Takagi-Sugeno Model
+    - Interval Type 2 Takagi-Sugeno System
 - Documentations have been enhanced and published over [readthedocs](https://pyit2fls.readthedocs.io/en/latest/). 
   More enhancement are on the way with more tutorials and examples.
 - Some functions were deprecated in SciPy, NumPy, and Matplotlib. There are updates 
