@@ -34,9 +34,7 @@ Or you can install from PyPI:
     pip3 install --upgrade pyit2fls
 
 ## Support My Work with Tether (USDT)
-If you find this Python library useful and would like to support its development, donations are greatly appreciated. You can send Tether (USDT) directly to the following address:
-
-    0x2e3cc46d6ca7a05fc0f4dfaf7293fda4966b3f03
+If you find this Python library useful and would like to support its development, donations are greatly appreciated. To donate USDT, please send to the following wallet address: 0x2c0fb11b56b10b5ddda6a8c9c1f6d0b559153de2. Ensure you select the Avalanche C-Chain network when making the transaction. Using the wrong network, such as Ethereum, may result in lost funds.
 
 Thank you for your contribution, which helps maintain and improve this project!
 
