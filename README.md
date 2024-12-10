@@ -36,7 +36,7 @@ Or you can install from PyPI:
 ## Support My Work with Tether (USDT)
 If you find this Python library useful and would like to support its development, donations are greatly appreciated. You can send Tether (USDT) directly to the following address:
 
-    TN1stagYLtqq4MUKPj6Q3fqtH3GittRawE
+    0x2e3cc46d6ca7a05fc0f4dfaf7293fda4966b3f03
 
 Thank you for your contribution, which helps maintain and improve this project!
 

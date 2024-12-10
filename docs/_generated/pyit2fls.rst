@@ -59,7 +59,7 @@ If you find this Python library helpful and wish to support its ongoing developm
 your donations are greatly appreciated. You can contribute Tether (USDT) to the following 
 wallet address:
 
-    TN1stagYLtqq4MUKPj6Q3fqtH3GittRawE
+    0x2e3cc46d6ca7a05fc0f4dfaf7293fda4966b3f03
 
 Thank you for your generosity—it directly helps maintain and enhance this project!
 
