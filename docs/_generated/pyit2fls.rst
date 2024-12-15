@@ -530,7 +530,7 @@ join, it should be an S-norm.
 .. code-block:: python
 
     MEET = meet(domain, RGaussian_UncertStd, LGaussian_UncertStd, hamacher_product_t_norm)
-    JOIN = meet(domain, RGaussian_UncertStd, LGaussian_UncertStd, probabilistic_sum_s_norm)
+    JOIN = join(domain, RGaussian_UncertStd, LGaussian_UncertStd, probabilistic_sum_s_norm)
     IT2FS_plot(MEET, JOIN, 
                legends=["MEET", 
                         "JOIN", ])
