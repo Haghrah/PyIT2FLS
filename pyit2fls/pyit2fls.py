@@ -4474,4 +4474,5 @@ TSK = IT2TSK
 
 Mamdani = IT2Mamdani
 
-
+IT2_Emphasize = IT2FS_Emphasize
+T1_Emphasize = T1FS_Emphasize
