@@ -1,7 +1,7 @@
 Functions
 ====================
 
-.. autofunction:: pyit2fls.T1_Emphasize
+.. autofunction:: pyit2fls.T1FS_Emphasize
 
 .. autofunction:: pyit2fls.T1FS_plot
 
@@ -9,7 +9,7 @@ Functions
 
 .. autofunction:: pyit2fls.T1FS_OR
 
-.. autofunction:: pyit2fls.IT2_Emphasize
+.. autofunction:: pyit2fls.IT2FS_Emphasize
 
 .. autofunction:: pyit2fls.IT2FS_plot
 

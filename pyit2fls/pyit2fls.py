@@ -855,7 +855,7 @@ class T1FS:
         plt.show()
 
 
-def T1_Emphasize(t1fs, m=2.):
+def T1FS_Emphasize(t1fs, m=2.):
     """
     Function for creating emphasized T1FSs.
     
@@ -1650,7 +1650,7 @@ class IT2FS:
         return neg_it2fs
 
 
-def IT2_Emphasize(it2fs, m=2.):
+def IT2FS_Emphasize(it2fs, m=2.):
     """
     Function for creating emphasized IT2FSs.
     

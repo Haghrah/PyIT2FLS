@@ -43,6 +43,9 @@ Thank you for your contribution, which helps maintain and improve this project!
 
 ### Features coming up in the next version
 - Supporting Generalized Type 2 Fuzzy Sets and Systems.
+- Supporting FCL.
+- Introduction of a GUI for facilitating system design.
+
 
 ### Some notes on version 0.8.0
 - Starting initial support of machine learning models based on fuzzy systems. Based on optimization for execution time or linguistic interpretability of the results, these models may have different computational efficiencies. 
