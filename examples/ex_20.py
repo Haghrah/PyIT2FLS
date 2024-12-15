@@ -1,6 +1,5 @@
 from pyit2fls import (IT2TSK_ML, IT2FS_Gaussian_UncertMean, )
 from numpy import (linspace, array, abs, pi, sin, cos, meshgrid, zeros_like, )
-from scipy.optimize import (Bounds, )
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 

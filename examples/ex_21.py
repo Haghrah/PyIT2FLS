@@ -1,6 +1,5 @@
 from pyit2fls import (IT2Mamdani_ML, IT2FS_Gaussian_UncertStd, )
 from numpy import (linspace, array, abs, pi, sin, cos, meshgrid, zeros_like, )
-from scipy.optimize import (Bounds, )
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
@@ -16,7 +15,7 @@ for x1 in X1:
 X = array(X)
 
 N = 2
-M = 3
+M = 4
 myIT2Mamdani = IT2Mamdani_ML(N, M, IT2FS_Gaussian_UncertStd, (-4., 4.), 
                              algorithm="PSO", algorithm_params=[200, 200, 0.3, 0.3, 2.4])
 print(myIT2Mamdani.fit(X, y))
