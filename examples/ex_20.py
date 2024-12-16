@@ -1,4 +1,4 @@
-from pyit2fls import (IT2TSK_ML, IT2FS_Gaussian_UncertMean, )
+from pyit2fls import (IT2TSK_ML, IT2FS_Gaussian_UncertMean, IT2FS_plot, )
 from numpy import (linspace, array, abs, pi, sin, cos, meshgrid, zeros_like, )
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -16,8 +16,8 @@ X = array(X)
 
 N = 2
 M = 4
-myIT2TSK = IT2TSK_ML(N, M, IT2FS_Gaussian_UncertMean, (-4., 4.), 
-                     algorithm="GA", algorithm_params=[200, 200, 100, 100, 0.05])
+myIT2TSK = IT2TSK_ML(N, M, IT2FS_Gaussian_UncertMean, (-2.0, 2.0), 
+                     algorithm="GA", algorithm_params=[50, 100, 500, 50, 0.1])
 print(myIT2TSK.fit(X, y))
 
 x1, x2 = meshgrid(X1, X2)
@@ -51,9 +51,6 @@ fig.colorbar(error_surface, ax=ax, shrink=0.5, aspect=10,
 ax.plot_surface(x1, x2, y1, cmap="Blues", alpha=0.7)
 ax.set_title("3D Surface Plot")
 plt.show()
-
-
-
 
 
 
