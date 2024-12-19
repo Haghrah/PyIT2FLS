@@ -750,10 +750,10 @@ class IT2TSK_ML_Model:
                 self.p[i][j][2] = abs(self.p[i][j][2])
         self.q = P[-M:]
 
-        self.model = IT2TSK(product_t_norm, max_s_norm)
+        self.it2tsk = IT2TSK(product_t_norm, max_s_norm)
         for i in range(N):
-            self.model.add_input_variable(f"X{i + 1}")
-        self.model.add_output_variable("Y")
+            self.it2tsk.add_input_variable(f"X{i + 1}")
+        self.it2tsk.add_output_variable("Y")
 
         self.it2fs = it2fs
         self.c = c
@@ -763,7 +763,7 @@ class IT2TSK_ML_Model:
             consequentDict = {"const":self.q[i], }
             for j in range(N):
                 if it2fs == IT2FS_Gaussian_UncertMean:
-                    std = self.p[i][j][2]
+                    std = max(self.p[i][j][1], self.p[i][j][2])
                 elif it2fs == IT2FS_Gaussian_UncertStd:
                     std = self.p[i][j][1]
                 else:
@@ -771,7 +771,7 @@ class IT2TSK_ML_Model:
                 
                 domain = linspace(self.p[i][j][0] - 5. * std, # 5 x std before mean
                                   self.p[i][j][0] + 5. * std, # 5 x std after mean
-                                  int(10. * std * 10)) # 10 points for each unit
+                                  max(100, int(10. * std * 10))) # 10 points for each unit
                 antecedent.append((f"X{j + 1}", 
                                    it2fs(domain, params=[self.p[i][j][0], 
                                                          self.p[i][j][1], 
@@ -780,11 +780,11 @@ class IT2TSK_ML_Model:
                 consequentDict[f"X{j + 1}"] = 0.
             
             consequent = [("Y", consequentDict)]
-            self.model.add_rule(antecedent, consequent)
+            self.it2tsk.add_rule(antecedent, consequent)
 
     def __call__(self, X):
         _X = {f"X{i + 1}":X[i] for i in range(self.N)}
-        return self.model.evaluate(_X)["Y"]
+        return self.it2tsk.evaluate(_X)["Y"]
 
 
 class IT2TSK_ML:
@@ -832,8 +832,8 @@ class IT2TSK_ML:
                 myPSO.iterate(self.algorithm_params[2], 
                               self.algorithm_params[3], 
                               self.algorithm_params[4])
-                print("Iteration ", i+1, ".", myPSO.fb)
-            self.params = myPSO.xb
+                print(f"Iteration {i+1}", myPSO.fb)
+            self.params = myPSO.xb.copy()
         elif self.algorithm == "GA":
             myGA = GA(self.algorithm_params[0], self.paramNum, self.error, 
                       self.Bounds[0], args=(X, y, ))
@@ -841,8 +841,8 @@ class IT2TSK_ML:
                 myGA.iterate(self.algorithm_params[2], 
                              self.algorithm_params[3], 
                              self.algorithm_params[4], )
-                print("Iteration ", i+1, ".", myGA.population[0].fitness)
-            self.params = myGA.population[0].solution
+                print(f"Iteration {i+1}.", myGA.population[0].fitness)
+            self.params = myGA.population[0].solution.copy()
         else:
             raise ValueError(self.algorithm + " algorithm is not supported!")
         
@@ -877,11 +877,11 @@ class IT2Mamdani_ML_Model:
             self.q[i][1] = abs(self.q[i][1])
             self.q[i][2] = abs(self.q[i][2])
 
-        self.model = IT2Mamdani(product_t_norm, max_s_norm)
+        self.it2mamdani = IT2Mamdani(product_t_norm, max_s_norm)
         
         for i in range(N):
-            self.model.add_input_variable(f"X{i + 1}")
-        self.model.add_output_variable("Y")
+            self.it2mamdani.add_input_variable(f"X{i + 1}")
+        self.it2mamdani.add_output_variable("Y")
 
         self.it2fs = it2fs
         self.c = c
@@ -919,12 +919,12 @@ class IT2Mamdani_ML_Model:
                                                       self.p[i][j][1], 
                                                       self.p[i][j][2], 
                                                       1.0]), ), ]
-            self.model.add_rule(antecedent, consequent)
+            self.it2mamdani.add_rule(antecedent, consequent)
 
 
     def __call__(self, X):
         _X = {f"X{i + 1}":X[i] for i in range(self.N)}
-        it2out, tr = self.model.evaluate(_X)
+        it2out, tr = self.it2mamdani.evaluate(_X)
         return crisp(tr["Y"])
 
 

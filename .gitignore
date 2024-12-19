@@ -5,3 +5,4 @@ build
 typereduction.egg-info
 pyit2fls.egg-info
 *.pdf
+*.sh

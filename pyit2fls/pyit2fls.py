@@ -1530,9 +1530,11 @@ class IT2FS:
             self.check_set()
 
     def __repr__(self):
-        return "Interval type 2 fuzzy set with " + self.umf.__name__ + " UMF function with " + \
-             str(self.umf_params) + " parameters, and " + self.lmf.__name__ + \
-             " LMF function with " + str(self.lmf_params) + " parameters."
+        return "Interval type 2 fuzzy set with " + \
+               self.umf.__name__ + " UMF function with " + \
+               str(list(map(float, self.umf_params))) + " parameters, and " + \
+               self.lmf.__name__ + " LMF function with " + \
+               str(list(map(float, self.lmf_params))) + " parameters"
 
     @property
     def upper(self):
