@@ -46,8 +46,8 @@ Thank you for your contribution, which helps maintain and improve this project!
 - Supporting FCL.
 - Introduction of a GUI for facilitating system design.
 
-### Some notes on version 0.8.1
-- Just some minor edits ...
+### Some notes on version 0.8.1-0.8.2
+- Just some minor edits and improvements ...
 
 ### Some notes on version 0.8.0
 - Starting initial support of machine learning models based on fuzzy systems. Based on optimization for execution time or linguistic interpretability of the results, these models may have different computational efficiencies. 
