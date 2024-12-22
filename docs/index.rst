@@ -12,6 +12,7 @@ Welcome to PyIT2FLS's documentation!
    t_s_norms
    functions
    algorithms
+   matrices
 
 
 
