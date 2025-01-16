@@ -908,4 +908,45 @@ Finally, we will represent the rule base and save it.
     print(f"Fitting error with respect to original surface: {sum((y1 - y3) ** 2) ** 0.5}")
     print(f"Fitting error with respect to noisy surface: {sum((y2 - y3) ** 2) ** 0.5}")
 
+The output plots achieved by this example would be as following:
+
+.. image:: ../_static/Figure_18.png
+   :alt: The control surface of the final interval type 2 fuzzy Mamdani system.
+   :width: 400px
+   :align: center
+
+.. image:: ../_static/Figure_19.png
+   :alt: The control surface of the final interval type 2 fuzzy Mamdani system.
+   :width: 400px
+   :align: center
+
+.. image:: ../_static/Figure_20.png
+   :alt: The control surface of the final interval type 2 fuzzy Mamdani system.
+   :width: 400px
+   :align: center
+
+.. image:: ../_static/Figure_21.png
+   :alt: The control surface of the final interval type 2 fuzzy Mamdani system.
+   :width: 400px
+   :align: center
+
+.. image:: ../_static/Figure_22.png
+   :alt: The control surface of the final interval type 2 fuzzy Mamdani system.
+   :width: 400px
+   :align: center
+
+And finally the data.txt file would be as:
+
+.. code-block:: plain text
+
+    Rule 1: IF X1 IS [Interval type 2 fuzzy set with gauss_uncert_mean_umf UMF function with [-1.4669762123604757, 1.0659910676893047, 1.5911537388450434, 1.0] parameters, and gauss_uncert_mean_lmf LMF function with [-1.4669762123604757, 1.0659910676893047, 1.5911537388450434, 1.0] parameters] AND X2 IS [Interval type 2 fuzzy set with gauss_uncert_mean_umf UMF function with [-1.2460056520619354, 1.1974593440280525, 4.978521585542144, 1.0] parameters, and gauss_uncert_mean_lmf LMF function with [-1.2460056520619354, 1.1974593440280525, 4.978521585542144, 1.0] parameters] THEN Y IS [0.5936306702649519]
+    Rule 2: IF X1 IS [Interval type 2 fuzzy set with gauss_uncert_mean_umf UMF function with [-1.0578157040838283, -0.7900290469909865, 1.863140906777802, 1.0] parameters, and gauss_uncert_mean_lmf LMF function with [-1.0578157040838283, -0.7900290469909865, 1.863140906777802, 1.0] parameters] AND X2 IS [Interval type 2 fuzzy set with gauss_uncert_mean_umf UMF function with [-0.00989717555417996, 0.6397562379181663, 1.2963653496230303, 1.0] parameters, and gauss_uncert_mean_lmf LMF function with [-0.00989717555417996, 0.6397562379181663, 1.2963653496230303, 1.0] parameters] THEN Y IS [6.088185997131968]
+    Rule 3: IF X1 IS [Interval type 2 fuzzy set with gauss_uncert_mean_umf UMF function with [-4.851301720327117, -0.638843779130017, 4.047351537584985, 1.0] parameters, and gauss_uncert_mean_lmf LMF function with [-4.851301720327117, -0.638843779130017, 4.047351537584985, 1.0] parameters] AND X2 IS [Interval type 2 fuzzy set with gauss_uncert_mean_umf UMF function with [-0.20780436270204738, 3.689012858124385, 4.095487544994535, 1.0] parameters, and gauss_uncert_mean_lmf LMF function with [-0.20780436270204738, 3.689012858124385, 4.095487544994535, 1.0] parameters] THEN Y IS [-1.434079311036905]
+    Rule 4: IF X1 IS [Interval type 2 fuzzy set with gauss_uncert_mean_umf UMF function with [-1.5554378784068028, -0.904650507196274, 0.9265735490246245, 1.0] parameters, and gauss_uncert_mean_lmf LMF function with [-1.5554378784068028, -0.904650507196274, 0.9265735490246245, 1.0] parameters] AND X2 IS [Interval type 2 fuzzy set with gauss_uncert_mean_umf UMF function with [0.24045230846829801, 1.4598442868389112, 2.9481236476117303, 1.0] parameters, and gauss_uncert_mean_lmf LMF function with [0.24045230846829801, 1.4598442868389112, 2.9481236476117303, 1.0] parameters] THEN Y IS [-5.609642128761873]
+
+
+
+
+
+
 The next model to be used is *IT2Mamdani_ML*. ...
