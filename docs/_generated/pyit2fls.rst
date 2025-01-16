@@ -908,4 +908,4 @@ Finally, we will represent the rule base and save it.
     print(f"Fitting error with respect to original surface: {sum((y1 - y3) ** 2) ** 0.5}")
     print(f"Fitting error with respect to noisy surface: {sum((y2 - y3) ** 2) ** 0.5}")
 
-
+The next model to be used is *IT2Mamdani_ML*. ...
