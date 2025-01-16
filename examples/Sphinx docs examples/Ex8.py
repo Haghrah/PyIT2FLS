@@ -45,7 +45,7 @@ ax.set_xlabel(r"$x_{1}$")
 ax.set_ylabel(r"$x_{2}$")
 
 plt.tight_layout()
-plt.savefig("example4_1.pdf", format="pdf", 
+plt.savefig("example8_1.pdf", format="pdf", 
             dpi=600, bbox_inches="tight")
 plt.show()
 
@@ -61,7 +61,7 @@ ax.set_xlabel(r"$x_{1}$")
 ax.set_ylabel(r"$x_{2}$")
 
 plt.tight_layout()
-plt.savefig("example4_2.pdf", format="pdf", 
+plt.savefig("example8_2.pdf", format="pdf", 
             dpi=600, bbox_inches="tight")
 plt.show()
 
@@ -78,7 +78,7 @@ ax.set_xlabel(r"$x_{1}$")
 ax.set_ylabel(r"$x_{2}$")
 
 plt.tight_layout()
-plt.savefig("example4_3.pdf", format="pdf", 
+plt.savefig("example8_3.pdf", format="pdf", 
             dpi=600, bbox_inches="tight")
 plt.show()
 
@@ -89,7 +89,7 @@ for i, rule in zip(range(len(myIT2TSK.model.it2tsk.rules)),
                    myIT2TSK.model.it2tsk.rules):
     IT2FS_plot(rule[0][0][1], rule[0][1][1], title=f"Rule {i+1}", 
                 legends=[r"$X_{1}$", r"$X_{2}$", ], 
-                filename=f"example4_{i+4}", ext="pdf")
+                filename=f"example8_{i+4}", ext="pdf")
     ruleText = f"Rule {i+1}: IF X1 IS [{rule[0][0][1]}] AND X2 IS [{rule[0][1][1]}] THEN Y IS [{rule[1][0][1]['const']}]"
     print(ruleText)
     systemData.write(ruleText + "\n")
