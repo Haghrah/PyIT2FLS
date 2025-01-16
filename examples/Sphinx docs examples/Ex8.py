@@ -29,7 +29,7 @@ N = 2
 M = 4
 myIT2TSK = IT2TSK_ML(N, M, IT2FS_Gaussian_UncertMean, (-pi, pi), 
                      algorithm="GA", 
-                     algorithm_params=[100, 100, 500, 50, 0.05])
+                     algorithm_params=[200, 100, 500, 50, 0.02])
 myIT2TSK.fit(X, y2.ravel())
 
 y3 = myIT2TSK.score(X).reshape(X1.shape)
@@ -45,7 +45,7 @@ ax.set_xlabel(r"$x_{1}$")
 ax.set_ylabel(r"$x_{2}$")
 
 plt.tight_layout()
-plt.savefig("example8_1.pdf", format="pdf", 
+plt.savefig("example8_1", format="png", 
             dpi=600, bbox_inches="tight")
 plt.show()
 
@@ -61,7 +61,7 @@ ax.set_xlabel(r"$x_{1}$")
 ax.set_ylabel(r"$x_{2}$")
 
 plt.tight_layout()
-plt.savefig("example8_2.pdf", format="pdf", 
+plt.savefig("example8_2", format="png", 
             dpi=600, bbox_inches="tight")
 plt.show()
 
@@ -78,7 +78,7 @@ ax.set_xlabel(r"$x_{1}$")
 ax.set_ylabel(r"$x_{2}$")
 
 plt.tight_layout()
-plt.savefig("example8_3.pdf", format="pdf", 
+plt.savefig("example8_3", format="png", 
             dpi=600, bbox_inches="tight")
 plt.show()
 
@@ -89,7 +89,7 @@ for i, rule in zip(range(len(myIT2TSK.model.it2tsk.rules)),
                    myIT2TSK.model.it2tsk.rules):
     IT2FS_plot(rule[0][0][1], rule[0][1][1], title=f"Rule {i+1}", 
                 legends=[r"$X_{1}$", r"$X_{2}$", ], 
-                filename=f"example8_{i+4}", ext="pdf")
+                filename=f"example8_{i+4}", ext="png")
     ruleText = f"Rule {i+1}: IF X1 IS [{rule[0][0][1]}] AND X2 IS [{rule[0][1][1]}] THEN Y IS [{rule[1][0][1]['const']}]"
     print(ruleText)
     systemData.write(ruleText + "\n")

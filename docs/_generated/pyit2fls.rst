@@ -810,8 +810,8 @@ resemble the original mathematical model.
 
 Now, we will create an *IT2TSK_ML* object with two inputs, four rules, parameters bounded by −π 
 and π, interval type-2 Gaussian sets with uncertain mean values, and a genetic algorithm configured 
-with a population size of 100, 100 iterations, 500 mutations, 50 combinations, and an elite 
-assumption of 5%.
+with a population size of 200, 100 iterations, 500 mutations, 50 combinations, and an elite 
+assumption of 2%.
 
 .. code-block:: python
 
@@ -850,7 +850,7 @@ Next, let’s plot the original data, the noisy data, and the fitted data:
     ax.set_ylabel(r"$x_{2}$")
 
     plt.tight_layout()
-    plt.savefig("example8_1.pdf", format="pdf", 
+    plt.savefig("example8_1", format="pdf", 
                 dpi=600, bbox_inches="tight")
     plt.show()
 
@@ -866,7 +866,7 @@ Next, let’s plot the original data, the noisy data, and the fitted data:
     ax.set_ylabel(r"$x_{2}$")
 
     plt.tight_layout()
-    plt.savefig("example8_2.pdf", format="pdf", 
+    plt.savefig("example8_2", format="pdf", 
                 dpi=600, bbox_inches="tight")
     plt.show()
 
@@ -883,7 +883,7 @@ Next, let’s plot the original data, the noisy data, and the fitted data:
     ax.set_ylabel(r"$x_{2}$")
 
     plt.tight_layout()
-    plt.savefig("example8_3.pdf", format="pdf", 
+    plt.savefig("example8_3", format="pdf", 
                 dpi=600, bbox_inches="tight")
     plt.show()
 
