@@ -911,37 +911,37 @@ Finally, we will represent the rule base and save it.
 The output plots achieved by this example would be as following:
 
 .. image:: ../_static/Figure_18.png
-   :alt: ---
+   :alt: Original data plot as a surface.
    :width: 400px
    :align: center
 
 .. image:: ../_static/Figure_19.png
-   :alt: ---
+   :alt: Noisy data plot as a surface used for training the model.
    :width: 400px
    :align: center
 
 .. image:: ../_static/Figure_20.png
-   :alt: ---
+   :alt: Fitted data (Blues) and error (Greens) as two surfaces.
    :width: 400px
    :align: center
 
 .. image:: ../_static/Figure_21.png
-   :alt: ---
+   :alt: Fuzzy sets describing X1 and X2 in the first rule.
    :width: 400px
    :align: center
 
 .. image:: ../_static/Figure_22.png
-   :alt: ---
+   :alt: Fuzzy sets describing X1 and X2 in the second rule.
    :width: 400px
    :align: center
 
 .. image:: ../_static/Figure_23.png
-   :alt: ---
+   :alt: Fuzzy sets describing X1 and X2 in the third rule.
    :width: 400px
    :align: center
 
 .. image:: ../_static/Figure_24.png
-   :alt: ---
+   :alt: Fuzzy sets describing X1 and X2 in the fourth rule.
    :width: 400px
    :align: center
 
