@@ -27,9 +27,27 @@ y2 = y1 + noise
 
 N = 2
 M = 4
+
 myIT2TSK = IT2TSK_ML(N, M, IT2FS_Gaussian_UncertMean, (-pi, pi), 
-                     algorithm="GA", 
-                     algorithm_params=[200, 100, 500, 50, 0.02])
+                     algorithm="ICA", 
+                     algorithm_params=[200, 100, 0.3, 0.2])
+
+# myIT2TSK = IT2TSK_ML(N, M, IT2FS_Gaussian_UncertMean, (-pi, pi), 
+#                      algorithm="CSO", 
+#                      algorithm_params=[50, 500, 0.25, 0.01, 1.25])
+# myIT2TSK = IT2TSK_ML(N, M, IT2FS_Gaussian_UncertMean, (-pi, pi), 
+#                      algorithm="FFA", 
+#                      algorithm_params=[20, 100, 0.2, 1.5, 3.0])
+# myIT2TSK = IT2TSK_ML(N, M, IT2FS_Gaussian_UncertMean, (-pi, pi), 
+#                      algorithm="WOA", 
+#                      algorithm_params=[100, 100, 100, ])
+# myIT2TSK = IT2TSK_ML(N, M, IT2FS_Gaussian_UncertMean, (-pi, pi), 
+#                      algorithm="GWO", 
+#                      algorithm_params=[200, 100, 100, ])
+
+# myIT2TSK = IT2TSK_ML(N, M, IT2FS_Gaussian_UncertMean, (-pi, pi), 
+#                      algorithm="GA", 
+#                      algorithm_params=[200, 100, 500, 50, 0.02])
 myIT2TSK.fit(X, y2.ravel())
 
 y3 = myIT2TSK.score(X).reshape(X1.shape)
