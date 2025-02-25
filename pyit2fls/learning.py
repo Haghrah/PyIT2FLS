@@ -8,7 +8,7 @@ Created on Sat Mar 30 01:39:58 2024
 
 from numpy import (reshape, exp, array, zeros, zeros_like, asarray, linspace, 
                    concatenate, abs, clip, argsort, argmin, sqrt, math, sin, 
-                   pi, copy, argmax, vstack, )
+                   pi, copy, argmax, vstack, ones, )
 from numpy.linalg import (norm, )
 from numpy.random import (rand, randint, uniform, normal, choice, )
 from scipy.optimize import (differential_evolution, minimize, )
@@ -109,7 +109,7 @@ class ICA:
 
         imperialists = self.countries[sorted_indices[:num_imperialists]]
         colonies = self.countries[sorted_indices[num_imperialists:]]
-        colony_map = choice(len(imperialists), len(colonies))  # Assign colonies randomly to imperialists
+        colony_map = choice(len(imperialists), size=len(colonies))  # Assign colonies randomly to imperialists
 
         return imperialists, colonies, colony_map
 
@@ -196,7 +196,7 @@ class FFA:
         self.obj_func = obj_func
         self.args = args
         self.fireflies = uniform(bounds[0], bounds[1], (population, param_num))
-
+        
         self.fitness = []
         for firefly in self.fireflies:
             try:
@@ -237,13 +237,15 @@ class WOA:
         self.bounds = bounds
         self.obj_func = obj_func
         self.args = args
-        self.whales = uniform(bounds[0], bounds[1], (population, param_num))
-        self.fitness = []
-        for whale in self.whales:
-            try:
-                self.fitness.append(self.obj_func(whale, *args))
-            except IndexError:
-                self.fitness.append(float("inf"))
+        self.whales = zeros((population, param_num, ), )
+        self.fitness = ones((population, )) * float("inf")
+        for i, whale in enumerate(self.whales):
+            while self.fitness[i] == float("inf"):
+                try:
+                    self.whales[i] = uniform(self.bounds[0], self.bounds[1], self.param_num)
+                    self.fitness[i] = self.obj_func(whale, *args)
+                except IndexError:
+                    self.fitness.append(float("inf"))
 
         best_index = argmin(self.fitness)
         self.best_whale = self.whales[best_index]
@@ -294,13 +296,15 @@ class GWO:
         self.args = args
         self.alpha, self.beta, self.delta = None, None, None
         self.alpha_fitness, self.beta_fitness, self.delta_fitness = float("inf"), float("inf"), float("inf")
-        self.wolves = uniform(bounds[0], bounds[1], (population, param_num))
-        self.fitness = []
-        for wolf in self.wolves:
-            try:
-                self.fitness.append(self.obj_func(wolf, *args))
-            except IndexError:
-                self.fitness.append(float("inf"))
+        self.wolves = zeros((self.population, self.param_num, ), )
+        self.fitness = ones((self.population, )) * float("inf")
+        for i, wolf in enumerate(self.wolves):
+            while self.fitness[i] == float("inf"):
+                try:
+                    self.wolves[i] = uniform(self.bounds[0], self.bounds[1], self.param_num)
+                    self.fitness[i] = self.obj_func(wolf, *args)
+                except IndexError:
+                    self.fitness.append(float("inf"))
         self._update_leaders()
 
     def _update_leaders(self):
@@ -353,24 +357,36 @@ class PSO:
         self.Fb = zeros(shape=(self.N, ))
         
         try:
-            self.Fb[0] = self.func(self.X[0, :], *self.args)
+            self.Fb[0] = self.func(self.X[0], *self.args)
         except IndexError:
             self.Fb[0] = float("inf")
+        while self.Fb[0] == float("inf"):
+            try:
+                self.X[0] = self.bounds[0] + (self.bounds[1] - self.bounds[0]) * rand(self.M, )
+                self.Fb[0] = self.func(self.X[0], *self.args)
+            except IndexError:
+                self.Fb[0] = float("inf")
         
-        self.xb = self.X[0, :].copy()
+        self.xb = self.X[0].copy()
         self.fb = self.Fb[0]
         
         self.iterNum = 0
         
         for i in range(1, self.N):
             try:
-                self.Fb[i] = self.func(self.X[i, :], *self.args)
-            except:
+                self.Fb[i] = self.func(self.X[i], *self.args)
+            except IndexError:
                 self.Fb[i] = float("inf")
+            while self.Fb[i] == float("inf"):
+                try:
+                    self.X[i] = self.bounds[0] + (self.bounds[1] - self.bounds[0]) * rand(self.M, )
+                    self.Fb[i] = self.func(self.X[i], *self.args)
+                except IndexError:
+                    self.Fb[i] = float("inf")
                 
             if self.Fb[i] < self.fb:
                 self.fb = self.Fb[i]
-                self.xb = self.X[i, :].copy()
+                self.xb = self.X[i].copy()
     
     
     def iterate(self, omega=0.3, phi_p=0.3, phi_g=2.1):
@@ -384,14 +400,14 @@ class PSO:
         
         for i in range(self.N):
             try:
-                tmp = self.func(self.X[i, :], *self.args)
+                tmp = self.func(self.X[i], *self.args)
             except IndexError:
                 continue
             if tmp < self.Fb[i]:
-                self.Xb[i, :] = self.X[i, :].copy()
+                self.Xb[i] = self.X[i].copy()
                 self.Fb[i] = tmp
                 if tmp < self.fb:
-                    self.xb = self.X[i, :].copy()
+                    self.xb = self.X[i].copy()
                     self.fb = tmp
             
 
@@ -403,6 +419,13 @@ class solution:
             self.fitness = func(self.solution, *args)
         except IndexError:
             self.fitness = float("inf")
+        while self.fitness == float("inf"):
+            self.solution = bounds[0] + (bounds[1] - bounds[0]) * rand(M, )
+            try:
+                self.fitness = func(self.solution, *args)
+            except IndexError:
+                self.fitness = float("inf")
+
 
 
 class GA:
@@ -455,7 +478,7 @@ class GA:
             mutated_solution = self.mutate(self.population[i])
             try:
                 tmp = self.func(mutated_solution, *self.args)
-            except:
+            except IndexError:
                 continue
             if tmp < self.population[i].fitness:
                 self.population[i].solution = mutated_solution.copy()

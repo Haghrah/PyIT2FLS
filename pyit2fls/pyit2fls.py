@@ -1,6 +1,6 @@
 from numpy import (exp, ones_like, zeros_like, arange, multiply, 
      subtract, add, minimum, maximum, sign, c_, argmax, 
-     array, where, hstack, logical_not, sqrt, )
+     array, where, hstack, logical_not, sqrt, clip, )
 
 from numpy import sum as npsum
 from numpy import abs as npabs
@@ -1358,10 +1358,11 @@ class T1TSK:
 
         Evaluates the T1 TSK FLS based on the crisp inputs given by the user.
     """
-    def __init__(self):
+    def __init__(self, default=0.):
         self.inputs = []
         self.outputs = []
         self.rules = []
+        self.default = default
     
     def __repr__(self):
         return "Type 1 TSK fuzzy logic system!"
@@ -1457,8 +1458,12 @@ class T1TSK:
             for consequent in rule[1]:
                 B[consequent[0]] += f * consequent[1](*params)
         f = npsum(F)
-        for out in self.outputs:
-            B[out] /= f
+        if f == 0:
+            for out in self.outputs:
+                B[out] = self.default
+        else:
+            for out in self.outputs:
+                B[out] /= f
         return B
 
 
