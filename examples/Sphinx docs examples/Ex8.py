@@ -49,7 +49,7 @@ M = 4
 #                      algorithm_params=[200, 100, 0.3, 0.3, 2.4])
 myIT2TSK = IT2TSK_ML(N, M, IT2FS_Gaussian_UncertMean, (-pi, pi), 
                      algorithm="GA", 
-                     algorithm_params=[200, 100, 500, 50, 0.02])
+                     algorithm_params=[200, 200, 200, 100, 0.1])
 myIT2TSK.fit(X, y2.ravel())
 
 y3 = myIT2TSK.score(X).reshape(X1.shape)
@@ -65,7 +65,7 @@ ax.set_xlabel(r"$x_{1}$")
 ax.set_ylabel(r"$x_{2}$")
 
 plt.tight_layout()
-plt.savefig("example8_1", format="png", 
+plt.savefig("example8_1.png", format="png", 
             dpi=600, bbox_inches="tight")
 plt.show()
 
@@ -81,7 +81,7 @@ ax.set_xlabel(r"$x_{1}$")
 ax.set_ylabel(r"$x_{2}$")
 
 plt.tight_layout()
-plt.savefig("example8_2", format="png", 
+plt.savefig("example8_2.png", format="png", 
             dpi=600, bbox_inches="tight")
 plt.show()
 
@@ -98,7 +98,7 @@ ax.set_xlabel(r"$x_{1}$")
 ax.set_ylabel(r"$x_{2}$")
 
 plt.tight_layout()
-plt.savefig("example8_3", format="png", 
+plt.savefig("example8_3.png", format="png", 
             dpi=600, bbox_inches="tight")
 plt.show()
 
