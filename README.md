@@ -46,6 +46,9 @@ Thank you for your contribution, which helps maintain and improve this project!
 - Supporting FCL.
 - Introduction of a GUI for facilitating system design.
 
+### Some notes on version 0.8.3
+- Supporting new optimization algorithms ...
+
 ### Some notes on version 0.8.1-0.8.2
 - Just some minor edits and improvements ...
 

@@ -29,6 +29,8 @@ class Optimizer(ABC):
         self.bounds = bounds
         self.args = args if args is not None else {}
         super().__init__()
+        self.best_solution = zeros((self.solution_size, ), )
+        self.best_fitness = self.objective_function(self.best_solution)
 
     @abstractmethod
     def iterate(self, algorithm_parameters):
