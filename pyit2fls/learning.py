@@ -8,185 +8,172 @@ Created on Sat Mar 30 01:39:58 2024
 
 from numpy import (reshape, exp, array, zeros, zeros_like, asarray, linspace, 
                    concatenate, abs, clip, argsort, argmin, sqrt, math, sin, 
-                   pi, copy, argmax, vstack, ones, )
+                   pi, copy, argmax, vstack, ones, mean, delete, where, append, sort, )
 from numpy.linalg import (norm, )
 from numpy.random import (rand, randint, uniform, normal, choice, )
 from scipy.optimize import (differential_evolution, minimize, )
 from pyit2fls import (T1FS, gaussian_mf, T1Mamdani, T1TSK, 
                       IT2FS_Gaussian_UncertMean, IT2FS_Gaussian_UncertStd, 
                       IT2Mamdani, IT2TSK, product_t_norm, max_s_norm, crisp, )
+from abc import ABC, abstractmethod
 
-def levy_flight(size, beta=1.5):
-    sigma_u = (math.gamma(1 + beta) * sin(pi * beta / 2) / 
-               (math.gamma((1 + beta) / 2) * beta * 2 ** ((beta - 1) / 2))) ** (1 / beta)
-    u = normal(0, sigma_u, size)
-    v = normal(0, 1, size)
-    step = u / (abs(v) ** (1 / beta))
-    return step
+class Optimizer(ABC):
+    """
+    Abstract base class for optimizers.
+    """
 
-class CuckooSearch:
-    def __init__(self, population, param_num, obj_func, bounds, args=()):
-        self.population = population
-        self.param_num = param_num
+    def __init__(self, population_size, solution_size, objective_function, bounds, args=None):
+        self.population_size = population_size
+        self.solution_size = solution_size
+        self.objective_function = objective_function
         self.bounds = bounds
-        self.obj_func = obj_func
-        self.args = args
+        self.args = args if args is not None else {}
+        super().__init__()
 
-        self.nests = uniform(bounds[0], bounds[1], (population, param_num))
+    @abstractmethod
+    def iterate(self, algorithm_parameters):
+        pass
 
-        self.fitness = []
-        for nest in self.nests:
-            try:
-                self.fitness.append(self.obj_func(nest, *args))
-            except IndexError:
-                self.fitness.append(float("inf"))
 
-        best_index = argmin(self.fitness)
-        self.best_nest = self.nests[best_index]
-        self.best_fitness = self.fitness[best_index]
-
-    def iterate(self, pa=0.25, step_size=0.01, beta=1.5):
-        new_nests = copy(self.nests)
-
-        for i in range(self.population):
-            new_nest = self.nests[i] + step_size * levy_flight(self.param_num, beta)
-
-            try:
-                fitness = self.obj_func(new_nest, *self.args)
-            except IndexError:
-                fitness = float("inf")
-
-            if fitness < self.fitness[i]:  # Accept better solutions
-                new_nests[i] = new_nest
-                self.fitness[i] = fitness
-
-        best_index = argmin(self.fitness)
-        if self.fitness[best_index] < self.best_fitness:
-            self.best_nest = new_nests[best_index]
-            self.best_fitness = self.fitness[best_index]
-
-        # Abandon some nests and replace with new random ones
-        worst_nests = rand(self.population) < pa
-        for i in range(self.population):
-            if worst_nests[i]:
-                new_nests[i] = uniform(self.bounds[0], self.bounds[1], self.param_num)
-                try:
-                    self.fitness[i] = self.obj_func(new_nests[i], *self.args)
-                except IndexError:
-                    self.fitness[i] = float("inf")
-
-        self.nests = new_nests
-        
 
 
 class ICA:
-    def __init__(self, population, param_num, obj_func, bounds, args=()):
-        self.population = population
-        self.param_num = param_num
-        self.bounds = array(bounds)  # Ensure bounds are NumPy arrays
-        self.obj_func = obj_func
-        self.args = args
+    def __init__(self, population_size, solution_size, objective_function, bounds, args=None):
+        self.population_size = population_size
+        self.solution_size = solution_size
+        self.objective_function = objective_function
+        self.bounds = bounds
+        self.args = args if args is not None else {}
 
-        # Initialize countries
-        self.countries = uniform(self.bounds[0], self.bounds[1], (population, param_num))
-        self.fitness = []
-        for country in self.countries:
+        # Initialize countries (solutions) randomly within bounds
+        self.countries = zeros((self.population_size, self.solution_size, ), )
+        self.fitness = zeros((self.population_size, ), )
+        
+        for i in range(self.population_size):
+            self.countries[i] = uniform(low=self.bounds[0], high=self.bounds[1], size=(self.solution_size, ), )
             try:
-                self.fitness.append(self.obj_func(country, *args))
+                self.fitness[i] = self.objective_function(self.countries[i], *self.args)
             except IndexError:
-                self.fitness.append(float("inf"))
-        self.fitness = array(self.fitness)
+                self.fitness[i] = float("inf")
 
-        # Divide into imperialists and colonies
-        self.imperialists, self.colonies, self.colony_map = self._divide_into_empires()
+        # Select imperialists and colonies
+        self.imperialist_indices = argsort(self.fitness)[:self.population_size // 3]  # Example: 1/3 are imperialists
+        self.colony_indices = argsort(self.fitness)[self.population_size // 3:]
 
-        self.update_best_solution()
+        self.get_best_solution()
 
-    def _divide_into_empires(self):
-        """Sorts countries by fitness and assigns them to imperialists."""
-        sorted_indices = argsort(self.fitness)
-        num_imperialists = int(sqrt(self.population))
-
-        imperialists = self.countries[sorted_indices[:num_imperialists]]
-        colonies = self.countries[sorted_indices[num_imperialists:]]
-        colony_map = choice(len(imperialists), size=len(colonies))  # Assign colonies randomly to imperialists
-
-        return imperialists, colonies, colony_map
-
-    def iterate(self, assimilation_coeff=0.1, revolution_prob=0.05):
-        """Performs one iteration of ICA."""
-        for i in range(len(self.colonies)):
-            imperialist_idx = self.colony_map[i]
-            imperialist = self.imperialists[imperialist_idx]
-
-            # Assimilation: Move colonies toward imperialists
-            movement = assimilation_coeff * (imperialist - self.colonies[i])
-            new_colony = self.colonies[i] + movement
-
-            # Evaluate fitness
+    def iterate(self, assimilation_coefficient=2, revolution_rate=0.1):
+        # Assimilation: Colonies move towards their imperialist
+        for colony_index in self.colony_indices:
+            imperialist_index = self.imperialist_indices[colony_index % len(self.imperialist_indices)]  # Assign to an imperialist
+            difference = self.countries[imperialist_index] - self.countries[colony_index]
+            self.countries[colony_index] += uniform(0, assimilation_coefficient) * difference
             try:
-                new_fitness = self.obj_func(new_colony, *self.args)
+                self.fitness[colony_index] = self.objective_function(self.countries[colony_index], *self.args)
+            except IndexError:
+                self.fitness[colony_index] = float("inf")
+
+        # Revolution: Some colonies randomly change their position
+        for colony_index in self.colony_indices:
+            if rand() < revolution_rate:
+                self.countries[colony_index] = uniform(low=self.bounds[0], high=self.bounds[1], size=self.solution_size)
+                try:
+                    self.fitness[colony_index] = self.objective_function(self.countries[colony_index], *self.args)
+                except IndexError:
+                    self.fitness[colony_index] = float("inf")
+
+        # Imperialistic Competition: Select the weakest empire
+        weakest_empire_index = argmax([mean(self.fitness[self.colony_indices[self.colony_indices % len(self.imperialist_indices) == i]]) for i in range(len(self.imperialist_indices))])
+        weakest_imperialist_index = self.imperialist_indices[weakest_empire_index]
+
+        # Move the weakest colony to the best empire
+        best_empire_index = argmin([mean(self.fitness[self.colony_indices[self.colony_indices % len(self.imperialist_indices) == i]]) for i in range(len(self.imperialist_indices))])
+        if best_empire_index != weakest_empire_index:
+            weakest_colony_index = self.colony_indices[argmax(self.fitness[self.colony_indices[self.colony_indices % len(self.imperialist_indices) == weakest_empire_index]])]
+            self.imperialist_indices[weakest_empire_index] = weakest_colony_index
+            self.colony_indices = delete(self.colony_indices, where(self.colony_indices == weakest_colony_index)[0])
+            self.colony_indices = append(self.colony_indices, weakest_imperialist_index)
+            self.imperialist_indices = sort(self.imperialist_indices)
+            self.colony_indices = sort(self.colony_indices)
+
+        # Update fitness and re-sort
+        for i in range(self.population_size):
+            try:
+                self.fitness[i] = self.objective_function(self.countries[i], *self.args)
+            except IndexError:
+                self.fitness[i] = float("inf")
+        self.imperialist_indices = argsort(self.fitness)[:len(self.imperialist_indices)]
+        self.colony_indices = argsort(self.fitness)[len(self.imperialist_indices):]
+
+        self.get_best_solution()
+        return self.best_fitness
+
+    def get_best_solution(self):
+        best_index = argmin(self.fitness)
+        self.best_country = self.countries[best_index]
+        self.best_fitness = self.fitness[best_index]
+
+
+class CuckooSearch:
+    def __init__(self, population_size, solution_size, objective_function, bounds, args=None):
+        self.population_size = population_size
+        self.solution_size = solution_size
+        self.objective_function = objective_function
+        self.bounds = bounds
+        self.args = args if args is not None else {}  # Handle cases with no extra arguments
+
+        # Initialize nests (solutions) randomly within bounds
+        self.nests = zeros((self.population_size, self.solution_size, ), )
+        self.fitness = zeros((self.population_size, ), )
+        for i in range(self.population_size):
+            self.nests[i] = uniform(low=self.bounds[0], high=self.bounds[1], size=(self.solution_size, ))
+            try:
+                self.fitness[i] = self.objective_function(self.nests[i], *args)
+            except IndexError:
+                self.fitness[i] = float("inf")
+        
+        self.get_best_solution()
+
+
+    def iterate(self, pa=0.25, step_size_factor=0.01): # Example parameters
+        
+        # Cuckoo search process
+        for i in range(self.population_size):
+            new_nest = self.get_cuckoo(self.nests[i], step_size_factor)
+            try:
+                new_fitness = self.objective_function(new_nest, *self.args)
             except IndexError:
                 new_fitness = float("inf")
-            
-            try:
-                old_fitness = self.obj_func(self.colonies[i], *self.args)
-            except IndexError:
-                old_fitness = float("inf")
-
-            # Update colony if new position is better
-            if new_fitness < old_fitness:
-                self.colonies[i] = new_colony
-
-            # Apply revolution (random perturbation)
-            if rand() < revolution_prob:
-                revolution = uniform(-0.1, 0.1, self.param_num)
-                self.colonies[i] += revolution
-
-        # Imperialist competition: Replace weak imperialists
-        self._imperialist_competition()
-        self.update_best_solution()
-
-    def _imperialist_competition(self):
-        """Handles the competition where weak empires collapse and are taken over."""
-        imperialist_fitness = []
-        for imp in self.imperialists:
-            try:
-                imperialist_fitness.append(self.obj_func(imp, *self.args))
-            except IndexError:
-                imperialist_fitness.append(float("inf"))
-        imperialist_fitness = array(imperialist_fitness)
-
-        # Identify the weakest and strongest imperialists
-        weakest_idx = argmax(imperialist_fitness)  # Worst imperialist
-        strongest_idx = argmin(imperialist_fitness)  # Best imperialist
-
-        # If an imperialist has no colonies, it gets absorbed
-        if (self.colony_map == weakest_idx).sum() == 0:
-            self.imperialists[weakest_idx] = self.imperialists[strongest_idx]
-
-        # Reassign colonies proportionally to the best imperialist
-        colony_fitness = []
-        for c in self.colonies:
-            try:
-                colony_fitness.append(self.obj_func(c, *self.args))
-            except IndexError:
-                colony_fitness.append(float("inf"))
-        colony_fitness = array(colony_fitness)
-
-        normalized_fitness = 1 / (1 + imperialist_fitness) 
-        probabilities = normalized_fitness / normalized_fitness.sum()
-        self.colony_map = choice(len(self.imperialists), len(self.colonies), p=probabilities)
-
-    def update_best_solution(self):
-        """Returns the best-found solution so far."""
-        all_countries = vstack([self.imperialists, self.colonies])
-        all_fitness = array([self.obj_func(c, *self.args) for c in all_countries])
-        best_idx = argmin(all_fitness)
-        self.best_country = all_countries[best_idx]
-        self.best_fitness = all_fitness[best_idx]
+            j = randint(0, self.population_size)
+            if new_fitness < self.fitness[j]:
+                self.nests[j] = new_nest
+                self.fitness[j] = new_fitness
+                
+        for i in range(self.population_size):
+            if rand() < pa:
+                self.nests[i] = uniform(low=self.bounds[0], high=self.bounds[1], size=self.solution_size)
+                try:
+                    self.fitness[i] = self.objective_function(self.nests[i], *self.args)  # Recalculate fitness
+                except IndexError:
+                    self.fitness[i] = float("inf")
+        
+        self.get_best_solution()
+        return self.best_fitness
 
 
+    def get_cuckoo(self, nest, step_size_factor):
+         # Levy flight (simplified)
+        u = normal(0, 1, self.solution_size)
+        v = normal(0, 1, self.solution_size)
+        step_size = step_size_factor * u / abs(v)**(1/3) # Example Levy step
+        new_nest = nest + step_size
+        return new_nest
+
+    def get_best_solution(self):
+        best_index = argmin(self.fitness)
+        self.best_nest = self.nests[best_index]
+        self.best_fitness = self.fitness[best_index]
+        
 
 class FFA:
     def __init__(self, population, param_num, obj_func, bounds, args=()):
@@ -228,6 +215,7 @@ class FFA:
         best_index = argmin(self.fitness)
         self.best_firefly = self.fireflies[best_index]
         self.best_fitness = self.fitness[best_index]
+        return self.best_fitness
 
 
 class WOA:
@@ -238,14 +226,13 @@ class WOA:
         self.obj_func = obj_func
         self.args = args
         self.whales = zeros((population, param_num, ), )
-        self.fitness = ones((population, )) * float("inf")
-        for i, whale in enumerate(self.whales):
-            while self.fitness[i] == float("inf"):
-                try:
-                    self.whales[i] = uniform(self.bounds[0], self.bounds[1], self.param_num)
-                    self.fitness[i] = self.obj_func(whale, *args)
-                except IndexError:
-                    self.fitness.append(float("inf"))
+        self.fitness = zeros((population, ))
+        for i in range(self.population):
+            self.whales[i] = uniform(self.bounds[0], self.bounds[1], self.param_num)
+            try:
+                self.fitness[i] = self.obj_func(self.whales[i], *args)
+            except IndexError:
+                self.fitness[i] = float("inf")
 
         best_index = argmin(self.fitness)
         self.best_whale = self.whales[best_index]
@@ -283,8 +270,7 @@ class WOA:
         best_index = argmin(self.fitness)
         self.best_whale = self.whales[best_index]
         self.best_fitness = self.fitness[best_index]
-
-
+        return self.best_fitness
 
 
 class GWO:
@@ -297,14 +283,13 @@ class GWO:
         self.alpha, self.beta, self.delta = None, None, None
         self.alpha_fitness, self.beta_fitness, self.delta_fitness = float("inf"), float("inf"), float("inf")
         self.wolves = zeros((self.population, self.param_num, ), )
-        self.fitness = ones((self.population, )) * float("inf")
-        for i, wolf in enumerate(self.wolves):
-            while self.fitness[i] == float("inf"):
-                try:
-                    self.wolves[i] = uniform(self.bounds[0], self.bounds[1], self.param_num)
-                    self.fitness[i] = self.obj_func(wolf, *args)
-                except IndexError:
-                    self.fitness.append(float("inf"))
+        self.fitness = zeros((self.population, ))
+        for i in range(self.population):
+            self.wolves[i] = uniform(self.bounds[0], self.bounds[1], self.param_num)
+            try:
+                self.fitness[i] = self.obj_func(self.wolves[i], *args)
+            except IndexError:
+                self.fitness[i] = float("inf")
         self._update_leaders()
 
     def _update_leaders(self):
@@ -340,6 +325,7 @@ class GWO:
                 self.fitness[i] = fitness
 
         self._update_leaders()
+        return self.alpha_fitness
 
 
 
@@ -360,12 +346,6 @@ class PSO:
             self.Fb[0] = self.func(self.X[0], *self.args)
         except IndexError:
             self.Fb[0] = float("inf")
-        while self.Fb[0] == float("inf"):
-            try:
-                self.X[0] = self.bounds[0] + (self.bounds[1] - self.bounds[0]) * rand(self.M, )
-                self.Fb[0] = self.func(self.X[0], *self.args)
-            except IndexError:
-                self.Fb[0] = float("inf")
         
         self.xb = self.X[0].copy()
         self.fb = self.Fb[0]
@@ -377,12 +357,6 @@ class PSO:
                 self.Fb[i] = self.func(self.X[i], *self.args)
             except IndexError:
                 self.Fb[i] = float("inf")
-            while self.Fb[i] == float("inf"):
-                try:
-                    self.X[i] = self.bounds[0] + (self.bounds[1] - self.bounds[0]) * rand(self.M, )
-                    self.Fb[i] = self.func(self.X[i], *self.args)
-                except IndexError:
-                    self.Fb[i] = float("inf")
                 
             if self.Fb[i] < self.fb:
                 self.fb = self.Fb[i]
@@ -409,6 +383,7 @@ class PSO:
                 if tmp < self.fb:
                     self.xb = self.X[i].copy()
                     self.fb = tmp
+        return self.fb
             
 
 class solution:
@@ -419,14 +394,6 @@ class solution:
             self.fitness = func(self.solution, *args)
         except IndexError:
             self.fitness = float("inf")
-        while self.fitness == float("inf"):
-            self.solution = bounds[0] + (bounds[1] - bounds[0]) * rand(M, )
-            try:
-                self.fitness = func(self.solution, *args)
-            except IndexError:
-                self.fitness = float("inf")
-
-
 
 class GA:
     
@@ -451,13 +418,13 @@ class GA:
     
     
     def mutate(self, individual):
-        transfer_vector = (rand(self.M) -0.5) / (self.iterNum + 1.)
+        transfer_vector = (self.bounds[1] - self.bounds[0]) * (rand(self.M) - 0.5) / (self.iterNum + 1.)
         return individual.solution.copy() + transfer_vector
     
     def crossover(self, parent1, parent2):
         a = rand(self.M)
         b = rand(self.M)
-        return (a * parent1.solution + b * parent2.solution) / (a + b)
+        return (a * parent1.solution.copy() + b * parent2.solution.copy()) / (a + b)
     
     def iterate(self, mutation_num, crossover_num, tp):
         parent_list = self.tournament_selection(2 * crossover_num, 1.0)
@@ -486,6 +453,7 @@ class GA:
         
         self.population = sorted(self.population, key=lambda solution:solution.fitness)
         self.iterNum += 1
+        return self.population[0].fitness
 
 
 class gaussian_mf_learning:
@@ -1156,6 +1124,7 @@ class IT2TSK_ML:
         return norm(y - o)
 
     def fit(self, X, y):
+        convergence = []
         if self.algorithm == "DE":
             self.params = differential_evolution(self.error, bounds=self.Bounds, 
                                             args=(X, y), disp=True).x
@@ -1175,60 +1144,78 @@ class IT2TSK_ML:
             myPSO = PSO(self.algorithm_params[0], self.paramNum, self.error, 
                         self.Bounds[0], args=(X, y, ))
             for i in range(self.algorithm_params[1]):
+                convergence.append(
                 myPSO.iterate(self.algorithm_params[2], 
                               self.algorithm_params[3], 
-                              self.algorithm_params[4])
+                              self.algorithm_params[4]))
                 print(f"Iteration {i+1}", myPSO.fb)
             self.params = myPSO.xb
         elif self.algorithm == "GA":
             myGA = GA(self.algorithm_params[0], self.paramNum, self.error, 
                       self.Bounds[0], args=(X, y, ))
             for i in range(self.algorithm_params[1]):
+                convergence.append(
                 myGA.iterate(self.algorithm_params[2], 
                              self.algorithm_params[3], 
-                             self.algorithm_params[4], )
+                             self.algorithm_params[4], ))
                 print(f"Iteration {i+1}.", myGA.population[0].fitness)
             self.params = myGA.population[0].solution
         elif self.algorithm == "GWO":
             myGWO = GWO(self.algorithm_params[0], self.paramNum, self.error, 
                         self.Bounds[0], args=(X, y, ))
             for i in range(self.algorithm_params[1]):
-                myGWO.iterate(i, self.algorithm_params[2], )
+                convergence.append(
+                myGWO.iterate(i, self.algorithm_params[1], ))
                 print("Iteration ", i+1, ".", myGWO.alpha_fitness)
             self.params = myGWO.alpha
         elif self.algorithm == "WOA":
             myWOA = WOA(self.algorithm_params[0], self.paramNum, self.error, 
                         self.Bounds[0], args=(X, y, ))
             for i in range(self.algorithm_params[1]):
-                myWOA.iterate(i, self.algorithm_params[2], )
+                convergence.append(
+                myWOA.iterate(i, self.algorithm_params[1], ))
                 print("Iteration ", i+1, ".", myWOA.best_fitness)
             self.params = myWOA.best_whale
         elif self.algorithm == "FFA":
             myFFA = FFA(self.algorithm_params[0], self.paramNum, self.error, 
                         self.Bounds[0], args=(X, y, ))
             for i in range(self.algorithm_params[1]):
-                myFFA.iterate(self.algorithm_params[2], self.algorithm_params[3], self.algorithm_params[4])
+                convergence.append(
+                myFFA.iterate(self.algorithm_params[2], self.algorithm_params[3], self.algorithm_params[4]))
                 print("Iteration ", i+1, ".", myFFA.best_fitness)
             self.params = myFFA.best_firefly
         elif self.algorithm == "CSO":
             myCSO = CuckooSearch(self.algorithm_params[0], self.paramNum, self.error, 
                                  self.Bounds[0], args=(X, y, ))
             for i in range(self.algorithm_params[1]):
-                myCSO.iterate(self.algorithm_params[2], self.algorithm_params[3], self.algorithm_params[4])
+                convergence.append(
+                myCSO.iterate(self.algorithm_params[2], self.algorithm_params[3], ))
                 print("Iteration ", i+1, ".", myCSO.best_fitness)
             self.params = myCSO.best_nest
         elif self.algorithm == "ICA":
             myICA = ICA(self.algorithm_params[0], self.paramNum, self.error, 
-                                 self.Bounds[0], args=(X, y, ))
+                        self.Bounds[0], args=(X, y, ))
             for i in range(self.algorithm_params[1]):
-                myICA.iterate(self.algorithm_params[2], self.algorithm_params[3])
+                convergence.append(
+                myICA.iterate(self.algorithm_params[2], self.algorithm_params[3]))
                 print("Iteration ", i+1, ".", myICA.best_fitness)
             self.params = myICA.best_country
+        elif issubclass(self.algorithm, Optimizer):
+            myOpt = self.algorithm(self.algorithm_params[0], self.paramNum, self.error, 
+                                   self.Bounds[0], args=(X, y, ))
+            for i in range(self.algorithm_params[1]):
+                convergence.append(
+                myOpt.iterate(self.algorithm_params))
+                print("Iteration ", i+1, ".", myOpt.best_fitness)
+            self.params = myOpt.best_solution
         else:
             raise ValueError(self.algorithm + " algorithm is not supported!")
         
         self.model = IT2TSK_ML_Model(self.params, self.N, self.M, self.it2fs, self.c)
-        return self.error(self.params, X, y)
+        if len(convergence) > 0:
+            return self.error(self.params, X, y), convergence
+        else:
+            return self.error(self.params, X, y)
 
     def score(self, X):
         X = asarray(X)
@@ -1334,6 +1321,7 @@ class IT2Mamdani_ML:
     
 
     def fit(self, X, y):
+        convergence = []
         if self.algorithm == "DE":
             self.params = differential_evolution(self.error, bounds=self.Bounds, 
                                             args=(X, y), disp=True).x
@@ -1353,60 +1341,78 @@ class IT2Mamdani_ML:
             myPSO = PSO(self.algorithm_params[0], self.paramNum, self.error, 
                         self.Bounds[0], args=(X, y, ))
             for i in range(self.algorithm_params[1]):
+                convergence.append(
                 myPSO.iterate(self.algorithm_params[2], 
                               self.algorithm_params[3], 
-                              self.algorithm_params[4])
-                print("Iteration ", i+1, ".", myPSO.fb)
+                              self.algorithm_params[4]))
+                print(f"Iteration {i+1}", myPSO.fb)
             self.params = myPSO.xb
         elif self.algorithm == "GA":
             myGA = GA(self.algorithm_params[0], self.paramNum, self.error, 
                       self.Bounds[0], args=(X, y, ))
             for i in range(self.algorithm_params[1]):
+                convergence.append(
                 myGA.iterate(self.algorithm_params[2], 
                              self.algorithm_params[3], 
-                             self.algorithm_params[4], )
-                print("Iteration ", i+1, ".", myGA.population[0].fitness)
+                             self.algorithm_params[4], ))
+                print(f"Iteration {i+1}.", myGA.population[0].fitness)
             self.params = myGA.population[0].solution
         elif self.algorithm == "GWO":
             myGWO = GWO(self.algorithm_params[0], self.paramNum, self.error, 
                         self.Bounds[0], args=(X, y, ))
             for i in range(self.algorithm_params[1]):
-                myGWO.iterate(i, self.algorithm_params[2], )
+                convergence.append(
+                myGWO.iterate(i, self.algorithm_params[1], ))
                 print("Iteration ", i+1, ".", myGWO.alpha_fitness)
             self.params = myGWO.alpha
         elif self.algorithm == "WOA":
             myWOA = WOA(self.algorithm_params[0], self.paramNum, self.error, 
                         self.Bounds[0], args=(X, y, ))
             for i in range(self.algorithm_params[1]):
-                myWOA.iterate(i, self.algorithm_params[2], )
+                convergence.append(
+                myWOA.iterate(i, self.algorithm_params[1], ))
                 print("Iteration ", i+1, ".", myWOA.best_fitness)
             self.params = myWOA.best_whale
         elif self.algorithm == "FFA":
             myFFA = FFA(self.algorithm_params[0], self.paramNum, self.error, 
                         self.Bounds[0], args=(X, y, ))
             for i in range(self.algorithm_params[1]):
-                myFFA.iterate(self.algorithm_params[2], self.algorithm_params[3], self.algorithm_params[4])
+                convergence.append(
+                myFFA.iterate(self.algorithm_params[2], self.algorithm_params[3], self.algorithm_params[4]))
                 print("Iteration ", i+1, ".", myFFA.best_fitness)
             self.params = myFFA.best_firefly
         elif self.algorithm == "CSO":
             myCSO = CuckooSearch(self.algorithm_params[0], self.paramNum, self.error, 
                                  self.Bounds[0], args=(X, y, ))
             for i in range(self.algorithm_params[1]):
-                myCSO.iterate(self.algorithm_params[2], self.algorithm_params[3], self.algorithm_params[4])
+                convergence.append(
+                myCSO.iterate(self.algorithm_params[2], self.algorithm_params[3], ))
                 print("Iteration ", i+1, ".", myCSO.best_fitness)
             self.params = myCSO.best_nest
         elif self.algorithm == "ICA":
             myICA = ICA(self.algorithm_params[0], self.paramNum, self.error, 
-                                 self.Bounds[0], args=(X, y, ))
+                        self.Bounds[0], args=(X, y, ))
             for i in range(self.algorithm_params[1]):
-                myICA.iterate(self.algorithm_params[2], self.algorithm_params[3])
+                convergence.append(
+                myICA.iterate(self.algorithm_params[2], self.algorithm_params[3]))
                 print("Iteration ", i+1, ".", myICA.best_fitness)
             self.params = myICA.best_country
+        elif issubclass(self.algorithm, Optimizer):
+            myOpt = self.algorithm(self.algorithm_params[0], self.paramNum, self.error, 
+                                   self.Bounds[0], args=(X, y, ))
+            for i in range(self.algorithm_params[1]):
+                convergence.append(
+                myOpt.iterate(self.algorithm_params))
+                print("Iteration ", i+1, ".", myOpt.best_fitness)
+            self.params = myOpt.best_solution
         else:
             raise ValueError(self.algorithm + " algorithm is not supported!")
         
         self.model = IT2Mamdani_ML_Model(self.params, self.N, self.M, self.it2fs, self.c)
-        return self.error(self.params, X, y)
+        if len(convergence) > 0:
+            return self.error(self.params, X, y), convergence
+        else:
+            return self.error(self.params, X, y)
     
 
     def score(self, X):

@@ -30,27 +30,26 @@ M = 4
 
 # myIT2TSK = IT2TSK_ML(N, M, IT2FS_Gaussian_UncertMean, (-pi, pi), 
 #                      algorithm="ICA", 
-#                      algorithm_params=[50, 100, 2.0, 0.05])
-
+#                      algorithm_params=[50, 100, 2.0, 0.1])
 # myIT2TSK = IT2TSK_ML(N, M, IT2FS_Gaussian_UncertMean, (-pi, pi), 
 #                      algorithm="CSO", 
-#                      algorithm_params=[50, 500, 0.25, 0.01, 1.25])
+#                      algorithm_params=[50, 200, 0.25, 0.01, ])
 # myIT2TSK = IT2TSK_ML(N, M, IT2FS_Gaussian_UncertMean, (-pi, pi), 
 #                      algorithm="FFA", 
-#                      algorithm_params=[20, 100, 0.2, 1.5, 3.0])
+#                      algorithm_params=[50, 200, 0.2, 1.5, 3.0])
 # myIT2TSK = IT2TSK_ML(N, M, IT2FS_Gaussian_UncertMean, (-pi, pi), 
 #                      algorithm="WOA", 
-#                      algorithm_params=[100, 100, 100, ])
+#                      algorithm_params=[200, 100, ])
 # myIT2TSK = IT2TSK_ML(N, M, IT2FS_Gaussian_UncertMean, (-pi, pi), 
 #                      algorithm="GWO", 
-#                      algorithm_params=[200, 100, 100, ])
-# myIT2TSK = IT2TSK_ML(N, M, IT2FS_Gaussian_UncertMean, (-pi, pi), 
-#                      algorithm="PSO", 
-#                      algorithm_params=[200, 100, 0.3, 0.3, 2.4])
+#                      algorithm_params=[200, 100, ])
 myIT2TSK = IT2TSK_ML(N, M, IT2FS_Gaussian_UncertMean, (-pi, pi), 
-                     algorithm="GA", 
-                     algorithm_params=[200, 200, 200, 100, 0.1])
-myIT2TSK.fit(X, y2.ravel())
+                     algorithm="PSO", 
+                     algorithm_params=[200, 100, 0.3, 0.3, 2.4])
+# myIT2TSK = IT2TSK_ML(N, M, IT2FS_Gaussian_UncertMean, (-pi, pi), 
+#                      algorithm="GA", 
+#                      algorithm_params=[200, 200, 200, 100, 0.1])
+err, conv = myIT2TSK.fit(X, y2.ravel())
 
 y3 = myIT2TSK.score(X).reshape(X1.shape)
 
