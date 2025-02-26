@@ -30,7 +30,7 @@ class Optimizer(ABC):
         self.args = args if args is not None else {}
         super().__init__()
         self.best_solution = zeros((self.solution_size, ), )
-        self.best_fitness = self.objective_function(self.best_solution)
+        self.best_fitness = self.objective_function(self.best_solution, *args)
 
     @abstractmethod
     def iterate(self, algorithm_parameters):
