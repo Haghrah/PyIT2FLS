@@ -8,8 +8,8 @@ Created on Sun Dec 15 17:11:44 2024
 
 from pyit2fls import (IT2Mamdani_ML, IT2FS_Gaussian_UncertMean, 
                       Optimizer, )
-from numpy import (linspace, array, pi, sin, argmin, argmax, 
-                   cos, meshgrid, zeros_like, sum, zeros, )
+from numpy import (linspace, array, pi, sin, argmin, argmax, exp, 
+                   cos, meshgrid, zeros_like, sum, zeros, empty, )
 from numpy.random import (rand, uniform, randint, )
 import matplotlib.pyplot as plt
 
@@ -63,6 +63,7 @@ class HSO(Optimizer):
         return self.best_fitness
 
 
+
 X1 = linspace(-pi, pi, 10)
 X2 = linspace(-pi, pi, 10)
 
@@ -78,8 +79,8 @@ X = array(X)
 N = 2
 M = 4
 myIT2Mamdani = IT2Mamdani_ML(N, M, IT2FS_Gaussian_UncertMean, (-pi, pi), 
-                             algorithm=HSO, 
-                             algorithm_params=[10, 5000, 0.95, 0.9, 0.05])
+                              algorithm=HSO, 
+                              algorithm_params=[2, 5000, 0.95, 0.9, 0.05])
 err, conv = myIT2Mamdani.fit(X, y)
 
 x1, x2 = meshgrid(X1, X2)

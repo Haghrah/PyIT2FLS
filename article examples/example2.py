@@ -69,8 +69,11 @@ class IPAnimator:
             beam.set_ydata([0., l * cos(X[frame, 2])])
             return cart
         
+        Writer = animation.writers['ffmpeg']
+        writer = Writer(fps=24, metadata=dict(artist='Amir Arslan Haghrah'),
+                        extra_args=['-pix_fmt', 'yuv420p'])
         self.ani = animation.FuncAnimation(fig=fig, func=update, frames=len(t), interval=1000 * S)
-        self.ani.save('cartPole.mp4', codec='libx264', fps=int(1.0 / S))
+        self.ani.save('cartPole.mp4', writer=writer)
         plt.show()
 
 T1TSKCtrl = T1TSK()
@@ -87,16 +90,18 @@ def u(t, X, p, N, M):
     for i in range(N * M):
         setsList.append(T1FS(domain, gaussian_mf, 
                              [p[2 * i], abs(p[2 * i + 1]), 1.]))
-    rulesOutput = reshape(p[2 * N * M:], (M, N + 2, ), )
+    rulesOutput = reshape(p[2 * N * M:], (M, N ), )
     for i, c in enumerate(rulesOutput):
         antecedent = []
         for j in range(N):
             antecedent.append((f"X{j+1}", setsList[i * N + j]))
-        consequent = [("Y", lambda *Z : c[0] * (dot(array([Z[0], Z[1], ]), c[2:4])) 
-                                      + c[1] * (dot(array([Z[2], Z[3], ]), c[4:6])), ), ]
+        consequent = [("Y", lambda *Z : Z[0] * c[0] + Z[1] * c[1]
+                                      + Z[2] * c[2] + Z[3] * c[3], ), ]
         T1TSKCtrl.add_rule(antecedent, consequent, )
-    xDict = {"X1":X[0], "X2":X[1], "X3":X[2], "X4":X[3], }
-    return T1TSKCtrl.evaluate(xDict, params=(X[0], X[1], X[2], X[3]))["Y"]
+    return T1TSKCtrl.evaluate({"X1":X[0], "X2":X[1], 
+                               "X3":X[2], "X4":X[3], }, 
+                              params=(X[0], X[1], 
+                                      X[2], X[3]))["Y"]
 
 def run_with_timeout(func, args, timeout):
     with multiprocessing.Pool(processes=1) as pool:
@@ -118,7 +123,7 @@ if __name__ == "__main__":
     timeOut = 0.5
     N = 4
     M = 16
-    paramNum = M * (3 * N + 2)
+    paramNum = M * (3 * N)
     
     def objectiveFunctionSingleITAE(p, N, M, k, ):
         return ITAE(solve_ivp(cartPole, [0., T], X0[k], args=(u, p, N, M, ), 
@@ -132,14 +137,14 @@ if __name__ == "__main__":
         return o
     
     
-    # mySolver = PSO(20, paramNum, objFuncSingleITAE, (0., 10.), args=(N, M, timeOut, ), )
+    # mySolver = PSO(20, paramNum, objFuncSingleITAE, (0., 100.), args=(N, M, timeOut, ), )
     # for i in range(25):
     #     mySolver.iterate(omega=0.3, phi_g=0.3, phi_p=2.1)
     #     print(f"Ite {i + 1}. Best ITAE: {mySolver.fb}")
     #     print(mySolver.xb)
     # optimalParams = mySolver.xb
     
-    mySolver = GA(20, paramNum, objFuncSingleITAE, (0., 10.), args=(N, M, timeOut, ), )
+    mySolver = GA(20, paramNum, objFuncSingleITAE, (0., 100.), args=(N, M, timeOut, ), )
     for i in range(25):
         mySolver.iterate(10, 10, 0.2)
         print(f"Ite {i + 1}. Best ITAE: {mySolver.population[0].fitness}")

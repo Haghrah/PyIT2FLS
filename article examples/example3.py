@@ -35,7 +35,7 @@ N = 3
 M = 9
 myIT2TSK = IT2TSK_ML(N, M, IT2FS_Gaussian_UncertMean, (-2., 2.), 
                      algorithm="GA", 
-                     algorithm_params=[50, 100, 400, 20, 0.04])
+                     algorithm_params=[50, 200, 400, 20, 0.04])
 myIT2TSK.fit(X_train, y_train_actual)
 y_train_prediction = myIT2TSK.score(X_train)
 y_test_prediction = myIT2TSK.score(X_test)
