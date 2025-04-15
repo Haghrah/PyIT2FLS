@@ -6,22 +6,23 @@ PyIT2FLS
 NumPy and SciPy based toolkit for Type 1 and Interval Type 2 Fuzzy Logic Systems.
 
 ## Licence
-PyIT2FLS is published under MIT license. If you are using the developed toolkit, please cite preprint of our paper [PyIT2FLS: A New Python Toolkit for Interval Type 2 Fuzzy Logic Systems](https://arxiv.org/abs/1909.10051).
+PyIT2FLS is published under MIT license. If you are using the developed toolkit, please cite our paper [PyIT2FLS: An open-source Python framework for flexible and scalable development of type 1 and interval type 2 fuzzy logic models](https://www.sciencedirect.com/science/article/pii/S235271102500113X).
 
 BibTeX:
 
-    @misc{haghrah2019pyit2fls,
-        title={PyIT2FLS: A New Python Toolkit for Interval Type 2 Fuzzy Logic Systems},
-        author={Amir Arslan Haghrah and Sehraneh Ghaemi},
-        year={2019},
-        eprint={1909.10051},
-        archivePrefix={arXiv},
-        primaryClass={eess.SY}
+    @article{haghrah2025pyit2fls,
+        title={PyIT2FLS: An open-source Python framework for flexible and scalable development of type 1 and interval type 2 fuzzy logic models},
+        author={Haghrah, Amir Arslan and Ghaemi, Sehraneh and Badamchizadeh, Mohammad Ali},
+        journal={SoftwareX},
+        volume={30},
+        pages={102146},
+        year={2025},
+        publisher={Elsevier}
     }
 
 MLA:
 
-    Haghrah, Amir Arslan, and Sehraneh Ghaemi. "PyIT2FLS: A New Python Toolkit for Interval Type 2 Fuzzy Logic Systems." arXiv preprint arXiv:1909.10051 (2019).
+    Haghrah, Amir Arslan, Sehraneh Ghaemi, and Mohammad Ali Badamchizadeh. "PyIT2FLS: An open-source Python framework for flexible and scalable development of type 1 and interval type 2 fuzzy logic models." SoftwareX 30 (2025): 102146.
 
 
 ## Installation

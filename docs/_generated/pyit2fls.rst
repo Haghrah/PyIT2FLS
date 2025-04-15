@@ -7,27 +7,29 @@
 Interval Type 2 Fuzzy Logic Systems.
    
 The toolkit is distributed under the MIT License. If you use PyIT2FLS in your work, 
-please cite the preprint of our paper, PyIT2FLS: A New Python Toolkit for Interval 
-Type 2 Fuzzy Logic Systems.
+please cite our paper, PyIT2FLS: An open-source Python framework for flexible and 
+scalable development of type 1 and interval type 2 fuzzy logic models.
 
 BibTeX:
 
 .. code-block:: Bibtex
 
-    @misc{haghrah2019pyit2fls,
-        title={PyIT2FLS: A New Python Toolkit for Interval Type 2 Fuzzy Logic Systems},
-        author={Amir Arslan Haghrah and Sehraneh Ghaemi},
-        year={2019},
-        eprint={1909.10051},
-        archivePrefix={arXiv},
-        primaryClass={eess.SY}
+    @article{haghrah2025pyit2fls,
+        title={PyIT2FLS: An open-source Python framework for flexible and scalable development of type 1 and interval type 2 fuzzy logic models},
+        author={Haghrah, Amir Arslan and Ghaemi, Sehraneh and Badamchizadeh, Mohammad Ali},
+        journal={SoftwareX},
+        volume={30},
+        pages={102146},
+        year={2025},
+        publisher={Elsevier}
     }
+
 
 MLA:
 
 .. code-block:: markdown
 
-    Haghrah, Amir Arslan, and Sehraneh Ghaemi. "PyIT2FLS: A New Python Toolkit for Interval Type 2 Fuzzy Logic Systems." arXiv preprint arXiv:1909.10051 (2019).
+    Haghrah, Amir Arslan, Sehraneh Ghaemi, and Mohammad Ali Badamchizadeh. "PyIT2FLS: An open-source Python framework for flexible and scalable development of type 1 and interval type 2 fuzzy logic models." SoftwareX 30 (2025): 102146.
 
 Installation
 ------------
@@ -780,12 +782,7 @@ The output surface of the system is as follows:
 Example 8: Learning From Input/Output Data
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In this example, we will train fuzzy models using input/output data. PyIT2FLS provides four types 
-of models for this purpose: T1Mamdani_ML, T1TSK_ML, IT2Mamdani_ML, and IT2TSK_ML. First, we will 
-create some data based on a mathematical model and then add noise to it. Next, we will fit the 
-data using different models and compare their performance. Fuzzy systems are expected to perform 
-well when handling noisy and uncertain data. Therefore, we anticipate that the output will closely 
-resemble the original mathematical model.
+In this example, we will train fuzzy models using input/output data. PyIT2FLS provides four types of models for this purpose: *IT2TSK_ML*, *IT2Mamdani_ML*, *T1TSK_ML*, and *T1Mamdani_ML*. First, we will generate data based on a mathematical model and then add noise to it. Next, we will fit the data using different models and compare their performance. Fuzzy systems are expected to perform well when handling noisy and uncertain data; therefore, we anticipate that the output will closely resemble the original mathematical model.
 
 .. code-block:: python
 
@@ -808,10 +805,7 @@ resemble the original mathematical model.
     noise = 1.0 * (rand(len(X1), len(X2)) - 0.5)
     y2 = y1 + noise
 
-Now, we will create an *IT2TSK_ML* object with two inputs, four rules, parameters bounded by −π 
-and π, interval type-2 Gaussian sets with uncertain mean values, and a genetic algorithm configured 
-with a population size of 200, 100 iterations, 500 mutations, 50 combinations, and an elite 
-assumption of 2%.
+Now, we will create an *IT2TSK_ML* object with two inputs, four rules, and parameters bounded between −π and π. The model will use interval type-2 Gaussian sets with uncertain mean values, and it will be trained using a genetic algorithm configured with a population size of 200, 100 iterations, 500 mutations, 50 combinations, and an elite proportion of 2%.
 
 .. code-block:: python
 
@@ -821,21 +815,20 @@ assumption of 2%.
                          algorithm="GA", 
                          algorithm_params=[100, 100, 500, 50, 0.05])
 
-Let's give generated noisy data to the model, for fitting it.
+Let's provide the generated noisy data to the model for fitting.
 
 .. code-block:: python
 
     myIT2TSK.fit(X, y2.ravel())
 
-In this step, we have an interval type-2 TSK system with parameters optimized to minimize the error 
-for the input/output dataset. Using the fitted model, we evaluate the output for the input dataset:
+In this step, we have an interval type-2 TSK system with parameters optimized to minimize the error for the input/output dataset. Using the fitted model, we then evaluate the output for the given input data:
 
 
 .. code-block:: python
 
     y3 = myIT2TSK.score(X).reshape(X1.shape)
 
-Next, let’s plot the original data, the noisy data, and the fitted data:
+Next, let's plot the original data, the noisy data, and the fitted data:
 
 .. code-block:: python
 
@@ -888,7 +881,7 @@ Next, let’s plot the original data, the noisy data, and the fitted data:
     plt.show()
 
 
-Finally, we will represent the rule base and save it.
+We will represent the rule base and save it as following.
 
 .. code-block:: python
 
@@ -908,7 +901,7 @@ Finally, we will represent the rule base and save it.
     print(f"Fitting error with respect to original surface: {sum((y1 - y3) ** 2) ** 0.5}")
     print(f"Fitting error with respect to noisy surface: {sum((y2 - y3) ** 2) ** 0.5}")
 
-The output plots achieved by this example would be as following:
+The output plots achieved by this example would be as:
 
 .. image:: ../_static/Figure_18.png
    :alt: Original data plot as a surface.
@@ -946,9 +939,7 @@ The output plots achieved by this example would be as following:
    :align: center
 
 
-And finally we achieve outputs of the fuzzy rules as following. Notice that we have used 
-a random number generation-based solver to find the optimal parameters. So, for each run 
-we will achieve different results.
+Finally, we obtain the outputs of the fuzzy rules as follows. Note that we used a random number generation-based solver to find the optimal parameters; therefore, each run may yield different results.
 
 .. code-block:: plaintext
 
@@ -956,8 +947,6 @@ we will achieve different results.
     Rule 2: 6.088185997131968
     Rule 3: -1.434079311036905
     Rule 4: -5.609642128761873
-
-
 
 
 The next model to be used is *IT2Mamdani_ML*. ...
