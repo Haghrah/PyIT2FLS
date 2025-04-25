@@ -7,7 +7,7 @@ Created on Sat Mar 30 01:39:58 2024
 """
 
 from numpy import (reshape, exp, array, zeros, zeros_like, asarray, linspace, 
-                   concatenate, abs, clip, argsort, argmin, sqrt, math, sin, 
+                   concatenate, abs, clip, argsort, argmin, sqrt, sin, 
                    pi, copy, argmax, vstack, ones, mean, delete, where, append, sort, )
 from numpy.linalg import (norm, )
 from numpy.random import (rand, randint, uniform, normal, choice, )
@@ -16,6 +16,7 @@ from pyit2fls import (T1FS, gaussian_mf, T1Mamdani, T1TSK,
                       IT2FS_Gaussian_UncertMean, IT2FS_Gaussian_UncertStd, 
                       IT2Mamdani, IT2TSK, product_t_norm, max_s_norm, crisp, )
 from abc import ABC, abstractmethod
+
 
 class Optimizer(ABC):
     """
@@ -35,8 +36,6 @@ class Optimizer(ABC):
     @abstractmethod
     def iterate(self, algorithm_parameters):
         pass
-
-
 
 
 class ICA:
@@ -1238,10 +1237,12 @@ class IT2Mamdani_ML_Model:
         self.N = N
         self.M = M
         self.p = reshape(P[:-3 * M], (M, N, 3, ))
+        
         for i in range(M):
             for j in range(N):
                 self.p[i][j][1] = abs(self.p[i][j][1])
                 self.p[i][j][2] = abs(self.p[i][j][2])
+        
         self.q = reshape(P[-3 * M:], (M, 3))
         for i in range(M):
             self.q[i][1] = abs(self.q[i][1])

@@ -47,6 +47,9 @@ Thank you for your contribution, which helps maintain and improve this project!
 - Supporting FCL.
 - Introduction of a GUI for facilitating system design.
 
+### Some notes on version 0.8.5
+- Removing a deprecated numpy module ...
+
 ### Some notes on version 0.8.4
 - Just some minor edits and improvements ...
 
