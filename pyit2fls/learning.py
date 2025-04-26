@@ -1286,9 +1286,9 @@ class IT2Mamdani_ML_Model:
                               self.q[i][0] + 5. * std, # 5 x std after mean
                               int(10. * std * 10)) # 10 points for each unit
 
-            consequent = [("Y", it2fs(domain, params=[self.p[i][j][0], 
-                                                      self.p[i][j][1], 
-                                                      self.p[i][j][2], 
+            consequent = [("Y", it2fs(domain, params=[self.q[i][0], 
+                                                      self.q[i][1], 
+                                                      self.q[i][2], 
                                                       1.0]), ), ]
             self.it2mamdani.add_rule(antecedent, consequent)
 
