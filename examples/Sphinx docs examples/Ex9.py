@@ -30,8 +30,8 @@ M = 4
 
 
 myIT2Mamdani = IT2Mamdani_ML(N, M, IT2FS_Gaussian_UncertMean, (-pi / 2., pi / 2.), 
-                             algorithm="PSO", 
-                             algorithm_params=[200, 100, 0.3, 0.3, 2.4, ])
+                             algorithm="GWO", 
+                             algorithm_params=[200, 100, ])
 
 err, conv = myIT2Mamdani.fit(X, y2.ravel())
 

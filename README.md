@@ -47,6 +47,9 @@ Thank you for your contribution, which helps maintain and improve this project!
 - Supporting FCL.
 - Introduction of a GUI for facilitating system design.
 
+### Some notes on version 0.8.6
+- Minor bug fix concerning the *IT2Mamdani_ML_Model* class.
+
 ### Some notes on version 0.8.5
 - Removing a deprecated numpy module ...
 
