@@ -29,7 +29,7 @@ N = 2
 M = 4
 
 
-myIT2Mamdani = IT2Mamdani_ML(N, M, IT2FS_Gaussian_UncertMean, (-pi / 2., pi / 2.), 
+myIT2Mamdani = IT2Mamdani_ML(N, M, IT2FS_Gaussian_UncertMean, (-pi, pi), 
                              algorithm="GWO", 
                              algorithm_params=[200, 100, ])
 
