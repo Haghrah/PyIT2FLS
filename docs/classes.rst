@@ -257,3 +257,21 @@ IT2_TS_Model
 .. autofunction:: pyit2fls.IT2_TS_Model.__call__
 
 .. autofunction:: pyit2fls.IT2_TS_Model.Y
+
+
+GA
+--
+.. autoclass:: pyit2fls.GA
+
+.. autofunction:: pyit2fls.GA.tournament_selection
+
+.. autofunction:: pyit2fls.GA.mutate
+
+.. autofunction:: pyit2fls.GA.crossover
+
+.. autofunction:: pyit2fls.GA.iterate
+
+
+
+
+

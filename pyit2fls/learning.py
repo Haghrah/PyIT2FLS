@@ -397,7 +397,54 @@ class solution:
             self.fitness = float("inf")
 
 class GA:
+    """Genetic Algorithm (GA) for determining optimal parameters of the fuzzy models.
+
+    .. rubric:: Parameters
+        
+        Parameters of the constructor function:
+
+        N : int
+
+            Number of individuals in the population.
+        
+        M : int
+
+            Number of parameters constructing each individual.
+        
+        func : function
+
+            Objective function of the minimizing optimization problem.
+        
+        bounds : iterable
+
+            Lower and upper bounds of the parameters of the optimization problem solutions.
+        
+        args : tuple
+
+            The extra arguments that can be passed while calling the objective function, *func*.
     
+    .. rubric:: Functions
+        
+    Functions defined in GA class:
+
+        tournament_selection:
+
+            Returns a list of *num* indices of individuals selected using the tournament selection method 
+            among *tp* top percent of the individuals in the population.
+
+        mutate:
+
+            Applies the mutation operator on a specific individual.
+
+        crossover:
+
+            Produces an offspring using two individuals selected from the population.
+
+        iterate:
+
+            Advances the GA by one iteration.
+
+    """
     def __init__(self, N, M, func, bounds, args=()):
         self.func = func
         self.args = args
@@ -413,21 +460,73 @@ class GA:
     
     
     def tournament_selection(self, num, tp):
+        """Returns a list of *num* indices of individuals selected using the tournament selection method 
+            among *tp* top percent of the individuals in the population.
+
+            .. rubric:: Parameters
+
+            num : int
+
+                The needed number of indices.
+            
+            tp : float
+
+                A specific percent of population that selection would be among them.
+        """
         high = int(self.N * tp)
         return [i1 if self.population[i1].fitness < self.population[i2].fitness else i2 
                 for i1, i2 in zip(randint(high, size=num), randint(high, size=num))]
     
     
     def mutate(self, individual):
+        """Applies the mutation operator on a specific individual.
+
+            .. rubric:: Parameters
+
+            individual : object of type *solution*
+
+                The individual that the mutation would be applied on it.
+        """
         transfer_vector = (self.bounds[1] - self.bounds[0]) * (rand(self.M) - 0.5) / (self.iterNum + 1.)
         return individual.solution.copy() + transfer_vector
     
     def crossover(self, parent1, parent2):
+        """Produces an offspring using two individuals selected from the population.
+
+            .. rubric:: Parameters
+
+            parent1 : object of type *solution*
+
+                The first parent for producing the offspring.
+
+            parent2 : object of type *solution*
+
+                The second parent for producing the offspring.
+        """
         a = rand(self.M)
         b = rand(self.M)
         return (a * parent1.solution.copy() + b * parent2.solution.copy()) / (a + b)
     
     def iterate(self, mutation_num, crossover_num, tp):
+        """Advances the GA by one iteration.
+
+            .. rubric:: Parameters
+
+            mutation_num : int
+
+
+
+            crossover_num : int
+
+
+
+            tp : float
+
+                The implemented genetic algorithm (GA) applies the mutation and crossover operators 
+                exclusively to the elite subset of the population, which represents the fitter 
+                solutions. The parameter *tp* defines the elite group as the fraction 0 < *tp* < 1 
+                of the population comprising individuals with superior fitness.
+        """
         parent_list = self.tournament_selection(2 * crossover_num, 1.0)
         for i, j in zip(parent_list[::2], parent_list[1::2]):
             child_solution = self.crossover(self.population[i], self.population[j])
