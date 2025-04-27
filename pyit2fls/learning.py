@@ -399,51 +399,50 @@ class solution:
 class GA:
     """Genetic Algorithm (GA) for determining optimal parameters of the fuzzy models.
 
-    .. rubric:: Parameters
+        .. rubric:: Parameters
+            
+            Parameters of the constructor function:
+
+            N : int
+
+                Number of individuals in the population.
+            
+            M : int
+
+                Number of parameters constructing each individual.
+            
+            func : function
+
+                Objective function of the minimizing optimization problem.
+            
+            bounds : iterable
+
+                Lower and upper bounds of the parameters of the optimization problem solutions.
+            
+            args : tuple
+
+                The extra arguments that can be passed while calling the objective function, *func*.
         
-        Parameters of the constructor function:
+        .. rubric:: Functions
+            
+        Functions defined in GA class:
 
-        N : int
+            tournament_selection:
 
-            Number of individuals in the population.
-        
-        M : int
+                Returns a list of *num* indices of individuals selected using the tournament selection method 
+                among *tp* top percent of the individuals in the population.
 
-            Number of parameters constructing each individual.
-        
-        func : function
+            mutate:
 
-            Objective function of the minimizing optimization problem.
-        
-        bounds : iterable
+                Applies the mutation operator on a specific individual.
 
-            Lower and upper bounds of the parameters of the optimization problem solutions.
-        
-        args : tuple
+            crossover:
 
-            The extra arguments that can be passed while calling the objective function, *func*.
-    
-    .. rubric:: Functions
-        
-    Functions defined in GA class:
+                Produces an offspring using two individuals selected from the population.
 
-        tournament_selection:
+            iterate:
 
-            Returns a list of *num* indices of individuals selected using the tournament selection method 
-            among *tp* top percent of the individuals in the population.
-
-        mutate:
-
-            Applies the mutation operator on a specific individual.
-
-        crossover:
-
-            Produces an offspring using two individuals selected from the population.
-
-        iterate:
-
-            Advances the GA by one iteration.
-
+                Advances the GA by one iteration.
     """
     def __init__(self, N, M, func, bounds, args=()):
         self.func = func
