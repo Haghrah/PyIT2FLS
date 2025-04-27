@@ -514,11 +514,11 @@ class GA:
 
             mutation_num : int
 
-
+                The number of mutation operations that would be applied in each iteration.
 
             crossover_num : int
 
-
+                The number of crossover operations that would be applied in each iteration.
 
             tp : float
 
