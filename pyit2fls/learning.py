@@ -401,48 +401,48 @@ class GA:
 
         .. rubric:: Parameters
             
-            Parameters of the constructor function:
+        Parameters of the constructor function:
 
-            N : int
+        N : int
 
-                Number of individuals in the population.
-            
-            M : int
-
-                Number of parameters constructing each individual.
-            
-            func : function
-
-                Objective function of the minimizing optimization problem.
-            
-            bounds : iterable
-
-                Lower and upper bounds of the parameters of the optimization problem solutions.
-            
-            args : tuple
-
-                The extra arguments that can be passed while calling the objective function, *func*.
+            Number of individuals in the population.
         
+        M : int
+
+            Number of parameters constructing each individual.
+        
+        func : function
+
+            Objective function of the minimizing optimization problem.
+        
+        bounds : iterable
+
+            Lower and upper bounds of the parameters of the optimization problem solutions.
+        
+        args : tuple
+
+            The extra arguments that can be passed while calling the objective function, *func*.
+    
         .. rubric:: Functions
             
         Functions defined in GA class:
 
-            tournament_selection:
+        tournament_selection:
 
-                Returns a list of *num* indices of individuals selected using the tournament selection method 
-                among *tp* top percent of the individuals in the population.
+            Returns a list of *num* indices of individuals selected using the tournament selection method 
+            among *tp* top percent of the individuals in the population.
 
-            mutate:
+        mutate:
 
-                Applies the mutation operator on a specific individual.
+            Applies the mutation operator on a specific individual.
 
-            crossover:
+        crossover:
 
-                Produces an offspring using two individuals selected from the population.
+            Produces an offspring using two individuals selected from the population.
 
-            iterate:
+        iterate:
 
-                Advances the GA by one iteration.
+            Advances the GA by one iteration.
     """
     def __init__(self, N, M, func, bounds, args=()):
         self.func = func
