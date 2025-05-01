@@ -39,7 +39,70 @@ class Optimizer(ABC):
 
 
 class ICA:
+    """Imperialist Competitive Algorithm (ICA) for determining optimal parameters of fuzzy models.
+
+        .. rubric:: Parameters
+            
+        Parameters of the constructor function:
+
+        population_size : int
+
+            Number of countries (solutions) in the population.
+        
+        solution_size : int
+
+            Number of parameters constructing each country.
+        
+        objective_function : function
+
+            Objective function of the minimizing optimization problem.
+        
+        bounds : iterable
+
+            Lower and upper bounds of the parameters of the optimization problem solutions.
+        
+        args : tuple
+
+            The extra arguments that can be passed while calling the objective function, *objective_function*.
+    
+        .. rubric:: Functions
+            
+        Functions defined in ICA class:
+
+        iterate:
+
+            Advances the ICA by one iteration.
+
+        get_best_solution:
+
+            Finds the best solution (country) in the current population.
+    """
     def __init__(self, population_size, solution_size, objective_function, bounds, args=None):
+        """
+        Initializes the ICA class with the given parameters.
+
+        .. rubric:: Parameters
+
+        population_size : int
+
+            Number of countries (solutions) in the population.
+        
+        solution_size : int
+
+            Number of parameters constructing each country.
+        
+        objective_function : function
+
+            Objective function of the minimizing optimization problem.
+        
+        bounds : iterable
+
+            Lower and upper bounds of the parameters of the optimization problem solutions.
+        
+        args : tuple
+
+            The extra arguments that can be passed while calling the objective function, *objective_function*.
+        """
         self.population_size = population_size
         self.solution_size = solution_size
         self.objective_function = objective_function
@@ -64,6 +127,18 @@ class ICA:
         self.get_best_solution()
 
     def iterate(self, assimilation_coefficient=2, revolution_rate=0.1):
+        """Advances the ICA by one iteration.
+
+            .. rubric:: Parameters
+
+            assimilation_coefficient : float
+
+                Coefficient controlling the movement of colonies towards their imperialist.
+            
+            revolution_rate : float
+
+                Probability of a colony randomly changing its position.
+        """
         # Assimilation: Colonies move towards their imperialist
         for colony_index in self.colony_indices:
             imperialist_index = self.imperialist_indices[colony_index % len(self.imperialist_indices)]  # Assign to an imperialist
@@ -110,6 +185,7 @@ class ICA:
         return self.best_fitness
 
     def get_best_solution(self):
+        """Finds the best solution (country) in the current population."""
         best_index = argmin(self.fitness)
         self.best_country = self.countries[best_index]
         self.best_fitness = self.fitness[best_index]

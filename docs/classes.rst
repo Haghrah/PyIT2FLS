@@ -313,3 +313,14 @@ CuckooSearch
 .. autofunction:: pyit2fls.CuckooSearch.get_best_solution
 
 
+ICA
+---
+.. autoclass:: pyit2fls.ICA
+
+.. autofunction:: pyit2fls.ICA.iterate
+
+.. autofunction:: pyit2fls.ICA.get_best_solution
+
+
+
+
