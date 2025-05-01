@@ -1517,10 +1517,10 @@ class Linear_System:
 
 class T1_TS_Model:
     """
-    A class for creating type 1 Takagi-Sugeno models. Unlike the *T1TSK* class, 
-    which is a general purpose implementation, T1_TS_Model have been developed 
-    to be faster but less general. It needs more low-level configurations while 
-    dealing with it directly.
+    Type-1 Takagi-Sugeno (T1_TS) fuzzy model.
+
+    This class provides a faster but less general implementation of a Type-1 Takagi-Sugeno fuzzy model. 
+    It requires low-level configurations for membership functions, parameters, and system rules.
 
     .. rubric:: Parameters
 
@@ -1536,7 +1536,7 @@ class T1_TS_Model:
         List of parameters corresponded with mmbership functions describing each input 
         of the TS system in each rule of the rule base.
 
-    systemList : list of Linear_System
+    systemList : list of *Linear_System*
 
         List of antecedent of each rule as a linear system.
 
@@ -1560,19 +1560,55 @@ class T1_TS_Model:
 
     d0 : 
         
-        .
+        Computes the aggregated linear system based on the input membership function values.
     
     __call__ : 
         
-        .
+        Evaluates the TS fuzzy system for a given time, state, and input.
     
     Y : 
         
-        .
+        Computes the output of the fuzzy system for a given time, state, and input.
 
 
     """
     def __init__(self, mfList, mfParamsList, systemList, R, N, M, P):
+        """
+        Initializes the T1_TS_Model class with the given parameters.
+
+        .. rubric:: Parameters
+
+        mfList : list of list of membership functions
+
+            Membership functions describing each input of the TS system in each rule of 
+            the rule base.
+
+        mfParamsList : list of list of list of floats
+
+            List of parameters corresponded with mmbership functions describing each input 
+            of the TS system in each rule of the rule base.
+
+        systemList : list of Linear_System objects
+
+            A list of linear systems representing the consequent of each rule in the fuzzy 
+            system.
+
+        R : int
+
+            The number of rules in the fuzzy system.
+
+        N : int
+
+            The number of state variables of the system.
+
+        M : int
+
+            The number of inputs of the system.
+
+        P : int
+
+            The number of outputs of the system.
+        """
         self.mfList = mfList
         self.mfParamsList = mfParamsList
         self.systemList = systemList
@@ -1582,6 +1618,21 @@ class T1_TS_Model:
         self.P = P
     
     def d0(self, d0x):
+        """
+        Computes the aggregated linear system based on the input membership function values.
+
+        .. rubric:: Parameters
+
+        d0x : numpy array
+
+            The state variables for which the aggregated linear system will be computed.
+
+        .. rubric:: Returns
+
+        Linear_System:
+
+            The aggregated linear system based on the input membership function values.
+        """
         d = 0.
         n = Linear_System(zeros((self.N, self.N)), 
                           zeros((self.N, self.M)), 
@@ -1596,10 +1647,56 @@ class T1_TS_Model:
         return n / d
     
     def __call__(self, t, X, U):
+        """
+        Evaluates the fuzzy system for a given time, state, and input.
+
+        .. rubric:: Parameters
+
+        t : float
+
+            The time variable.
+
+        X : numpy array
+
+            The state variables of the system.
+
+        U : function
+
+            A function representing the system inputs as a function of time and state.
+
+        .. rubric:: Returns
+
+        numpy array:
+
+            The evaluated state derivatives of the fuzzy system.
+        """
         ts = self.d0(X)
         return ts(t, X, U)
 
     def Y(self, t, X, U):
+        """
+        Computes the output of the TS system for a given time, state, and input.
+
+        .. rubric:: Parameters
+
+        t : float
+
+            The time variable.
+
+        X : numpy array
+
+            The state variables of the system.
+
+        U : function
+
+            A function representing the system inputs as a function of time and state.
+
+        .. rubric:: Returns
+
+        numpy array:
+
+            The output of the TS system.
+        """
         ts = self.d0(X)
         return ts.Y(t, X, U)
 
