@@ -272,6 +272,44 @@ GA
 .. autofunction:: pyit2fls.GA.iterate
 
 
+PSO
+---
+.. autoclass:: pyit2fls.PSO
 
+.. autofunction:: pyit2fls.PSO.iterate
+
+
+GWO
+---
+.. autoclass:: pyit2fls.GWO
+
+.. autofunction:: pyit2fls.GWO.iterate
+
+.. autofunction:: pyit2fls.GWO._update_leaders
+
+
+WOA
+---
+.. autoclass:: pyit2fls.WOA
+
+.. autofunction:: pyit2fls.WOA.iterate
+
+
+FFA
+---
+.. autoclass:: pyit2fls.FFA
+
+.. autofunction:: pyit2fls.FFA.iterate
+
+
+CuckooSearch
+------------
+.. autoclass:: pyit2fls.CuckooSearch
+
+.. autofunction:: pyit2fls.CuckooSearch.iterate
+
+.. autofunction:: pyit2fls.CuckooSearch.get_cuckoo
+
+.. autofunction:: pyit2fls.CuckooSearch.get_best_solution
 
 

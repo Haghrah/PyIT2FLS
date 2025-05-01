@@ -116,7 +116,66 @@ class ICA:
 
 
 class CuckooSearch:
+    """Cuckoo Search (CS) for determining optimal parameters of fuzzy models.
+
+        .. rubric:: Parameters
+            
+        Parameters of the constructor function:
+
+        population_size : int
+
+            Number of nests (solutions) in the population.
+        
+        solution_size : int
+
+            Number of parameters constructing each solution.
+        
+        objective_function : function
+
+            Objective function of the minimizing optimization problem.
+        
+        bounds : iterable
+
+            Lower and upper bounds of the parameters of the optimization problem solutions.
+        
+        args : tuple
+
+            The extra arguments that can be passed while calling the objective function, *objective_function*.
+    
+        .. rubric:: Functions
+            
+        Functions defined in CuckooSearch class:
+
+        iterate:
+
+            Advances the Cuckoo Search by one iteration.
+    """
     def __init__(self, population_size, solution_size, objective_function, bounds, args=None):
+        """
+        Initializes the CuckooSearch class with the given parameters.
+
+        .. rubric:: Parameters
+
+        population_size : int
+
+            Number of nests (solutions) in the population.
+        
+        solution_size : int
+
+            Number of parameters constructing each solution.
+        
+        objective_function : function
+
+            Objective function of the minimizing optimization problem.
+        
+        bounds : iterable
+
+            Lower and upper bounds of the parameters of the optimization problem solutions.
+        
+        args : tuple
+
+            The extra arguments that can be passed while calling the objective function, *objective_function*.
+        """
         self.population_size = population_size
         self.solution_size = solution_size
         self.objective_function = objective_function
@@ -137,7 +196,18 @@ class CuckooSearch:
 
 
     def iterate(self, pa=0.25, step_size_factor=0.01): # Example parameters
-        
+        """Advances the Cuckoo Search by one iteration.
+
+            .. rubric:: Parameters
+
+            pa : float
+
+                Probability of abandoning a nest.
+            
+            step_size_factor : float
+
+                Step size factor for Levy flight.
+        """
         # Cuckoo search process
         for i in range(self.population_size):
             new_nest = self.get_cuckoo(self.nests[i], step_size_factor)
@@ -163,6 +233,18 @@ class CuckooSearch:
 
 
     def get_cuckoo(self, nest, step_size_factor):
+        """Generates a new solution using Levy flight.
+
+            .. rubric:: Parameters
+
+            nest : numpy array
+
+                Current solution (nest).
+            
+            step_size_factor : float
+
+                Step size factor for Levy flight.
+        """
          # Levy flight (simplified)
         u = normal(0, 1, self.solution_size)
         v = normal(0, 1, self.solution_size)
@@ -171,13 +253,73 @@ class CuckooSearch:
         return new_nest
 
     def get_best_solution(self):
+        """Finds the best solution (nest) in the current population."""
         best_index = argmin(self.fitness)
         self.best_nest = self.nests[best_index]
         self.best_fitness = self.fitness[best_index]
         
 
 class FFA:
+    """Firefly Algorithm (FFA) for determining optimal parameters of fuzzy models.
+
+        .. rubric:: Parameters
+            
+        Parameters of the constructor function:
+
+        population : int
+
+            Number of fireflies in the population.
+        
+        param_num : int
+
+            Number of parameters constructing each firefly.
+        
+        obj_func : function
+
+            Objective function of the minimizing optimization problem.
+        
+        bounds : iterable
+
+            Lower and upper bounds of the parameters of the optimization problem solutions.
+        
+        args : tuple
+
+            The extra arguments that can be passed while calling the objective function, *obj_func*.
+    
+        .. rubric:: Functions
+            
+        Functions defined in FFA class:
+
+        iterate:
+
+            Advances the FFA by one iteration.
+    """
     def __init__(self, population, param_num, obj_func, bounds, args=()):
+        """
+        Initializes the FFA class with the given parameters.
+
+        .. rubric:: Parameters
+
+        population : int
+
+            Number of fireflies in the population.
+        
+        param_num : int
+
+            Number of parameters constructing each firefly.
+        
+        obj_func : function
+
+            Objective function of the minimizing optimization problem.
+        
+        bounds : iterable
+
+            Lower and upper bounds of the parameters of the optimization problem solutions.
+        
+        args : tuple
+
+            The extra arguments that can be passed while calling the objective function, *obj_func*.
+        """
         self.population = population
         self.param_num = param_num
         self.bounds = bounds
@@ -197,6 +339,22 @@ class FFA:
         self.best_fitness = self.fitness[best_index]
 
     def iterate(self, alpha, beta0, gamma):
+        """Advances the FFA by one iteration.
+
+            .. rubric:: Parameters
+
+            alpha : float
+
+                Randomization parameter controlling the randomness of the movement.
+            
+            beta0 : float
+
+                Attractiveness at distance zero.
+            
+            gamma : float
+
+                Light absorption coefficient controlling the decrease in attractiveness with distance.
+        """
         for i in range(self.population):
             for j in range(self.population):
                 if self.fitness[j] < self.fitness[i]:
@@ -220,7 +378,66 @@ class FFA:
 
 
 class WOA:
+    """Whale Optimization Algorithm (WOA) for determining optimal parameters of fuzzy models.
+
+        .. rubric:: Parameters
+            
+        Parameters of the constructor function:
+
+        population : int
+
+            Number of whales in the population.
+        
+        param_num : int
+
+            Number of parameters constructing each whale.
+        
+        obj_func : function
+
+            Objective function of the minimizing optimization problem.
+        
+        bounds : iterable
+
+            Lower and upper bounds of the parameters of the optimization problem solutions.
+        
+        args : tuple
+
+            The extra arguments that can be passed while calling the objective function, *obj_func*.
+    
+        .. rubric:: Functions
+            
+        Functions defined in WOA class:
+
+        iterate:
+
+            Advances the WOA by one iteration.
+    """
     def __init__(self, population, param_num, obj_func, bounds, args=()):
+        """
+        Initializes the WOA class with the given parameters.
+
+        .. rubric:: Parameters
+
+        population : int
+
+            Number of whales in the population.
+        
+        param_num : int
+
+            Number of parameters constructing each whale.
+        
+        obj_func : function
+
+            Objective function of the minimizing optimization problem.
+        
+        bounds : iterable
+
+            Lower and upper bounds of the parameters of the optimization problem solutions.
+        
+        args : tuple
+
+            The extra arguments that can be passed while calling the objective function, *obj_func*.
+        """
         self.population = population
         self.param_num = param_num
         self.bounds = bounds
@@ -240,6 +457,18 @@ class WOA:
         self.best_fitness = self.fitness[best_index]
 
     def iterate(self, t, max_iter):
+        """Advances the WOA by one iteration.
+
+            .. rubric:: Parameters
+
+            t : int
+
+                Current iteration number.
+            
+            max_iter : int
+
+                Maximum number of iterations.
+        """
         a = 2 - 2 * t / max_iter  # Linearly decreasing from 2 to 0
         for i in range(self.population):
             r1, r2 = rand(), rand()
@@ -275,7 +504,66 @@ class WOA:
 
 
 class GWO:
+    """Grey Wolf Optimizer (GWO) for determining optimal parameters of fuzzy models.
+
+        .. rubric:: Parameters
+            
+        Parameters of the constructor function:
+
+        population : int
+
+            Number of wolves in the population.
+        
+        param_num : int
+
+            Number of parameters constructing each wolf.
+        
+        obj_func : function
+
+            Objective function of the minimizing optimization problem.
+        
+        bounds : iterable
+
+            Lower and upper bounds of the parameters of the optimization problem solutions.
+        
+        args : tuple
+
+            The extra arguments that can be passed while calling the objective function, *obj_func*.
+    
+        .. rubric:: Functions
+            
+        Functions defined in GWO class:
+
+        iterate:
+
+            Advances the GWO by one iteration.
+    """
     def __init__(self, population, param_num, obj_func, bounds, args=()):
+        """
+        Initializes the GWO class with the given parameters.
+
+        .. rubric:: Parameters
+
+        population : int
+
+            Number of wolves in the population.
+        
+        param_num : int
+
+            Number of parameters constructing each wolf.
+        
+        obj_func : function
+
+            Objective function of the minimizing optimization problem.
+        
+        bounds : iterable
+
+            Lower and upper bounds of the parameters of the optimization problem solutions.
+        
+        args : tuple
+
+            The extra arguments that can be passed while calling the objective function, *obj_func*.
+        """
         self.population = population
         self.param_num = param_num
         self.bounds = bounds
@@ -294,6 +582,9 @@ class GWO:
         self._update_leaders()
 
     def _update_leaders(self):
+        """
+        Updates the alpha, beta, and delta wolves based on their fitness values.
+        """
         sorted_indices = argsort(self.fitness)
         self.alpha = self.wolves[sorted_indices[0]]
         self.alpha_fitness = self.fitness[sorted_indices[0]]
@@ -303,6 +594,18 @@ class GWO:
         self.delta_fitness = self.fitness[sorted_indices[2]]
 
     def iterate(self, t, max_iter):
+        """Advances the GWO by one iteration.
+
+            .. rubric:: Parameters
+
+            t : int
+
+                Current iteration number.
+            
+            max_iter : int
+
+                Maximum number of iterations.
+        """
         a = 2 - 2 * (t + 1) / max_iter  # Linearly decreasing from 2 to 0
         for i in range(self.population):
             A1, A2, A3 = a * (2 * rand(self.param_num) - 1), \
@@ -331,8 +634,66 @@ class GWO:
 
 
 class PSO:
+    """Particle Swarm Optimization (PSO) for determining optimal parameters of fuzzy models.
+
+        .. rubric:: Parameters
+            
+        Parameters of the constructor function:
+
+        N : int
+
+            Number of particles in the swarm.
+        
+        M : int
+
+            Number of parameters constructing each particle.
+        
+        func : function
+
+            Objective function of the minimizing optimization problem.
+        
+        bounds : iterable
+
+            Lower and upper bounds of the parameters of the optimization problem solutions.
+        
+        args : tuple
+
+            The extra arguments that can be passed while calling the objective function, *func*.
     
+        .. rubric:: Functions
+            
+        Functions defined in PSO class:
+
+        iterate:
+
+            Advances the PSO by one iteration.
+    """
     def __init__(self, N, M, func, bounds, args=()):
+        """
+        Initializes the PSO class with the given parameters.
+
+        .. rubric:: Parameters
+
+        N : int
+
+            Number of particles in the swarm.
+        
+        M : int
+
+            Number of parameters constructing each particle.
+        
+        func : function
+
+            Objective function of the minimizing optimization problem.
+        
+        bounds : iterable
+
+            Lower and upper bounds of the parameters of the optimization problem solutions.
+        
+        args : tuple
+
+            The extra arguments that can be passed while calling the objective function, *func*.
+        """
         self.func = func
         self.args = args
         self.N  = N
@@ -365,6 +726,22 @@ class PSO:
     
     
     def iterate(self, omega=0.3, phi_p=0.3, phi_g=2.1):
+        """Advances the PSO by one iteration.
+
+            .. rubric:: Parameters
+
+            omega : float
+
+                Inertia weight controlling the influence of the previous velocity.
+            
+            phi_p : float
+
+                Cognitive coefficient controlling the influence of the particle's best-known position.
+            
+            phi_g : float
+
+                Social coefficient controlling the influence of the global best-known position.
+        """
         self.iterNum += 1
         r_p = rand(self.N, self.M)
         r_g = rand(self.N, self.M)
