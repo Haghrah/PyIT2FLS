@@ -1654,8 +1654,99 @@ class IT2TSK_ML_Model:
 
 
 class IT2TSK_ML:
+    """Interval Type-2 TSK Machine Learning (IT2TSK_ML) for learning from data using interval type-2 fuzzy TSK systems.
+
+        .. rubric:: Parameters
+            
+        Parameters of the constructor function:
+
+        N : int
+
+            Number of inputs to the model.
+        
+        M : int
+
+            Number of rules in the fuzzy system.
+        
+        it2fs : class
+
+            The interval type-2 fuzzy set class to be used for the antecedents and consequents. 
+            It should be either *IT2FS_Gaussian_UncertMean* or *IT2FS_Gaussian_UncertStd*.
+        
+        Bounds : tuple of float
+
+            The lower and upper bounds for the parameters of the model.
+        
+        algorithm : str
+
+            The optimization algorithm to be used for parameter learning. Supported algorithms include 
+            "DE", "Nelder-Mead", "Powell", "CG", "PSO", "GA", "GWO", "WOA", "FFA", "CSO", and "ICA". 
+            Custom algorithms inheriting from the *Optimizer* class can also be used.
+        
+        algorithm_params : list of numbers
+
+            Parameters for the selected optimization algorithm. The required parameters depend on the 
+            chosen algorithm.
+        
+        c : float
+
+            Output scaling factor for the model.
+    
+        .. rubric:: Functions
+            
+        Functions defined in IT2TSK_ML class:
+
+        error:
+
+            The error function used for optimizing the model parameters.
+
+        fit:
+
+            Fits the model to the given input-output data.
+
+        score:
+
+            Evaluates the model for a given set of inputs.
+    """
 
     def __init__(self, N, M, it2fs, Bounds=None, algorithm="DE", algorithm_params=[], c=1.0):
+        """
+        Initializes the IT2TSK_ML class with the given parameters.
+
+        .. rubric:: Parameters
+
+        N : int
+
+            Number of inputs to the model.
+        
+        M : int
+
+            Number of rules in the fuzzy system.
+        
+        it2fs : class
+
+            The interval type-2 fuzzy set class to be used for the antecedents and consequents. 
+            It should be either *IT2FS_Gaussian_UncertMean* or *IT2FS_Gaussian_UncertStd*.
+        
+        Bounds : tuple of float
+
+            The lower and upper bounds for the parameters of the model.
+        
+        algorithm : str
+
+            The optimization algorithm to be used for parameter learning. Supported algorithms include 
+            "DE", "Nelder-Mead", "Powell", "CG", "PSO", "GA", "GWO", "WOA", "FFA", "CSO", and "ICA". 
+            Custom algorithms inheriting from the *Optimizer* class can also be used.
+        
+        algorithm_params : list of numbers
+
+            Parameters for the selected optimization algorithm. The required parameters depend on the 
+            chosen algorithm.
+        
+        c : float
+
+            Output scaling factor for the model.
+        """
         self.N = N
         self.M = M
         self.it2fs = it2fs
@@ -1669,6 +1760,23 @@ class IT2TSK_ML:
         self.model = IT2TSK_ML_Model(self.params, self.N, self.M, self.it2fs, self.c)
 
     def error(self, P, X, y):
+        """
+        The error function for optimizing the model parameters.
+
+        .. rubric:: Parameters
+
+        P : list of float or numpy (n,) shaped array
+
+            The list of parameters for which the model error will be evaluated.
+
+        X : list of 1D numpy arrays or 2D numpy array
+
+            The input data for which the model error will be evaluated.
+        
+        y : list of float or numpy (n,) shaped array
+
+            The desired outputs for which the model error will be evaluated.
+        """
         model = IT2TSK_ML_Model(P, self.N, self.M, self.it2fs, self.c)
         o = zeros_like(y)
         for i, x in zip(range(len(y)), X):
@@ -1676,6 +1784,19 @@ class IT2TSK_ML:
         return norm(y - o)
 
     def fit(self, X, y):
+        """
+        Fits the model to the given input-output data.
+
+        .. rubric:: Parameters
+
+        X : list of 1D numpy arrays or 2D numpy array
+
+            The input data for training the model.
+
+        y : list of float or numpy (n,) shaped array
+
+            The desired outputs for training the model.
+        """
         convergence = []
         if self.algorithm == "DE":
             self.params = differential_evolution(self.error, bounds=self.Bounds, 
@@ -1770,6 +1891,15 @@ class IT2TSK_ML:
             return self.error(self.params, X, y)
 
     def score(self, X):
+        """
+        Evaluates the model for a given set of inputs.
+
+        .. rubric:: Parameters
+
+        X : list of 1D numpy arrays or 2D numpy array
+
+            The input data for which the model will be evaluated.
+        """
         X = asarray(X)
         if X.ndim == 1:
             return self.model(X)
