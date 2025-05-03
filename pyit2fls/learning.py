@@ -1702,8 +1702,68 @@ class T1_TS_Model:
 
 
 class IT2TSK_ML_Model:
+    """Interval Type-2 TSK Model for representing and evaluating interval type-2 fuzzy TSK systems in machine learning applications.
 
+        This class implements an interval type-2 fuzzy TSK model using Gaussian membership functions with uncertainty in either the mean or the standard deviation.
+
+        .. rubric:: Parameters
+            
+        Parameters of the constructor function:
+
+        P : list of floats or numpy array
+
+            The parameters of the model, including antecedent and consequent parameters.
+
+        N : int
+
+            The number of inputs to the fuzzy system.
+
+        M : int
+
+            The number of rules in the fuzzy system.
+
+        it2fs : class
+
+            The interval type-2 fuzzy set class to be used for the antecedents and consequents. It should be either *IT2FS_Gaussian_UncertMean* or *IT2FS_Gaussian_UncertStd*.
+
+        c : float
+
+            Output scaling factor for the model.
+    
+        .. rubric:: Functions
+            
+        Functions defined in IT2TSK_ML_Model class:
+
+        __call__:
+
+            Evaluates the fuzzy system for a given input.
+    """
     def __init__(self, P, N, M, it2fs, c=1.0):
+        """
+        Initializes the IT2TSK_ML_Model class with the given parameters.
+
+        .. rubric:: Parameters
+
+        P : list of floats or numpy array
+
+            The parameters of the model, including antecedent and consequent parameters.
+
+        N : int
+
+            The number of inputs to the fuzzy system.
+
+        M : int
+
+            The number of rules in the fuzzy system.
+
+        it2fs : class
+
+            The interval type-2 fuzzy set class to be used for the antecedents and consequents. It should be either *IT2FS_Gaussian_UncertMean* or *IT2FS_Gaussian_UncertStd*.
+
+        c : float
+
+            Output scaling factor for the model.
+        """
         self.N = N
         self.M = M
         self.p = reshape(P[:-M], (M, N, 3, ))
@@ -1746,6 +1806,21 @@ class IT2TSK_ML_Model:
             self.it2tsk.add_rule(antecedent, consequent)
 
     def __call__(self, X):
+        """
+        Evaluates the fuzzy system for a given input.
+
+        .. rubric:: Parameters
+
+        X : numpy array
+
+            The input data for which the fuzzy system will be evaluated.
+
+        .. rubric:: Returns
+
+        float:
+
+            The output of the fuzzy system for the given input.
+        """
         _X = {f"X{i + 1}":X[i] for i in range(self.N)}
         return self.it2tsk.evaluate(_X)["Y"]
 
