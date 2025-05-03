@@ -1560,7 +1560,7 @@ class T1_TS_Model:
 
     d0 : 
         
-        Computes the aggregated linear system based on the input membership function values.
+        Computes the aggregated linear system based on the states.
     
     __call__ : 
         
@@ -1619,7 +1619,7 @@ class T1_TS_Model:
     
     def d0(self, d0x):
         """
-        Computes the aggregated linear system based on the input membership function values.
+        Computes the aggregated linear system based on the states.
 
         .. rubric:: Parameters
 
@@ -1631,7 +1631,7 @@ class T1_TS_Model:
 
         Linear_System:
 
-            The aggregated linear system based on the input membership function values.
+            The aggregated linear system based on the states.
         """
         d = 0.
         n = Linear_System(zeros((self.N, self.N)), 
@@ -2285,10 +2285,110 @@ class IT2Mamdani_ML:
 
 
 class IT2_TS_Model:
-    """
+    """Interval Type-2 Takagi-Sugeno (IT2_TS) fuzzy model.
+
+        This class implements an interval type-2 Takagi-Sugeno fuzzy model, which uses lower and upper membership functions (LMFs and UMFs) to handle uncertainty in the system.
+
+        .. rubric:: Parameters
+            
+        Parameters of the constructor function:
+
+        lmfList : list of list of functions
+
+            A list of membership functions (MFs) for the lower membership functions (LMFs) of each input in each rule of the fuzzy system.
+
+        lmfParamsList : list of list of lists of floats
+
+            A list of parameters corresponding to the lower membership functions (LMFs) for each input in each rule of the fuzzy system.
+
+        umfList : list of list of functions
+
+            A list of membership functions (MFs) for the upper membership functions (UMFs) of each input in each rule of the fuzzy system.
+
+        umfParamsList : list of list of lists of floats
+
+            A list of parameters corresponding to the upper membership functions (UMFs) for each input in each rule of the fuzzy system.
+
+        systemList : list of *Linear_System* objects
+
+            A list of linear systems representing the consequent of each rule in the fuzzy system.
+
+        R : int
+
+            The number of rules in the fuzzy system.
+
+        N : int
+
+            The number of state variables in the system.
+
+        M : int
+
+            The number of inputs to the systems.
+
+        P : int
+
+            The number of outputs of the systems.
     
+        .. rubric:: Functions
+            
+        Functions defined in IT2_TS_Model class:
+
+        d0:
+
+            Computes the aggregated linear system based on the input membership function values.
+
+        __call__:
+
+            Evaluates the fuzzy system for a given time, state, and input.
+
+        Y:
+
+            Computes the output of the fuzzy system for a given time, state, and input.
     """
     def __init__(self, lmfList, lmfParamsList, umfList, umfParamsList, systemList, R, N, M, P):
+        """
+        Initializes the IT2_TS_Model class with the given parameters.
+
+        .. rubric:: Parameters
+            
+        Parameters of the constructor function:
+
+        lmfList : list of list of functions
+
+            A list of membership functions (MFs) for the lower membership functions (LMFs) of each input in each rule of the fuzzy system.
+
+        lmfParamsList : list of list of lists of floats
+
+            A list of parameters corresponding to the lower membership functions (LMFs) for each input in each rule of the fuzzy system.
+
+        umfList : list of list of functions
+
+            A list of membership functions (MFs) for the upper membership functions (UMFs) of each input in each rule of the fuzzy system.
+
+        umfParamsList : list of list of lists of floats
+
+            A list of parameters corresponding to the upper membership functions (UMFs) for each input in each rule of the fuzzy system.
+
+        systemList : list of *Linear_System* objects
+
+            A list of linear systems representing the consequent of each rule in the fuzzy system.
+
+        R : int
+
+            The number of rules in the fuzzy system.
+
+        N : int
+
+            The number of state variables in the system.
+
+        M : int
+
+            The number of inputs to the systems.
+
+        P : int
+
+            The number of outputs of the systems.
+        """
         self.lmfList = lmfList
         self.lmfParamsList = lmfParamsList
         self.umfList = umfList
@@ -2300,6 +2400,21 @@ class IT2_TS_Model:
         self.P = P
     
     def d0(self, d0x):
+        """
+        Computes the aggregated linear system based on the states.
+
+        .. rubric:: Parameters
+
+        d0x : numpy array
+
+            The state variables for which the aggregated linear system will be computed.
+
+        .. rubric:: Returns
+
+        Linear_System:
+
+            The aggregated linear system based on the states.
+        """
         d = 0.
         n = Linear_System(zeros((self.N, self.N)), 
                           zeros((self.N, self.M)), 
@@ -2316,10 +2431,56 @@ class IT2_TS_Model:
         return n / d
 
     def __call__(self, t, X, U):
+        """
+        Evaluates the fuzzy system for a given time, state, and input.
+
+        .. rubric:: Parameters
+
+        t : float
+
+            The time variable.
+
+        X : numpy array
+
+            The state variables of the system.
+
+        U : function
+
+            A function representing the system inputs as a function of time and state.
+
+        .. rubric:: Returns
+
+        numpy array:
+
+            The evaluated state derivatives of the fuzzy system.
+        """
         ts = self.d0(X)
         return ts(t, X, U)
 
     def Y(self, t, X, U):
+        """
+        Computes the output of the fuzzy system for a given time, state, and input.
+
+        .. rubric:: Parameters
+
+        t : float
+
+            The time variable.
+
+        X : numpy array
+
+            The state variables of the system.
+
+        U : function
+
+            A function representing the system inputs as a function of time and state.
+
+        .. rubric:: Returns
+
+        numpy array:
+
+            The output of the fuzzy system.
+        """
         ts = self.d0(X)
         return ts.Y(t, X, U)
 
