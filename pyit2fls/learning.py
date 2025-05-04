@@ -1105,19 +1105,15 @@ class T1Fuzzy_ML:
     algorithm : str
 
         Indicates the algorithm to be used for determining the model parameters. It should be one 
-        of the strings "DE", "Nelder-Mead", "Powell", "CG", "PSO", and "GA". More optimization 
-        techniques will be gradually added. The first four algorithms, which are based on scipy, 
-        are not computationally efficient. So, we have provided embedded GA and PSO algorithms 
-        for calculating model parameters by optimizing an error function.
+        of the strings "DE", "Nelder-Mead", "Powell", "CG", "PSO", "GA", "GWO", "WOA", "FFA", "CSO", "ICA". 
+        The first four algorithms, which are based on scipy, are not computationally efficient. 
+        So, we have provided embedded GA and PSO algorithms for calculating model parameters by 
+        optimizing an error function. The users can write their own heuristic optimizatopn solvers as 
+        a subclass of Optimizer class.
 
     algorithm_params : list of numbers
 
-        The parameters of the selected algorithm. Only GA and PSO algorithms need *algorithm_params* 
-        to be set. For the GA, this list must contain five numbers: population size, number of 
-        iterations, number of mutations in each iteration, number of combinations in each iteration, 
-        and top percent of the population which mutation is only applyed on them; a floating point 
-        number in range (0, 1). For the PSO algorithm, the list must also contain five numbers: 
-        population size, number of iterations, :math:`\omega`, :math:`\phi`, and :math:`\phi_{g}`.
+        The parameters of the selected algorithm. For more details refer to each algorithm's documentations.
     
     .. rubric:: Functions
 
@@ -1183,6 +1179,7 @@ class T1Fuzzy_ML:
             y is the set of desired outputs which the model error would be evaluated based on them.
 
         """
+        convergence = []
         if self.algorithm == "DE":
             self.params = differential_evolution(self.error, bounds=self.Bounds, 
                                             args=(X, y), disp=True).x
@@ -1202,26 +1199,79 @@ class T1Fuzzy_ML:
             myPSO = PSO(self.algorithm_params[0], self.paramNum, self.error, 
                         self.Bounds[0], args=(X, y, ))
             for i in range(self.algorithm_params[1]):
+                convergence.append(
                 myPSO.iterate(self.algorithm_params[2], 
                               self.algorithm_params[3], 
-                              self.algorithm_params[4])
-                print("Iteration ", i+1, ".", myPSO.fb)
+                              self.algorithm_params[4]))
+                print(f"Iteration {i+1}", myPSO.fb)
             self.params = myPSO.xb
         elif self.algorithm == "GA":
             myGA = GA(self.algorithm_params[0], self.paramNum, self.error, 
                       self.Bounds[0], args=(X, y, ))
             for i in range(self.algorithm_params[1]):
+                convergence.append(
                 myGA.iterate(self.algorithm_params[2], 
                              self.algorithm_params[3], 
-                             self.algorithm_params[4], )
-                print("Iteration ", i+1, ".", myGA.population[0].fitness)
+                             self.algorithm_params[4], ))
+                print(f"Iteration {i+1}.", myGA.population[0].fitness)
             self.params = myGA.population[0].solution
+        elif self.algorithm == "GWO":
+            myGWO = GWO(self.algorithm_params[0], self.paramNum, self.error, 
+                        self.Bounds[0], args=(X, y, ))
+            for i in range(self.algorithm_params[1]):
+                convergence.append(
+                myGWO.iterate(i, self.algorithm_params[1], ))
+                print("Iteration ", i+1, ".", myGWO.alpha_fitness)
+            self.params = myGWO.alpha
+        elif self.algorithm == "WOA":
+            myWOA = WOA(self.algorithm_params[0], self.paramNum, self.error, 
+                        self.Bounds[0], args=(X, y, ))
+            for i in range(self.algorithm_params[1]):
+                convergence.append(
+                myWOA.iterate(i, self.algorithm_params[1], ))
+                print("Iteration ", i+1, ".", myWOA.best_fitness)
+            self.params = myWOA.best_whale
+        elif self.algorithm == "FFA":
+            myFFA = FFA(self.algorithm_params[0], self.paramNum, self.error, 
+                        self.Bounds[0], args=(X, y, ))
+            for i in range(self.algorithm_params[1]):
+                convergence.append(
+                myFFA.iterate(self.algorithm_params[2], self.algorithm_params[3], self.algorithm_params[4]))
+                print("Iteration ", i+1, ".", myFFA.best_fitness)
+            self.params = myFFA.best_firefly
+        elif self.algorithm == "CSO":
+            myCSO = CuckooSearch(self.algorithm_params[0], self.paramNum, self.error, 
+                                 self.Bounds[0], args=(X, y, ))
+            for i in range(self.algorithm_params[1]):
+                convergence.append(
+                myCSO.iterate(self.algorithm_params[2], self.algorithm_params[3], ))
+                print("Iteration ", i+1, ".", myCSO.best_fitness)
+            self.params = myCSO.best_nest
+        elif self.algorithm == "ICA":
+            myICA = ICA(self.algorithm_params[0], self.paramNum, self.error, 
+                        self.Bounds[0], args=(X, y, ))
+            for i in range(self.algorithm_params[1]):
+                convergence.append(
+                myICA.iterate(self.algorithm_params[2], self.algorithm_params[3]))
+                print("Iteration ", i+1, ".", myICA.best_fitness)
+            self.params = myICA.best_country
+        elif issubclass(self.algorithm, Optimizer):
+            myOpt = self.algorithm(self.algorithm_params[0], self.paramNum, self.error, 
+                                   self.Bounds[0], args=(X, y, ))
+            for i in range(self.algorithm_params[1]):
+                convergence.append(
+                myOpt.iterate(self.algorithm_params))
+                print("Iteration ", i+1, ".", myOpt.best_fitness)
+            self.params = myOpt.best_solution
         else:
             raise ValueError(self.algorithm + " algorithm is not supported!")
         
         self.model = T1Fuzzy_ML_Model(self.params, self.N, self.M, 
                                       [[self.mf, ] * self.N, ] * self.M)
-        return self.error(self.params, X, y)
+        if len(convergence) > 0:
+            return self.error(self.params, X, y), convergence
+        else:
+            return self.error(self.params, X, y)
 
     def score(self, X):
         """
@@ -1247,11 +1297,86 @@ class T1Fuzzy_ML:
 
 
 class T1Mamdani_ML(T1Fuzzy_ML):
+    """Type-1 Mamdani Machine Learning (T1Mamdani_ML) for learning from data using Type-1 Mamdani fuzzy systems.
+
+        This class extends the *T1Fuzzy_ML* class to provide a linguistic interpretation of the results by generating a Type-1 Mamdani fuzzy system based on the learned parameters.
+
+        .. rubric:: Parameters
+            
+        Parameters of the constructor function:
+
+        N : int
+
+            The number of inputs to the fuzzy system.
+        
+        M : int
+
+            The number of rules in the fuzzy system.
+        
+        Bounds : tuple of float
+
+            The lower and upper bounds for the parameters of the model.
+        
+        algorithm : str
+
+            The optimization algorithm to be used for parameter learning. Supported algorithms include "DE", "Nelder-Mead", "Powell", "CG", "PSO", and "GA", "GWO", "WOA", "FFA", "CSO", "ICA". 
+        
+        algorithm_params : list of numbers
+
+            Parameters for the selected optimization algorithm. The required parameters depend on the chosen algorithm. Please refer to the documentations of the algorithms for more details.
     
+        .. rubric:: Functions
+            
+        Functions defined in *T1Mamdani_ML* class:
+
+        get_T1Mamdani:
+
+            Generates a Type-1 Mamdani fuzzy system based on the learned parameters.
+    """
     def __init__(self, N, M, Bounds=None, algorithm="DE", algorithm_params=[]):
+        """
+        Initializes the *T1Mamdani_ML* class with the given parameters.
+
+        .. rubric:: Parameters
+
+        N : int
+
+            The number of inputs to the fuzzy system.
+        
+        M : int
+
+            The number of rules in the fuzzy system.
+        
+        Bounds : tuple of float
+
+            The lower and upper bounds for the parameters of the model.
+        
+        algorithm : str
+
+            The optimization algorithm to be used for parameter learning. Supported algorithms include "DE", "Nelder-Mead", "Powell", "CG", "PSO", and "GA", "GWO", "WOA", "FFA", "CSO", "ICA". 
+        
+        algorithm_params : list of numbers
+
+            Parameters for the selected optimization algorithm. The required parameters depend on the chosen algorithm. Please refer to the documentations of the algorithms for more details.
+        """
         super().__init__(N, M, Bounds, algorithm, algorithm_params)
     
     def get_T1Mamdani(self, std=1., ):
+        """
+        Generates a Type-1 Mamdani fuzzy system based on the learned parameters.
+
+        .. rubric:: Parameters
+
+        std : float
+
+            The standard deviation for the Gaussian membership functions used in the fuzzy system.
+
+        .. rubric:: Returns
+
+        T1Mamdani:
+
+            A Type-1 Mamdani fuzzy system generated based on the learned parameters.
+        """
         generated_T1Mamdani = T1Mamdani()
 
         for i in range(self.N):
@@ -1281,11 +1406,87 @@ class T1Mamdani_ML(T1Fuzzy_ML):
 
 
 class T1TSK_ML(T1Fuzzy_ML):
+    """Type-1 TSK Machine Learning (T1TSK_ML) for learning from data using Type-1 Takagi-Sugeno fuzzy systems.
+
+        This class extends the *T1Fuzzy_ML* class to provide a linguistic interpretation of the results by generating a Type-1 TSK fuzzy system based on the learned parameters.
+
+        .. rubric:: Parameters
+            
+        Parameters of the constructor function:
+
+        N : int
+
+            The number of inputs to the fuzzy system.
+        
+        M : int
+
+            The number of rules in the fuzzy system.
+        
+        Bounds : tuple of float
+
+            The lower and upper bounds for the parameters of the model.
+        
+        algorithm : str
+
+            The optimization algorithm to be used for parameter learning. Supported algorithms include 
+            "DE", "Nelder-Mead", "Powell", "CG", "PSO", "GA", "GWO", "WOA", "FFA", "CSO", and "ICA".
+        
+        algorithm_params : list of numbers
+
+            Parameters for the selected optimization algorithm. The required parameters depend on the chosen algorithm. Please refer to the documentations of the algorithms for more details.
     
+        .. rubric:: Functions
+            
+        Functions defined in T1TSK_ML class:
+
+        get_T1TSK:
+
+            Generates a Type-1 TSK fuzzy system based on the learned parameters.
+    """
     def __init__(self, N, M, Bounds=None, algorithm="DE", algorithm_params=[]):
+        """
+        Initializes the T1TSK_ML class with the given parameters.
+
+        .. rubric:: Parameters
+
+        N : int
+
+            The number of inputs to the fuzzy system.
+        
+        M : int
+
+            The number of rules in the fuzzy system.
+        
+        Bounds : tuple of float
+
+            The lower and upper bounds for the parameters of the model.
+        
+        algorithm : str
+
+            The optimization algorithm to be used for parameter learning. Supported algorithms include "DE", "Nelder-Mead", "Powell", "CG", "PSO", "GA", "GWO", "WOA", "FFA", "CSO", and "ICA".
+        
+        algorithm_params : list of numbers
+
+            Parameters for the selected optimization algorithm. The required parameters depend on the chosen algorithm. Please refer to the documentations of the algorithms for more details.
+        """
         super().__init__(N, M, Bounds, algorithm, algorithm_params)
 
     def get_T1TSK(self, std=1., ):
+        """
+        Generates a Type-1 TSK fuzzy system based on the learned parameters.
+
+        .. rubric:: Parameters
+
+        std : float
+
+            The standard deviation for the Gaussian membership functions used in the fuzzy system.
+
+        .. rubric:: Returns
+
+        T1TSK:
+
+            A Type-1 TSK fuzzy system generated based on the learned parameters.
+        """
         generated_T1TSK = T1TSK()
 
         for i in range(self.N):
