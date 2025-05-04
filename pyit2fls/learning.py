@@ -1108,7 +1108,7 @@ class T1Fuzzy_ML:
         of the strings "DE", "Nelder-Mead", "Powell", "CG", "PSO", "GA", "GWO", "WOA", "FFA", "CSO", "ICA". 
         The first four algorithms, which are based on scipy, are not computationally efficient. 
         So, we have provided embedded GA and PSO algorithms for calculating model parameters by 
-        optimizing an error function. The users can write their own heuristic optimizatopn solvers as 
+        optimizing an error function. The users can write their own heuristic optimization solvers as 
         a subclass of Optimizer class.
 
     algorithm_params : list of numbers
