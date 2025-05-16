@@ -2286,8 +2286,68 @@ class IT2TSK_ML:
 
 
 class IT2Mamdani_ML_Model:
+    """Interval Type-2 Mamdani Model for representing and evaluating interval type-2 Mamdani fuzzy systems in machine learning applications.
 
+        This class implements an interval type-2 Mamdani fuzzy model using Gaussian membership functions with uncertainty in either the mean or the standard deviation for both antecedents and consequents.
+
+        .. rubric:: Parameters
+            
+        Parameters of the constructor function:
+
+        P : list of floats or numpy array
+
+            The parameters of the model, including antecedent and consequent parameters.
+
+        N : int
+
+            The number of inputs to the fuzzy system.
+
+        M : int
+
+            The number of rules in the fuzzy system.
+
+        it2fs : class
+
+            The interval type-2 fuzzy set class to be used for the antecedents and consequents. It should be either *IT2FS_Gaussian_UncertMean* or *IT2FS_Gaussian_UncertStd*.
+
+        c : float
+
+            Output scaling factor for the model.
+    
+        .. rubric:: Functions
+            
+        Functions defined in IT2Mamdani_ML_Model class:
+
+        __call__:
+
+            Evaluates the fuzzy system for a given input and returns the defuzzified output.
+    """
     def __init__(self, P, N, M, it2fs, c=1.0):
+        """
+        Initializes the IT2Mamdani_ML_Model class with the given parameters.
+
+        .. rubric:: Parameters
+
+        P : list of floats or numpy array
+
+            The parameters of the model, including antecedent and consequent parameters.
+
+        N : int
+
+            The number of inputs to the fuzzy system.
+
+        M : int
+
+            The number of rules in the fuzzy system.
+
+        it2fs : class
+
+            The interval type-2 fuzzy set class to be used for the antecedents and consequents. It should be either *IT2FS_Gaussian_UncertMean* or *IT2FS_Gaussian_UncertStd*.
+
+        c : float
+
+            Output scaling factor for the model.
+        """
         self.N = N
         self.M = M
         self.p = reshape(P[:-3 * M], (M, N, 3, ))
@@ -2348,14 +2408,114 @@ class IT2Mamdani_ML_Model:
 
 
     def __call__(self, X):
+        """
+        Evaluates the fuzzy system for a given input and returns the defuzzified output.
+
+        .. rubric:: Parameters
+
+        X : numpy array
+
+            The input data for which the fuzzy system will be evaluated.
+
+        .. rubric:: Returns
+
+        float:
+
+            The defuzzified output of the fuzzy system for the given input.
+        """
         _X = {f"X{i + 1}":X[i] for i in range(self.N)}
         it2out, tr = self.it2mamdani.evaluate(_X)
         return crisp(tr["Y"])
 
 
 class IT2Mamdani_ML:
+    """Interval Type-2 Mamdani Machine Learning (IT2Mamdani_ML) for learning from data using interval type-2 Mamdani fuzzy systems.
+
+        This class provides a framework for training interval type-2 Mamdani fuzzy systems using various optimization algorithms. It supports Gaussian membership functions with uncertainty in either the mean or the standard deviation for both antecedents and consequents.
+
+        .. rubric:: Parameters
+            
+        Parameters of the constructor function:
+
+        N : int
+
+            The number of inputs to the fuzzy system.
+        
+        M : int
+
+            The number of rules in the fuzzy system.
+        
+        it2fs : class
+
+            The interval type-2 fuzzy set class to be used for the antecedents and consequents. It should be either *IT2FS_Gaussian_UncertMean* or *IT2FS_Gaussian_UncertStd*.
+        
+        Bounds : tuple of float
+
+            The lower and upper bounds for the parameters of the model.
+        
+        algorithm : str
+
+            The optimization algorithm to be used for parameter learning. Supported algorithms include "DE", "Nelder-Mead", "Powell", "CG", "PSO", "GA", "GWO", "WOA", "FFA", "CSO", and "ICA". Custom algorithms inheriting from the *Optimizer* class can also be used.
+        
+        algorithm_params : list of numbers
+
+            Parameters for the selected optimization algorithm. The required parameters depend on the chosen algorithm.
+        
+        c : float
+
+            Output scaling factor for the model.
+    
+        .. rubric:: Functions
+            
+        Functions defined in IT2Mamdani_ML class:
+
+        error:
+
+            The error function used for optimizing the model parameters.
+
+        fit:
+
+            Fits the model to the given input-output data.
+
+        score:
+
+            Evaluates the model for a given set of inputs.
+    """
 
     def __init__(self, N, M, it2fs, Bounds=None, algorithm="DE", algorithm_params=[], c=1.0):
+        """
+        Initializes the IT2Mamdani_ML class with the given parameters.
+
+        .. rubric:: Parameters
+
+        N : int
+
+            The number of inputs to the fuzzy system.
+        
+        M : int
+
+            The number of rules in the fuzzy system.
+        
+        it2fs : class
+
+            The interval type-2 fuzzy set class to be used for the antecedents and consequents. It should be either *IT2FS_Gaussian_UncertMean* or *IT2FS_Gaussian_UncertStd*.
+        
+        Bounds : tuple of float
+
+            The lower and upper bounds for the parameters of the model.
+        
+        algorithm : str
+
+            The optimization algorithm to be used for parameter learning. Supported algorithms include "DE", "Nelder-Mead", "Powell", "CG", "PSO", "GA", "GWO", "WOA", "FFA", "CSO", and "ICA". Custom algorithms inheriting from the *Optimizer* class can also be used.
+        
+        algorithm_params : list of numbers
+
+            Parameters for the selected optimization algorithm. The required parameters depend on the chosen algorithm.
+        
+        c : float
+
+            Output scaling factor for the model.
+        """
         self.N = N
         self.M = M
         self.it2fs = it2fs
@@ -2370,6 +2530,29 @@ class IT2Mamdani_ML:
     
 
     def error(self, P, X, y):
+        """
+        The error function used for optimizing the model parameters.
+
+        .. rubric:: Parameters
+
+        P : list of float or numpy (n,) shaped array
+
+            The list of parameters for which the model error will be evaluated.
+
+        X : list of 1D or 2D numpy array
+
+            The input data for which the model error will be evaluated.
+        
+        y : list of float or numpy (n,) shaped array
+
+            The desired outputs for which the model error will be evaluated.
+
+        .. rubric:: Returns
+
+        float:
+
+            The computed error value for the given parameters and data.
+        """
         model = IT2Mamdani_ML_Model(P, self.N, self.M, self.it2fs, self.c)
         o = zeros_like(y)
         for i, x in zip(range(len(y)), X):
@@ -2378,6 +2561,25 @@ class IT2Mamdani_ML:
     
 
     def fit(self, X, y):
+        """
+        Fits the model to the given input-output data using the selected optimization algorithm.
+
+        .. rubric:: Parameters
+
+        X : list of 1D or 2D numpy array
+
+            The input data for training the model.
+
+        y : list of float or numpy (n,) shaped array
+
+            The desired outputs for training the model.
+
+        .. rubric:: Returns
+
+        float or tuple:
+
+            The final error value after optimization, and optionally the convergence history.
+        """
         convergence = []
         if self.algorithm == "DE":
             self.params = differential_evolution(self.error, bounds=self.Bounds, 
@@ -2473,6 +2675,21 @@ class IT2Mamdani_ML:
     
 
     def score(self, X):
+        """
+        Evaluates the model for a given set of inputs.
+
+        .. rubric:: Parameters
+
+        X : list of 1D or 2D numpy array
+
+            The input data for which the model will be evaluated.
+
+        .. rubric:: Returns
+
+        float or numpy array:
+
+            The model output(s) for the given input(s).
+        """
         X = asarray(X)
         if X.ndim == 1:
             return self.model(X)
