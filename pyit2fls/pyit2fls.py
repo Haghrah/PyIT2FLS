@@ -305,7 +305,7 @@ def rgaussian_mf(x, params):
     >>> x = linspace(0, 1, 201)
     >>> membership_value = rgaussian_mf(x, [0.5, 0.05, 1])
     """
-    return (params[2] * exp(-(((params[0] - x) ** 2) / (2 * params[1] ** 2)))) * (x >= params[0])
+    return (params[2] * exp(-(((params[0] - x) ** 2) / (2 * params[1] ** 2)))) * (x >= params[0]) + params[2] * (x < params[0])
 
 
 def lgaussian_mf(x, params):
@@ -336,7 +336,7 @@ def lgaussian_mf(x, params):
     >>> x = linspace(0, 1, 201)
     >>> membership_value = lgaussian_mf(x, [0.5, 0.05, 1])
     """
-    return (params[2] * exp(-(((params[0] - x) ** 2) / (2 * params[1] ** 2)))) * (x <= params[0])
+    return (params[2] * exp(-(((params[0] - x) ** 2) / (2 * params[1] ** 2)))) * (x <= params[0]) + params[2] * (x > params[0])
 
 
 def gauss_uncert_mean_umf(x, params):
