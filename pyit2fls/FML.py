@@ -1,9 +1,18 @@
 import xml.etree.ElementTree as ET
+from pyit2fls import (T1Mamdani, T1TSK, )
 
 class FML:
 
     def __init__(self, ):
         pass
+
+    def generate(self, variables, rules):
+        if rules["type"] == "mamdani":
+            sys = T1Mamdani()
+        elif rules["type"] == "takagi-sugeno":
+            sys = T1TSK()
+        else:
+            raise ValueError(f"Unknown system type: {rules["type"]}")
 
     def parse_fml(self, fml_xml_string):
         """
