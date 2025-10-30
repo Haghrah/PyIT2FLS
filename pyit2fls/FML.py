@@ -11,73 +11,116 @@ class FML:
         A separate function would handle Rule parsing.
         """
         
-        # 3.1. Parse the XML
+        # Parse the XML
         root = ET.fromstring(fml_xml_string)
-        system_name = root.get('name')
+        system_name  = root.get('name')
         print(f"--- Parsing Fuzzy System: {system_name} ---")
 
-        # 3.2. Find the Knowledge Base
-        kb = root.find('knowledgebase')
+        # Find the Knowledge Base
+        kb = root.find('KnowledgeBase')
         if kb is None:
-            raise ValueError("FML is missing a <knowledgebase> tag.")
+            raise ValueError("FML is missing a <KnowledgeBase> tag.")
 
-        # 3.3. Iterate through all <variable> elements
-        for var_elem in kb.findall('variable'):
-            var_name = var_elem.get('name')
-            var_type = var_elem.get('type')
+        # Iterate through all <FuzzyVariable> elements
+        for var_elem in kb.findall('FuzzyVariable'):
+            var_name  = var_elem.get('name')
+            var_type  = var_elem.get('type')
+            var_left  = var_elem.get('domainleft')
+            var_right = var_elem.get('domainright')
             
-            # 3.4. Iterate through all <fuzzyset> elements for this variable
-            for fs_elem in var_elem.findall('fuzzyset'):
+            # Iterate through all <FuzzyTerm> elements for this variable
+            for ft_elem in var_elem.findall('FuzzyTerm'):
+                ft_name = ft_elem.get('name')
+                ft_comp = ft_elem.get('complement')
+                # Get the fuzzy set from <FuzzyTerm>
+                fs_elem = ft_elem[0]
+                fs_type = fs_elem.tag
                 # Parse parameters string into a list of floats
-                params_str = fs_elem.get('params').split(',')
-                params = [float(p.strip()) for p in params_str]
+                params = [float(fs_elem.attrib[f"param{i + 1}"].strip()) for i in range(len(fs_elem.attrib.keys()))]
                 
                 # Instantiate the library's FuzzySet object and add it to the variable
-                print(f"Set {var_name}: {fs_elem.get('name')}, {fs_elem.get('type')}, {params}")
+                print(f"Variable {var_name}:\t{ft_name},\t{fs_type},\t{params}")
 
-        # 3.5. Rule Parsing (Simplified)
-        rulebase_elem = root.find('rulebase')
+        # Rule Parsing (Simplified)
+        rulebase_elem = root.find('RuleBase')
         if rulebase_elem is not None:
             print("\n--- Rule Base Found ---")
-            for rule_elem in rulebase_elem.findall('rule'):
+            rb_name = rulebase_elem.get('name')
+            rb_type = rulebase_elem.get('type')
+            rb_andMethod = rulebase_elem.get('andMethod')
+            rb_orMethod = rulebase_elem.get('orMethod')
+            rb_activationMethod = rulebase_elem.get('activationMethod')
+            for rule_elem in rulebase_elem.findall('Rule'):
                 # In a real parser, you'd recursively process antecedent/consequent
-                antecedent = rule_elem.find('antecedent/clause')
-                consequent = rule_elem.find('consequent/clause')
+                antecedent = rule_elem.findall('Antecedent/Clause')
+                consequent = rule_elem.findall('Consequent/Clause')
 
                 # Look up the actual objects from the 'variables' dictionary
                 # For brevity, we just print the extracted rule logic
-                print(f"Rule {rule_elem.get('id')}: IF {antecedent.get('variable')} IS {antecedent.get('fuzzyset')} THEN {consequent.get('variable')} IS {consequent.get('fuzzyset')}")
+                antecedent_parts = []
+                consequent_parts = []
+                for clause in antecedent:
+                    clause_var = clause.get("var")
+                    clause_term = clause.get("term")
+                    antecedent_parts.append(f"{clause_var}\tIS\t{clause_term}")
+                for clause in consequent:
+                    clause_var = clause.get("var")
+                    clause_term = clause.get("term")
+                    consequent_parts.append(f"{clause_var}\tIS\t{clause_term}")
+
+                rule_text = f"IF\t{rb_andMethod.join(antecedent_parts)}\tTHEN\t{rb_andMethod.join(consequent_parts)}"
+                print(rule_text)
+
 
 
 
 
 if __name__ == "__main__":
     FML_STRING = """
-    <fuzzylogicsystem name="HVAC_Controller">
-        <knowledgebase>
-            <variable name="temp" type="input" min="0" max="100">
-                <fuzzyset name="cold" type="triangular" params="0, 0, 40"/>
-                <fuzzyset name="warm" type="triangular" params="30, 50, 70"/>
-                <fuzzyset name="hot" type="triangular" params="60, 100, 100"/>
-            </variable>
+    <FuzzySystem name="HVAC_Controller">
+        <KnowledgeBase>
+            <FuzzyVariable name="temp" type="input" domainleft="0" domainright="100">
+                <FuzzyTerm name="cold" complement="false"> 
+                    <triangularShape param1="0" param2="0" param3="40"/>
+                </FuzzyTerm>
+                <FuzzyTerm name="warm" complement="false"> 
+                    <triangularShape param1="30" param2="50" param3="70"/>
+                </FuzzyTerm>
+                <FuzzyTerm name="hot" complement="false"> 
+                    <triangularShape param1="60" param2="100" param3="100"/>
+                </FuzzyTerm>
+            </FuzzyVariable>
 
-            <variable name="fan" type="output" min="0" max="100">
-                <fuzzyset name="low" type="trapezoid" params="0, 0, 20, 40"/>
-                <fuzzyset name="high" type="trapezoid" params="60, 80, 100, 100"/>
-            </variable>
-        </knowledgebase>
+            <FuzzyVariable name="fan" type="output" domainleft="0" domainright="100">
+                <FuzzyTerm name="low" complement="false"> 
+                    <trapezoidalShape param1="0" param2="0" param3="20" param4="40"/>
+                type="trapezoid" params="0, 0, 20, 40"/>
+                </FuzzyTerm>
+                <FuzzyTerm name="high" complement="false"> 
+                    <trapezoidalShape param1="60" param2="80" param3="100" param4="100"/>
+                </FuzzyTerm>
+            </FuzzyVariable>
+        </KnowledgeBase>
 
-        <rulebase>
-            <rule id="1">
-                <antecedent><clause variable="temp" fuzzyset="cold"/></antecedent>
-                <consequent><clause variable="fan" fuzzyset="low"/></consequent>
-            </rule>
-            <rule id="2">
-                <antecedent><clause variable="temp" fuzzyset="hot"/></antecedent>
-                <consequent><clause variable="fan" fuzzyset="high"/></consequent>
-            </rule>
-        </rulebase>
-    </fuzzylogicsystem>
+        <RuleBase name="MamdaniRules" type="mamdani" andMethod="prod" orMethod="max" activationMethod="min">
+            <Rule name="1" connector="or" weight="1.0">
+                <Antecedent>
+                    <Clause var="temp" term="cold"/>
+                </Antecedent>
+                <Consequent>
+                    <Clause var="fan" term="low"/>
+                </Consequent>
+            </Rule>
+            <Rule name="2" connector="or" weight="1.0">
+                <Antecedent>
+                    <Clause var="temp" term="hot"/>
+                </Antecedent>
+                <Consequent>
+                    <Clause var="fan" term="high"/>
+                </Consequent>
+            </Rule>
+        </RuleBase>
+    </FuzzySystem>
     """
 
     myFML = FML()
