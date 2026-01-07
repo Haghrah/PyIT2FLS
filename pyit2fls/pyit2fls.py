@@ -144,8 +144,18 @@ def tri_mf(x, params):
     >>> x = linspace(0, 1, 201)
     >>> membership_value = tri_mf(x, [0.1, 0.3, 0.5, 1])
     """
-    return minimum(1, maximum(0, ((params[3] * (x - params[0]) / (params[1] - params[0])) * (x <= params[1]) + \
-               ((params[3] * ((params[2] - x) / (params[2] - params[1]))) * (x > params[1]))) ))
+    # params[1] = max(params[0], params[1])
+    # params[2] = max(params[1], params[2])
+
+    if params[0] == params[1]:
+        return minimum(1, maximum(0, (0 * (x <= params[1]) + \
+                ((params[3] * ((params[2] - x) / (params[2] - params[1]))) * (x > params[1]))) ))
+    elif params[1] == params[2]:
+        return minimum(1, maximum(0, ((params[3] * (x - params[0]) / (params[1] - params[0])) * (x <= params[1]) + \
+                (0 * (x > params[1]))) ))
+    else:
+        return minimum(1, maximum(0, ((params[3] * (x - params[0]) / (params[1] - params[0])) * (x <= params[1]) + \
+                ((params[3] * ((params[2] - x) / (params[2] - params[1]))) * (x > params[1]))) ))
 
 
 def rtri_mf(x, params):
