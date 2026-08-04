@@ -39,6 +39,8 @@ Membership Functions
 
 .. autofunction:: pyit2fls.gbell_mf
 
+.. autofunction:: pyit2fls.points_mf
+
 
 
 

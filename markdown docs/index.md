@@ -17,3 +17,6 @@ Some extra explanations and examples about the PyIT2FLS are provided on the page
 12. [Defining Interval Type 2 TSK Fuzzy Logic Systems.](https://github.com/Haghrah/PyIT2FLS/blob/master/markdown%20docs/TSKIT2FLS.md)
 13. [Using Different IT2 FLS evaluation methods.](https://github.com/Haghrah/PyIT2FLS/blob/master/markdown%20docs/evalMethods.md)
 14. [Examples for using the PyIT2FLS in science and engineering problems.](https://github.com/Haghrah/PyIT2FLS/blob/master/markdown%20docs/examples.md)
+15. [Reading and writing IEEE 1855 (FML) files.](https://github.com/Haghrah/PyIT2FLS/blob/master/markdown%20docs/FML.md)
+16. [Reading and writing IEC 61131-7 (FCL) files.](https://github.com/Haghrah/PyIT2FLS/blob/master/markdown%20docs/FCL.md)
+17. [The PyIT2FLS Designer GUI.](https://github.com/Haghrah/PyIT2FLS/blob/master/markdown%20docs/DesignerGUI.md)

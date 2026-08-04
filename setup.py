@@ -7,16 +7,18 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(name='pyit2fls',
-      version='0.8.9',
+      version='0.9.0',
       description='Type 1 and Interval Type 2 Fuzzy Logic Systems in Python',
       long_description=long_description,
-      long_description_content_type='text/markdown', 
+      long_description_content_type='text/markdown',
       url='https://github.com/Haghrah/PyIT2FLS',
       author='Amir Arslan Haghrah',
       author_email='arslan.haghrah@gmail.com',
       license='MIT',
-      license_file='LICENSE', 
+      license_file='LICENSE',
       packages=['pyit2fls'],
       install_requires=['numpy', 'scipy', 'matplotlib', ],
+      extras_require={'gui': ['PyQt5']},
+      entry_points={'console_scripts': ['pyit2fls-designer=pyit2fls.designerui:main']},
       python_requires='>=3.6',
       zip_safe=False)

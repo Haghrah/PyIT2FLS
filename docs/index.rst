@@ -13,6 +13,8 @@ Welcome to PyIT2FLS's documentation!
    functions
    algorithms
    matrices
+   languages
+   designerui
 
 
 

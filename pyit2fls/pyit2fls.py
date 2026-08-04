@@ -1,6 +1,6 @@
-from numpy import (exp, ones_like, zeros_like, arange, multiply, 
-     subtract, add, minimum, maximum, sign, c_, argmax, 
-     array, where, hstack, logical_not, sqrt, clip, )
+from numpy import (exp, ones_like, zeros_like, arange, multiply,
+     subtract, add, minimum, maximum, sign, c_, argmax,
+     array, where, hstack, logical_not, sqrt, clip, interp, )
 
 from numpy import sum as npsum
 from numpy import abs as npabs
@@ -143,19 +143,36 @@ def tri_mf(x, params):
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = tri_mf(x, [0.1, 0.3, 0.5, 1])
-    """
-    # params[1] = max(params[0], params[1])
-    # params[2] = max(params[1], params[2])
 
-    if params[0] == params[1]:
-        return minimum(1, maximum(0, (0 * (x <= params[1]) + \
-                ((params[3] * ((params[2] - x) / (params[2] - params[1]))) * (x > params[1]))) ))
-    elif params[1] == params[2]:
-        return minimum(1, maximum(0, ((params[3] * (x - params[0]) / (params[1] - params[0])) * (x <= params[1]) + \
-                (0 * (x > params[1]))) ))
+    .. rubric:: Notes
+
+    If the left end and the center coincide (params[0] == params[1]), the
+    membership function starts at its full height, params[3], right at that
+    shared point, and descends to zero at the right end. Symmetrically, if
+    the center and the right end coincide (params[1] == params[2]), it
+    rises to its full height at the shared point and immediately drops to
+    zero after it. If all three of the left end, center, and right end
+    coincide, the membership function is a singleton at that point.
+    """
+    left, center, right, height = params[0], params[1], params[2], params[3]
+
+    if left == center == right:
+        return multiply(height, x == center)
+
+    if left == center:
+        rising = 0.
+        falling_includes_center = True
     else:
-        return minimum(1, maximum(0, ((params[3] * (x - params[0]) / (params[1] - params[0])) * (x <= params[1]) + \
-                ((params[3] * ((params[2] - x) / (params[2] - params[1]))) * (x > params[1]))) ))
+        rising = height * (x - left) / (center - left) * (x <= center)
+        falling_includes_center = False
+
+    if center == right:
+        falling = 0.
+    else:
+        falling_mask = (x >= center) if falling_includes_center else (x > center)
+        falling = height * (right - x) / (right - center) * falling_mask
+
+    return minimum(1, maximum(0, rising + falling))
 
 
 def rtri_mf(x, params):
@@ -250,10 +267,39 @@ def trapezoid_mf(x, params):
     
     >>> x = linspace(0, 1, 201)
     >>> membership_value = trapezoid_mf(x, [0.1, 0.3, 0.5, 0.7, 1])
+
+    .. rubric:: Notes
+
+    If the left end and the left center coincide (params[0] == params[1]),
+    the membership function starts at its full height, params[4], right at
+    that shared point, rather than rising to it. Symmetrically, if the
+    right center and the right end coincide (params[2] == params[3]), it
+    stays at full height up to and including that shared point, rather
+    than dropping from it. If all four points coincide, the membership
+    function is a singleton at that point.
     """
-    return minimum(1, maximum(0, ((((params[4] * ((x - params[0]) / (params[1] - params[0]))) * (x <= params[1])) +
-                   ((params[4] * ((params[3] - x) / (params[3] - params[2]))) * (x >= params[2]))) +
-               (params[4] * ((x > params[1]) * (x < params[2])))) ))
+    left, left_top, right_top, right, height = params[0], params[1], params[2], params[3], params[4]
+
+    left_degenerate = (left == left_top)
+    right_degenerate = (right_top == right)
+
+    if left_degenerate:
+        rising = 0.
+        flat_lower = (x >= left_top)
+    else:
+        rising = height * (x - left) / (left_top - left) * (x <= left_top)
+        flat_lower = (x > left_top)
+
+    if right_degenerate:
+        falling = 0.
+        flat_upper = (x <= right_top)
+    else:
+        falling = height * (right - x) / (right - right_top) * (x >= right_top)
+        flat_upper = (x < right_top)
+
+    flat = height * flat_lower * flat_upper
+
+    return minimum(1, maximum(0, rising + flat + falling))
 
 
 def gaussian_mf(x, params):
@@ -705,6 +751,45 @@ def gbell_mf(x, params):
 
     """
     return params[3] / (1 + npabs((x - params[2]) / params[0]) ** (2 * params[1]))
+
+
+def points_mf(x, params):
+    """
+    Piecewise linear membership function defined by a list of points.
+
+    .. rubric:: Parameters
+
+    x : numpy (n,) shaped array
+
+        The array-like input x indicates the points from the universe of
+        discourse at which the membership function will be evaluated.
+
+    params : list
+
+        Additional parameters for the membership function. params is a flat
+        list of the form [x1, y1, x2, y2, ..., xn, yn], representing n points
+        of the piecewise linear membership function, sorted by ascending
+        x1 < x2 < ... < xn. Points outside the [x1, xn] interval are clamped
+        to y1 and yn, respectively.
+
+    .. rubric:: Returns
+
+    output : ndarray
+
+        Returns membership values corresponding with the input.
+
+    .. rubric:: Notes
+
+    This membership function is the natural representation of the point-list
+    terms used by the IEC 61131-7 Fuzzy Control Language (FCL). See the
+    pyit2fls.FCL module.
+
+    .. rubric:: Examples
+
+    >>> x = linspace(0., 10., 201)
+    >>> membership_value = points_mf(x, [0, 0, 5, 1, 10, 0])
+    """
+    return interp(x, params[0::2], params[1::2])
 
 
 class T1FS:

@@ -39,8 +39,16 @@ Or you can install from PyPI:
 
 ### Features coming up in the next version
 - Supporting Generalized Type 2 Fuzzy Sets and Systems.
-- Supporting FCL.
-- Introduction of a GUI for facilitating system design.
+
+### Some notes on version 0.9.0
+- Support for the [IEC 61131-7 Fuzzy Control Language (FCL)](IEC61131-7.md) standard, through the new **_FCL_** class (`pyit2fls.FCL`): parses the core Mamdani subset of FCL (`FUNCTION_BLOCK`/`VAR_INPUT`/`VAR_OUTPUT`/`FUZZIFY`/`DEFUZZIFY`/`RULEBLOCK`) into a runnable **_T1Mamdani_** system, and exports a system back out as FCL text.
+- The [IEEE 1855 Fuzzy Markup Language (FML)](IEEE1855.md) support (**_FML_** class, `pyit2fls.FML`) has been completed:
+    - The rule base's `andMethod`/`activationMethod` now actually select the underlying fuzzy inference engine, instead of always defaulting to *Product*.
+    - Clause-level negation (FML's `NOT="true"`, FCL's `IS NOT`) is now supported.
+    - Rules whose antecedent clauses are OR-connected now raise a clear error instead of being silently (and incorrectly) combined with AND — the underlying **_T1Mamdani_**/**_T1TSK_** engines only support AND-combined antecedents; model an OR relationship as two separate rules sharing the same consequent instead.
+    - A new **_FML.export_fml_** method serializes a system back out as FML XML.
+- Introduction of a GUI for facilitating system design: the **_PyIT2FLS Designer_**, a PyQt5 application for building, simulating, and saving/loading Type 1 Mamdani fuzzy systems as FML or FCL files. Launch it with the `pyit2fls-designer` console script (after installing the optional GUI extra, `pip install pyit2fls[gui]`), or with `python3 -m pyit2fls.designerui`. See [markdown docs/DesignerGUI.md](markdown%20docs/DesignerGUI.md) for a tutorial.
+- A new **_points_mf_** membership function (arbitrary piecewise-linear point list), the native term representation used by FCL.
 
 ### Some notes on version 0.8.6
 - Minor bug fix concerning the *IT2Mamdani_ML_Model* class.
@@ -245,5 +253,9 @@ So, please update your PyIT2FLS to the latest version.
 <p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/23_1.png" width="200"></p>
 
 * [Ex24](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_24.py): Example for new *MEET* and *JOIN* functions accepting many *IT2FS* s as input.
+
+* [Ex25](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_25.py): Parsing an IEEE 1855 (FML) document into a Type 1 Mamdani system, evaluating it, and round-tripping it back to FML.
+
+* [Ex26](https://github.com/Haghrah/PyIT2FLS/blob/master/examples/ex_26.py): Parsing an IEC 61131-7 (FCL) document into a Type 1 Mamdani system, evaluating it, and round-tripping it back to FCL.
 
 <p align="center"><img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/24_1.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/24_2.png" width="200"> <img src="https://raw.githubusercontent.com/Haghrah/PyIT2FLS/master/examples/images/24_3.png" width="200"></p>

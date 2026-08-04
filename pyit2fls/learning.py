@@ -841,7 +841,44 @@ class PSO:
             
 
 class solution:
-    
+    """
+    A single random candidate solution, used by the :class:`GA` class to
+    build its initial population.
+
+    .. rubric:: Parameters
+
+    Parameters of the constructor function:
+
+    M : int
+
+        Number of parameters constructing the individual.
+
+    func : function
+
+        Objective function of the minimizing optimization problem.
+
+    bounds : iterable
+
+        Lower and upper bounds of the parameters of the optimization problem.
+
+    args : tuple
+
+        The extra arguments that can be passed while calling the objective
+        function, *func*.
+
+    .. rubric:: Members
+
+    solution : numpy (M,) shaped array
+
+        The candidate's parameter vector, drawn uniformly from *bounds*.
+
+    fitness : float
+
+        The objective function's value at *solution*. If evaluating *func*
+        raises an *IndexError* (e.g. because *bounds* had an unexpected
+        shape), *fitness* is set to *inf* so the candidate is treated as
+        the worst possible solution rather than crashing the optimizer.
+    """
     def __init__(self, M, func, bounds, args=()):
         self.solution = bounds[0] + (bounds[1] - bounds[0]) * rand(M, )
         try:
@@ -1009,11 +1046,70 @@ class GA:
 
 
 class gaussian_mf_learning:
+    """
+    Gaussian membership function together with its derivative with respect
+    to *x*, used by :class:`T1Fuzzy_ML_Model` to backpropagate gradients
+    through the antecedent membership functions of a rule during learning.
+
+    .. rubric:: Functions
+
+    d0:
+
+        Evaluates the Gaussian membership function at *x*.
+
+    d1:
+
+        Evaluates the derivative of the Gaussian membership function at
+        *x*, with respect to *x*.
+    """
 
     def d0(self, x, c, v):
+        """
+        .. rubric:: Parameters
+
+        x : float
+
+            Point at which the membership function is evaluated.
+
+        c : float
+
+            Center of the Gaussian membership function.
+
+        v : float
+
+            Spread (standard deviation) of the Gaussian membership function.
+
+        .. rubric:: Returns
+
+        output : float
+
+            The membership degree of *x*.
+        """
         return exp(- ((x - c) / v) ** 2)
 
     def d1(self, x, c, v):
+        """
+        .. rubric:: Parameters
+
+        x : float
+
+            Point at which the derivative is evaluated.
+
+        c : float
+
+            Center of the Gaussian membership function.
+
+        v : float
+
+            Spread (standard deviation) of the Gaussian membership function.
+
+        .. rubric:: Returns
+
+        output : float
+
+            The derivative, with respect to *x*, of the Gaussian membership
+            function at *x*.
+        """
         return - 2 * ((x - c) / v ** 2) * exp(- ((x - c) / v) ** 2)
 
 
