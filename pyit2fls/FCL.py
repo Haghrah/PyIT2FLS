@@ -290,9 +290,9 @@ class FCL:
         linear shapes such as ``gaussianShape``.
         """
         try:
-            from pyit2fls.FML import MF_MAP
+            from pyit2fls.FML import MF_MAP, _default_height
         except ImportError:
-            from FML import MF_MAP
+            from FML import MF_MAP, _default_height
         from numpy import linspace
 
         def _points_of(var_type, var_name, term_name, term_info):
@@ -302,7 +302,12 @@ class FCL:
             var_info = variables[var_type][var_name]
             xs = linspace(var_info["domainleft"], var_info["domainright"], 21)
             mf = MF_MAP[term_info["set"]]
-            params = term_info["params"]
+            # A term's height is optional wherever terms are authored (e.g.
+            # the designer GUI); apply the same default-height normalization
+            # generate_system uses before evaluating the raw mf function,
+            # otherwise shapes saved without an explicit height (a valid,
+            # common case) raise an IndexError here.
+            params = _default_height(term_info["set"], list(term_info["params"]))
             ys = mf(xs, params)
             return list(zip(xs.tolist(), [float(y) for y in ys]))
 

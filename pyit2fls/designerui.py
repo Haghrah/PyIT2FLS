@@ -35,6 +35,17 @@ from PyQt5.QtCore import Qt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 
+try:
+    # Registers the "3d" projection with Matplotlib; every 3D plot elsewhere
+    # in this project (e.g. examples/ex_8.py, ex_13.py) imports this
+    # explicitly rather than relying on Figure.add_subplot(projection="3d")
+    # to auto-import it, since that lazy import is not reliable across
+    # Matplotlib versions/installations.
+    from mpl_toolkits.mplot3d import Axes3D
+    HAS_3D = True
+except ImportError:
+    HAS_3D = False
+
 from pyit2fls.FML import FML, generate_system, MF_MAP, _default_height, ensure_negated_term
 from pyit2fls.FCL import FCL
 
@@ -613,11 +624,11 @@ class MainWindow(QMainWindow):
                 Z[j, i] = crisp[out_name]
         XX, YY = meshgrid(X, Y)
 
-        try:
+        if HAS_3D:
             canvas.axes = canvas.figure.add_subplot(111, projection="3d")
             canvas.axes.plot_surface(XX, YY, Z, cmap="viridis")
             canvas.axes.set_zlabel(out_name)
-        except (ValueError, ImportError):
+        else:
             # mpl_toolkits.mplot3d unavailable (e.g. conflicting Matplotlib
             # installs) -- fall back to a 2D heatmap of the same surface
             # rather than losing the whole evaluation because of a plot.
