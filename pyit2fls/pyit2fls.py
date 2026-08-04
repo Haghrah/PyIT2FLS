@@ -664,24 +664,24 @@ def elliptic_mf(x, params):
     x : numpy (n,) shaped array
         
         The array-like input x indicates the points from the universe of discourse
-        in which the membership function will be evaluated.
-        
+        at which the membership function will be evaluated.
+
     params : list
-        
+
         Parameters of the elliptic membership function. The center, width,
-        exponent, and height of the elliptic membership function are 
+        exponent, and height of the elliptic membership function are
         indicated by params[0], params[1], params[2], and params[3].
 
     .. rubric:: Returns
-    
+
     output : ndarray
-        
+
         Returns membership values corresponding to the input.
-    
+
     .. rubric:: Examples
-    
+
     >>> x = linspace(0, 1, 201)
-    >>> membership_value = eliptic_mf(x, [0.5, 0.25, 1.3, 1.])
+    >>> membership_value = elliptic_mf(x, [0.5, 0.25, 1.3, 1.])
     """
     to_evaluate = ((x <= params[0] + params[1]) * (params[0] - params[1] <= x))
     x = x * to_evaluate + (params[0] + params[1]) * logical_not(to_evaluate)
@@ -697,24 +697,24 @@ def semi_elliptic_mf(x, params):
     x : numpy (n,) shaped array
         
         The array-like input x indicates the points from the universe of discourse
-        in which the membership function will be evaluated.
-        
+        at which the membership function will be evaluated.
+
     params : list
-        
-        Parameters of the semi-elliptic membership function. The center, width, 
-        and height of the semi-elliptic membership function are indicated by 
+
+        Parameters of the semi-elliptic membership function. The center, width,
+        and height of the semi-elliptic membership function are indicated by
         params[0], params[1], and params[2].
 
     .. rubric:: Returns
-    
+
     output : ndarray
-        
+
         Returns membership values corresponding to the input.
-    
+
     .. rubric:: Examples
-    
+
     >>> x = linspace(0, 1, 201)
-    >>> membership_value = eliptic_mf(x, [0.5, 0.25, 1.3, 1.])
+    >>> membership_value = semi_elliptic_mf(x, [0.5, 0.25, 1.3, 1.])
     """
     to_evaluate = ((x <= params[0] + params[1]) * (params[0] - params[1] <= x))
     x = x * to_evaluate + (params[0] + params[1]) * logical_not(to_evaluate)
@@ -729,8 +729,8 @@ def gbell_mf(x, params):
     
     x : numpy (n,) shaped array
         
-        The array like input x indicates the points from universe of 
-        discourse in which the membership function would be evaluated.
+        The array-like input x indicates the points from the universe of
+        discourse at which the membership function will be evaluated.
         
     params : list
         
@@ -742,7 +742,7 @@ def gbell_mf(x, params):
     
     output : ndarray
         
-        Returns membership values corresponding with the input.
+        Returns membership values corresponding to the input.
 
     .. rubric:: Examples
     
@@ -776,7 +776,7 @@ def points_mf(x, params):
 
     output : ndarray
 
-        Returns membership values corresponding with the input.
+        Returns membership values corresponding to the input.
 
     .. rubric:: Notes
 
@@ -966,9 +966,8 @@ def T1FS_Emphasize(t1fs, m=2.):
 
     .. rubric:: Returns
     
-    emphasized : 
-        T1FS
-        
+    emphasized : T1FS
+
         Emphasized type 1 fuzzy set.
     """
     mf = lambda x, params : t1fs.mf(x, params) ** m
@@ -977,10 +976,10 @@ def T1FS_Emphasize(t1fs, m=2.):
 
 
 def T1FS_plot(*sets, title=None, legends=None, filename=None, 
-              ext="pdf", grid=True, xlabel="Domain", 
-              ylabel="Membership degree", legendloc="best", 
+              ext="pdf", grid=True, xlabel="Domain",
+              ylabel="Membership degree", legendloc="best",
                bbox_to_anchor=None, alpha=0.5, ):
-    """
+    r"""
     Plots multiple T1FSs together in the same figure.
     
     .. rubric:: Parameters
@@ -1142,8 +1141,8 @@ class T1Mamdani:
 
     engine="Product": str
 
-        Inference engine of the type 1 Mamdani fuzzy logic system. 
-        This parameters is a string an can be one of the following items: 
+        Inference engine of the type 1 Mamdani fuzzy logic system.
+        This parameter is a string and can be one of the following items:
         Product, Minimum, Lukasiewicz, Zadeh, and Dienes-Rescher.
     
     defuzzification="CoG": str
@@ -1163,11 +1162,11 @@ class T1Mamdani:
 
         List of the outputs names as strings.
 
-    rules : list of tuples (antacedent, consequent)
+    rules : list of tuples (antecedent, consequent)
 
         List of rules, which each rule is defined as a tuple (antecedent, consequent).
-        Both antacedent and consequent are lists of tuples. Each tuple 
-        of this list represents the assignement of a variable to a T1FS. 
+        Both antecedent and consequent are lists of tuples. Each tuple 
+        of this list represents the assignment of a variable to a T1FS. 
         The first element of the tuple must be the variable name (input or output) 
         as a string, and the second element must be a T1FS.
 
@@ -1228,7 +1227,7 @@ class T1Mamdani:
             raise ValueError("The " + engine + " fuzzy inference engine is not implemented yet!")
     
     def __repr__(self):
-        return "Type 1 Mamadani fuzzy logic system with " + self.engine + " inference engine" + \
+        return "Type 1 Mamdani fuzzy logic system with " + self.engine + " inference engine" + \
             "and " + self.defuzzification + " defuzzification!"
 
     def copy(self):
@@ -1426,7 +1425,7 @@ class T1TSK:
 
         List of the outputs names as str.
 
-    rules : list of tuples (antacedent, consequent)
+    rules : list of tuples (antecedent, consequent)
 
         List of rules, which each rule is defined as a 
         tuple (antecedent, consequent)
@@ -1505,15 +1504,15 @@ class T1TSK:
         antecedent : list of tuples
             
             Antecedent is a list of tuples in which each tuple indicates 
-            assignement of a variable to a T1FS. The first element of the 
+            assignment of a variable to a T1FS. The first element of the 
             tuple must be the input variable name as a string, and the second 
             element of the tuple must be a T1FS.
         
         consequent : list of tuples
 
             Consequent is a list of tuples in which each tuple indicates 
-            assignement of a variable to an output state. The first element of the 
-            tuple must be the output vriable name as a string, and the second element 
+            assignment of a variable to an output state. The first element of the 
+            tuple must be the output variable name as a string, and the second element 
             of the tuple must be a callable object.
         """
         self.rules.append((antecedent, consequent))
@@ -1871,7 +1870,7 @@ def IT2FS_Gaussian_UncertMean(domain, params, check_set=False):
     .. rubric:: Examples
     
     >>> domain = linspace(0., 1., 100)
-    >>> mySet = IT2FS_Gaussian_UncertMean(domain, [0., 0.25, 0.2])
+    >>> mySet = IT2FS_Gaussian_UncertMean(domain, [0., 0.25, 0.2, 1.])
     >>> mySet.plot()
     """
     ml = params[0] - params[1] / 2.
@@ -1945,7 +1944,7 @@ def IT2FS_RGaussian_UncertStd(domain, params, check_set=False):
     .. rubric:: Examples
     
     >>> domain = linspace(0., 1., 100)
-    >>> mySet = R_IT2FS_Gaussian_UncertStd(domain, [0.5, 0.2, 0.05, 1.])
+    >>> mySet = IT2FS_RGaussian_UncertStd(domain, [0.5, 0.2, 0.05, 1.])
     >>> mySet.plot()
     """
     stdl = params[1] - params[2] / 2
@@ -1986,7 +1985,7 @@ def IT2FS_LGaussian_UncertStd(domain, params, check_set=False):
     .. rubric:: Examples
     
     >>> domain = linspace(0., 1., 100)
-    >>> mySet = L_IT2FS_Gaussian_UncertStd(domain, [0.5, 0.2, 0.05, 1.])
+    >>> mySet = IT2FS_LGaussian_UncertStd(domain, [0.5, 0.2, 0.05, 1.])
     >>> mySet.plot()
     """
     stdl = params[1] - params[2] / 2
@@ -2002,10 +2001,10 @@ L_IT2FS_Gaussian_UncertStd = IT2FS_LGaussian_UncertStd
 
 
 def IT2FS_plot(*sets, title=None, legends=None, filename=None, 
-               ext="pdf", grid=True, xlabel="Domain", 
-               ylabel="Membership degree", legendloc="best", 
+               ext="pdf", grid=True, xlabel="Domain",
+               ylabel="Membership degree", legendloc="best",
                bbox_to_anchor=None, alpha=0.5, ):
-    """
+    r"""
     Plots multiple IT2FSs together in the same figure.
     
     .. rubric:: Parameters
@@ -2691,17 +2690,17 @@ def JOIN(domain, s_norm, it2fs, *others):
 
     it2fs : IT2FS
         
-        An interval type 2 fuzzy set as the first input of the meet operator.
-        
+        An interval type 2 fuzzy set as the first input of the join operator.
+
     others : IT2FS
-        
+
         Other interval type 2 fuzzy sets.
-    
-    
+
+
     .. rubric:: Returns
-    
+
     output : IT2FS
-    
+
         Returns the join of the input IT2FSs.
     
     .. rubric:: Examples
@@ -3353,7 +3352,7 @@ def CoSet(firing_array, consequent_array, alg_func, domain, alg_params=[]):
     
     consequent_array : List of IT2FS
         
-        List of consequents corresponding with the rules of IT2FLS
+        List of consequents corresponding to the rules of IT2FLS
     
     alg_func : Function
         
@@ -3474,7 +3473,7 @@ def ModiHe(it2fs_array, spread_array, alg_func, domain, alg_params=[]):
         
         List of final IT2FSs achieved by evaluating rule base.
     
-    spread_array : List of spread values corresponding with IT2FSs in it2fs_array. 
+    spread_array : List of spread values corresponding to IT2FSs in it2fs_array. 
     
     alg_func: Function
         
@@ -3520,17 +3519,17 @@ class IT2FLS:
         
         List of names of inputs as str
     
-    output : List of str
-        
-        List of names ot outputs as str
+    outputs : List of str
+
+        List of names of outputs as str
         
     rules : List of tuples (antecedent, consequent)
         
         List of rules which each rule is defined as a 
         tuple (antecedent, consequent)
         
-        Both antacedent and consequent are lists of tuples. Each tuple 
-        of this list shows assignement of a variable to an IT2FS. First 
+        Both antecedent and consequent are lists of tuples. Each tuple 
+        of this list shows assignment of a variable to an IT2FS. First 
         element of the tuple must be variable name (input or output) as 
         a str and the second element must be an IT2FS. 
     
@@ -3603,8 +3602,8 @@ class IT2FLS:
     
     While using the PyIT2FLS the user must take care of the items listed below:
         
-        * The UMF defined for an IT2FS must be greater than or equal with the LMF at all points of the discrete universe of discourse. 
-        * The inputs and outputs defined must be compatible while adding the rules and evluating the IT2FLS.
+        * The UMF defined for an IT2FS must be greater than or equal to the LMF at all points of the discrete universe of discourse. 
+        * The inputs and outputs defined must be compatible while adding the rules and evaluating the IT2FLS.
     """
     def __init__(self):
         self.inputs = []
@@ -3647,14 +3646,14 @@ class IT2FLS:
         antecedent : List of tuples
             
             Antecedent is a list of tuples in which each tuple indicates 
-            assignement of a variable to an IT2FS. First element of the 
+            assignment of a variable to an IT2FS. First element of the 
             tuple must be input variable name as str, and the second 
             element of the tuple must be an IT2FS.
             
         consequent : List of tuples
             
             Consequent is a list of tuples in which each tuple indicates 
-            assignement of a variable to an IT2FS. First element of the 
+            assignment of a variable to an IT2FS. First element of the 
             tuple must be output variable name as str, and the second 
             element of the tuple must be an IT2FS.
             
@@ -3742,7 +3741,7 @@ class IT2FLS:
         While using the evaluate function some cares must be taken by the user 
         himself which are listed as below:
 
-            * The inputs must be lay in the defined universe of discourse.
+            * The inputs must lie within the defined universe of discourse.
             * The type reduction method and the type reduction algorithm must be selected from the lists provided in docstrings.
         """
         inputs_list = []
@@ -3957,7 +3956,7 @@ class IT2FLS:
         While using the evaluate function some cares must be taken by the user 
         himself which are listed as below:
 
-            * The inputs must be lay in the defined universe of discourse.
+            * The inputs must lie within the defined universe of discourse.
             * The type reduction method and the type reduction algorithm must be selected from the lists provided in docstrings.
         """
         if algorithm == "KM":
@@ -4090,7 +4089,7 @@ class IT2TSK:
     
     s_norm : function
 
-        S-norm operator which would be used bu FLS.
+        S-norm operator which would be used by FLS.
     
     .. rubric:: Members
     
@@ -4098,22 +4097,22 @@ class IT2TSK:
 
         List of the inputs name as str.
     
-    output : List of str
-        
+    outputs : List of str
+
         List of the outputs name as str.
 
     rules : List of tuples (antecedent, consequent)
-        
+
         List of rules which each rule is defined as a 
         tuple (antecedent, consequent)
         
-        Both antacedent and consequent are lists of tuples. Each tuple 
-        of the antacedent list shows assignement of a variable to an IT2FS. 
+        Both antecedent and consequent are lists of tuples. Each tuple 
+        of the antecedent list shows assignment of a variable to an IT2FS. 
         First element of the tuple must be the input variable name  
         as a str, and the second element must be an IT2FS. 
 
-        Each tuple of the consequent indicates assignement of a variable to 
-        an output state. First element of the tuple must be output vriable 
+        Each tuple of the consequent indicates assignment of a variable to 
+        an output state. First element of the tuple must be output variable 
         name as str, and the second element of the tuple must be a 
         dictionary. This dictionary shows the output polynomial in the case 
         of the rule. For example let an output polynomial be as 
@@ -4148,8 +4147,8 @@ class IT2TSK:
     
     While using the IT2TSK class the user must take care of the items listed below:
         
-        * The UMF defined for an IT2FS must be greater than or equal with the LMF at all points of the discrete universe of discourse. 
-        * The inputs and outputs defined must be compatible while adding the rules and evluating the IT2FLS.
+        * The UMF defined for an IT2FS must be greater than or equal to the LMF at all points of the discrete universe of discourse. 
+        * The inputs and outputs defined must be compatible while adding the rules and evaluating the IT2FLS.
 
     """
     def __init__(self, t_norm, s_norm):
@@ -4199,15 +4198,15 @@ class IT2TSK:
         antecedent : List of tuples
             
             Antecedent is a list of tuples in which each tuple indicates 
-            assignement of a variable to an IT2FS. First element of the 
+            assignment of a variable to an IT2FS. First element of the 
             tuple must be the input variable name as str, and the second 
             element of the tuple must be an IT2FS.
             
         consequent : List of tuples
             
             Consequent is a list of tuples in which each tuple indicates 
-            assignement of a variable to an output state. First element of the 
-            tuple must be output vriable name as str, and the second element 
+            assignment of a variable to an output state. First element of the 
+            tuple must be output variable name as str, and the second element 
             of the tuple must be a dictionary. This dictionary shows the 
             output polynomial in the case of the rule. For example let an 
             output polynomial be as 2 x1 + 4 x2 + 5. Then the dictionary for 
@@ -4299,7 +4298,7 @@ class IT2TSK:
 
 class IT2Mamdani:
     """
-    Interval Type 2 Mamadani Fuzzy Logic System.
+    Interval Type 2 Mamdani Fuzzy Logic System.
     
     .. rubric:: Parameters
     
@@ -4339,17 +4338,17 @@ class IT2Mamdani:
         
         List of the inputs name as str.
     
-    output : List of str
-        
+    outputs : List of str
+
         List of the outputs name as str.
-        
+
     rules : List of tuples (antecedent, consequent)
         
         List of rules which each rule is defined as a 
         tuple (antecedent, consequent)
         
-        Both antacedent and consequent are lists of tuples. Each tuple 
-        of these lists shows assignement of a variable to an IT2FS. 
+        Both antecedent and consequent are lists of tuples. Each tuple 
+        of these lists shows assignment of a variable to an IT2FS. 
         First element of the tuple must be variable name (input or output) 
         as a str, and the second element must be an IT2FS. 
     
@@ -4381,7 +4380,7 @@ class IT2Mamdani:
         The only input of the evaluate function is a dictionary named inputs 
         in which the keys are input variable names as str and the values are 
         the crisp value of inputs to be evaluated.
-        The output of the evaluate function is depended on the method selected 
+        The output of the evaluate function depends on the method selected
         while constructing the class. For more information, please refer to 
         the examples.
     
@@ -4389,8 +4388,8 @@ class IT2Mamdani:
     
     While using the IT2Mamdani class the user must take care of the items listed below:
         
-        * The UMF defined for an IT2FS must be greater than or equal with the LMF at all points of the discrete universe of discourse. 
-        * The inputs and outputs defined must be compatible while adding the rules and evluating the IT2FLS.
+        * The UMF defined for an IT2FS must be greater than or equal to the LMF at all points of the discrete universe of discourse. 
+        * The inputs and outputs defined must be compatible while adding the rules and evaluating the IT2FLS.
 
     """
     def __init__(self, t_norm, s_norm, 
@@ -4489,14 +4488,14 @@ class IT2Mamdani:
         antecedent : List of tuples
             
             Antecedent is a list of tuples in which each tuple indicates 
-            assignement of a variable to an IT2FS. First element of the 
+            assignment of a variable to an IT2FS. First element of the 
             tuple must be input variable name as str, and the second 
             element of the tuple must be an IT2FS.
             
         consequent : List of tuples
             
             Consequent is a list of tuples in which each tuple indicates 
-            assignement of a variable to an IT2FS. First element of the 
+            assignment of a variable to an IT2FS. First element of the 
             tuple must be output variable name as str, and the second 
             element of the tuple must be an IT2FS.
             
