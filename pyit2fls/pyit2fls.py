@@ -1,6 +1,6 @@
 from numpy import (exp, ones_like, zeros_like, arange, multiply,
      subtract, add, minimum, maximum, sign, c_, argmax,
-     array, where, hstack, logical_not, sqrt, clip, interp, )
+     array, where, hstack, logical_not, sqrt, clip, interp, errstate, )
 
 from numpy import sum as npsum
 from numpy import abs as npabs
@@ -2771,50 +2771,61 @@ def KM_algorithm(intervals, params=[]):  # intervals = [[a1, b1, c1, d1], [a2, b
     intervals = intervals[intervals[:,0].argsort()]
     y_l_prime_num = npsum(intervals[:, 0] * w_l)
     y_prime_den = npsum(w_l)
-    y_l_prime = y_l_prime_num / y_prime_den
-    
-    while True:
-        k_l = 0
-        for i in range(0, N-1):
-            if (intervals[i, 0] <= y_l_prime <= intervals[i+1, 0]) or \
-                isclose(intervals[i, 0], y_l_prime) or \
-                isclose(y_l_prime, intervals[i+1, 0]):
-                k_l = i
+    with errstate(invalid="ignore", divide="ignore"):
+        y_l_prime = y_l_prime_num / y_prime_den
+
+        # The KM algorithm is proven to converge (y_l settling on a fixed
+        # switch point k_l) within at most N iterations for well-posed
+        # inputs. That proof assumes finite, real-valued arithmetic; a
+        # degenerate rule firing pattern (e.g. every antecedent's LMF and
+        # UMF both zero for the given input) can make y_prime_den zero,
+        # so y_l_prime is a genuine NaN (0/0). Comparisons against NaN are
+        # always False (IEEE 754), so both the inner switch-point search
+        # and the isclose(...) convergence check below would otherwise
+        # never fire, spinning forever with unchanging state. The
+        # iteration cap turns that into a graceful NaN result instead.
+        for _ in range(N + 1):
+            k_l = 0
+            for i in range(0, N-1):
+                if (intervals[i, 0] <= y_l_prime <= intervals[i+1, 0]) or \
+                    isclose(intervals[i, 0], y_l_prime) or \
+                    isclose(y_l_prime, intervals[i+1, 0]):
+                    k_l = i
+                    break
+
+            ii = arange(N)
+            w_l = (ii <= k_l) * intervals[:, 3] + (ii > k_l) * intervals[:, 2]
+            y_l_num = npsum(intervals[:, 0] * w_l)
+            y_l_den = npsum(w_l)
+            y_l = y_l_num / y_l_den
+            if isclose(y_l, y_l_prime, abs_tol=1.0e-6):
                 break
-        
-        ii = arange(N)
-        w_l = (ii <= k_l) * intervals[:, 3] + (ii > k_l) * intervals[:, 2]
-        y_l_num = npsum(intervals[:, 0] * w_l)
-        y_l_den = npsum(w_l)
-        y_l = y_l_num / y_l_den
-        if isclose(y_l, y_l_prime, abs_tol=1.0e-6):
-            break
-        else:
-            y_l_prime = y_l
-    # right calculations
-    w_r = w[:]
-    
-    intervals = intervals[intervals[:, 1].argsort()]
-    y_r_prime_num = npsum(intervals[:, 1] * w_r)
-    y_r_prime = y_r_prime_num / y_prime_den
-    while True:
-        k_r = 0
-        for i in range(0, N-1):
-            if (intervals[i, 1] <= y_r_prime <= intervals[i+1, 1]) or \
-                isclose(intervals[i, 1], y_r_prime) or \
-                isclose(y_r_prime, intervals[i+1, 1]):
-                k_r = i
+            else:
+                y_l_prime = y_l
+        # right calculations
+        w_r = w[:]
+
+        intervals = intervals[intervals[:, 1].argsort()]
+        y_r_prime_num = npsum(intervals[:, 1] * w_r)
+        y_r_prime = y_r_prime_num / y_prime_den
+        for _ in range(N + 1):
+            k_r = 0
+            for i in range(0, N-1):
+                if (intervals[i, 1] <= y_r_prime <= intervals[i+1, 1]) or \
+                    isclose(intervals[i, 1], y_r_prime) or \
+                    isclose(y_r_prime, intervals[i+1, 1]):
+                    k_r = i
+                    break
+
+            ii = arange(N)
+            w_r = (ii <= k_r) * intervals[:, 2] + (ii > k_r) * intervals[:, 3]
+            y_r_num = npsum(intervals[:, 1] * w_r)
+            y_r_den = npsum(w_r)
+            y_r = y_r_num / y_r_den
+            if isclose(y_r, y_r_prime, abs_tol=1.0e-6):
                 break
-        
-        ii = arange(N)
-        w_r = (ii <= k_r) * intervals[:, 2] + (ii > k_r) * intervals[:, 3]
-        y_r_num = npsum(intervals[:, 1] * w_r)
-        y_r_den = npsum(w_r)
-        y_r = y_r_num / y_r_den
-        if isclose(y_r, y_r_prime, abs_tol=1.0e-6):
-            break
-        else:
-            y_r_prime = y_r
+            else:
+                y_r_prime = y_r
     return y_l, y_r
 
 
@@ -2854,68 +2865,74 @@ def EKM_algorithm(intervals, params=[]):
     a_l = npsum(intervals[:k_l, 0] * intervals[:k_l, 3]) + \
           npsum(intervals[k_l:, 0] * intervals[k_l:, 2])
     b_l = npsum(intervals[:k_l, 3]) + npsum(intervals[k_l:, 2])
-    y_l_prime = a_l / b_l
-    while True:
-        k_l_prime = 0
-        for i in range(0, N-1):
-            if (intervals[i, 0] <= y_l_prime <= intervals[i+1, 0]) or \
-                isclose(intervals[i, 0], y_l_prime, abs_tol=1.0e-6) or \
-                isclose(y_l_prime, intervals[i+1, 0], abs_tol=1.0e-6):
-                k_l_prime = i
+    # A degenerate rule firing pattern can make b_l/b_r zero, so these
+    # divisions are a genuine 0/0. The k_l_prime == k_l convergence check
+    # below compares integer switch-point indices, not the NaN-valued y
+    # itself, so (unlike KM_algorithm) this loop still terminates safely;
+    # only the resulting warning needs silencing.
+    with errstate(invalid="ignore", divide="ignore"):
+        y_l_prime = a_l / b_l
+        while True:
+            k_l_prime = 0
+            for i in range(0, N-1):
+                if (intervals[i, 0] <= y_l_prime <= intervals[i+1, 0]) or \
+                    isclose(intervals[i, 0], y_l_prime, abs_tol=1.0e-6) or \
+                    isclose(y_l_prime, intervals[i+1, 0], abs_tol=1.0e-6):
+                    k_l_prime = i
+                    break
+            if k_l_prime == k_l:
+                y_l = y_l_prime
                 break
-        if k_l_prime == k_l:
-            y_l = y_l_prime
-            break
-        s_l = sign(k_l_prime - k_l)
-        imin = min(k_l, k_l_prime) + 1
-        imax = max(k_l, k_l_prime)
-        
-        a_l_prime = a_l + s_l * npsum(intervals[imin:imax, 0] * \
-                    (intervals[imin:imax, 3] - intervals[imin:imax, 2]))
-        b_l_prime = b_l + s_l * \
-                    npsum(intervals[imin:imax, 3] - intervals[imin:imax, 2])
-        y_l_second = a_l_prime / b_l_prime
-        
-        k_l = k_l_prime
-        y_l_prime = y_l_second
-        a_l = a_l_prime
-        b_l = b_l_prime
-    # Right calculations
-    intervals = intervals[intervals[:, 1].argsort()]
-    k_r = round(N / 1.7)
-    a_r = npsum(intervals[:k_r, 1] * intervals[:k_r, 2]) + \
-          npsum(intervals[k_r:, 1] * intervals[k_r:, 3])
-    b_r = npsum(intervals[:k_r, 2]) + npsum(intervals[k_r:, 3])
+            s_l = sign(k_l_prime - k_l)
+            imin = min(k_l, k_l_prime) + 1
+            imax = max(k_l, k_l_prime)
 
-    y_r_prime = a_r / b_r
+            a_l_prime = a_l + s_l * npsum(intervals[imin:imax, 0] * \
+                        (intervals[imin:imax, 3] - intervals[imin:imax, 2]))
+            b_l_prime = b_l + s_l * \
+                        npsum(intervals[imin:imax, 3] - intervals[imin:imax, 2])
+            y_l_second = a_l_prime / b_l_prime
 
-    while True:
-        k_r_prime = 0
-        for i in range(0, N-1):
-            if (intervals[i, 1] <= y_r_prime <= intervals[i+1, 1]) or \
-                isclose(intervals[i, 1], y_r_prime, abs_tol=1.0e-6) or \
-                isclose(y_r_prime, intervals[i+1, 1], abs_tol=1.0e-6):
-                k_r_prime = i
+            k_l = k_l_prime
+            y_l_prime = y_l_second
+            a_l = a_l_prime
+            b_l = b_l_prime
+        # Right calculations
+        intervals = intervals[intervals[:, 1].argsort()]
+        k_r = round(N / 1.7)
+        a_r = npsum(intervals[:k_r, 1] * intervals[:k_r, 2]) + \
+              npsum(intervals[k_r:, 1] * intervals[k_r:, 3])
+        b_r = npsum(intervals[:k_r, 2]) + npsum(intervals[k_r:, 3])
+
+        y_r_prime = a_r / b_r
+
+        while True:
+            k_r_prime = 0
+            for i in range(0, N-1):
+                if (intervals[i, 1] <= y_r_prime <= intervals[i+1, 1]) or \
+                    isclose(intervals[i, 1], y_r_prime, abs_tol=1.0e-6) or \
+                    isclose(y_r_prime, intervals[i+1, 1], abs_tol=1.0e-6):
+                    k_r_prime = i
+                    break
+            if k_r_prime == k_r:
+                y_r = y_r_prime
                 break
-        if k_r_prime == k_r:
-            y_r = y_r_prime
-            break
-        
-        s_r = sign(k_r_prime - k_r)
-        
-        imin = min(k_r, k_r_prime) + 1
-        imax = max(k_r, k_r_prime)
-        a_r_prime = npsum(intervals[imin:imax, 1] * (intervals[imin:imax, 3] - 
-                          intervals[imin:imax, 2]))
-        b_r_prime = npsum(intervals[imin:imax, 3] - intervals[imin:imax, 2])
-        
-        a_r_prime = a_r - s_r * a_r_prime
-        b_r_prime = b_r - s_r * b_r_prime
-        y_r_second = a_r_prime / b_r_prime
-        k_r = k_r_prime
-        y_r_prime = y_r_second
-        a_r = a_r_prime
-        b_r = b_r_prime
+
+            s_r = sign(k_r_prime - k_r)
+
+            imin = min(k_r, k_r_prime) + 1
+            imax = max(k_r, k_r_prime)
+            a_r_prime = npsum(intervals[imin:imax, 1] * (intervals[imin:imax, 3] -
+                              intervals[imin:imax, 2]))
+            b_r_prime = npsum(intervals[imin:imax, 3] - intervals[imin:imax, 2])
+
+            a_r_prime = a_r - s_r * a_r_prime
+            b_r_prime = b_r - s_r * b_r_prime
+            y_r_second = a_r_prime / b_r_prime
+            k_r = k_r_prime
+            y_r_prime = y_r_second
+            a_r = a_r_prime
+            b_r = b_r_prime
     return y_l, y_r
 
 
@@ -3086,27 +3103,44 @@ def EIASC_algorithm(intervals, params=[]):
     a_l = npsum(intervals[:, 0] * intervals[:, 2])
     b_l = npsum(intervals[:, 2])
     L = 0
-    while True:
-        d = intervals[L, 3] - intervals[L, 2]
-        a_l += intervals[L, 0] * d
-        b_l += d
-        y_l = a_l / b_l
-        L += 1
-        if (y_l <= intervals[L, 0]) or isclose(y_l, intervals[L, 0]):
-            break 
+    # A degenerate rule firing pattern (e.g. every antecedent's LMF is zero
+    # for the given input) can make b_l zero, so a_l / b_l is a genuine
+    # 0/0 -- mathematically indeterminate, not a bug, and already handled
+    # gracefully below (see the L >= N guard). Silence NumPy's warning for
+    # just that expected case rather than let it spam long GA/PSO runs.
+    with errstate(invalid="ignore", divide="ignore"):
+        while True:
+            d = intervals[L, 3] - intervals[L, 2]
+            a_l += intervals[L, 0] * d
+            b_l += d
+            y_l = a_l / b_l
+            L += 1
+            # L can reach N before the usual convergence check below is
+            # ever satisfied -- e.g. when only one row survives trim(), or
+            # when b_l is (or becomes) zero, making y_l NaN and every
+            # subsequent comparison False. Stop at the last row instead of
+            # indexing past the end of the array.
+            if L >= N or (y_l <= intervals[L, 0]) or isclose(y_l, intervals[L, 0]):
+                break
     # Right calculations
     intervals = intervals[intervals[:, 1].argsort()]
     a_r = npsum(intervals[:, 1] * intervals[:, 2])
     b_r = npsum(intervals[:, 2])
     R = N - 1
-    while True:
-        d = intervals[R, 3] - intervals[R, 2]
-        a_r += intervals[R, 1] * d
-        b_r += d
-        y_r = a_r / b_r
-        R -= 1
-        if (y_r >= intervals[R, 1]) or isclose(y_r, intervals[R, 1]):
-            break  
+    with errstate(invalid="ignore", divide="ignore"):
+        while True:
+            d = intervals[R, 3] - intervals[R, 2]
+            a_r += intervals[R, 1] * d
+            b_r += d
+            y_r = a_r / b_r
+            R -= 1
+            # Same guard as above, mirrored for the descending index:
+            # without it, R going negative would silently wrap around to
+            # the end of the array (NumPy negative indexing) instead of
+            # raising, which is even worse than a crash -- it returns a
+            # value from the wrong row.
+            if R < 0 or (y_r >= intervals[R, 1]) or isclose(y_r, intervals[R, 1]):
+                break
     return y_l, y_r
 
 
@@ -3138,17 +3172,22 @@ def WM_algorithm(intervals, params=[]):
     
     F = intervals[:, 2:4]
     Y = intervals[:, 0:2]
-    y_l_sup = min(npsum(F[:, 0] * Y[:, 0]) / npsum(F[:, 0]), 
-                  npsum(F[:, 1] * Y[:, 0]) / npsum(F[:, 1]))
-    y_r_inf = min(npsum(F[:, 1] * Y[:, 1]) / npsum(F[:, 1]), 
-                  npsum(F[:, 0] * Y[:, 1]) / npsum(F[:, 0]))
-    c = npsum(F[:, 1] - F[:, 0]) / (npsum(F[:, 0]) * npsum(F[:, 1]))
-    y_l_inf = y_l_sup - c * (npsum(F[:, 0] * (Y[:, 0] - Y[0, 0])) * 
-                             npsum(F[:, 1] * (Y[-1, 0] - Y[:, 0]))) / (npsum(F[:, 0] * (Y[:, 0] - Y[0, 0])) + npsum(F[:, 1] * (Y[-1, 0] - Y[:, 0])))
-    y_r_sup = y_r_inf + c * (npsum(F[:, 1] * (Y[:, 1] - Y[0, 1])) * 
-                             npsum(F[:, 0] * (Y[-1, 1] - Y[:, 1]))) / (npsum(F[:, 1] * (Y[:, 1] - Y[0, 1])) + npsum(F[:, 0] * (Y[-1, 1] - Y[:, 1])))
-    y_l = (y_l_sup + y_l_inf) / 2
-    y_r = (y_r_sup + y_r_inf) / 2
+    # As in EIASC_algorithm/KM_algorithm/EKM_algorithm above, a degenerate
+    # rule firing pattern can make one of these F-column sums zero, making
+    # the corresponding division a genuine 0/0. There is no loop here to
+    # protect, just the resulting warning to silence.
+    with errstate(invalid="ignore", divide="ignore"):
+        y_l_sup = min(npsum(F[:, 0] * Y[:, 0]) / npsum(F[:, 0]),
+                      npsum(F[:, 1] * Y[:, 0]) / npsum(F[:, 1]))
+        y_r_inf = min(npsum(F[:, 1] * Y[:, 1]) / npsum(F[:, 1]),
+                      npsum(F[:, 0] * Y[:, 1]) / npsum(F[:, 0]))
+        c = npsum(F[:, 1] - F[:, 0]) / (npsum(F[:, 0]) * npsum(F[:, 1]))
+        y_l_inf = y_l_sup - c * (npsum(F[:, 0] * (Y[:, 0] - Y[0, 0])) *
+                                 npsum(F[:, 1] * (Y[-1, 0] - Y[:, 0]))) / (npsum(F[:, 0] * (Y[:, 0] - Y[0, 0])) + npsum(F[:, 1] * (Y[-1, 0] - Y[:, 0])))
+        y_r_sup = y_r_inf + c * (npsum(F[:, 1] * (Y[:, 1] - Y[0, 1])) *
+                                 npsum(F[:, 0] * (Y[-1, 1] - Y[:, 1]))) / (npsum(F[:, 1] * (Y[:, 1] - Y[0, 1])) + npsum(F[:, 0] * (Y[-1, 1] - Y[:, 1])))
+        y_l = (y_l_sup + y_l_inf) / 2
+        y_r = (y_r_sup + y_r_inf) / 2
     return y_l, y_r
 
 
@@ -3185,7 +3224,10 @@ def BMM_algorithm(intervals, params):
     m = params[0]
     n = params[1]
     #Y = Y.reshape((Y.size,))
-    return m * npsum(F[:, 0] * Y) / npsum(F[:, 0]) + n * npsum(F[:, 1] * Y) / npsum(F[:, 1])
+    # See the note in WM_algorithm above: a degenerate rule firing pattern
+    # can make npsum(F[:, 0]) or npsum(F[:, 1]) zero, a genuine 0/0.
+    with errstate(invalid="ignore", divide="ignore"):
+        return m * npsum(F[:, 0] * Y) / npsum(F[:, 0]) + n * npsum(F[:, 1] * Y) / npsum(F[:, 1])
 
 
 def LBMM_algorithm(intervals, params):
@@ -3224,7 +3266,10 @@ def LBMM_algorithm(intervals, params):
     Y = intervals[:, 0:2]
     m = params[0]
     n = params[1]
-    return m * npsum(F[:, 0] * Y[:, 0]) / npsum(F[:, 0]) + n * npsum(F[:, 1] * Y[:, 1]) / npsum(F[:, 1])
+    # See the note in WM_algorithm above: a degenerate rule firing pattern
+    # can make npsum(F[:, 0]) or npsum(F[:, 1]) zero, a genuine 0/0.
+    with errstate(invalid="ignore", divide="ignore"):
+        return m * npsum(F[:, 0] * Y[:, 0]) / npsum(F[:, 0]) + n * npsum(F[:, 1] * Y[:, 1]) / npsum(F[:, 1])
 
 
 def NT_algorithm(intervals, params=[]):
