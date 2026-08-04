@@ -403,7 +403,7 @@ class MainWindow(QMainWindow):
         rb_layout.addWidget(self.rule_mf1)
 
         self.rule_op = QComboBox()
-        self.rule_op.addItems(["(none)", "AND", "OR"])
+        self.rule_op.addItems(["AND", "OR", "(none)"])
         rb_layout.addWidget(self.rule_op)
 
         self.rule_var2 = QComboBox()
@@ -427,6 +427,8 @@ class MainWindow(QMainWindow):
         self.rule_var1.currentTextChanged.connect(lambda n: self._refresh_term_combo(self.rule_mf1, "input", n))
         self.rule_var2.currentTextChanged.connect(lambda n: self._refresh_term_combo(self.rule_mf2, "input", n))
         self.rule_out_var.currentTextChanged.connect(lambda n: self._refresh_term_combo(self.rule_out_mf, "output", n))
+        self.rule_op.currentTextChanged.connect(self._on_rule_op_changed)
+        self._on_rule_op_changed(self.rule_op.currentText())
 
         add_rule_button = QPushButton("Add Rule to List")
         add_rule_button.clicked.connect(self._add_rule)
@@ -444,6 +446,19 @@ class MainWindow(QMainWindow):
         layout.addWidget(add_rule_button)
         layout.addWidget(rule_list_group)
         self.rules_tab.setLayout(layout)
+
+    def _on_rule_op_changed(self, op):
+        """
+        Greys out the second antecedent clause's fields whenever the
+        operator is set to "(none)", so it is visually obvious that
+        whatever is selected there will *not* be included in the rule --
+        rather than silently dropping it, which is what previously
+        happened when a second clause was filled in but the operator was
+        left at its old "(none)" default.
+        """
+        enabled = (op != "(none)")
+        for widget in (self.rule_var2, self.rule_not2, self.rule_mf2):
+            widget.setEnabled(enabled)
 
     def _refresh_term_combo(self, combo, var_type, var_name):
         combo.blockSignals(True)
