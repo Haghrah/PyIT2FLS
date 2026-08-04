@@ -1,4 +1,4 @@
-﻿PyIT2FLS
+PyIT2FLS
 ========
 
 .. automodule:: pyit2fls
@@ -55,24 +55,13 @@ Alternatively, you can install or upgrade PyIT2FLS directly from PyPI using:
 
     pip3 install --upgrade pyit2fls
 
-Support My Work with Tether (USDT)
-----------------------------------
-
-If you find this Python library useful and would like to support its development, 
-donations are greatly appreciated. To donate USDT, please send to the following 
-wallet address: 0x2c0fb11b56b10b5ddda6a8c9c1f6d0b559153de2. Ensure you select 
-the Avalanche C-Chain network when making the transaction. Using the wrong network, 
-such as Ethereum, may result in lost funds.
-
-Thank you for your contribution, which helps maintain and improve this project!
-
 
 Getting Started
 ---------------
 
-This section introduces basic examples of how to use the PyIT2FLS library. For more 
-advanced use cases, please refer to the examples directory in the PyIT2FLS github 
-repository. 
+This section introduces basic examples of how to use the PyIT2FLS library. For more
+advanced use cases, please refer to the examples directory in the PyIT2FLS GitHub
+repository.
 
 Example 1: Defining Type 1 Fuzzy Sets and Performing AND/OR Operators on Them
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -363,11 +352,11 @@ And the output of this code is shown below:
 Example 4: Defining Interval Type 2 Fuzzy Sets
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In this example, we define and plot ten well-known types of interval Type 2 fuzzy sets. 
-Before using the IT2FS class, we perform some initial imports and define the universe 
+In this example, we define and plot ten well-known types of interval Type 2 fuzzy sets.
+Before using the *IT2FS* class, we perform some initial imports and define the universe
 of discourse.
 
-The IT2FS class requires five parameters to create an interval Type 2 fuzzy set:
+The *IT2FS* class requires five parameters to create an interval Type 2 fuzzy set:
 
 1. **Domain**: The universe of discourse.
 2. **Upper membership function**: A function defining the upper bound.
@@ -482,8 +471,8 @@ Finally, let's plot all of these sets using the *IT2FS_plot* function:
                           "G. with Uncertain Std", 
                           "Right G. with Uncertain Std", 
                           "Left G. with Uncertain Std", ], 
-               legendloc="upper right", bbox_to_anchor=(1.55, 1), 
-               filename="Figure_9", ext="png"))
+               legendloc="upper right", bbox_to_anchor=(1.55, 1),
+               filename="Figure_9", ext="png")
 
 The output of this code is shown below:
 
@@ -493,7 +482,7 @@ The output of this code is shown below:
    :align: center
 
 
-Example 5. Performing MEET and JOIN Operators on IT2FSs
+Example 5: Performing MEET and JOIN Operators on IT2FSs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In this example, we define two *IT2FS* s and then calculate their MEET and JOIN operators.
@@ -678,10 +667,10 @@ we define the input sets as follows:
     Large1  = IT2FS_Gaussian_UncertStd(domain1, [2.0, 0.2, 0.025, 1.])
     Large2  = IT2FS_Gaussian_UncertStd(domain2, [3.0, 0.3, 0.025, 1.])
 
-    IT2FS_plot(Small1, Medium1, Large1, 
-            legends=["Small 1", "Medium 1", "large 1"])
+    IT2FS_plot(Small1, Medium1, Large1,
+            legends=["Small 1", "Medium 1", "Large 1"])
     IT2FS_plot(Small2, Medium2, Large2,
-            legends=["Smal 2l", "Medium 2", "large 2"])
+            legends=["Small 2", "Medium 2", "Large 2"])
 
 Based on this code, the *IT2FS* s describing the first input variable are as follows:
 
@@ -714,9 +703,7 @@ Which are represented below:
    :width: 400px
    :align: center
 
-Here’s a refined version of your text:
-
-After defining the required *IT2FS*s, it's time to define the fuzzy system using the 
+After defining the required *IT2FS*s, it's time to define the fuzzy system using the
 *IT2Mamdani* class. The *IT2Mamdani* class requires a T-norm and an S-norm as constructor 
 parameters. The names of the input and output variables should be predefined using 
 the *add_input_variable* and *add_output_variable* functions.
@@ -805,7 +792,7 @@ In this example, we will train fuzzy models using input/output data. PyIT2FLS pr
     noise = 1.0 * (rand(len(X1), len(X2)) - 0.5)
     y2 = y1 + noise
 
-Now, we will create an *IT2TSK_ML* object with two inputs, four rules, and parameters bounded between −π and π. The model will use interval type-2 Gaussian sets with uncertain mean values, and it will be trained using a genetic algorithm configured with a population size of 200, 100 iterations, 500 mutations, 50 combinations, and an elite proportion of 2%.
+Now, we will create an *IT2TSK_ML* object with two inputs, four rules, and parameters bounded between −π and π. The model will use interval type-2 Gaussian sets with uncertain mean values, and it will be trained using a genetic algorithm configured with a population size of 100, 100 iterations, 500 mutations, 50 crossovers, and an elite proportion of 5%.
 
 .. code-block:: python
 
@@ -949,4 +936,185 @@ Finally, we obtain the outputs of the fuzzy rules as follows. Note that we used 
     Rule 4: -5.609642128761873
 
 
-The next model to be used is *IT2Mamdani_ML*. ...
+The next model to be used is *IT2Mamdani_ML*. It shares the same constructor arguments
+as *IT2TSK_ML* — the number of inputs, the number of rules, the interval type-2 fuzzy
+set class, the parameter bounds, and the optimization algorithm — but its consequents
+are interval type-2 fuzzy sets rather than TSK-style linear polynomials, and it is
+trained and evaluated the same way:
+
+.. code-block:: python
+
+    from pyit2fls import IT2Mamdani_ML
+
+    myIT2Mamdani = IT2Mamdani_ML(N, M, IT2FS_Gaussian_UncertMean, (-pi, pi),
+                                 algorithm="GA",
+                                 algorithm_params=[100, 100, 500, 50, 0.05])
+    myIT2Mamdani.fit(X, y2.ravel())
+    y4 = myIT2Mamdani.score(X).reshape(X1.shape)
+
+Plotting the fitted surface follows the same three-surface approach shown for
+*IT2TSK_ML* above, simply replacing *y3* with *y4*. The rule base can be inspected
+the same way too, through *model.it2mamdani.rules* instead of *model.it2tsk.rules*;
+since *IT2Mamdani_ML*'s consequents are *IT2FS* objects rather than TSK coefficient
+dictionaries, each rule is printed as an "IF ... THEN Y IS [<IT2FS>]" statement:
+
+.. code-block:: python
+
+    for i, rule in enumerate(myIT2Mamdani.model.it2mamdani.rules):
+        ruleText = f"Rule {i+1}: IF X1 IS [{rule[0][0][1]}] AND X2 IS [{rule[0][1][1]}] THEN Y IS [{rule[1][0][1]}]"
+        print(ruleText)
+
+    print(f"Fitting error with respect to original surface: {sum((y1 - y4) ** 2) ** 0.5}")
+    print(f"Fitting error with respect to noisy surface: {sum((y2 - y4) ** 2) ** 0.5}")
+
+Next, the *T1TSK_ML* and *T1Mamdani_ML* models are trained on the same data. Unlike
+the interval type-2 models above, these produce Type 1 fuzzy systems: their
+constructor takes only the number of inputs, the number of rules, and the parameter
+bounds (there is no fuzzy set class argument, since both always use Gaussian
+antecedents), and the generated linguistic system is obtained through a dedicated
+*get_T1TSK*/*get_T1Mamdani* method rather than through *model.it2tsk*/*model.it2mamdani*:
+
+.. code-block:: python
+
+    from pyit2fls import T1TSK_ML, T1Mamdani_ML
+
+    myT1TSK = T1TSK_ML(N, M, (-pi, pi), algorithm="GA",
+                       algorithm_params=[100, 100, 500, 50, 0.05])
+    myT1TSK.fit(X, y2.ravel())
+    y5 = myT1TSK.score(X).reshape(X1.shape)
+
+    myT1Mamdani = T1Mamdani_ML(N, M, (-pi, pi), algorithm="GA",
+                               algorithm_params=[100, 100, 500, 50, 0.05])
+    myT1Mamdani.fit(X, y2.ravel())
+    y6 = myT1Mamdani.score(X).reshape(X1.shape)
+
+Again, plotting *y5* and *y6* follows the same three-surface pattern shown above.
+Calling *get_T1TSK* or *get_T1Mamdani* returns a ready-to-use *T1TSK*/*T1Mamdani*
+system built from the learned parameters, which can be inspected and evaluated
+exactly like the systems built by hand in Example 2 and Example 3:
+
+.. code-block:: python
+
+    generatedT1TSK = myT1TSK.get_T1TSK()
+    for i, rule in enumerate(generatedT1TSK.rules):
+        antecedent, consequent = rule
+        ruleText = f"Rule {i+1}: IF X1 IS [{antecedent[0][1]}] AND X2 IS [{antecedent[1][1]}] THEN Y IS [{consequent[0][1]}]"
+        print(ruleText)
+    print(generatedT1TSK.evaluate({"X1": 0.5, "X2": -0.3}, params=(0.5, -0.3)))
+
+    generatedT1Mamdani = myT1Mamdani.get_T1Mamdani()
+    for i, rule in enumerate(generatedT1Mamdani.rules):
+        antecedent, consequent = rule
+        ruleText = f"Rule {i+1}: IF X1 IS [{antecedent[0][1]}] AND X2 IS [{antecedent[1][1]}] THEN Y IS [{consequent[0][1]}]"
+        print(ruleText)
+    print(generatedT1Mamdani.evaluate({"X1": 0.5, "X2": -0.3}))
+
+Note that *get_T1TSK* and *get_T1Mamdani* previously mislabeled every antecedent
+clause of a rule with the rule's own index instead of the input's index — for
+example, every clause of the third rule would incorrectly be named "X3", which broke
+*evaluate* for any generated system with more rules than inputs. This has been fixed;
+both methods now correctly name each antecedent clause after its input variable.
+
+
+Example 9: Reading and Writing FML/FCL Files, and the Designer GUI
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Besides building a fuzzy system directly in Python, as in the previous examples,
+PyIT2FLS can also read and write fuzzy systems in two standardized text formats:
+the `IEEE 1855 Fuzzy Markup Language (FML) <https://github.com/Haghrah/PyIT2FLS/blob/master/IEEE1855.md>`_,
+through the *FML* class, and the `IEC 61131-7 Fuzzy Control Language (FCL) <https://github.com/Haghrah/PyIT2FLS/blob/master/IEC61131-7.md>`_,
+through the *FCL* class. Both classes share the same parser/generator shape:
+*parse_fml*/*parse_fcl* reads a document into a ``(name, variables, rules)`` triple,
+and *generate* builds a runnable *T1Mamdani* system out of it (via the shared
+*generate_system* function); *export_fml*/*export_fcl* serializes a system back out
+to text.
+
+In this example, we define a small restaurant-tipping controller directly as FCL
+text and evaluate it, without ever constructing *T1FS* or *T1Mamdani* objects by
+hand:
+
+.. code-block:: python
+
+    from pyit2fls.FCL import FCL
+
+    FCL_TEXT = """
+    FUNCTION_BLOCK Tipper
+
+    VAR_INPUT
+        service : REAL;
+        food : REAL;
+    END_VAR
+
+    VAR_OUTPUT
+        tip : REAL;
+    END_VAR
+
+    FUZZIFY service
+        TERM poor := (0,1) (5,0);
+        TERM good := (0,0) (5,1) (10,0);
+        TERM excellent := (5,0) (10,1);
+    END_FUZZIFY
+
+    FUZZIFY food
+        TERM bad := (0,1) (5,0);
+        TERM tasty := (0,0) (10,1);
+    END_FUZZIFY
+
+    DEFUZZIFY tip
+        TERM low := (0,1) (13,0);
+        TERM average := (0,0) (13,1) (25,0);
+        TERM high := (13,0) (25,1);
+        METHOD : COG;
+        DEFAULT := 0;
+    END_DEFUZZIFY
+
+    RULEBLOCK rules
+        AND : MIN;
+        ACT : MIN;
+        RULE 1 : IF service IS poor THEN tip IS low;
+        RULE 2 : IF food IS bad THEN tip IS low;
+        RULE 3 : IF service IS good THEN tip IS average;
+        RULE 4 : IF service IS excellent THEN tip IS high;
+        RULE 5 : IF food IS tasty THEN tip IS high;
+    END_RULEBLOCK
+
+    END_FUNCTION_BLOCK
+    """
+
+    myFCL = FCL()
+    name, variables, rules = myFCL.parse_fcl(FCL_TEXT)
+    system = myFCL.generate(variables, rules)
+    print(system.evaluate({"service": 8, "food": 9}))
+
+Note that rules 1–2 and 4–5 express what would naturally be written as two
+OR-connected rules ("IF service IS poor OR food IS bad THEN tip IS low"). PyIT2FLS's
+underlying *T1Mamdani*/*T1TSK* engines only combine a rule's antecedent clauses with
+AND, so an OR relationship between two clauses must be modeled as two separate rules
+sharing the same consequent, as done here — their contributions are then combined
+during the usual rule accumulation.
+
+The same system could equally have been written as FML XML and loaded with the *FML*
+class instead; see `markdown docs/FML.md <https://github.com/Haghrah/PyIT2FLS/blob/master/markdown%20docs/FML.md>`_
+and `markdown docs/FCL.md <https://github.com/Haghrah/PyIT2FLS/blob/master/markdown%20docs/FCL.md>`_
+for a complete description of what each format supports.
+
+Finally, PyIT2FLS ships a graphical designer for building, simulating, and
+saving/loading systems like this one interactively, without writing any FML/FCL by
+hand. It depends on the optional PyQt5 extra:
+
+.. code-block:: shell
+
+    pip3 install --upgrade "pyit2fls[gui]"
+
+and can then be launched with the console script it installs, or as a module:
+
+.. code-block:: shell
+
+    pyit2fls-designer
+    # or
+    python3 -m pyit2fls.designerui
+
+See `markdown docs/DesignerGUI.md <https://github.com/Haghrah/PyIT2FLS/blob/master/markdown%20docs/DesignerGUI.md>`_
+for a walkthrough of the designer's three tabs (variables and membership functions,
+rule base, and simulation), and :doc:`../languages` and :doc:`../designerui` for the
+full API reference of the *FML*, *FCL*, and designer classes.
