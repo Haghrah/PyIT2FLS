@@ -3,4 +3,4 @@ from .fuzzymatrix import *
 from .learning import *
 from .FML import *
 from .FCL import *
-from designerUI import *
+from .designerui import *
