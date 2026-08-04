@@ -1009,12 +1009,6 @@ exactly like the systems built by hand in Example 2 and Example 3:
         print(ruleText)
     print(generatedT1Mamdani.evaluate({"X1": 0.5, "X2": -0.3}))
 
-Note that *get_T1TSK* and *get_T1Mamdani* previously mislabeled every antecedent
-clause of a rule with the rule's own index instead of the input's index — for
-example, every clause of the third rule would incorrectly be named "X3", which broke
-*evaluate* for any generated system with more rules than inputs. This has been fixed;
-both methods now correctly name each antecedent clause after its input variable.
-
 
 Example 9: Reading and Writing FML/FCL Files, and the Designer GUI
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
